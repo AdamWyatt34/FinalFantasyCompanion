@@ -79,7 +79,14 @@ export function resetLog(gameId: string): string | null {
     return null;
   }
 
-  const archiveKey = `ffcompanion.${gameId}.archive.${new Date().toISOString()}`;
+  // Suffix on collision — two resets in the same millisecond must not
+  // overwrite each other's archives (restore + reset can race the clock).
+  const base = `ffcompanion.${gameId}.archive.${new Date().toISOString()}`;
+  let archiveKey = base;
+  for (let n = 2; kv.get(archiveKey) !== null; n++) {
+    archiveKey = `${base}-${n}`;
+  }
+
   kv.set(archiveKey, text);
   kv.remove(activeKey(gameId));
   return archiveKey;
