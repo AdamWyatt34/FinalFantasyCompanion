@@ -82,7 +82,7 @@ public sealed class DemoScriptTests : IDisposable
             ["highwind", "chocobolure", "stables", "carobnuts", "goodchocobo", "greatchocobo",
              "racing1", "bluechocobo", "greenchocobo", "racing2", "blackchocobo", "racing3",
              "zeionut", "goldchocobo", "kotr"];
-        nowIds.ShouldBeSubsetOf(chain.Concat(["beta", "condor1", "mythril", "greatgospel", "yuffie", "vincent", "odin", "titan", "pagoda", "aerithlimits"]));
+        nowIds.ShouldBeSubsetOf(chain.Concat(["beta", "mime", "condor1", "mythril", "greatgospel", "yuffie", "vincent", "odin", "titan", "pagoda", "aerithlimits"]));
         chain.ShouldBeSubsetOf(nowIds);
 
         var kotr = now.Single(e => e!["item"]!["id"]!.GetValue<string>() == "kotr");

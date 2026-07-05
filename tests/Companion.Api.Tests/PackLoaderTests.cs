@@ -16,7 +16,7 @@ public class PackLoaderTests
         ff7.Game.Id.ShouldBe("ff7");
         ff7.Game.Title.ShouldBe("Final Fantasy VII");
         ff7.Positions.Count.ShouldBeInRange(20, 24);
-        ff7.Items.Count.ShouldBeInRange(35, 50);
+        ff7.Items.Count.ShouldBeInRange(70, 100);
         ff7.Positions.Select(p => p.Disc).Distinct().Order().ShouldBe([1, 2, 3]);
         ff7.Items.ShouldAllBe(i => !i.Verified, "pack data is scaffolding until verified during play");
         ff7.Items.Single(i => i.Id == "kotr").Prereqs.ShouldBe(["goldchocobo"]);

@@ -88,12 +88,12 @@
       "location": "Sector 5 slums — kid's house, upstairs",
       "window": { "opensAt": 2, "closesAt": 3 },
       "prereqs": [],
-      "notes": "First of six flyers. Widely listed as missable once you leave Midgar.",
+      "notes": "First of six flyers. Widely listed as missable once you leave Midgar (some guides say the Disc 2 raid offers a second chance — verify).",
       "verified": false
     },
     {
       "id": "enemyskill1",
-      "name": "Enemy Skill Materia",
+      "name": "Enemy Skill Materia #1",
       "type": "materia",
       "location": "Shinra HQ — Fl.67 specimen lab",
       "window": { "opensAt": 3, "closesAt": 3 },
@@ -138,7 +138,7 @@
     },
     {
       "id": "greatgospel",
-      "name": "Great Gospel",
+      "name": "Great Gospel (Aerith Lv.4)",
       "type": "limit",
       "location": "Weapon Seller's house near Gongaga",
       "window": { "opensAt": 8, "closesAt": 11 },
@@ -202,7 +202,7 @@
       "type": "materia",
       "location": "Grasslands marshes — Midgar Zolom",
       "window": { "opensAt": 5 },
-      "prereqs": [],
+      "prereqs": ["enemyskill1"],
       "notes": "Brutal fight this early; one of the best pickups in the game.",
       "verified": false,
       "route": {
@@ -228,7 +228,7 @@
       "location": "Wutai",
       "window": { "opensAt": 10 },
       "prereqs": ["yuffie"],
-      "notes": "Yuffie's personal questline; Leviathan is the reward.",
+      "notes": "Yuffie's personal questline; rewards Leviathan and All Creation (her Lv.4 limit).",
       "verified": false
     },
     {
@@ -515,7 +515,7 @@
       "location": "Ocean floor — requires the submarine",
       "window": { "opensAt": 17 },
       "prereqs": [],
-      "notes": "Underwater materia removes the 20-minute timer. Bring KotR + W-Summon + HP Absorb.",
+      "notes": "Underwater materia removes the 20-minute timer. Bring KotR + W-Summon + HP Absorb. Drops the Earth Harp.",
       "verified": false,
       "route": {
         "at": 20,
@@ -530,13 +530,607 @@
       "location": "Desert around the Gold Saucer",
       "window": { "opensAt": 19 },
       "prereqs": [],
-      "notes": "Appears after the Weapons stir. Knock out two allies before it surfaces its tentacles.",
+      "notes": "Appears after the Weapons stir. Knock out two allies before it surfaces its tentacles. Drops the Desert Rose.",
       "verified": false,
       "route": {
         "at": 20,
         "rank": 3,
         "why": "Last checkmark before the finale"
       }
+    },
+
+    {
+      "id": "flyer2",
+      "name": "Turtle's Paradise Flyer #2",
+      "type": "quest",
+      "location": "Fort Condor — 1st floor, by the entrance",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "Read the poster on the wall.",
+      "verified": false
+    },
+    {
+      "id": "flyer3",
+      "name": "Turtle's Paradise Flyer #3",
+      "type": "quest",
+      "location": "Gold Saucer — Ghost Hotel lobby",
+      "window": { "opensAt": 8 },
+      "prereqs": [],
+      "notes": "Poster by the item shop counter.",
+      "verified": false
+    },
+    {
+      "id": "flyer4",
+      "name": "Turtle's Paradise Flyer #4",
+      "type": "quest",
+      "location": "Cosmo Canyon — Tiger Lily Arms Shop",
+      "window": { "opensAt": 9 },
+      "prereqs": [],
+      "notes": "On the wall inside the weapon shop.",
+      "verified": false
+    },
+    {
+      "id": "flyer5",
+      "name": "Turtle's Paradise Flyer #5",
+      "type": "quest",
+      "location": "Cosmo Canyon — Shildra Inn",
+      "window": { "opensAt": 9 },
+      "prereqs": [],
+      "notes": "On the wall inside the inn.",
+      "verified": false
+    },
+    {
+      "id": "flyer6",
+      "name": "Turtle's Paradise Flyer #6",
+      "type": "quest",
+      "location": "Wutai — Turtle's Paradise bar",
+      "window": { "opensAt": 10 },
+      "prereqs": [],
+      "notes": "The bar running the contest has the last flyer.",
+      "verified": false
+    },
+    {
+      "id": "flyerreward",
+      "name": "Turtle's Paradise prize",
+      "type": "quest",
+      "location": "Wutai — Turtle's Paradise owner",
+      "window": { "opensAt": 10 },
+      "prereqs": ["flyer1", "flyer2", "flyer3", "flyer4", "flyer5", "flyer6"],
+      "notes": "Power Source, Guard Source, Magic Source, Mind Source, Speed Source, Luck Source, Megalixir — if you read all six flyers.",
+      "verified": false
+    },
+    {
+      "id": "enemyskill2",
+      "name": "Enemy Skill Materia #2",
+      "type": "materia",
+      "location": "Junon — house next to the respectable inn",
+      "window": { "opensAt": 6 },
+      "prereqs": [],
+      "notes": "On the floor; easy to walk past during the parade chaos.",
+      "verified": false
+    },
+    {
+      "id": "enemyskill3",
+      "name": "Enemy Skill Materia #3",
+      "type": "materia",
+      "location": "Forgotten City — inside the house with the bed",
+      "window": { "opensAt": 12 },
+      "prereqs": [],
+      "notes": "Grab it on the way through.",
+      "verified": false
+    },
+    {
+      "id": "enemyskill4",
+      "name": "Enemy Skill Materia #4",
+      "type": "materia",
+      "location": "Chocobo Sage's house — talk to the green chocobo",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Requires the Highwind to reach the Sage.",
+      "verified": false
+    },
+    {
+      "id": "trine",
+      "name": "Trine (Enemy Skill)",
+      "type": "materia",
+      "location": "Materia Keeper (Mt. Nibel), Godo (Wutai pagoda), or Stilva (Gaea's Cliff)",
+      "window": { "opensAt": 9, "closesAt": 13 },
+      "prereqs": ["enemyskill1"],
+      "notes": "Only three casters in the game — Gaea's Cliff is the last chance. Learn it on every Enemy Skill materia you care about.",
+      "verified": false,
+      "route": {
+        "at": 9,
+        "rank": 3,
+        "why": "Three sources total; do not leave Mt. Nibel without it"
+      }
+    },
+    {
+      "id": "pandorasbox",
+      "name": "Pandora's Box (Enemy Skill)",
+      "type": "materia",
+      "location": "Northern Crater — Dragon Zombie",
+      "window": { "opensAt": 21, "closesAt": 22 },
+      "prereqs": ["enemyskill1"],
+      "notes": "Cast exactly once per save — by the first Dragon Zombie that dies. Have every Enemy Skill materia equipped for it.",
+      "verified": false,
+      "route": { "at": 21, "rank": 1, "why": "One cast per save file, ever" }
+    },
+    {
+      "id": "chocobuckle",
+      "name": "Chocobuckle (Enemy Skill)",
+      "type": "materia",
+      "location": "Any chocobo — feed Mimett Greens, cast L4 Suicide",
+      "window": { "opensAt": 5 },
+      "prereqs": ["chocobolure", "enemyskill1"],
+      "notes": "Fiddly setup; needs a level-16 chocobo for the classic version.",
+      "verified": false
+    },
+
+    {
+      "id": "ultimaweapon",
+      "name": "Ultima Weapon (Cloud)",
+      "type": "key",
+      "location": "Defeat Ultimate Weapon — final battle near Cosmo Canyon",
+      "window": { "opensAt": 18 },
+      "prereqs": [],
+      "notes": "Chase it around the world with the Highwind; it drops Cloud's ultimate sword.",
+      "verified": false,
+      "route": {
+        "at": 18,
+        "rank": 1,
+        "why": "Unlocks Ancient Forest too — two birds"
+      }
+    },
+    {
+      "id": "missingscore",
+      "name": "Missing Score (Barret)",
+      "type": "key",
+      "location": "Midgar raid — stairs to the Proud Clod fight, ONLY with Barret in party",
+      "window": { "opensAt": 19, "closesAt": 19 },
+      "prereqs": [],
+      "notes": "The most missable ultimate weapon in the game. One screen, one chance, Barret required.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 1,
+        "why": "One screen, one chance — bring Barret"
+      }
+    },
+    {
+      "id": "premiumheart",
+      "name": "Premium Heart (Tifa)",
+      "type": "key",
+      "location": "Wall Market — the broken computer shop 'Item Shop'",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Grab during the raid, or return later with the Key to Sector 5.",
+      "verified": false
+    },
+    {
+      "id": "princessguard",
+      "name": "Princess Guard (Aerith)",
+      "type": "key",
+      "location": "Temple of the Ancients — clock room, hand IV",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "prereqs": [],
+      "notes": "Her ultimate weapon, in the temple that collapses. Poignant and easy to skip.",
+      "verified": false
+    },
+    {
+      "id": "venusgospel",
+      "name": "Venus Gospel (Cid)",
+      "type": "key",
+      "location": "Rocket Town — old man outside the item shop, talk three times",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "Available after the rocket launches.",
+      "verified": false
+    },
+    {
+      "id": "conformer",
+      "name": "Conformer (Yuffie)",
+      "type": "key",
+      "location": "Sunken Gelnika — cargo hold",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "Arguably the best ultimate weapon — no drawback, scales with enemy level.",
+      "verified": false
+    },
+    {
+      "id": "limitedmoon",
+      "name": "Limited Moon (Red XIII)",
+      "type": "key",
+      "location": "Cosmo Canyon — Bugenhagen, late Disc 2",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Visit Bugenhagen with Red XIII after the Midgar raid.",
+      "verified": false
+    },
+    {
+      "id": "deathpenalty",
+      "name": "Death Penalty + Chaos (Vincent)",
+      "type": "key",
+      "location": "Lucrecia's Cave — waterfall lake (submarine or gold chocobo)",
+      "window": { "opensAt": 17 },
+      "prereqs": ["vincent"],
+      "notes": "Visit with Vincent, leave, fight ~10 battles, return. Weapon and final limit together.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 8,
+        "why": "The sub is new — Lucrecia's cave is now reachable"
+      }
+    },
+
+    {
+      "id": "omnislash",
+      "name": "Omnislash (Cloud Lv.4)",
+      "type": "limit",
+      "location": "Gold Saucer — Battle Square, 51,200 BP (32,000 during Disc 3)",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Grind Battle Points with a strong solo Cloud setup.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 2,
+        "why": "BP grind while the breeding chain simmers"
+      }
+    },
+    {
+      "id": "catastrophe",
+      "name": "Catastrophe (Barret Lv.4)",
+      "type": "limit",
+      "location": "North Corel — woman in the inn-side house, after the Huge Materia train",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "Talk to the woman whose house you saved (or didn't — verify whether failing the train forfeits it).",
+      "verified": false
+    },
+    {
+      "id": "finalheaven",
+      "name": "Final Heaven (Tifa Lv.4)",
+      "type": "limit",
+      "location": "Nibelheim — Tifa's piano, with Tifa leading the party",
+      "window": { "opensAt": 18 },
+      "prereqs": [],
+      "notes": "Play the piano tune from the flashback. Requires Cloud's return from the Lifestream.",
+      "verified": false
+    },
+    {
+      "id": "cosmomemory",
+      "name": "Cosmo Memory (Red XIII Lv.4)",
+      "type": "limit",
+      "location": "Shinra Mansion — Lost Number (the safe boss)",
+      "window": { "opensAt": 9 },
+      "prereqs": [],
+      "notes": "Same fight that unlocks Vincent and Odin.",
+      "verified": false
+    },
+    {
+      "id": "highwindlimit",
+      "name": "Highwind (Cid Lv.4)",
+      "type": "limit",
+      "location": "Sunken Gelnika — cargo hold",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "In the same wreck as the Conformer.",
+      "verified": false
+    },
+
+    {
+      "id": "ramuh",
+      "name": "Ramuh Materia",
+      "type": "summon",
+      "location": "Gold Saucer — Chocobo Square jockey lounge",
+      "window": { "opensAt": 8 },
+      "prereqs": [],
+      "notes": "On the floor of the jockeys' waiting room.",
+      "verified": false
+    },
+    {
+      "id": "chocomog",
+      "name": "Choco/Mog Materia",
+      "type": "summon",
+      "location": "Chocobo Farm — talk to the chocobos and say 'Wark'",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "Free summon for being polite to birds.",
+      "verified": false
+    },
+    {
+      "id": "kujata",
+      "name": "Kujata Materia",
+      "type": "summon",
+      "location": "Sleeping Forest — floating red materia, grab it as it drifts",
+      "window": { "opensAt": 12 },
+      "prereqs": [],
+      "notes": "Easy to walk straight past on the way to the Forgotten City.",
+      "verified": false
+    },
+    {
+      "id": "typhon",
+      "name": "Typhon Materia + Ancient Forest",
+      "type": "summon",
+      "location": "Ancient Forest — puzzle grove near Cosmo Canyon",
+      "window": { "opensAt": 18 },
+      "prereqs": [],
+      "notes": "Forest opens after Ultimate Weapon falls (or early with a gold chocobo). Also holds Apocalypse and Elixirs.",
+      "verified": false,
+      "route": {
+        "at": 18,
+        "rank": 2,
+        "why": "Opens the moment Ultimate Weapon dies"
+      }
+    },
+    {
+      "id": "hades",
+      "name": "Hades Materia",
+      "type": "summon",
+      "location": "Sunken Gelnika — research room",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "The best status-stack summon in the game.",
+      "verified": false
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix Materia",
+      "type": "summon",
+      "location": "Fort Condor — win the final (Huge Materia) battle",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "Tied to the Fort Condor Huge Materia assault. Verify whether losing the minigame still awards it.",
+      "verified": false
+    },
+    {
+      "id": "bahamutzero",
+      "name": "Bahamut ZERO Materia",
+      "type": "summon",
+      "location": "Cosmo Canyon — blue Huge Materia at the observatory",
+      "window": { "opensAt": 17 },
+      "prereqs": ["hugemat4", "bahamut", "neobahamut"],
+      "notes": "Examine the blue Huge Materia while carrying Bahamut and Neo Bahamut.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 5,
+        "why": "Needs the rocket's Huge Materia plus both Bahamuts"
+      }
+    },
+
+    {
+      "id": "hugemat1",
+      "name": "Huge Materia — Corel train",
+      "type": "key",
+      "location": "North Corel — stop the runaway train",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "Fail the minigame and the materia (and part of Corel) is gone for good.",
+      "verified": false,
+      "route": { "at": 17, "rank": 1, "why": "Timed minigame — one attempt" }
+    },
+    {
+      "id": "hugemat2",
+      "name": "Huge Materia — Fort Condor",
+      "type": "key",
+      "location": "Fort Condor — final battle",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "The condor's last stand. Phoenix comes with victory.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 2,
+        "why": "The condor egg hatches with or without you"
+      }
+    },
+    {
+      "id": "hugemat3",
+      "name": "Huge Materia — Underwater Reactor",
+      "type": "key",
+      "location": "Junon — submarine chase",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "If the red sub escapes, the materia lands in the Sunken Gelnika — recoverable, but log it honestly.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 3,
+        "why": "Win the sub chase and keep the set intact"
+      }
+    },
+    {
+      "id": "hugemat4",
+      "name": "Huge Materia — Rocket",
+      "type": "key",
+      "location": "Rocket Town — launch sequence, Cid's code (Circle, Square, X, X)",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "Miss the code and Bahamut ZERO is gone with it.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 4,
+        "why": "Bahamut ZERO depends on this one"
+      }
+    },
+
+    {
+      "id": "witem",
+      "name": "W-Item Materia",
+      "type": "materia",
+      "location": "Midgar raid — winding tunnel, off the main path",
+      "window": { "opensAt": 19, "closesAt": 19 },
+      "prereqs": [],
+      "notes": "Grab it during the raid. Some guides say the Key to Sector 5 offers a second chance — verify.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 2,
+        "why": "In the raid tunnels you are already walking"
+      }
+    },
+    {
+      "id": "wmagic",
+      "name": "W-Magic Materia",
+      "type": "materia",
+      "location": "Northern Crater — descent, left path",
+      "window": { "opensAt": 21 },
+      "prereqs": [],
+      "notes": "Deep in the crater on the way down.",
+      "verified": false
+    },
+    {
+      "id": "mime",
+      "name": "Mime Materia",
+      "type": "materia",
+      "location": "Materia cave south of Wutai",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Needs a river-capable chocobo (blue or better) or the gold. Mime + KotR is the classic loop.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 16,
+        "why": "First stop once any colored bird can cross water"
+      }
+    },
+    {
+      "id": "quadramagic",
+      "name": "Quadra Magic Materia",
+      "type": "materia",
+      "location": "Materia cave northeast of Mideel",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Mountain/river chocobo required.",
+      "verified": false
+    },
+    {
+      "id": "hpmp",
+      "name": "HP↔MP Materia",
+      "type": "materia",
+      "location": "Materia cave north of Corel",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Green or better chocobo required. Niche, but it's a collectible cave.",
+      "verified": false
+    },
+    {
+      "id": "fullcure",
+      "name": "Full Cure Materia",
+      "type": "materia",
+      "location": "Cosmo Canyon — materia shop, second visit",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Talk to the shopkeeper upstairs after getting the Highwind.",
+      "verified": false
+    },
+    {
+      "id": "contain",
+      "name": "Contain Materia",
+      "type": "materia",
+      "location": "Mideel — feed the white chocobo Samolen greens, scratch behind its ears",
+      "window": { "opensAt": 16, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "Commonly listed as still available in ruined Mideel — window set pessimistically until verified.",
+      "verified": false
+    },
+    {
+      "id": "guidebook",
+      "name": "Guide Book",
+      "type": "key",
+      "location": "Morph the Ghost Ship — Underwater Reactor tunnel",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "Trade to the Kalm Traveler for the Underwater materia.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 6,
+        "why": "Morph one Ghost Ship while you are down here"
+      }
+    },
+    {
+      "id": "underwatermateria",
+      "name": "Underwater Materia",
+      "type": "materia",
+      "location": "Kalm — traveler, in exchange for the Guide Book",
+      "window": { "opensAt": 17 },
+      "prereqs": ["guidebook"],
+      "notes": "Removes Emerald Weapon's 20-minute timer.",
+      "verified": false,
+      "route": {
+        "at": 17,
+        "rank": 7,
+        "why": "Turns Emerald from a race into a fight"
+      }
+    },
+    {
+      "id": "mastertrio",
+      "name": "Master Materia set (Earth Harp trade)",
+      "type": "materia",
+      "location": "Kalm — traveler, in exchange for Emerald Weapon's Earth Harp",
+      "window": { "opensAt": 17 },
+      "prereqs": ["emerald"],
+      "notes": "Master Magic, Master Command, Master Summon in one trade.",
+      "verified": false
+    },
+    {
+      "id": "finalattack",
+      "name": "Final Attack Materia",
+      "type": "materia",
+      "location": "Gold Saucer — Battle Square special battle",
+      "window": { "opensAt": 20 },
+      "prereqs": ["omnislash", "wsummon"],
+      "notes": "Special battle unlocks after earning Omnislash and W-Summon. Final Attack + Phoenix = practical immortality.",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 4,
+        "why": "Pair with Phoenix before the superbosses"
+      }
+    },
+    {
+      "id": "doublecut",
+      "name": "Double Cut Materia",
+      "type": "materia",
+      "location": "Sunken Gelnika — cargo hold",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "2x-Cut/4x-Cut. The Gelnika sweep also holds Outsider, Spirit Lance, Heaven's Cloud, and Megalixirs.",
+      "verified": false
+    },
+
+    {
+      "id": "sector5key",
+      "name": "Key to Sector 5",
+      "type": "key",
+      "location": "Bone Village — dig near the tent (normal treasure hunt)",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Reopens Midgar after the raid — mop up whatever you missed there.",
+      "verified": false
+    },
+    {
+      "id": "villa",
+      "name": "Villa Cloud",
+      "type": "quest",
+      "location": "Costa del Sol — buy the villa (300,000 gil)",
+      "window": { "opensAt": 7 },
+      "prereqs": [],
+      "notes": "Pure flavor. You become a property owner and the game congratulates you.",
+      "verified": false
+    },
+    {
+      "id": "cursering",
+      "name": "Curse Ring",
+      "type": "key",
+      "location": "Mideel — locked door, 'pull out and examine' the odd key",
+      "window": { "opensAt": 16, "closesAt": 17 },
+      "prereqs": [],
+      "notes": "Fiddly key sequence in town; pessimistic window until the ruined-Mideel behavior is verified.",
+      "verified": false
     }
   ]
 }
