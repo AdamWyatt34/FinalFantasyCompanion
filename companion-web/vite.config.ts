@@ -2,15 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-// Dev: `dotnet run` serves the API on 5000, `npm run dev` proxies /api to it.
-// Build: output lands in the API's wwwroot so `dotnet run` is the whole app.
+// Fully static app: `npm run dev` is the whole dev loop, `npm run build` emits
+// dist/. Relative base so the build works at any GitHub Pages project path.
 export default defineConfig({
+  base: "./",
   plugins: [react(), tailwindcss()],
-  server: {
-    proxy: { "/api": "http://localhost:5000" },
-  },
-  build: {
-    outDir: "../src/Companion.Api/wwwroot",
-    emptyOutDir: true,
-  },
 });
