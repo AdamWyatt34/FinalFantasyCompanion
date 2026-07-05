@@ -1,0 +1,542 @@
+{
+  "game": { "id": "ff7", "title": "Final Fantasy VII" },
+  "theme": {
+    "tokens": {
+      "bgTop": "#04061a",
+      "bgMid": "#0a1030",
+      "bgBottom": "#060a22",
+      "panelTop": "#26339a",
+      "panelMid": "#141d55",
+      "panelBottom": "#0a102e",
+      "border": "#c4cce6",
+      "bevel": "#333e78",
+      "ink": "#eef1ff",
+      "dim": "#9aa3c8",
+      "dimmer": "#7b84ad",
+      "faint": "#5b6494",
+      "gold": "#e8c860",
+      "cyan": "#7de8e0",
+      "buttonBorder": "#5a648f",
+      "tickDone": "#3a4a8a",
+      "tickTodo": "#181f4a"
+    }
+  },
+  "positions": [
+    { "id": "reactor1", "order": 1, "label": "Sector 1 Reactor", "disc": 1 },
+    {
+      "id": "sector5",
+      "order": 2,
+      "label": "Sector 5 & Wall Market",
+      "disc": 1
+    },
+    { "id": "shinra", "order": 3, "label": "Shinra HQ", "disc": 1 },
+    { "id": "kalm", "order": 4, "label": "Kalm & the World Map", "disc": 1 },
+    {
+      "id": "farm",
+      "order": 5,
+      "label": "Chocobo Farm & Mythril Mine",
+      "disc": 1
+    },
+    { "id": "junon", "order": 6, "label": "Junon", "disc": 1 },
+    { "id": "costa", "order": 7, "label": "Costa del Sol & Corel", "disc": 1 },
+    { "id": "saucer", "order": 8, "label": "Gold Saucer & Gongaga", "disc": 1 },
+    {
+      "id": "cosmo",
+      "order": 9,
+      "label": "Cosmo Canyon & Nibelheim",
+      "disc": 1
+    },
+    { "id": "rocket", "order": 10, "label": "Rocket Town & Wutai", "disc": 1 },
+    {
+      "id": "temple",
+      "order": 11,
+      "label": "Temple of the Ancients",
+      "disc": 1
+    },
+    { "id": "city", "order": 12, "label": "Forgotten City", "disc": 1 },
+    {
+      "id": "icicle",
+      "order": 13,
+      "label": "Icicle Inn & Great Glacier",
+      "disc": 2
+    },
+    { "id": "maze", "order": 14, "label": "Whirlwind Maze", "disc": 2 },
+    {
+      "id": "junon2",
+      "order": 15,
+      "label": "Junon Escape — the Highwind",
+      "disc": 2
+    },
+    { "id": "mideel", "order": 16, "label": "Mideel", "disc": 2 },
+    { "id": "huge", "order": 17, "label": "Huge Materia Hunt", "disc": 2 },
+    {
+      "id": "lifestream",
+      "order": 18,
+      "label": "Lifestream & Cloud's Return",
+      "disc": 2
+    },
+    { "id": "midgar2", "order": 19, "label": "Return to Midgar", "disc": 2 },
+    { "id": "crater", "order": 20, "label": "Northern Crater Rim", "disc": 3 },
+    { "id": "descent", "order": 21, "label": "Crater Descent", "disc": 3 },
+    { "id": "finale", "order": 22, "label": "Point of No Return", "disc": 3 }
+  ],
+  "items": [
+    {
+      "id": "flyer1",
+      "name": "Turtle's Paradise Flyer #1",
+      "type": "quest",
+      "location": "Sector 5 slums — kid's house, upstairs",
+      "window": { "opensAt": 2, "closesAt": 3 },
+      "prereqs": [],
+      "notes": "First of six flyers. Widely listed as missable once you leave Midgar.",
+      "verified": false
+    },
+    {
+      "id": "enemyskill1",
+      "name": "Enemy Skill Materia",
+      "type": "materia",
+      "location": "Shinra HQ — Fl.67 specimen lab",
+      "window": { "opensAt": 3, "closesAt": 3 },
+      "prereqs": [],
+      "notes": "First of four Enemy Skill materia in the game. Gone once you leave the tower.",
+      "verified": false
+    },
+    {
+      "id": "elemental",
+      "name": "Elemental Materia",
+      "type": "materia",
+      "location": "Shinra HQ — Fl.62, Mayor Domino's password",
+      "window": { "opensAt": 3, "closesAt": 3 },
+      "prereqs": [],
+      "notes": "Guess the password (or bribe the deputy) before leaving the tower.",
+      "verified": false
+    },
+    {
+      "id": "aerithlimits",
+      "name": "Aerith — Limit Lv.2 & 3",
+      "type": "limit",
+      "location": "Earned in battle with Aerith in the party",
+      "window": { "opensAt": 1, "closesAt": 11 },
+      "prereqs": [],
+      "notes": "Hard deadline — she leaves the party after the Temple of the Ancients.",
+      "verified": false
+    },
+    {
+      "id": "mythril",
+      "name": "Mythril",
+      "type": "key",
+      "location": "Sleeping Man's cave near Junon (Buggy required)",
+      "window": { "opensAt": 8, "closesAt": 11 },
+      "prereqs": [],
+      "notes": "Battle-count trick; trade it at the Weapon Seller's house for Great Gospel.",
+      "verified": false,
+      "route": {
+        "at": 8,
+        "rank": 1,
+        "why": "Grab it as soon as the Buggy can reach the cave"
+      }
+    },
+    {
+      "id": "greatgospel",
+      "name": "Great Gospel",
+      "type": "limit",
+      "location": "Weapon Seller's house near Gongaga",
+      "window": { "opensAt": 8, "closesAt": 11 },
+      "prereqs": ["mythril"],
+      "notes": "Aerith's final Limit Break. Same deadline as her other limits.",
+      "verified": false,
+      "route": {
+        "at": 8,
+        "rank": 2,
+        "why": "Trade the Mythril before the Temple — it is gone after"
+      }
+    },
+    {
+      "id": "condor1",
+      "name": "Fort Condor — early skirmish reward",
+      "type": "quest",
+      "location": "Fort Condor",
+      "window": { "opensAt": 5, "closesAt": 8 },
+      "prereqs": [],
+      "notes": "Battles expire as the story advances (window approximate).",
+      "verified": false,
+      "route": {
+        "at": 5,
+        "rank": 2,
+        "why": "Cheap reward now; the battle expires quietly"
+      }
+    },
+    {
+      "id": "yuffie",
+      "name": "Recruit Yuffie",
+      "type": "character",
+      "location": "Random encounter in any forest",
+      "window": { "opensAt": 4 },
+      "prereqs": [],
+      "notes": "Skippable but never missable. Answer her questions carefully.",
+      "verified": false
+    },
+    {
+      "id": "vincent",
+      "name": "Recruit Vincent",
+      "type": "character",
+      "location": "Shinra Mansion safe — Nibelheim",
+      "window": { "opensAt": 9 },
+      "prereqs": [],
+      "notes": "Crack the safe, beat Lost Number, talk to him in the basement.",
+      "verified": false
+    },
+    {
+      "id": "odin",
+      "name": "Odin Materia",
+      "type": "summon",
+      "location": "Shinra Mansion safe — Nibelheim",
+      "window": { "opensAt": 9 },
+      "prereqs": [],
+      "notes": "Drops from Lost Number, the safe boss.",
+      "verified": false
+    },
+    {
+      "id": "beta",
+      "name": "Beta (Enemy Skill)",
+      "type": "materia",
+      "location": "Grasslands marshes — Midgar Zolom",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "Brutal fight this early; one of the best pickups in the game.",
+      "verified": false,
+      "route": {
+        "at": 5,
+        "rank": 1,
+        "why": "Painful now, pays off for two discs"
+      }
+    },
+    {
+      "id": "titan",
+      "name": "Titan Materia",
+      "type": "summon",
+      "location": "Gongaga — ruined reactor",
+      "window": { "opensAt": 8 },
+      "prereqs": [],
+      "notes": "Sitting in the open by the reactor.",
+      "verified": false
+    },
+    {
+      "id": "pagoda",
+      "name": "Wutai — Pagoda of the Five Gods",
+      "type": "quest",
+      "location": "Wutai",
+      "window": { "opensAt": 10 },
+      "prereqs": ["yuffie"],
+      "notes": "Yuffie's personal questline; Leviathan is the reward.",
+      "verified": false
+    },
+    {
+      "id": "bahamut",
+      "name": "Bahamut Materia",
+      "type": "summon",
+      "location": "Temple of the Ancients — Red Dragon fight",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "prereqs": [],
+      "notes": "The temple collapses after the story sequence — pick it up during the visit.",
+      "verified": false
+    },
+    {
+      "id": "alexander",
+      "name": "Alexander Materia",
+      "type": "summon",
+      "location": "Great Glacier — touch the hot springs, then beat the Snow woman",
+      "window": { "opensAt": 13, "closesAt": 13 },
+      "prereqs": [],
+      "notes": "Awkward to return to the glacier later — treat it as a one-shot window.",
+      "verified": false
+    },
+    {
+      "id": "neobahamut",
+      "name": "Neo Bahamut Materia",
+      "type": "summon",
+      "location": "Whirlwind Maze — on the path",
+      "window": { "opensAt": 14, "closesAt": 14 },
+      "prereqs": [],
+      "notes": "Lying on the ground inside the maze; no return trip.",
+      "verified": false
+    },
+    {
+      "id": "highwind",
+      "name": "The Highwind",
+      "type": "key",
+      "location": "Story — Junon escape",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Free flight. The endgame opens up here.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 1,
+        "why": "Everything below assumes free flight"
+      }
+    },
+    {
+      "id": "chocobolure",
+      "name": "Chocobo Lure Materia",
+      "type": "materia",
+      "location": "Chocobo Farm shop",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "Buy at least one; equip it to encounter chocobos at tracks.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 2,
+        "why": "No lure, no chocobos — buy it on the way in"
+      }
+    },
+    {
+      "id": "stables",
+      "name": "Rent 6 Chocobo Stables",
+      "type": "key",
+      "location": "Chocobo Farm — talk to Choco Billy",
+      "window": { "opensAt": 15 },
+      "prereqs": ["highwind"],
+      "notes": "10,000 gil each. You need room for parents, babies, and the gold.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 3,
+        "why": "Breeding needs the stable space up front"
+      }
+    },
+    {
+      "id": "carobnuts",
+      "name": "3 Carob Nuts",
+      "type": "key",
+      "location": "Steal from Vlakorados near Bone Village",
+      "window": { "opensAt": 15 },
+      "prereqs": ["highwind"],
+      "notes": "One per colored breeding step. The Gold Saucer sells one for 500 GP as a fallback.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 4,
+        "why": "Each colored chick costs a nut — stock up once"
+      }
+    },
+    {
+      "id": "goodchocobo",
+      "name": "Good Chocobo (female)",
+      "type": "chocobo",
+      "location": "Tracks near the Gold Saucer",
+      "window": { "opensAt": 15 },
+      "prereqs": ["chocobolure", "stables"],
+      "notes": "Catch with a Wonderful/Good rating per Choco Billy.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 5,
+        "why": "First parent of the blue/green pair"
+      }
+    },
+    {
+      "id": "greatchocobo",
+      "name": "Great Chocobo (male)",
+      "type": "chocobo",
+      "location": "Tracks near Mideel",
+      "window": { "opensAt": 15 },
+      "prereqs": ["chocobolure", "stables"],
+      "notes": "Second parent. Feed both plenty of greens before racing.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 6,
+        "why": "Second parent of the blue/green pair"
+      }
+    },
+    {
+      "id": "racing1",
+      "name": "Race the pair to Class B",
+      "type": "quest",
+      "location": "Gold Saucer — Chocobo Square",
+      "window": { "opensAt": 15 },
+      "prereqs": ["goodchocobo", "greatchocobo"],
+      "notes": "Higher-class parents dramatically improve breeding odds.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 7,
+        "why": "Class B parents before the first Carob breed"
+      }
+    },
+    {
+      "id": "bluechocobo",
+      "name": "Blue (River) Chocobo",
+      "type": "chocobo",
+      "location": "Breed Good × Great with a Carob Nut",
+      "window": { "opensAt": 15 },
+      "prereqs": ["racing1", "carobnuts"],
+      "notes": "Save before breeding; reload until the color lands.",
+      "verified": false,
+      "route": { "at": 15, "rank": 8, "why": "Half of the black chocobo pair" }
+    },
+    {
+      "id": "greenchocobo",
+      "name": "Green (Mountain) Chocobo",
+      "type": "chocobo",
+      "location": "Breed Good × Great with a Carob Nut",
+      "window": { "opensAt": 15 },
+      "prereqs": ["racing1", "carobnuts"],
+      "notes": "Needs opposite sex to the blue — reload until you get the pair.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 9,
+        "why": "Other half of the black chocobo pair"
+      }
+    },
+    {
+      "id": "racing2",
+      "name": "Race blue & green to Class A",
+      "type": "quest",
+      "location": "Gold Saucer — Chocobo Square",
+      "window": { "opensAt": 15 },
+      "prereqs": ["bluechocobo", "greenchocobo"],
+      "notes": "Both colored birds should hit Class A before the next breed.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 10,
+        "why": "Class A colors before breeding the black"
+      }
+    },
+    {
+      "id": "blackchocobo",
+      "name": "Black Chocobo",
+      "type": "chocobo",
+      "location": "Breed Blue × Green with a Carob Nut",
+      "window": { "opensAt": 15 },
+      "prereqs": ["racing2", "carobnuts"],
+      "notes": "Can cross rivers and mountains — and is half of the gold pair.",
+      "verified": false,
+      "route": { "at": 15, "rank": 11, "why": "Parent of the gold" }
+    },
+    {
+      "id": "racing3",
+      "name": "Race the black to Class S",
+      "type": "quest",
+      "location": "Gold Saucer — Chocobo Square",
+      "window": { "opensAt": 15 },
+      "prereqs": ["blackchocobo"],
+      "notes": "A Class S black plus a Wonderful partner all but guarantees the gold.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 12,
+        "why": "Stack the odds before the final breed"
+      }
+    },
+    {
+      "id": "zeionut",
+      "name": "Zeio Nut",
+      "type": "key",
+      "location": "Steal from Goblin — Goblin Island (northeast sea)",
+      "window": { "opensAt": 15 },
+      "prereqs": ["highwind"],
+      "notes": "The gold breed needs this specific nut.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 13,
+        "why": "The gold breed consumes exactly one"
+      }
+    },
+    {
+      "id": "goldchocobo",
+      "name": "Gold Chocobo",
+      "type": "chocobo",
+      "location": "Breed Black × Wonderful with the Zeio Nut",
+      "window": { "opensAt": 15 },
+      "prereqs": ["racing3", "zeionut"],
+      "notes": "Crosses everything. The key to Round Island.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 14,
+        "why": "The only way to reach Round Island"
+      }
+    },
+    {
+      "id": "kotr",
+      "name": "Knights of the Round",
+      "type": "summon",
+      "location": "Round Island — northeast corner of the map",
+      "window": { "opensAt": 15 },
+      "prereqs": ["goldchocobo"],
+      "notes": "The strongest summon in the game. Master it for a second via Bugenhagen? Later problem.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 15,
+        "why": "The whole point of the gold bird"
+      }
+    },
+    {
+      "id": "wsummon",
+      "name": "W-Summon Materia",
+      "type": "materia",
+      "location": "Gold Saucer — Battle Square, 64,000 BP",
+      "window": { "opensAt": 15 },
+      "prereqs": [],
+      "notes": "Expensive but doubles KotR casts against the superbosses.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 1,
+        "why": "Pairs with KotR for the Weapon fights"
+      }
+    },
+    {
+      "id": "hpabsorb",
+      "name": "HP Absorb Materia",
+      "type": "materia",
+      "location": "Northern Crater — early descent",
+      "window": { "opensAt": 20 },
+      "prereqs": [],
+      "notes": "Link with KotR: thirteen hits of healing per cast.",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 1,
+        "why": "KotR + HP Absorb is the superboss sustain loop"
+      }
+    },
+    {
+      "id": "emerald",
+      "name": "Emerald Weapon",
+      "type": "quest",
+      "location": "Ocean floor — requires the submarine",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "Underwater materia removes the 20-minute timer. Bring KotR + W-Summon + HP Absorb.",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 2,
+        "why": "The loadout is ready — go hunting"
+      }
+    },
+    {
+      "id": "ruby",
+      "name": "Ruby Weapon",
+      "type": "quest",
+      "location": "Desert around the Gold Saucer",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Appears after the Weapons stir. Knock out two allies before it surfaces its tentacles.",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 3,
+        "why": "Last checkmark before the finale"
+      }
+    }
+  ]
+}
