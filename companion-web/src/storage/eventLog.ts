@@ -9,6 +9,7 @@ interface KeyValueStore {
   get(key: string): string | null;
   set(key: string, value: string): void;
   remove(key: string): void;
+  keys(): string[];
 }
 
 const kv: KeyValueStore = (() => {
@@ -20,6 +21,7 @@ const kv: KeyValueStore = (() => {
       get: (key) => window.localStorage.getItem(key),
       set: (key, value) => window.localStorage.setItem(key, value),
       remove: (key) => window.localStorage.removeItem(key),
+      keys: () => Object.keys(window.localStorage),
     };
   } catch {
     // Blocked storage (privacy settings) or non-browser environment (tests):
@@ -33,6 +35,7 @@ const kv: KeyValueStore = (() => {
       remove: (key) => {
         memory.delete(key);
       },
+      keys: () => [...memory.keys()],
     };
   }
 })();
@@ -88,4 +91,65 @@ export function replaceLog(
   events: readonly ProgressEvent[],
 ): void {
   kv.set(activeKey(gameId), JSON.stringify(events));
+}
+
+export interface ArchiveInfo {
+  key: string;
+  archivedAt: string;
+  events: ProgressEvent[];
+}
+
+const archivePrefix = (gameId: string) => `ffcompanion.${gameId}.archive.`;
+
+/** All archived playthroughs for a game, newest first. Unparseable archives are skipped. */
+export function listArchives(gameId: string): ArchiveInfo[] {
+  const prefix = archivePrefix(gameId);
+  return kv
+    .keys()
+    .filter((key) => key.startsWith(prefix))
+    .sort()
+    .reverse()
+    .flatMap((key) => {
+      try {
+        const parsed: unknown = JSON.parse(kv.get(key) ?? "");
+        if (!Array.isArray(parsed)) {
+          return [];
+        }
+        return [
+          {
+            key,
+            archivedAt: key.slice(prefix.length),
+            events: parsed as ProgressEvent[],
+          },
+        ];
+      } catch {
+        return [];
+      }
+    });
+}
+
+/**
+ * Makes an archived playthrough the active one. The current run is archived
+ * first, so restoring never destroys anything; the restored archive entry is
+ * consumed (moved, not copied).
+ */
+export function restoreArchive(gameId: string, archiveKey: string): void {
+  if (!archiveKey.startsWith(archivePrefix(gameId))) {
+    throw new Error("Not an archive of this game.");
+  }
+  const text = kv.get(archiveKey);
+  if (text === null) {
+    throw new Error("That archive no longer exists.");
+  }
+
+  resetLog(gameId);
+  kv.set(activeKey(gameId), text);
+  kv.remove(archiveKey);
+}
+
+export function deleteArchive(gameId: string, archiveKey: string): void {
+  if (!archiveKey.startsWith(archivePrefix(gameId))) {
+    throw new Error("Not an archive of this game.");
+  }
+  kv.remove(archiveKey);
 }

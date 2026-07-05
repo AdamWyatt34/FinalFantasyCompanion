@@ -10,6 +10,7 @@ import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { downloadSave, importSave } from "./storage/saveFile";
+import { ArchivesOverlay } from "./components/ArchivesOverlay";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
@@ -60,6 +61,7 @@ function GameApp({
   const [tab, setTab] = useState<"route" | "all">("route");
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
   const [showTimeline, setShowTimeline] = useState(false);
+  const [showArchives, setShowArchives] = useState(false);
   const [pendingImpact, setPendingImpact] = useState<AdvanceImpact | null>(
     null,
   );
@@ -248,6 +250,9 @@ function GameApp({
             <button onClick={importFromFile} className="underline">
               Import save
             </button>
+            <button onClick={() => setShowArchives(true)} className="underline">
+              Playthroughs
+            </button>
           </div>
         </div>
       </div>
@@ -262,6 +267,17 @@ function GameApp({
             setPendingImpact(null);
             await postEvent({ type: "positionAdvanced", to: target });
           }}
+        />
+      )}
+
+      {showArchives && (
+        <ArchivesOverlay
+          pack={pack.data}
+          onRestored={() => {
+            setRevealed(new Set());
+            refetchState();
+          }}
+          onClose={() => setShowArchives(false)}
         />
       )}
 
