@@ -6,43 +6,117 @@ import type {
   RouteView,
   StateSnapshot,
 } from "./types";
+import type { ProgressEvent } from "../engine/events";
+import { projectAvailability } from "../engine/availability";
+import { computeImpact } from "../engine/impact";
+import { projectRoute } from "../engine/route";
+import { fold, type PlaythroughState } from "../engine/state";
+import { allPacks, getPackById } from "../packs";
+import { appendEvent, readEvents, resetLog } from "../storage/eventLog";
 
-async function getJson<T>(url: string): Promise<T> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`GET ${url} failed: ${response.status}`);
+/**
+ * Same surface the HTTP client had, computed locally: the TypeScript engine
+ * replays the localStorage event log per call. Every method is `async` so any
+ * synchronous failure surfaces as a rejection, exactly like a failed fetch did.
+ */
+
+function requirePack(gameId: string): Pack {
+  const pack = getPackById(gameId);
+  if (pack === undefined) {
+    throw new Error(`Unknown game '${gameId}'`);
   }
-  return response.json() as Promise<T>;
+  return pack;
 }
 
-async function postJson<T>(url: string, body?: unknown): Promise<T> {
-  const response = await fetch(url, {
-    method: "POST",
-    headers:
-      body === undefined ? undefined : { "Content-Type": "application/json" },
-    body: body === undefined ? undefined : JSON.stringify(body),
-  });
-  if (!response.ok) {
-    throw new Error(`POST ${url} failed: ${response.status}`);
+function stateOf(pack: Pack): PlaythroughState {
+  return fold(pack, readEvents(pack.game.id));
+}
+
+function snapshot(pack: Pack): StateSnapshot {
+  const state = stateOf(pack);
+  return { position: state.position, collected: [...state.collected] };
+}
+
+export interface ProgressEventRequest {
+  type: string;
+  to?: number;
+  itemId?: string;
+}
+
+function toProgressEvent(
+  pack: Pack,
+  request: ProgressEventRequest,
+): ProgressEvent {
+  const occurredAt = new Date().toISOString();
+
+  switch (request.type) {
+    case "positionAdvanced":
+    case "positionCorrected": {
+      if (request.to === undefined) {
+        throw new Error(`Event type '${request.type}' requires 'to'`);
+      }
+      if (!pack.positions.some((p) => p.order === request.to)) {
+        throw new Error(`No story position with order ${request.to}`);
+      }
+      return { type: request.type, to: request.to, occurredAt };
+    }
+    case "itemCollected":
+    case "itemUncollected": {
+      if (request.itemId === undefined) {
+        throw new Error(`Event type '${request.type}' requires 'itemId'`);
+      }
+      const itemId = request.itemId;
+      if (!pack.items.some((i) => i.id === itemId)) {
+        throw new Error(`Unknown item id '${itemId}'`);
+      }
+      return { type: request.type, itemId, occurredAt };
+    }
+    default:
+      throw new Error(`Unknown event type '${request.type}'`);
   }
-  return response.json() as Promise<T>;
 }
 
 export const api = {
-  getGames: () => getJson<GameSummary[]>("/api/games"),
-  getPack: (gameId: string) => getJson<Pack>(`/api/games/${gameId}/pack`),
-  getAvailability: (gameId: string) =>
-    getJson<Availability>(`/api/games/${gameId}/availability`),
-  getRoute: (gameId: string) =>
-    getJson<RouteView>(`/api/games/${gameId}/route`),
-  getAdvanceImpact: (gameId: string, to: number) =>
-    getJson<AdvanceImpact>(`/api/games/${gameId}/advance-impact?to=${to}`),
-  postEvent: (
+  getGames: async (): Promise<GameSummary[]> => allPacks.map((p) => p.game),
+
+  getPack: async (gameId: string): Promise<Pack> => requirePack(gameId),
+
+  getAvailability: async (gameId: string): Promise<Availability> => {
+    const pack = requirePack(gameId);
+    return projectAvailability(pack, stateOf(pack));
+  },
+
+  getRoute: async (gameId: string): Promise<RouteView> => {
+    const pack = requirePack(gameId);
+    return projectRoute(pack, stateOf(pack));
+  },
+
+  getAdvanceImpact: async (
     gameId: string,
-    event: { type: string; to?: number; itemId?: string },
-  ) => postJson<StateSnapshot>(`/api/games/${gameId}/events`, event),
-  postReset: (gameId: string) =>
-    postJson<StateSnapshot & { archivedTo: string | null }>(
-      `/api/games/${gameId}/reset`,
-    ),
+    to: number,
+  ): Promise<AdvanceImpact> => {
+    const pack = requirePack(gameId);
+    if (!pack.positions.some((p) => p.order === to)) {
+      throw new Error(`No story position with order ${to}`);
+    }
+    return computeImpact(pack, stateOf(pack), to);
+  },
+
+  postEvent: async (
+    gameId: string,
+    event: ProgressEventRequest,
+  ): Promise<StateSnapshot> => {
+    const pack = requirePack(gameId);
+    const progressEvent = toProgressEvent(pack, event);
+    appendEvent(pack.game.id, progressEvent);
+    return snapshot(pack);
+  },
+
+  postReset: async (
+    gameId: string,
+  ): Promise<StateSnapshot & { archivedTo: string | null }> => {
+    const pack = requirePack(gameId);
+    const archivedTo = resetLog(pack.game.id);
+    return { ...snapshot(pack), archivedTo };
+  },
 };

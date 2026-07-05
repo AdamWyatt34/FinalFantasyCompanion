@@ -16,9 +16,7 @@ export default function App() {
   const gameId = selectedId ?? games.data?.[0]?.id;
 
   if (games.error) {
-    return (
-      <Splash text={`Could not reach the companion API: ${games.error}`} />
-    );
+    return <Splash text={`Could not load the game packs: ${games.error}`} />;
   }
 
   if (!gameId) {
