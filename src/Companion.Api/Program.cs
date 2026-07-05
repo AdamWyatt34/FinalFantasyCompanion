@@ -30,7 +30,15 @@ var app = builder.Build();
 // Load and validate every pack before serving a single request — fail fast on bad data.
 _ = app.Services.GetRequiredService<IPackRegistry>();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapGameEndpoints();
+
+// Unmatched /api routes must 404 as JSON, never fall through to the SPA's index.html.
+app.MapFallback("/api/{**rest}", () =>
+    Results.Problem(title: "NotFound", detail: "No such API route", statusCode: StatusCodes.Status404NotFound));
+app.MapFallbackToFile("{*path:nonfile}", "index.html");
 
 app.Run();
 
