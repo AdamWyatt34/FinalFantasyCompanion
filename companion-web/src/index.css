@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/*
+ * All chrome colors come from pack theme tokens, applied as --ff-* variables
+ * by applyTheme(). Components contain zero chrome color literals.
+ * The body fallback below is the only literal: a neutral dark for the
+ * instant before the pack loads.
+ */
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.ff-bg {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--ff-bg-top) 0%,
+    var(--ff-bg-mid) 60%,
+    var(--ff-bg-bottom) 100%
+  );
+  color: var(--ff-ink);
+}
+
+.ff-box {
+  background: linear-gradient(
+    170deg,
+    var(--ff-panel-top) 0%,
+    var(--ff-panel-mid) 45%,
+    var(--ff-panel-bottom) 100%
+  );
+  border: 1.5px solid var(--ff-border);
+  box-shadow:
+    inset 0 0 0 1.5px var(--ff-bevel),
+    0 3px 14px rgba(0, 0, 0, 0.55);
+  border-radius: 7px;
+}
