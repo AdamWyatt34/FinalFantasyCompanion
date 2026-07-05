@@ -9,6 +9,7 @@ import { AllItemsTab } from "./components/AllItemsTab";
 import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
+import { downloadSave, importSave } from "./storage/saveFile";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
@@ -141,6 +142,33 @@ function GameApp({
     }
   };
 
+  const importFromFile = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json,.json";
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file || !pack.data) {
+        return;
+      }
+      if (
+        !window.confirm(
+          `Replace the current ${pack.data.game.title} playthrough with this save?`,
+        )
+      ) {
+        return;
+      }
+      try {
+        importSave(pack.data, await file.text());
+        setRevealed(new Set());
+        refetchState();
+      } catch (e) {
+        window.alert(e instanceof Error ? e.message : "Import failed.");
+      }
+    };
+    input.click();
+  };
+
   return (
     <div className="ff-bg py-5 px-3">
       <div className="max-w-md mx-auto flex flex-col gap-3">
@@ -209,10 +237,18 @@ function GameApp({
         )}
 
         <div className="text-center text-[10px] font-mono pb-4 text-[var(--ff-faint)]">
-          Pack data is scaffolding — verified during play.{" "}
-          <button onClick={resetPlaythrough} className="underline">
-            New playthrough
-          </button>
+          <div>Pack data is scaffolding — verified during play.</div>
+          <div className="mt-1 flex justify-center gap-3">
+            <button onClick={resetPlaythrough} className="underline">
+              New playthrough
+            </button>
+            <button onClick={() => downloadSave(gameId)} className="underline">
+              Export save
+            </button>
+            <button onClick={importFromFile} className="underline">
+              Import save
+            </button>
+          </div>
         </div>
       </div>
 
