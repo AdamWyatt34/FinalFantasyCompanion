@@ -1,0 +1,7 @@
+bin/
+obj/
+node_modules/
+data/playthroughs/
+src/Companion.Api/wwwroot/
+.vs/
+*.user
