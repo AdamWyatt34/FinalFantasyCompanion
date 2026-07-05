@@ -5,3 +5,4 @@ data/playthroughs/
 src/Companion.Api/wwwroot/
 .vs/
 *.user
+.playwright-mcp/
