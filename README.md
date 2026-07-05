@@ -1,99 +1,83 @@
 # FF Companion
 
-A single-player RPG companion you run locally while replaying a game. Given your declared
+A replay companion for classic RPGs, running entirely in your browser. Given your declared
 story position and collected items, it answers: **what's available, what's about to close
 forever, what you've missed, and what to do NOW** via a curated route. Two packs ship:
-Final Fantasy VII (1997) and Final Fantasy IX (2000) — each with its own theme, positions,
-and playthrough log; a switcher appears in the header when more than one pack is present.
+Final Fantasy VII (1997) and Final Fantasy IX (2000), each with its own theme, story beats,
+and save.
 
-Personal tool by design: no auth, no cloud, no multi-user, no pack SDK.
+Fully static — no server, no accounts. Every visitor gets their own save, stored in their
+own browser.
 
 ## Run it
 
 ```powershell
-dotnet run --project src/Companion.Api
+cd companion-web
+npm install
+npm run dev
 ```
 
-That's the whole app — the API serves the built frontend from `wwwroot` and binds
-`http://0.0.0.0:5000`. Open http://localhost:5000.
+Open http://localhost:5173. That's the whole dev loop; `npm test` runs the engine suite.
 
-Requires the .NET 10 SDK. To rebuild the frontend first (only needed after changing
-`companion-web/`): `cd companion-web; npm install; npm run build`.
+## Deploy (GitHub Pages)
 
-### Phone on the LAN
+Pushes to `main` build, test, and deploy automatically via `.github/workflows/deploy.yml`.
+One-time setup after creating the GitHub repo:
 
-The Steam Deck use case: run the server on your PC, open the app on your phone.
+1. Push the repo (public, unless you have a paid plan — Pages on private repos requires one).
+2. Settings → Pages → Source: **GitHub Actions**.
 
-1. `dotnet run --project src/Companion.Api`
-2. Find your PC's LAN address: `ipconfig` → IPv4 Address (e.g. `192.168.1.20`)
-3. On the phone: `http://192.168.1.20:5000`
+The build uses a relative base path, so it works at any `https://<user>.github.io/<repo>/` URL.
 
-Windows will prompt to allow the app through the firewall on first run — allow it for
-**private** networks. If you skipped the prompt: Settings → Windows Security → Firewall →
-Allow an app, and permit `dotnet` on private networks.
+## Saves
+
+- Progress is saved automatically in the browser's localStorage, per game, on every tap.
+  Close the tab, come back next week — it's there.
+- **Saves are per browser.** Your phone and your desktop have separate saves; friends
+  visiting the site never see yours.
+- Clearing site data clears saves. Use **Export save** (footer) to download a backup, and
+  **Import save** to restore it or move it to another device.
+- **New playthrough** archives the current save (recoverable in localStorage) and starts fresh.
+- Small print: the same game open in two tabs at once can lose a tap to a race — one tab
+  at a time per game is the supported mode.
 
 ## Demo script
 
-From a fresh playthrough (or after **New playthrough** in the footer):
+From a fresh playthrough:
 
-1. **Advance** twice → you're at *Shinra HQ*. The Route tab's NOW bucket shows the Midgar
-   missables as LAST CHANCE.
-2. **Advance** again → the point-of-no-return dialog fires: leaving Midgar permanently
-   closes the Turtle's Paradise flyer, Enemy Skill, and Elemental. *Stay — grab them first*
-   or advance anyway.
-3. Open **Timeline** → jump to *Junon Escape — the Highwind* (Disc 2). The dialog lists
-   every window the jump skips; advance anyway.
-4. The Route tab now shows the full chocobo breeding chain in order — lure, stables, nuts,
-   Good/Great pair, racing steps, Blue/Green, Black, Gold — with **Knights of the Round
-   Blocked** at the end.
-5. Collect the chain top to bottom → KotR flips to **Available**. That's the point of the
-   whole app.
+1. **Advance** twice → *Shinra HQ*. The Route tab's NOW bucket shows the Midgar missables
+   as LAST CHANCE.
+2. **Advance** again → the point-of-no-return dialog: leaving Midgar permanently closes the
+   Turtle's Paradise flyer, Enemy Skill, and Elemental. *Stay — grab them first* or advance anyway.
+3. **Timeline** → jump to *Junon Escape — the Highwind* (Disc 2). The dialog lists every
+   window the jump skips; advance anyway.
+4. The Route tab shows the full chocobo breeding chain in order — with **Knights of the
+   Round Blocked** at the end.
+5. Collect the chain top to bottom → KotR flips to **Available**.
 
 ## How it works
 
-- **Pack** (`data/packs/ff7.json`) — positions (story beats), items with availability
+- **Packs** (`companion-web/src/packs/*.json`) — story positions, items with availability
   windows, prereqs, and optional curated route data (`at`, `rank`, `why`). Validated at
-  startup; the process refuses to boot on unknown prereqs, cycles, bad windows.
-- **Events** (`data/playthroughs/*.events.jsonl`) — append-only JSONL log of
-  `positionAdvanced` / `positionCorrected` / `itemCollected` / `itemUncollected`.
-  **Reset** archives the log with a timestamp and starts fresh; that's the entire "new
-  playthrough" feature. Deleting an archive file is safe.
-- **Engine** (`Companion.Domain`) — pure functions `(pack, events) → views`: a seven-rule
-  availability projection, Now/Next/Later route bucketing (a closing missable always
-  outranks curation), and advance-impact ("what closes if I jump to X"). Zero I/O.
-- **API** (`Companion.Api`) — minimal API over ModulusKit.Mediator commands/queries.
-  The server is the source of truth; the React frontend (`companion-web/`) POSTs events
-  and refetches.
+  load; the app refuses to start on unknown prereqs, cycles, or bad windows.
+- **Engine** (`companion-web/src/engine/`) — pure functions `(pack, events) → views`: a
+  seven-rule availability projection, Now/Next/Later route bucketing (a closing missable
+  always outranks curation), and advance-impact ("what closes if I jump to X").
+- **Saves** (`companion-web/src/storage/`) — an append-only event log
+  (`positionAdvanced` / `positionCorrected` / `itemCollected` / `itemUncollected`) in
+  localStorage, replayed through the engine on every view.
 - **Theming** — all chrome comes from pack theme tokens exposed as `--ff-*` CSS variables;
   components contain zero chrome color literals. Functional status colors are app-constant
-  across games. Spoiler masking is client-side by design (soft protection — it's your own
-  single-user app; the pack endpoint necessarily exposes everything).
-
-### Dev loop
-
-```powershell
-dotnet run --project src/Companion.Api   # API on :5000
-cd companion-web; npm run dev            # Vite on :5173, /api proxied to :5000
-```
-
-### Tests
-
-```powershell
-dotnet test
-```
-
-Domain rules, route bucketing invariants, advance-impact edges, pack validation, event-store
-round-trip/archive, API smoke tests, and an end-to-end demo-script test against the real
-`ff7.json`.
+  across games. Spoiler masking is soft by design ("Reveal anyway" is always there).
 
 ## Pack data honesty
 
 **The pack data is scaffolding, not gospel.** Every item carries `"verified": false`;
-windows and beat mappings were authored from general FF7 knowledge and are meant to be
-verified (and corrected) during an actual playthrough. Flip `verified` to `true` as you
-confirm each one.
+windows and beat mappings were authored from general game knowledge and are meant to be
+verified (and corrected) during an actual playthrough. Windows with disputed behavior are
+set pessimistically — a false "grab it now" beats a false "you're fine."
 
 ## Out of scope, deliberately
 
-Save-file reading, a second game pack, a pack editor/SDK, route optimization (routes are
-authored data — the engine only sorts and filters), accounts, cloud anything.
+Save-file reading, a pack editor/SDK, route optimization (routes are authored data — the
+engine only sorts and filters), accounts, servers, cloud anything.
