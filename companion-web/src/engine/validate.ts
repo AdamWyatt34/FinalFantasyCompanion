@@ -1,12 +1,14 @@
 import type { Pack } from "../api/types";
 
 export class PackValidationError extends Error {
-  constructor(
-    public readonly packId: string,
-    public readonly errors: readonly string[],
-  ) {
+  readonly packId: string;
+  readonly errors: readonly string[];
+
+  constructor(packId: string, errors: readonly string[]) {
     super(`Pack '${packId}' failed validation:\n${errors.join("\n")}`);
     this.name = "PackValidationError";
+    this.packId = packId;
+    this.errors = errors;
   }
 }
 
