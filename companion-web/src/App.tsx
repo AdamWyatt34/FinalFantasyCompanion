@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "./api/client";
-import type { AdvanceImpact } from "./api/types";
+import type { AdvanceImpact, GameSummary } from "./api/types";
 import { applyTheme } from "./theme/applyTheme";
 import { useApi } from "./hooks/useApi";
 import { PositionBanner } from "./components/PositionBanner";
@@ -11,7 +11,8 @@ import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
-  const gameId = games.data?.[0]?.id;
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const gameId = selectedId ?? games.data?.[0]?.id;
 
   if (games.error) {
     return (
@@ -23,7 +24,47 @@ export default function App() {
     return <Splash text="Loading…" />;
   }
 
-  return <GameApp gameId={gameId} />;
+  // key remounts the whole game view on switch: per-game state (tab, reveals,
+  // pending dialogs) must not leak between games.
+  return (
+    <GameApp
+      key={gameId}
+      gameId={gameId}
+      games={games.data ?? []}
+      onSelectGame={setSelectedId}
+    />
+  );
+}
+
+function GameSwitcher({
+  games,
+  currentId,
+  onSelect,
+}: {
+  games: GameSummary[];
+  currentId: string;
+  onSelect: (id: string) => void;
+}) {
+  if (games.length < 2) {
+    return null;
+  }
+  return (
+    <div className="flex justify-center gap-1.5">
+      {games.map((g) => (
+        <button
+          key={g.id}
+          onClick={() => onSelect(g.id)}
+          className={`text-[10px] font-mono tracking-wider px-3 py-1 rounded-full border ${
+            g.id === currentId
+              ? "border-[var(--ff-cyan)] text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
+              : "border-[var(--ff-bevel)] text-[var(--ff-dim)]"
+          }`}
+        >
+          {g.title}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 function Splash({ text }: { text: string }) {
@@ -34,7 +75,15 @@ function Splash({ text }: { text: string }) {
   );
 }
 
-function GameApp({ gameId }: { gameId: string }) {
+function GameApp({
+  gameId,
+  games,
+  onSelectGame,
+}: {
+  gameId: string;
+  games: GameSummary[];
+  onSelectGame: (id: string) => void;
+}) {
   const pack = useApi(() => api.getPack(gameId), [gameId]);
   const availability = useApi(() => api.getAvailability(gameId), [gameId]);
   const route = useApi(() => api.getRoute(gameId), [gameId]);
@@ -127,6 +176,11 @@ function GameApp({ gameId }: { gameId: string }) {
   return (
     <div className="ff-bg py-5 px-3">
       <div className="max-w-md mx-auto flex flex-col gap-3">
+        <GameSwitcher
+          games={games}
+          currentId={gameId}
+          onSelect={onSelectGame}
+        />
         <div className="text-center">
           <div className="text-[10px] font-mono tracking-[0.3em] text-[var(--ff-dim)]">
             COMPANION · AVAILABILITY TRACKER

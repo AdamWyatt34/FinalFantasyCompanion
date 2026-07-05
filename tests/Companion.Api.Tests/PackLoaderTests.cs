@@ -12,8 +12,7 @@ public class PackLoaderTests
     {
         var packs = PackLoader.LoadAll(RepoPaths.PackDirectory);
 
-        var ff7 = packs.ShouldHaveSingleItem();
-        ff7.Game.Id.ShouldBe("ff7");
+        var ff7 = packs.Single(p => p.Game.Id == "ff7");
         ff7.Game.Title.ShouldBe("Final Fantasy VII");
         ff7.Positions.Count.ShouldBeInRange(20, 24);
         ff7.Items.Count.ShouldBeInRange(70, 100);
@@ -21,6 +20,36 @@ public class PackLoaderTests
         ff7.Items.ShouldAllBe(i => !i.Verified, "pack data is scaffolding until verified during play");
         ff7.Items.Single(i => i.Id == "kotr").Prereqs.ShouldBe(["goldchocobo"]);
         ff7.Theme.Tokens.ShouldContainKey("gold");
+    }
+
+    [Fact]
+    public void TheShippedFf9Pack_LoadsAndValidates()
+    {
+        var packs = PackLoader.LoadAll(RepoPaths.PackDirectory);
+
+        var ff9 = packs.Single(p => p.Game.Id == "ff9");
+        ff9.Game.Title.ShouldBe("Final Fantasy IX");
+        ff9.Positions.Count.ShouldBeInRange(20, 24);
+        ff9.Items.Count.ShouldBeInRange(50, 80);
+        ff9.Positions.Select(p => p.Disc).Distinct().Order().ShouldBe([1, 2, 3, 4]);
+        ff9.Items.ShouldAllBe(i => !i.Verified, "pack data is scaffolding until verified during play");
+        ff9.Items.Single(i => i.Id == "ozma").Prereqs.ShouldBe(["airgarden"]);
+    }
+
+    [Fact]
+    public void AllPacks_DefineTheSameThemeTokenNames()
+    {
+        // The frontend binds chrome to --ff-* variables by token name; every pack must
+        // supply the full set or a game switch would leave stale colors behind.
+        var packs = PackLoader.LoadAll(RepoPaths.PackDirectory);
+
+        packs.Count.ShouldBeGreaterThanOrEqualTo(2);
+        var reference = packs[0].Theme.Tokens.Keys.Order().ToList();
+        foreach (var pack in packs.Skip(1))
+        {
+            pack.Theme.Tokens.Keys.Order().ToList()
+                .ShouldBe(reference, $"theme token names in '{pack.Game.Id}' must match '{packs[0].Game.Id}'");
+        }
     }
 
     [Fact]

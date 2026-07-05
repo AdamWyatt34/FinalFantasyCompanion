@@ -2,8 +2,9 @@
 
 A single-player RPG companion you run locally while replaying a game. Given your declared
 story position and collected items, it answers: **what's available, what's about to close
-forever, what you've missed, and what to do NOW** via a curated route. One game ships:
-Final Fantasy VII (1997).
+forever, what you've missed, and what to do NOW** via a curated route. Two packs ship:
+Final Fantasy VII (1997) and Final Fantasy IX (2000) — each with its own theme, positions,
+and playthrough log; a switcher appears in the header when more than one pack is present.
 
 Personal tool by design: no auth, no cloud, no multi-user, no pack SDK.
 
@@ -87,7 +88,7 @@ round-trip/archive, API smoke tests, and an end-to-end demo-script test against 
 
 ## Pack data honesty
 
-**The FF7 pack data is scaffolding, not gospel.** Every item carries `"verified": false`;
+**The pack data is scaffolding, not gospel.** Every item carries `"verified": false`;
 windows and beat mappings were authored from general FF7 knowledge and are meant to be
 verified (and corrected) during an actual playthrough. Flip `verified` to `true` as you
 confirm each one.

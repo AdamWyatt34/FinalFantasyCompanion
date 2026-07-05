@@ -1,0 +1,849 @@
+{
+  "game": { "id": "ff9", "title": "Final Fantasy IX" },
+  "theme": {
+    "tokens": {
+      "bgTop": "#150d03",
+      "bgMid": "#241605",
+      "bgBottom": "#170f06",
+      "panelTop": "#7a5a2e",
+      "panelMid": "#4a3316",
+      "panelBottom": "#241705",
+      "border": "#e6d2a8",
+      "bevel": "#78602e",
+      "ink": "#fdf3dd",
+      "dim": "#c9b48c",
+      "dimmer": "#a08a62",
+      "faint": "#6e5f42",
+      "gold": "#ffd97a",
+      "cyan": "#8ed8b0",
+      "buttonBorder": "#8a7244",
+      "tickDone": "#6e5626",
+      "tickTodo": "#2e2210"
+    }
+  },
+  "positions": [
+    {
+      "id": "alexandria1",
+      "order": 1,
+      "label": "Alexandria — the kidnapping",
+      "disc": 1
+    },
+    {
+      "id": "evilforest",
+      "order": 2,
+      "label": "Evil Forest & Ice Cavern",
+      "disc": 1
+    },
+    { "id": "dali", "order": 3, "label": "Dali", "disc": 1 },
+    {
+      "id": "lindblum",
+      "order": 4,
+      "label": "Lindblum — Festival of the Hunt",
+      "disc": 1
+    },
+    {
+      "id": "marsh",
+      "order": 5,
+      "label": "Qu's Marsh & Gizamaluke's Grotto",
+      "disc": 1
+    },
+    { "id": "burmecia", "order": 6, "label": "Burmecia", "disc": 1 },
+    {
+      "id": "cleyra",
+      "order": 7,
+      "label": "Summit Station & Cleyra",
+      "disc": 2
+    },
+    {
+      "id": "alexandria2",
+      "order": 8,
+      "label": "Alexandria — the rescue",
+      "disc": 2
+    },
+    {
+      "id": "fossilroo",
+      "order": 9,
+      "label": "Pinnacle Rocks & Fossil Roo",
+      "disc": 2
+    },
+    {
+      "id": "condepetie",
+      "order": 10,
+      "label": "Conde Petie & Black Mage Village",
+      "disc": 2
+    },
+    {
+      "id": "madainsari",
+      "order": 11,
+      "label": "Madain Sari & the Iifa Tree",
+      "disc": 2
+    },
+    {
+      "id": "coronation",
+      "order": 12,
+      "label": "Alexandria — Dagger's coronation",
+      "disc": 3
+    },
+    {
+      "id": "treno2",
+      "order": 13,
+      "label": "Treno tournament & the fall of Alexandria",
+      "disc": 3
+    },
+    {
+      "id": "desertpalace",
+      "order": 14,
+      "label": "Desert Palace & Oeilvert",
+      "disc": 3
+    },
+    {
+      "id": "gulug",
+      "order": 15,
+      "label": "Esto Gaza & Mount Gulug",
+      "disc": 3
+    },
+    {
+      "id": "hildagarde",
+      "order": 16,
+      "label": "Hilda Garde 3 — free flight",
+      "disc": 3
+    },
+    {
+      "id": "ipsens",
+      "order": 17,
+      "label": "Ipsen's Castle & the four shrines",
+      "disc": 3
+    },
+    {
+      "id": "terra",
+      "order": 18,
+      "label": "Terra — Bran Bal & Pandemonium",
+      "disc": 3
+    },
+    {
+      "id": "invincible",
+      "order": 19,
+      "label": "The Invincible — Disc 4",
+      "disc": 4
+    },
+    {
+      "id": "memoria1",
+      "order": 20,
+      "label": "Memoria — outer halls",
+      "disc": 4
+    },
+    { "id": "memoria2", "order": 21, "label": "Memoria — depths", "disc": 4 },
+    {
+      "id": "crystalworld",
+      "order": 22,
+      "label": "Crystal World — point of no return",
+      "disc": 4
+    }
+  ],
+  "items": [
+    {
+      "id": "swordfight",
+      "name": "Sword fight — impress 100 nobles",
+      "type": "quest",
+      "location": "Prima Vista performance — 'I Want To Be Your Canary'",
+      "window": { "opensAt": 1, "closesAt": 1 },
+      "prereqs": [],
+      "notes": "Nail the button prompts during the Blank duel; 100 impressed nobles earns a reward from the Queen later.",
+      "verified": false
+    },
+    {
+      "id": "jumprope",
+      "name": "Jump rope — King of Jump Rope",
+      "type": "quest",
+      "location": "Alexandria square — as Vivi (Disc 1) or Eiko (Disc 3)",
+      "window": { "opensAt": 1, "closesAt": 12 },
+      "prereqs": [],
+      "notes": "1000 jumps for the King of Jump Rope key item. Alexandria's square is gone after the fall.",
+      "verified": false
+    },
+    {
+      "id": "evilforestsweep",
+      "name": "Evil Forest sweep",
+      "type": "quest",
+      "location": "Evil Forest — before it petrifies",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "prereqs": [],
+      "notes": "The whole forest turns to stone when you leave. Grab the chests and the spring scene first.",
+      "verified": false
+    },
+    {
+      "id": "stiltzkin",
+      "name": "Stiltzkin's bundles — every meeting",
+      "type": "quest",
+      "location": "Traveling moogle — appears across the whole game",
+      "window": { "opensAt": 2, "closesAt": 21 },
+      "prereqs": [],
+      "notes": "Buy his discount bundle at every encounter; the final Memoria meeting sells a Ribbon.",
+      "verified": false
+    },
+    {
+      "id": "ragtime",
+      "name": "Ragtime Mouse quiz",
+      "type": "quest",
+      "location": "Random encounters in forests, all discs",
+      "window": { "opensAt": 2 },
+      "prereqs": [],
+      "notes": "Answer his true/false theater trivia across the game; full marks pays out on Disc 4.",
+      "verified": false
+    },
+    {
+      "id": "moccha",
+      "name": "Morrid's three coffees",
+      "type": "quest",
+      "location": "Moccha (observatory area), Kirman (Madain Sari), Burman (Dali windmill)",
+      "window": { "opensAt": 3, "closesAt": 18 },
+      "prereqs": [],
+      "notes": "Deliver all three to Morrid's tower for the Mini-Prima Vista. Windows on individual coffees vary — verify.",
+      "verified": false
+    },
+    {
+      "id": "friendlymu",
+      "name": "Friendly Mu",
+      "type": "quest",
+      "location": "Plains around Dali",
+      "window": { "opensAt": 3 },
+      "prereqs": [],
+      "notes": "First of the friendly monster chain — give it an Ore. The chain must be done in order.",
+      "verified": false
+    },
+    {
+      "id": "huntfestival",
+      "name": "Festival of the Hunt",
+      "type": "quest",
+      "location": "Lindblum",
+      "window": { "opensAt": 4, "closesAt": 4 },
+      "prereqs": [],
+      "notes": "Winner and prize depend on who scores highest — Zidane's win pays the most gil.",
+      "verified": false
+    },
+    {
+      "id": "quina",
+      "name": "Recruit Quina",
+      "type": "character",
+      "location": "Qu's Marsh — catch a frog with Quina watching",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "Skippable at the marsh; the story eventually forces the issue. Take her early for Blue Magic.",
+      "verified": false
+    },
+    {
+      "id": "frogcatching",
+      "name": "Frog catching — 99 frogs",
+      "type": "quest",
+      "location": "Every Qu's Marsh in the world",
+      "window": { "opensAt": 5 },
+      "prereqs": ["quina"],
+      "notes": "Long-haul minigame. Rewards scale with the count; the 99th brings Quale's challenge.",
+      "verified": false
+    },
+    {
+      "id": "gastrofork",
+      "name": "Gastro Fork (Quina)",
+      "type": "key",
+      "location": "Quale's challenge — after 99 frogs",
+      "window": { "opensAt": 5 },
+      "prereqs": ["frogcatching"],
+      "notes": "Quina's ultimate weapon, from beating Quale.",
+      "verified": false
+    },
+    {
+      "id": "kuponut",
+      "name": "Moguta's Kupo Nuts",
+      "type": "quest",
+      "location": "Gizamaluke's Grotto — feed Moguta a Kupo Nut each visit",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "Return with a fresh Kupo Nut per story chunk for escalating rewards.",
+      "verified": false
+    },
+    {
+      "id": "hotcold",
+      "name": "Chocobo Hot & Cold — meet Choco",
+      "type": "chocobo",
+      "location": "Chocobo's Forest — between Lindblum and the marsh",
+      "window": { "opensAt": 5 },
+      "prereqs": [],
+      "notes": "FF9's whole endgame economy hides behind this minigame. Start digging.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 1,
+        "why": "The chocograph chain starts here — everything below needs Choco"
+      }
+    },
+    {
+      "id": "reefchoco",
+      "name": "Reef Choco (light blue)",
+      "type": "chocobo",
+      "location": "Chocobo's Forest — dig up the shallows chocographs",
+      "window": { "opensAt": 5 },
+      "prereqs": ["hotcold"],
+      "notes": "First field-ability upgrade: Choco can wade shallows.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 2,
+        "why": "First ability upgrade — unlocks the lagoon"
+      }
+    },
+    {
+      "id": "mtnchoco",
+      "name": "Mountain Choco (red)",
+      "type": "chocobo",
+      "location": "Chocograph treasures — forest and lagoon digs",
+      "window": { "opensAt": 11 },
+      "prereqs": ["reefchoco"],
+      "notes": "Cliffs and crags open up. Keep digging chocographs between story beats.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 3,
+        "why": "Second upgrade — cliffs stop being walls"
+      }
+    },
+    {
+      "id": "oceanchoco",
+      "name": "Ocean Choco (dark blue)",
+      "type": "chocobo",
+      "location": "Chocobo's Lagoon — deeper chocograph treasures",
+      "window": { "opensAt": 16 },
+      "prereqs": ["mtnchoco"],
+      "notes": "Full ocean crossing. The world map is now yours.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 4,
+        "why": "Open ocean — most ultimate-weapon digs need this"
+      }
+    },
+    {
+      "id": "deadpepper",
+      "name": "Dead Pepper treasure spots",
+      "type": "key",
+      "location": "Bubbling ocean patches and cracks — fed to Choco",
+      "window": { "opensAt": 16 },
+      "prereqs": ["oceanchoco"],
+      "notes": "Dead Peppers dig the underwater and mountainside caches — several ultimate weapons live here.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 5,
+        "why": "The Dead Pepper caches hold half the endgame gear"
+      }
+    },
+    {
+      "id": "skychoco",
+      "name": "Sky (Gold) Choco",
+      "type": "chocobo",
+      "location": "Final chocograph chain reward",
+      "window": { "opensAt": 16 },
+      "prereqs": ["deadpepper"],
+      "notes": "Flight. FF9's gold chocobo moment.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 6,
+        "why": "Flight — the Air Garden is the point"
+      }
+    },
+    {
+      "id": "airgarden",
+      "name": "Chocobo's Air Garden",
+      "type": "quest",
+      "location": "Shadow on the world map — land with the Sky Choco",
+      "window": { "opensAt": 16 },
+      "prereqs": ["skychoco"],
+      "notes": "The floating garden with the last chocographs — and Ozma.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 7,
+        "why": "The final digs, and the superboss lives upstairs"
+      }
+    },
+    {
+      "id": "chocographs",
+      "name": "All 24 chocographs",
+      "type": "quest",
+      "location": "Forest, Lagoon, and Air Garden digs",
+      "window": { "opensAt": 16 },
+      "prereqs": ["skychoco"],
+      "notes": "Completion sweep of every chocograph treasure.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 8,
+        "why": "Mop up the map while the abilities are fresh"
+      }
+    },
+    {
+      "id": "ozma",
+      "name": "Ozma (superboss)",
+      "type": "quest",
+      "location": "Chocobo's Air Garden — the eidolon cave",
+      "window": { "opensAt": 16 },
+      "prereqs": ["airgarden"],
+      "notes": "FF9's Ruby/Emerald. Finish the friendly monster chain first if you want to hit it with physicals.",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 1,
+        "why": "The loadout is ready — go say hello"
+      }
+    },
+    {
+      "id": "ark",
+      "name": "Learn Ark (Pumice)",
+      "type": "summon",
+      "location": "Combine the Pumice — Ozma drop / auction pieces",
+      "window": { "opensAt": 19 },
+      "prereqs": ["ozma"],
+      "notes": "Dagger's hidden ultimate eidolon, assembled from Pumice.",
+      "verified": false,
+      "route": { "at": 20, "rank": 2, "why": "Ozma's drop finishes the set" }
+    },
+    {
+      "id": "burmeciasweep",
+      "name": "Burmecia sweep",
+      "type": "quest",
+      "location": "Burmecia — the ruined city",
+      "window": { "opensAt": 6, "closesAt": 6 },
+      "prereqs": [],
+      "notes": "Window set pessimistically — verify whether the city reopens later.",
+      "verified": false
+    },
+    {
+      "id": "cleyrasweep",
+      "name": "Cleyra goodies before the fall",
+      "type": "quest",
+      "location": "Cleyra — settlement and trunk",
+      "window": { "opensAt": 7, "closesAt": 7 },
+      "prereqs": [],
+      "notes": "The whole town is erased by Odin. Anything not taken is gone forever.",
+      "verified": false,
+      "route": {
+        "at": 7,
+        "rank": 1,
+        "why": "The town does not survive this disc"
+      }
+    },
+    {
+      "id": "stellazzio",
+      "name": "12 Stellazzio coins",
+      "type": "quest",
+      "location": "Hidden across the world — turn in to Queen Stella, Treno",
+      "window": { "opensAt": 7 },
+      "prereqs": [],
+      "notes": "Rewards per coin turned in — the Blood Sword for Steiner arrives at five.",
+      "verified": false
+    },
+    {
+      "id": "ophiuchus",
+      "name": "Ophiuchus — the 13th coin",
+      "type": "quest",
+      "location": "Quan's Dwelling (Disc 4), then Queen Stella",
+      "window": { "opensAt": 19 },
+      "prereqs": ["stellazzio"],
+      "notes": "Appears only after all twelve are turned in. The Hammer it earns feeds the secret ending.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 5,
+        "why": "The Hammer is the secret-ending ticket"
+      }
+    },
+    {
+      "id": "trenoweaponshop",
+      "name": "Treno weapon shop battles",
+      "type": "quest",
+      "location": "Treno — monster in the weapon shop basement, new each disc",
+      "window": { "opensAt": 7 },
+      "prereqs": [],
+      "notes": "A different beatable monster per disc with a prize each. Earlier discs' monsters are lost as time moves on.",
+      "verified": false
+    },
+    {
+      "id": "auction",
+      "name": "Treno auction rares",
+      "type": "quest",
+      "location": "Treno auction house",
+      "window": { "opensAt": 7 },
+      "prereqs": [],
+      "notes": "Buy the rare key items as they rotate in — the Magical Fingertip chain ends in Excalibur.",
+      "verified": false
+    },
+    {
+      "id": "friendlyghost",
+      "name": "Friendly Ghost",
+      "type": "quest",
+      "location": "Plains around Treno",
+      "window": { "opensAt": 7 },
+      "prereqs": ["friendlymu"],
+      "notes": "Wants an Ore. Chain order is fixed.",
+      "verified": false
+    },
+    {
+      "id": "tantarian",
+      "name": "Tantarian (hidden boss)",
+      "type": "quest",
+      "location": "Alexandria Castle library — the moving book",
+      "window": { "opensAt": 8, "closesAt": 12 },
+      "prereqs": [],
+      "notes": "Only while Alexandria Castle stands — the fall of Alexandria ends it. Drops the Running Shoes.",
+      "verified": false
+    },
+    {
+      "id": "ramuh9",
+      "name": "Ramuh's tale (Peridot)",
+      "type": "summon",
+      "location": "Pinnacle Rocks — assemble Ramuh's story",
+      "window": { "opensAt": 9, "closesAt": 9 },
+      "prereqs": [],
+      "notes": "Pick the story ending for the Peridot and Dagger's Ramuh.",
+      "verified": false
+    },
+    {
+      "id": "friendlyladybug",
+      "name": "Friendly Ladybug",
+      "type": "quest",
+      "location": "Eunorus Plains — near the Black Mage Village",
+      "window": { "opensAt": 10 },
+      "prereqs": ["friendlyghost"],
+      "notes": "Wants two Ores.",
+      "verified": false
+    },
+    {
+      "id": "friendlyyeti",
+      "name": "Friendly Yeti",
+      "type": "quest",
+      "location": "Forgotten Continent",
+      "window": { "opensAt": 14 },
+      "prereqs": ["friendlyladybug"],
+      "notes": "Wants two Diamonds.",
+      "verified": false
+    },
+    {
+      "id": "friendlynymph",
+      "name": "Friendly Nymph",
+      "type": "quest",
+      "location": "Iifa Tree area",
+      "window": { "opensAt": 11 },
+      "prereqs": ["friendlyyeti"],
+      "notes": "Wants three Ores.",
+      "verified": false
+    },
+    {
+      "id": "hippaul",
+      "name": "Hippaul racing (Vivi)",
+      "type": "quest",
+      "location": "Alexandria main street — race Hippaul to level 80",
+      "window": { "opensAt": 12, "closesAt": 12 },
+      "prereqs": [],
+      "notes": "Only during the coronation stretch. Level 80 pays the Protect Ring.",
+      "verified": false,
+      "route": {
+        "at": 12,
+        "rank": 1,
+        "why": "Gone the moment the story leaves Alexandria"
+      }
+    },
+    {
+      "id": "mayorskey",
+      "name": "Dali Mayor's Key",
+      "type": "quest",
+      "location": "Dali — sleeping mayor, then the windmill",
+      "window": { "opensAt": 13 },
+      "prereqs": [],
+      "notes": "Pickpocket the key while he naps; the windmill hides the Mini-Brahne and the Burman coffee.",
+      "verified": false
+    },
+    {
+      "id": "desertpalacesweep",
+      "name": "Desert Palace sweep",
+      "type": "quest",
+      "location": "Kuja's Desert Palace — bluish light chests",
+      "window": { "opensAt": 14, "closesAt": 14 },
+      "prereqs": [],
+      "notes": "One visit only. Light every lamp; the Promist Ring and friends are unrepeatable.",
+      "verified": false,
+      "route": { "at": 14, "rank": 1, "why": "You never come back here" }
+    },
+    {
+      "id": "oeilvertsweep",
+      "name": "Oeilvert sweep",
+      "type": "quest",
+      "location": "Oeilvert — the anti-magic facility",
+      "window": { "opensAt": 14, "closesAt": 14 },
+      "prereqs": [],
+      "notes": "One visit only. Physical-team dungeon; don't leave chests behind.",
+      "verified": false,
+      "route": { "at": 14, "rank": 2, "why": "Same trip, same rule — one pass" }
+    },
+    {
+      "id": "gulugsweep",
+      "name": "Mount Gulug sweep",
+      "type": "quest",
+      "location": "Mount Gulug — via Esto Gaza",
+      "window": { "opensAt": 15, "closesAt": 15 },
+      "prereqs": [],
+      "notes": "Red Hat, Golden Hairpin, and the last unrepeatable chests before the disc turns.",
+      "verified": false
+    },
+    {
+      "id": "daguerreo",
+      "name": "Daguerreo — the hidden library",
+      "type": "quest",
+      "location": "Island grotto — southwest seas",
+      "window": { "opensAt": 16 },
+      "prereqs": [],
+      "notes": "Synth shop, rare stock, and the four-armed man who rates your treasure hunting.",
+      "verified": false,
+      "route": {
+        "at": 16,
+        "rank": 9,
+        "why": "Best shops in the game — stock up here from now on"
+      }
+    },
+    {
+      "id": "friendlyjabberwock",
+      "name": "Friendly Jabberwock",
+      "type": "quest",
+      "location": "Seaways Canyon — near Daguerreo",
+      "window": { "opensAt": 16 },
+      "prereqs": ["friendlynymph"],
+      "notes": "Wants an Emerald.",
+      "verified": false
+    },
+    {
+      "id": "friendlyfeather",
+      "name": "Friendly Feather Circle",
+      "type": "quest",
+      "location": "Healing Shore — Forgotten Continent",
+      "window": { "opensAt": 16 },
+      "prereqs": ["friendlyjabberwock"],
+      "notes": "Wants a Moonstone.",
+      "verified": false
+    },
+    {
+      "id": "friendlygaruda",
+      "name": "Friendly Garuda",
+      "type": "quest",
+      "location": "Vile Island region",
+      "window": { "opensAt": 16 },
+      "prereqs": ["friendlyfeather"],
+      "notes": "Wants a Lapis Lazuli.",
+      "verified": false
+    },
+    {
+      "id": "friendlyyan",
+      "name": "Friendly Yan — chain finale",
+      "type": "quest",
+      "location": "Vile Island",
+      "window": { "opensAt": 19 },
+      "prereqs": ["friendlygaruda"],
+      "notes": "Wants a Diamond. Completes the chain: Ribbon, Rebirth Ring — and Ozma becomes reachable with physical attacks.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 6,
+        "why": "Finish the chain before stepping to Ozma"
+      }
+    },
+    {
+      "id": "whalewhisker",
+      "name": "Whale Whisker (Dagger)",
+      "type": "key",
+      "location": "Chocograph treasure — ocean dig",
+      "window": { "opensAt": 16 },
+      "prereqs": ["oceanchoco"],
+      "notes": "Dagger's ultimate rod, out of a chocograph cache.",
+      "verified": false
+    },
+    {
+      "id": "angelflute",
+      "name": "Angel Flute (Eiko)",
+      "type": "key",
+      "location": "Chocograph treasure — late chain",
+      "window": { "opensAt": 16 },
+      "prereqs": ["skychoco"],
+      "notes": "Eiko's ultimate flute from the final chocograph stretch.",
+      "verified": false
+    },
+    {
+      "id": "ragnarok",
+      "name": "Ragnarok (Steiner)",
+      "type": "key",
+      "location": "Chocograph treasure — Outer Island dig",
+      "window": { "opensAt": 16 },
+      "prereqs": ["skychoco"],
+      "notes": "Steiner's second-best sword — the best one has a clock on it.",
+      "verified": false
+    },
+    {
+      "id": "ipsenssweep",
+      "name": "Ipsen's Castle sweep",
+      "type": "quest",
+      "location": "Ipsen's Castle — the inverted keep",
+      "window": { "opensAt": 17 },
+      "prereqs": [],
+      "notes": "Weaker weapons hit harder here. The Ancient Aroma and Taharka's drops are the prizes.",
+      "verified": false
+    },
+    {
+      "id": "invincible",
+      "name": "The Invincible",
+      "type": "key",
+      "location": "Story — Disc 4 begins",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Full world access. Every remaining sidequest is open from here.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 1,
+        "why": "Disc 4 — the mop-up disc starts now"
+      }
+    },
+    {
+      "id": "mognet",
+      "name": "Mognet Central & the Superslick",
+      "type": "quest",
+      "location": "Mognet Central — snowy island (Sky Choco or Invincible)",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Fix the mail machine via the letter chain; Superslick and a Protect Ring for the trouble.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 2,
+        "why": "The letter chain resolves only from here"
+      }
+    },
+    {
+      "id": "eidolonwall",
+      "name": "Madain Sari — Eidolon Wall secret",
+      "type": "quest",
+      "location": "Madain Sari — walk the wall the long way",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Circle the Eidolon Wall the hidden direction for the mural scenes and reward.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 3,
+        "why": "Two minutes of walking for one of FF9's best secrets"
+      }
+    },
+    {
+      "id": "ultimaweapon9",
+      "name": "Ultima Weapon (Zidane)",
+      "type": "key",
+      "location": "Dead Pepper dive — the sunken Shimmering Island spot",
+      "window": { "opensAt": 19 },
+      "prereqs": ["deadpepper"],
+      "notes": "Zidane's ultimate dagger, under the sea where Terra's portal was.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 4,
+        "why": "The dive only exists after Terra"
+      }
+    },
+    {
+      "id": "dragonshair",
+      "name": "Dragon's Hair (Freya)",
+      "type": "key",
+      "location": "Dead Pepper cache — ocean shipwreck",
+      "window": { "opensAt": 19 },
+      "prereqs": ["deadpepper"],
+      "notes": "Freya's ultimate spear from a Dead Pepper dig.",
+      "verified": false
+    },
+    {
+      "id": "tigerracket",
+      "name": "Tiger Racket (Dagger)",
+      "type": "key",
+      "location": "Dead Pepper cache — Quan's Dwelling coast",
+      "window": { "opensAt": 19 },
+      "prereqs": ["deadpepper"],
+      "notes": "Her best racket — the rod is still the Whale Whisker.",
+      "verified": false
+    },
+    {
+      "id": "excalibur",
+      "name": "Excalibur (Steiner)",
+      "type": "key",
+      "location": "Daguerreo — old man, for the Magical Fingertip",
+      "window": { "opensAt": 19 },
+      "prereqs": ["auction"],
+      "notes": "Buy rares at the auction until the Magical Fingertip rotates in, then trade it in Daguerreo.",
+      "verified": false
+    },
+    {
+      "id": "nerobrothers",
+      "name": "Nero Family minigame",
+      "type": "quest",
+      "location": "Alexandria — Tantalus hideout, during Disc 4 story beats",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Shuffle-game with the brothers between Memoria detours; small but famously obscure.",
+      "verified": false
+    },
+    {
+      "id": "treasurerank",
+      "name": "Treasure Hunter Rank S",
+      "type": "quest",
+      "location": "Daguerreo — the four-armed appraiser",
+      "window": { "opensAt": 19 },
+      "prereqs": [],
+      "notes": "Open enough chests worldwide and he crowns you Rank S.",
+      "verified": false
+    },
+    {
+      "id": "excalibur2",
+      "name": "Excalibur II — under 12:00:00",
+      "type": "key",
+      "location": "Memoria — near the Lich fight, only if play time < 12 hours",
+      "window": { "opensAt": 20, "closesAt": 21 },
+      "prereqs": [],
+      "notes": "The most infamous timed item in the series. A dedicated speed-run playthrough, not a pickup.",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 3,
+        "why": "Only exists on a sub-12-hour clock — know before you go"
+      }
+    },
+    {
+      "id": "maceofzeus",
+      "name": "Mace of Zeus (Vivi)",
+      "type": "key",
+      "location": "Memoria depths — last stretch before the Crystal World",
+      "window": { "opensAt": 21, "closesAt": 21 },
+      "prereqs": [],
+      "notes": "Vivi's ultimate weapon, missable in the final dungeon's last leg.",
+      "verified": false,
+      "route": {
+        "at": 21,
+        "rank": 1,
+        "why": "Last chance is literally the final corridor"
+      }
+    },
+    {
+      "id": "runeclaws",
+      "name": "Rune Claws (Amarant)",
+      "type": "key",
+      "location": "Memoria depths",
+      "window": { "opensAt": 21, "closesAt": 21 },
+      "prereqs": [],
+      "notes": "Amarant's ultimate weapon, also buried in Memoria's endgame.",
+      "verified": false,
+      "route": { "at": 21, "rank": 2, "why": "Same corridor, same rule" }
+    }
+  ]
+}
