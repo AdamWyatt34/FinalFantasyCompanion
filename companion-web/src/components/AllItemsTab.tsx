@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import type { Availability, Status } from "../api/types";
-import { STATUS } from "../theme/statusColors";
+import type { Availability, ItemType, Status } from "../api/types";
+import { STATUS, TYPE_LABEL } from "../theme/statusColors";
 import { ItemCard } from "./ItemCard";
 
 interface AllItemsTabProps {
@@ -40,6 +40,13 @@ export function AllItemsTab({
   onReveal,
 }: AllItemsTabProps) {
   const [filter, setFilter] = useState<FilterId>("all");
+  const [typeFilter, setTypeFilter] = useState<ItemType | "all">("all");
+  const [query, setQuery] = useState("");
+
+  const presentTypes = useMemo(
+    () => [...new Set(availability.items.map((e) => e.item.type))],
+    [availability],
+  );
 
   const sorted = useMemo(
     () =>
@@ -60,7 +67,28 @@ export function AllItemsTab({
     return c;
   }, [sorted]);
 
-  const shown = sorted.filter(({ status }) => FILTER_MAP[filter](status));
+  const needle = query.trim().toLowerCase();
+  const shown = sorted.filter((entry) => {
+    if (!FILTER_MAP[filter](entry.status)) {
+      return false;
+    }
+    if (typeFilter !== "all" && entry.item.type !== typeFilter) {
+      return false;
+    }
+    if (needle.length > 0) {
+      // Spoiler-safe: masked items never match a search — matching would
+      // confirm a hidden item's existence by name.
+      if (entry.status === "notYet" && !revealed.has(entry.item.id)) {
+        return false;
+      }
+      const haystack =
+        `${entry.item.name} ${entry.item.location} ${entry.item.notes}`.toLowerCase();
+      if (!haystack.includes(needle)) {
+        return false;
+      }
+    }
+    return true;
+  });
 
   return (
     <div className="flex flex-col gap-3">
@@ -89,6 +117,32 @@ export function AllItemsTab({
           </button>
         ))}
       </div>
+
+      {presentTypes.length > 1 && (
+        <div className="flex flex-wrap gap-1.5">
+          {(["all", ...presentTypes] as const).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTypeFilter(t)}
+              className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
+                typeFilter === t
+                  ? "border-[var(--ff-gold)] text-[var(--ff-gold)] bg-[var(--ff-gold)]/10"
+                  : "border-[var(--ff-bevel)] text-[var(--ff-dim)]"
+              }`}
+            >
+              {t === "all" ? "ALL TYPES" : (TYPE_LABEL[t] ?? t.toUpperCase())}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search items…"
+        className="w-full bg-transparent text-xs font-mono px-3 py-1.5 rounded border border-[var(--ff-bevel)] text-[var(--ff-ink)] placeholder:text-[var(--ff-faint)] focus:border-[var(--ff-cyan)] focus:outline-none"
+      />
 
       <div className="flex flex-col gap-2.5">
         {shown.length === 0 && (
