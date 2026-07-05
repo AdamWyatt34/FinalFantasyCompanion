@@ -8,6 +8,7 @@ import { RouteTab } from "./components/RouteTab";
 import { AllItemsTab } from "./components/AllItemsTab";
 import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
+import { GameSwitcher, summarize } from "./components/GameSwitcher";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
@@ -33,37 +34,6 @@ export default function App() {
       games={games.data ?? []}
       onSelectGame={setSelectedId}
     />
-  );
-}
-
-function GameSwitcher({
-  games,
-  currentId,
-  onSelect,
-}: {
-  games: GameSummary[];
-  currentId: string;
-  onSelect: (id: string) => void;
-}) {
-  if (games.length < 2) {
-    return null;
-  }
-  return (
-    <div className="flex justify-center gap-1.5">
-      {games.map((g) => (
-        <button
-          key={g.id}
-          onClick={() => onSelect(g.id)}
-          className={`text-[10px] font-mono tracking-wider px-3 py-1 rounded-full border ${
-            g.id === currentId
-              ? "border-[var(--ff-cyan)] text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
-              : "border-[var(--ff-bevel)] text-[var(--ff-dim)]"
-          }`}
-        >
-          {g.title}
-        </button>
-      ))}
-    </div>
   );
 }
 
@@ -179,6 +149,7 @@ function GameApp({
         <GameSwitcher
           games={games}
           currentId={gameId}
+          currentProgress={summarize(pack.data, availability.data)}
           onSelect={onSelectGame}
         />
         <div className="text-center">
