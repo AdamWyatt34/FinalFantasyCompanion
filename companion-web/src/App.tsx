@@ -10,6 +10,7 @@ import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { downloadSave, importSave } from "./storage/saveFile";
+import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
 
 export default function App() {
@@ -59,7 +60,9 @@ function GameApp({
   const route = useApi(() => api.getRoute(gameId), [gameId]);
 
   const [tab, setTab] = useState<"route" | "all">("route");
-  const [revealed, setRevealed] = useState<Set<string>>(new Set());
+  const [revealed, setRevealed] = useState<Set<string>>(() =>
+    readRevealed(gameId),
+  );
   const [showTimeline, setShowTimeline] = useState(false);
   const [showArchives, setShowArchives] = useState(false);
   const [pendingImpact, setPendingImpact] = useState<AdvanceImpact | null>(
@@ -144,12 +147,22 @@ function GameApp({
       itemId,
     });
 
-  const reveal = (itemId: string) => setRevealed((r) => new Set(r).add(itemId));
+  const reveal = (itemId: string) => {
+    const next = new Set(revealed).add(itemId);
+    writeRevealed(gameId, next);
+    setRevealed(next);
+  };
+
+  // A fresh or replaced playthrough starts fully masked again.
+  const clearRevealed = () => {
+    writeRevealed(gameId, new Set());
+    setRevealed(new Set());
+  };
 
   const resetPlaythrough = async () => {
     if (window.confirm("Archive this playthrough and start fresh?")) {
       await api.postReset(gameId);
-      setRevealed(new Set());
+      clearRevealed();
       refetchState();
     }
   };
@@ -172,7 +185,7 @@ function GameApp({
       }
       try {
         importSave(pack.data, await file.text());
-        setRevealed(new Set());
+        clearRevealed();
         refetchState();
       } catch (e) {
         window.alert(e instanceof Error ? e.message : "Import failed.");
@@ -287,7 +300,7 @@ function GameApp({
         <ArchivesOverlay
           pack={pack.data}
           onRestored={() => {
-            setRevealed(new Set());
+            clearRevealed();
             refetchState();
           }}
           onClose={() => setShowArchives(false)}
