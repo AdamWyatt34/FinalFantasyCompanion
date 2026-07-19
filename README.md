@@ -2,9 +2,9 @@
 
 A replay companion for classic RPGs, running entirely in your browser. Given your declared
 story position and collected items, it answers: **what's available, what's about to close
-forever, what you've missed, and what to do NOW** via a curated route. Two packs ship:
-Final Fantasy VII (1997) and Final Fantasy IX (2000), each with its own theme, story beats,
-and save.
+forever, what you've missed, and what to do NOW** via a curated route. Seven packs ship —
+Final Fantasy IV, VI, VII, VIII, IX, X (HD Remaster), and XII (original PS2) — each with
+its own theme, story beats, and save.
 
 Fully static — no server, no accounts. Every visitor gets their own save, stored in their
 own browser.
@@ -37,13 +37,16 @@ The build uses a relative base path, so it works at any `https://<user>.github.i
   visiting the site never see yours.
 - Clearing site data clears saves. Use **Export save** (footer) to download a backup, and
   **Import save** to restore it or move it to another device.
-- **New playthrough** archives the current save (recoverable in localStorage) and starts fresh.
+- **New playthrough** archives the current save; **Playthroughs** browses and restores
+  archives. **History** shows every tap with one-step undo. **Report** is a shareable
+  per-disc report card. Personal per-item notes (✎ on any card) travel with exports.
 - Small print: the same game open in two tabs at once can lose a tap to a race — one tab
   at a time per game is the supported mode.
 
 ## Demo script
 
-From a fresh playthrough:
+Pick **Final Fantasy VII** in the switcher (games list in series order, so FF4 is the
+default), then from a fresh playthrough:
 
 1. **Advance** twice → *Shinra HQ*. The Route tab's NOW bucket shows the Midgar missables
    as LAST CHANCE.

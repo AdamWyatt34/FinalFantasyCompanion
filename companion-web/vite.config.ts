@@ -19,7 +19,7 @@ export default defineConfig({
         name: "FF Companion",
         short_name: "FF Companion",
         description:
-          "Replay companion for FF7 & FF9 — availability, missables, curated routes",
+          "Replay companion for classic Final Fantasy — availability, missables, curated routes",
         theme_color: "#0a1030",
         background_color: "#04061a",
         display: "standalone",
