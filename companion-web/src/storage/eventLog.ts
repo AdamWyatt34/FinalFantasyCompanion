@@ -23,9 +23,25 @@ export function readEvents(gameId: string): ProgressEvent[] {
     return parsed as ProgressEvent[];
   } catch {
     // Quarantine rather than dead-end: the user has no other way to recover.
-    const quarantineKey = `ffcompanion.${gameId}.corrupt.${new Date().toISOString()}`;
+    const prefix = `ffcompanion.${gameId}.corrupt.`;
+    const base = `${prefix}${new Date().toISOString()}`;
+    let quarantineKey = base;
+    for (let n = 2; kv.get(quarantineKey) !== null; n++) {
+      quarantineKey = `${base}-${n}`;
+    }
     kv.set(quarantineKey, text);
     kv.remove(activeKey(gameId));
+    // Keep only the newest three quarantined logs — they exist for debugging,
+    // not as an archive, and must not eat the storage quota. The entry just
+    // written is exempt: a recycled collision suffix can make it sort oldest.
+    const stale = kv
+      .keys()
+      .filter((key) => key.startsWith(prefix) && key !== quarantineKey)
+      .sort()
+      .slice(0, -2);
+    for (const key of stale) {
+      kv.remove(key);
+    }
     console.warn(
       `Corrupt event log for '${gameId}' moved to ${quarantineKey}; starting fresh.`,
     );
