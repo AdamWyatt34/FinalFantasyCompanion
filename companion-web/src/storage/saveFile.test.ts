@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { api } from "../api/client";
 import { getPackById } from "../packs";
-import { exportSave, importSave } from "./saveFile";
+import { exportSave, importSave, installSave, parseSave } from "./saveFile";
 
 const ff7 = () => getPackById("ff7")!;
 const ff9 = () => getPackById("ff9")!;
@@ -40,6 +40,19 @@ describe("save export/import", () => {
     expect(() => importSave(ff9(), JSON.stringify(save))).toThrow(
       "That save belongs to 'ff7', but the active game is 'ff9'.",
     );
+  });
+
+  it("parseSave + installSave supports installing into the save's own game", async () => {
+    await api.postEvent("ff7", { type: "positionAdvanced", to: 5 });
+    const text = JSON.stringify(exportSave("ff7"));
+    await api.postReset("ff7");
+
+    // What the app does on a cross-game import: parse, look up the pack, install.
+    const save = parseSave(text);
+    expect(save.gameId).toBe("ff7");
+    installSave(getPackById(save.gameId)!, save);
+
+    expect((await api.getAvailability("ff7")).position).toBe(5);
   });
 
   it("rejects a file that is not a save", () => {

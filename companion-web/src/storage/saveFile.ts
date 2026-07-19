@@ -37,12 +37,8 @@ export function downloadSave(gameId: string): void {
   URL.revokeObjectURL(url);
 }
 
-/**
- * Validates and installs an exported save. Throws with a human-readable reason
- * on any mismatch — importing an ff7 save into ff9 must fail loudly, because
- * the fold would silently tolerate the foreign item ids.
- */
-export function importSave(pack: Pack, text: string): void {
+/** Parses and shape-checks a save file without touching any game's log. */
+export function parseSave(text: string): SaveFile {
   let parsed: unknown;
   try {
     parsed = JSON.parse(text);
@@ -51,9 +47,22 @@ export function importSave(pack: Pack, text: string): void {
   }
 
   const save = parsed as Partial<SaveFile>;
-  if (save.format !== "ffcompanion-save" || !Array.isArray(save.events)) {
+  if (
+    save.format !== "ffcompanion-save" ||
+    typeof save.gameId !== "string" ||
+    !Array.isArray(save.events)
+  ) {
     throw new Error("That file is not an FF Companion save.");
   }
+  return save as SaveFile;
+}
+
+/**
+ * Validates a parsed save against a pack and installs it. Throws with a
+ * human-readable reason on any mismatch — installing an ff7 save into ff9 must
+ * fail loudly, because the fold would silently tolerate the foreign item ids.
+ */
+export function installSave(pack: Pack, save: SaveFile): void {
   if (save.gameId !== pack.game.id) {
     throw new Error(
       `That save belongs to '${save.gameId}', but the active game is '${pack.game.id}'.`,
@@ -89,4 +98,9 @@ export function importSave(pack: Pack, text: string): void {
   }
 
   replaceLog(pack.game.id, save.events as ProgressEvent[]);
+}
+
+/** Parse + install in one step, for when the active game is the only target. */
+export function importSave(pack: Pack, text: string): void {
+  installSave(pack, parseSave(text));
 }

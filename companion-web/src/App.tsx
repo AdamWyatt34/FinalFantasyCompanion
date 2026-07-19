@@ -10,7 +10,7 @@ import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { UpdateToast } from "./components/UpdateToast";
-import { downloadSave, importSave } from "./storage/saveFile";
+import { downloadSave, installSave, parseSave } from "./storage/saveFile";
 import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
 
@@ -212,15 +212,37 @@ function GameApp({
       if (!file || !pack.data) {
         return;
       }
-      if (
-        !window.confirm(
-          `Replace the current ${pack.data.game.title} playthrough with this save?`,
-        )
-      ) {
-        return;
-      }
       try {
-        importSave(pack.data, await file.text());
+        const save = parseSave(await file.text());
+
+        if (save.gameId !== gameId) {
+          // The save belongs to another game — offer to switch, don't just fail.
+          const target = await api.getPack(save.gameId).catch(() => null);
+          if (target === null) {
+            throw new Error(
+              `That save belongs to '${save.gameId}', which isn't a game in this app.`,
+            );
+          }
+          if (
+            window.confirm(
+              `This save is for ${target.game.title}. Switch to it and import?`,
+            )
+          ) {
+            installSave(target, save);
+            writeRevealed(target.game.id, new Set());
+            onSelectGame(target.game.id);
+          }
+          return;
+        }
+
+        if (
+          !window.confirm(
+            `Replace the current ${pack.data.game.title} playthrough with this save?`,
+          )
+        ) {
+          return;
+        }
+        installSave(pack.data, save);
         clearRevealed();
         refetchState();
       } catch (e) {
