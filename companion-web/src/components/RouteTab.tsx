@@ -7,6 +7,7 @@ interface RouteTabProps {
   revealed: Set<string>;
   itemNames: Record<string, string>;
   positionLabels: Record<number, string>;
+  hiddenIds: ReadonlySet<string>;
   onToggle: (itemId: string, collected: boolean) => void;
   onReveal: (itemId: string) => void;
 }
@@ -25,6 +26,7 @@ export function RouteTab({
   revealed,
   itemNames,
   positionLabels,
+  hiddenIds,
   onToggle,
   onReveal,
 }: RouteTabProps) {
@@ -43,6 +45,7 @@ export function RouteTab({
       why={entry.item.route?.why}
       itemNames={itemNames}
       positionLabels={positionLabels}
+      hiddenIds={hiddenIds}
       onToggle={() => onToggle(entry.item.id, entry.status === "collected")}
       onReveal={() => onReveal(entry.item.id)}
     />

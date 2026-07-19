@@ -8,6 +8,7 @@ interface AllItemsTabProps {
   revealed: Set<string>;
   itemNames: Record<string, string>;
   positionLabels: Record<number, string>;
+  hiddenIds: ReadonlySet<string>;
   onToggle: (itemId: string, collected: boolean) => void;
   onReveal: (itemId: string) => void;
 }
@@ -36,6 +37,7 @@ export function AllItemsTab({
   revealed,
   itemNames,
   positionLabels,
+  hiddenIds,
   onToggle,
   onReveal,
 }: AllItemsTabProps) {
@@ -159,6 +161,7 @@ export function AllItemsTab({
             masked={entry.status === "notYet" && !revealed.has(entry.item.id)}
             itemNames={itemNames}
             positionLabels={positionLabels}
+            hiddenIds={hiddenIds}
             onToggle={() =>
               onToggle(entry.item.id, entry.status === "collected")
             }

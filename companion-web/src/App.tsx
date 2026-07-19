@@ -84,6 +84,16 @@ function GameApp({
       ),
     [pack.data],
   );
+  // Items whose names must not appear anywhere — not yet open and not revealed.
+  const hiddenIds = useMemo(
+    () =>
+      new Set(
+        (availability.data?.items ?? [])
+          .filter((e) => e.status === "notYet" && !revealed.has(e.item.id))
+          .map((e) => e.item.id),
+      ),
+    [availability.data, revealed],
+  );
 
   if (pack.error || availability.error || route.error) {
     return (
@@ -224,6 +234,7 @@ function GameApp({
             revealed={revealed}
             itemNames={itemNames}
             positionLabels={positionLabels}
+            hiddenIds={hiddenIds}
             onToggle={toggleCollected}
             onReveal={reveal}
           />
@@ -233,6 +244,7 @@ function GameApp({
             revealed={revealed}
             itemNames={itemNames}
             positionLabels={positionLabels}
+            hiddenIds={hiddenIds}
             onToggle={toggleCollected}
             onReveal={reveal}
           />
@@ -261,6 +273,7 @@ function GameApp({
         <PointOfNoReturnModal
           impact={pendingImpact}
           positions={pack.data.positions}
+          hiddenIds={hiddenIds}
           onStay={() => setPendingImpact(null)}
           onAdvance={async () => {
             const target = pendingImpact.to;

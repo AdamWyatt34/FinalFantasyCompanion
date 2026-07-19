@@ -10,6 +10,7 @@ interface ItemCardProps {
   why?: string;
   itemNames: Record<string, string>;
   positionLabels: Record<number, string>;
+  hiddenIds: ReadonlySet<string>;
   onToggle: () => void;
   onReveal: () => void;
 }
@@ -22,6 +23,7 @@ export function ItemCard({
   why,
   itemNames,
   positionLabels,
+  hiddenIds,
   onToggle,
   onReveal,
 }: ItemCardProps) {
@@ -84,7 +86,15 @@ export function ItemCard({
           className="text-[11px] font-mono mt-1"
           style={{ color: STATUS.blocked.color }}
         >
-          Needs: {missingPrereqs.map((p) => itemNames[p] ?? p).join(", ")}
+          Needs:{" "}
+          {/* A prereq that is itself still masked must not leak its name. */}
+          {[
+            ...new Set(
+              missingPrereqs.map((p) =>
+                hiddenIds.has(p) ? "？？？" : (itemNames[p] ?? p),
+              ),
+            ),
+          ].join(", ")}
         </div>
       )}
 

@@ -4,6 +4,7 @@ import { STATUS } from "../theme/statusColors";
 interface PointOfNoReturnModalProps {
   impact: AdvanceImpact;
   positions: Position[];
+  hiddenIds: ReadonlySet<string>;
   onStay: () => void;
   onAdvance: () => void;
 }
@@ -11,6 +12,7 @@ interface PointOfNoReturnModalProps {
 export function PointOfNoReturnModal({
   impact,
   positions,
+  hiddenIds,
   onStay,
   onAdvance,
 }: PointOfNoReturnModalProps) {
@@ -33,16 +35,25 @@ export function PointOfNoReturnModal({
           permanently closes:
         </div>
         <div className="mt-2 flex flex-col gap-1.5 max-h-[40vh] overflow-y-auto">
-          {impact.closing.map((entry) => (
-            <div key={entry.item.id} className="text-sm">
-              <span className="text-[var(--ff-cyan)]">▶ </span>
-              {entry.item.name}
-              <span className="text-[11px] text-[var(--ff-dim)]">
-                {" "}
-                · {entry.item.location}
-              </span>
-            </div>
-          ))}
+          {/* A jump can skip windows the player never saw open — those stay
+              masked here too, or the warning itself becomes the spoiler. */}
+          {impact.closing.map((entry) => {
+            const hidden = hiddenIds.has(entry.item.id);
+            return (
+              <div key={entry.item.id} className="text-sm">
+                <span className="text-[var(--ff-cyan)]">▶ </span>
+                {hidden ? (
+                  <span className="text-[var(--ff-dim)]">— ？ ？ ？ —</span>
+                ) : (
+                  entry.item.name
+                )}
+                <span className="text-[11px] text-[var(--ff-dim)]">
+                  {" "}
+                  · {hidden ? "hidden to avoid spoilers" : entry.item.location}
+                </span>
+              </div>
+            );
+          })}
         </div>
         <div className="flex gap-2 mt-4">
           <button
