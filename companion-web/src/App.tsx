@@ -116,13 +116,24 @@ function GameApp({
     route.refetch();
   };
 
+  // Writes can fail (full localStorage quota, blocked storage) — a tap that
+  // silently does nothing is worse than an ugly alert.
+  const reportError = (e: unknown) =>
+    window.alert(
+      e instanceof Error ? e.message : "Something went wrong saving progress.",
+    );
+
   const postEvent = async (event: {
     type: string;
     to?: number;
     itemId?: string;
   }) => {
-    await api.postEvent(gameId, event);
-    refetchState();
+    try {
+      await api.postEvent(gameId, event);
+      refetchState();
+    } catch (e) {
+      reportError(e);
+    }
   };
 
   const requestMove = async (target: number) => {
@@ -133,11 +144,15 @@ function GameApp({
       await postEvent({ type: "positionCorrected", to: target });
       return;
     }
-    const impact = await api.getAdvanceImpact(gameId, target);
-    if (impact.closing.length > 0) {
-      setPendingImpact(impact);
-    } else {
-      await postEvent({ type: "positionAdvanced", to: target });
+    try {
+      const impact = await api.getAdvanceImpact(gameId, target);
+      if (impact.closing.length > 0) {
+        setPendingImpact(impact);
+      } else {
+        await postEvent({ type: "positionAdvanced", to: target });
+      }
+    } catch (e) {
+      reportError(e);
     }
   };
 
@@ -161,9 +176,13 @@ function GameApp({
 
   const resetPlaythrough = async () => {
     if (window.confirm("Archive this playthrough and start fresh?")) {
-      await api.postReset(gameId);
-      clearRevealed();
-      refetchState();
+      try {
+        await api.postReset(gameId);
+        clearRevealed();
+        refetchState();
+      } catch (e) {
+        reportError(e);
+      }
     }
   };
 

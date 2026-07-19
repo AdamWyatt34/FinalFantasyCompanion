@@ -44,7 +44,13 @@ export function ArchivesOverlay({
         "Restore this playthrough? Your current run will be archived first — nothing is lost.",
       )
     ) {
-      restoreArchive(pack.game.id, archive.key);
+      try {
+        restoreArchive(pack.game.id, archive.key);
+      } catch (e) {
+        window.alert(e instanceof Error ? e.message : "Restore failed.");
+        setArchives(listArchives(pack.game.id));
+        return;
+      }
       onRestored();
       onClose();
     }
