@@ -70,6 +70,11 @@ From a fresh playthrough:
   components contain zero chrome color literals. Functional status colors are app-constant
   across games. Spoiler masking is soft by design ("Reveal anyway" is always there).
 
+## Adding a game
+
+A game is one JSON pack — no code. See [docs/PACKS.md](docs/PACKS.md) for the format,
+window-authoring philosophy, and validation rules.
+
 ## Pack data honesty
 
 **The pack data is scaffolding, not gospel.** Every item carries `"verified": false`;
