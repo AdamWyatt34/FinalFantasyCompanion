@@ -60,6 +60,13 @@ export function validate(pack: Pack): string[] {
       errors.push(`item '${item.id}' has unknown prereq '${prereq}'`);
     }
 
+    for (const other of item.excludes.filter((ex) => !itemIds.has(ex))) {
+      errors.push(`item '${item.id}' excludes unknown item '${other}'`);
+    }
+    if (item.excludes.includes(item.id)) {
+      errors.push(`item '${item.id}' excludes itself`);
+    }
+
     if (!orders.has(item.opensAt)) {
       errors.push(
         `item '${item.id}' opensAt ${item.opensAt} references a missing position order`,

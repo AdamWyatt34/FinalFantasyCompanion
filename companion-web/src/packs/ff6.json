@@ -144,17 +144,28 @@
       "verified": false
     },
     {
-      "id": "lonewolf",
-      "name": "Lone Wolf: Gold Hairpin or Mog",
-      "type": "quest",
+      "id": "lonewolfmog",
+      "name": "Lone Wolf: save Mog",
+      "type": "character",
       "location": "Narshe cliffs",
       "window": { "opensAt": 7, "closesAt": 12 },
+      "excludes": ["lonewolfhairpin"],
       "route": {
         "at": 11,
         "rank": 1,
-        "why": "Decide before the Floating Continent"
+        "why": "Decide before the Floating Continent — one or the other"
       },
-      "notes": "The thief holds Mog hostage on the cliff. Wait and choose: Gold Hairpin (item) or Mog (joins now). Mog can still be recruited in the World of Ruin either way.",
+      "notes": "The thief holds Mog hostage on the cliff. Wait him out and choose Mog — he joins now (and can still be recruited in the World of Ruin either way).",
+      "verified": false
+    },
+    {
+      "id": "lonewolfhairpin",
+      "name": "Lone Wolf: Gold Hairpin",
+      "type": "key",
+      "location": "Narshe cliffs",
+      "window": { "opensAt": 7, "closesAt": 12 },
+      "excludes": ["lonewolfmog"],
+      "notes": "Choosing the Gold Hairpin (halves MP costs) over Mog. Mog still joins in the World of Ruin — the hairpin is what's actually at stake.",
       "verified": false
     },
     {
@@ -347,12 +358,23 @@
       "verified": false
     },
     {
-      "id": "ragnarokchoice",
-      "name": "Ragnarok: esper or sword",
+      "id": "ragnarokesper",
+      "name": "Ragnarok (esper)",
       "type": "esper",
       "location": "Narshe — weapon shop",
       "window": { "opensAt": 17 },
-      "notes": "Permanent choice. The esper teaches Ultima; the sword bets into the Lightbringer at the Colosseum. You cannot have both in one playthrough.",
+      "excludes": ["lightbringer"],
+      "notes": "Take the magicite and it teaches Ultima — but the sword, and the Lightbringer it becomes, are gone forever.",
+      "verified": false
+    },
+    {
+      "id": "lightbringer",
+      "name": "Ragnarok sword → Lightbringer",
+      "type": "weapon",
+      "location": "Narshe weapon shop → Colosseum",
+      "window": { "opensAt": 17 },
+      "excludes": ["ragnarokesper"],
+      "notes": "Take the sword, then wager it at the Colosseum for the Lightbringer — the best blade in the game. The esper (and easy Ultima) is the price.",
       "verified": false
     },
     {

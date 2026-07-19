@@ -56,6 +56,15 @@ describe("advance impact", () => {
     expect(computeImpact(pack, at(4), 8).closing).toHaveLength(0);
   });
 
+  it("excludes choice-foreclosed items — they are gone regardless of the jump", () => {
+    const pack = makePack([
+      makeItem("taken", { excludes: ["lost"] }),
+      makeItem("lost", { opensAt: 1, closesAt: 4 }),
+    ]);
+
+    expect(computeImpact(pack, at(3, "taken"), 6).closing).toHaveLength(0);
+  });
+
   it("includes blocked items with their missing prereqs", () => {
     const pack = makePack([
       makeItem("x", { opensAt: 1, closesAt: 4, prereqs: ["key"] }),

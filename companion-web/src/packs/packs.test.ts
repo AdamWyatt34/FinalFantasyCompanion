@@ -84,6 +84,13 @@ describe("shipped packs", () => {
     expect(ff6.items.find((i) => i.id === "shadowor")!.prereqs).toEqual([
       "shadowwait",
     ]);
+    // Mutually exclusive pairs are declared on both sides.
+    expect(ff6.items.find((i) => i.id === "ragnarokesper")!.excludes).toEqual([
+      "lightbringer",
+    ]);
+    expect(ff6.items.find((i) => i.id === "lightbringer")!.excludes).toEqual([
+      "ragnarokesper",
+    ]);
     const wait = ff6.items.find((i) => i.id === "shadowwait")!;
     expect(wait.opensAt).toBe(12);
     expect(wait.closesAt).toBe(12);

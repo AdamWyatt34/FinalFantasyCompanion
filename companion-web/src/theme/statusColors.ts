@@ -14,7 +14,8 @@ export const STATUS: Record<
   available: { label: "AVAILABLE", color: "#82ffb8", rank: 3 },
   notYet: { label: "UPCOMING", color: "#8a93b8", rank: 4 },
   missed: { label: "MISSED", color: "#f0526e", rank: 5 },
-  collected: { label: "COLLECTED", color: "#7de8e0", rank: 6 },
+  forgone: { label: "FORGONE", color: "#c894e8", rank: 6 },
+  collected: { label: "COLLECTED", color: "#7de8e0", rank: 7 },
 };
 
 export const TYPE_LABEL: Record<string, string> = {

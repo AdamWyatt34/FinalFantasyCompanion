@@ -1,5 +1,6 @@
 export type Status =
   | "collected"
+  | "forgone"
   | "missed"
   | "notYet"
   | "blocked"
@@ -50,6 +51,8 @@ export interface Item {
   opensAt: number;
   closesAt: number | null;
   prereqs: string[];
+  /** Mutually exclusive counterparts — collecting either forecloses the other. */
+  excludes: string[];
   notes: string;
   verified: boolean;
   route: RouteInfo | null;

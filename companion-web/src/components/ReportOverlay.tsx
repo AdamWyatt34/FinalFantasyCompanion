@@ -44,6 +44,9 @@ export function ReportOverlay({
     const missedNames = availability.items
       .filter((e) => e.status === "missed")
       .map((e) => e.item.name);
+    const forgoneNames = availability.items
+      .filter((e) => e.status === "forgone")
+      .map((e) => e.item.name);
     const positionLabel =
       pack.positions.find((p) => p.order === availability.position)?.label ??
       `beat ${availability.position}`;
@@ -52,6 +55,7 @@ export function ReportOverlay({
       perDisc,
       collected,
       missedNames,
+      forgoneNames,
       positionLabel,
       total: availability.items.length,
     };
@@ -75,6 +79,9 @@ export function ReportOverlay({
       report.missedNames.length > 0
         ? `Missed forever: ${report.missedNames.join(", ")}`
         : "Nothing missed so far.",
+      ...(report.forgoneNames.length > 0
+        ? [`Forgone by choice: ${report.forgoneNames.join(", ")}`]
+        : []),
     ].join("\n");
 
   const copy = async () => {
@@ -140,6 +147,15 @@ export function ReportOverlay({
         ) : (
           <div className="mt-2 text-[11px] italic text-[var(--ff-dim)]">
             Nothing missed so far.
+          </div>
+        )}
+
+        {report.forgoneNames.length > 0 && (
+          <div className="mt-1 text-[11px] text-[var(--ff-dim)]">
+            <span className="font-mono text-[var(--ff-gold)]">
+              Forgone by choice:
+            </span>{" "}
+            {report.forgoneNames.join(", ")}
           </div>
         )}
 

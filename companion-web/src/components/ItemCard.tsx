@@ -33,13 +33,14 @@ export function ItemCard({
 }: ItemCardProps) {
   const isCollected = status === "collected";
   const missed = status === "missed";
+  const gone = missed || status === "forgone";
 
   return (
-    <div className={`ff-box p-3 ${missed ? "opacity-60" : ""}`}>
+    <div className={`ff-box p-3 ${gone ? "opacity-60" : ""}`}>
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <div
-            className={`text-sm font-semibold leading-snug ${missed ? "line-through" : ""} ${
+            className={`text-sm font-semibold leading-snug ${gone ? "line-through" : ""} ${
               masked ? "text-[var(--ff-dim)]" : "text-[var(--ff-ink)]"
             }`}
           >
@@ -70,6 +71,22 @@ export function ItemCard({
       <div className="mt-2 text-[11px] font-mono text-[var(--ff-dim)]">
         {masked ? (
           <>Hidden to avoid spoilers · unlocks at beat {item.opensAt}</>
+        ) : status === "forgone" ? (
+          <>
+            Forgone by choice
+            {item.excludes.length > 0 && (
+              <>
+                {" — took "}
+                {[
+                  ...new Set(
+                    item.excludes.map((ex) =>
+                      hiddenIds.has(ex) ? "？？？" : (itemNames[ex] ?? ex),
+                    ),
+                  ),
+                ].join(", ")}
+              </>
+            )}
+          </>
         ) : missed ? (
           <>
             Closed after:{" "}

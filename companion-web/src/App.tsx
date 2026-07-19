@@ -181,11 +181,37 @@ function GameApp({
     }
   };
 
-  const toggleCollected = (itemId: string, collected: boolean) =>
+  const toggleCollected = (itemId: string, collected: boolean) => {
+    if (!collected && pack.data && availability.data) {
+      // Collecting one side of a mutually exclusive pair forecloses the other
+      // forever — that deserves a confirm, spoiler-masked like everything else.
+      const item = pack.data.items.find((i) => i.id === itemId);
+      const partners = pack.data.items.filter(
+        (other) =>
+          other.id !== itemId &&
+          (item?.excludes.includes(other.id) ||
+            other.excludes.includes(itemId)) &&
+          availability.data!.items.find((e) => e.item.id === other.id)
+            ?.status !== "collected",
+      );
+      if (partners.length > 0) {
+        const names = partners
+          .map((p) => (hiddenIds.has(p.id) ? "a hidden item" : p.name))
+          .join(", ");
+        if (
+          !window.confirm(
+            `Taking this permanently forecloses: ${names}. Continue?`,
+          )
+        ) {
+          return;
+        }
+      }
+    }
     postEvent({
       type: collected ? "itemUncollected" : "itemCollected",
       itemId,
     });
+  };
 
   const reveal = (itemId: string) => {
     const next = new Set(revealed).add(itemId);

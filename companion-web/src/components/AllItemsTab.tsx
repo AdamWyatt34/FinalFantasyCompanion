@@ -30,7 +30,7 @@ const FILTER_MAP: Record<FilterId, (s: Status) => boolean> = {
   open: (s) =>
     ["available", "closingSoon", "lastChance", "blocked"].includes(s),
   upcoming: (s) => s === "notYet",
-  missed: (s) => s === "missed",
+  missed: (s) => s === "missed" || s === "forgone",
   done: (s) => s === "collected",
 };
 

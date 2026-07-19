@@ -125,6 +125,19 @@ describe("route bucketing", () => {
     expect(view.now[0].masked).toBe(false);
   });
 
+  it("forgone items appear nowhere in the route", () => {
+    const pack = makePack([
+      makeItem("taken", { excludes: ["lost"] }),
+      makeItem("lost", { route: route(5) }),
+    ]);
+
+    const view = projectRoute(pack, at(5, "taken"));
+
+    expect(view.now).toHaveLength(0);
+    expect(view.next).toHaveLength(0);
+    expect(view.later).toHaveLength(0);
+  });
+
   it("collected and missed items appear nowhere", () => {
     const pack = makePack([
       makeItem("done", { route: route(5) }),

@@ -22,6 +22,7 @@ export function makeItem(id: string, over: Partial<Item> = {}): Item {
     opensAt: 1,
     closesAt: null,
     prereqs: [],
+    excludes: [],
     notes: `Notes for ${id}`,
     verified: false,
     route: null,

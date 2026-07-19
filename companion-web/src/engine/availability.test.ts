@@ -1,6 +1,58 @@
 import { describe, expect, it } from "vitest";
-import { classify, projectAvailability } from "./availability";
+import { classify, foreclosedIds, projectAvailability } from "./availability";
 import { at, makeItem, makePack } from "./testing/builders";
+
+describe("forgone (mutually exclusive choices)", () => {
+  it("collecting one side forecloses the declared other side", () => {
+    const pack = makePack([
+      makeItem("esper", { excludes: ["sword"] }),
+      makeItem("sword", { excludes: ["esper"] }),
+    ]);
+
+    const view = projectAvailability(pack, at(5, "esper"));
+
+    expect(view.items.find((e) => e.item.id === "sword")!.status).toBe(
+      "forgone",
+    );
+    expect(view.items.find((e) => e.item.id === "esper")!.status).toBe(
+      "collected",
+    );
+  });
+
+  it("exclusion is symmetric even when only one side declares it", () => {
+    const pack = makePack([
+      makeItem("declared", { excludes: ["silent"] }),
+      makeItem("silent"),
+    ]);
+
+    // The silent side was collected; the declaring side is foreclosed.
+    expect(foreclosedIds(pack, at(5, "silent"))).toEqual(new Set(["declared"]));
+    // And the declared direction works too.
+    expect(foreclosedIds(pack, at(5, "declared"))).toEqual(new Set(["silent"]));
+  });
+
+  it("forgone outranks missed in the rule chain", () => {
+    const pack = makePack([
+      makeItem("taken", { excludes: ["lost"] }),
+      makeItem("lost", { opensAt: 1, closesAt: 2 }),
+    ]);
+
+    const view = projectAvailability(pack, at(5, "taken"));
+
+    expect(view.items.find((e) => e.item.id === "lost")!.status).toBe(
+      "forgone",
+    );
+  });
+
+  it("nothing is foreclosed while neither side is collected", () => {
+    const pack = makePack([
+      makeItem("a", { excludes: ["b"] }),
+      makeItem("b", { excludes: ["a"] }),
+    ]);
+
+    expect(foreclosedIds(pack, at(5))).toEqual(new Set());
+  });
+});
 
 describe("availability rule chain (first match wins)", () => {
   it("rule 1: collected item is collected", () => {
