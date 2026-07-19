@@ -11,6 +11,7 @@ import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { UpdateToast } from "./components/UpdateToast";
 import { downloadSave, installSave, parseSave } from "./storage/saveFile";
+import { readNotes, writeNote } from "./storage/notes";
 import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
 import { HistoryOverlay } from "./components/HistoryOverlay";
@@ -81,6 +82,9 @@ function GameApp({
   const [tab, setTab] = useState<"route" | "all">("route");
   const [revealed, setRevealed] = useState<Set<string>>(() =>
     readRevealed(gameId),
+  );
+  const [notes, setNotes] = useState<Record<string, string>>(() =>
+    readNotes(gameId),
   );
   const [showTimeline, setShowTimeline] = useState(false);
   const [showArchives, setShowArchives] = useState(false);
@@ -189,6 +193,19 @@ function GameApp({
     setRevealed(next);
   };
 
+  const editNote = (itemId: string) => {
+    const name = itemNames[itemId] ?? itemId;
+    const next = window.prompt(
+      `Your note for ${name} (empty to remove):`,
+      notes[itemId] ?? "",
+    );
+    if (next === null) {
+      return;
+    }
+    writeNote(gameId, itemId, next);
+    setNotes(readNotes(gameId));
+  };
+
   // A fresh or replaced playthrough starts fully masked again.
   const clearRevealed = () => {
     writeRevealed(gameId, new Set());
@@ -248,6 +265,7 @@ function GameApp({
         }
         installSave(pack.data, save);
         clearRevealed();
+        setNotes(readNotes(gameId));
         refetchState();
       } catch (e) {
         window.alert(e instanceof Error ? e.message : "Import failed.");
@@ -310,8 +328,10 @@ function GameApp({
             itemNames={itemNames}
             positionLabels={positionLabels}
             hiddenIds={hiddenIds}
+            notes={notes}
             onToggle={toggleCollected}
             onReveal={reveal}
+            onEditNote={editNote}
           />
         ) : (
           <AllItemsTab
@@ -320,8 +340,10 @@ function GameApp({
             itemNames={itemNames}
             positionLabels={positionLabels}
             hiddenIds={hiddenIds}
+            notes={notes}
             onToggle={toggleCollected}
             onReveal={reveal}
+            onEditNote={editNote}
           />
         )}
 

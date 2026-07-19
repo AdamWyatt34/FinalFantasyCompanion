@@ -11,8 +11,10 @@ interface ItemCardProps {
   itemNames: Record<string, string>;
   positionLabels: Record<number, string>;
   hiddenIds: ReadonlySet<string>;
+  note?: string;
   onToggle: () => void;
   onReveal: () => void;
+  onEditNote: () => void;
 }
 
 export function ItemCard({
@@ -24,8 +26,10 @@ export function ItemCard({
   itemNames,
   positionLabels,
   hiddenIds,
+  note,
   onToggle,
   onReveal,
+  onEditNote,
 }: ItemCardProps) {
   const isCollected = status === "collected";
   const missed = status === "missed";
@@ -113,6 +117,10 @@ export function ItemCard({
         </div>
       )}
 
+      {!masked && note && (
+        <div className="text-[11px] mt-1 text-[var(--ff-gold)]">✎ {note}</div>
+      )}
+
       <div className="mt-2 flex gap-2">
         {masked ? (
           <button
@@ -122,16 +130,25 @@ export function ItemCard({
             Reveal anyway
           </button>
         ) : (
-          <button
-            onClick={onToggle}
-            className={`text-[11px] font-mono px-3 py-1 rounded border ${
-              isCollected
-                ? "border-[var(--ff-cyan)]/55 text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
-                : "border-[var(--ff-button-border)] text-[var(--ff-ink)]"
-            }`}
-          >
-            {isCollected ? "✓ Collected" : "Mark collected"}
-          </button>
+          <>
+            <button
+              onClick={onToggle}
+              className={`text-[11px] font-mono px-3 py-1 rounded border ${
+                isCollected
+                  ? "border-[var(--ff-cyan)]/55 text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
+                  : "border-[var(--ff-button-border)] text-[var(--ff-ink)]"
+              }`}
+            >
+              {isCollected ? "✓ Collected" : "Mark collected"}
+            </button>
+            <button
+              onClick={onEditNote}
+              aria-label={`Edit note for ${item.name}`}
+              className="text-[11px] font-mono px-3 py-1 rounded border border-[var(--ff-bevel)] text-[var(--ff-dim)]"
+            >
+              ✎ {note ? "Edit note" : "Note"}
+            </button>
+          </>
         )}
       </div>
     </div>

@@ -8,8 +8,10 @@ interface RouteTabProps {
   itemNames: Record<string, string>;
   positionLabels: Record<number, string>;
   hiddenIds: ReadonlySet<string>;
+  notes: Record<string, string>;
   onToggle: (itemId: string, collected: boolean) => void;
   onReveal: (itemId: string) => void;
+  onEditNote: (itemId: string) => void;
 }
 
 const SECTIONS: {
@@ -27,8 +29,10 @@ export function RouteTab({
   itemNames,
   positionLabels,
   hiddenIds,
+  notes,
   onToggle,
   onReveal,
+  onEditNote,
 }: RouteTabProps) {
   const [showHidden, setShowHidden] = useState(false);
 
@@ -46,8 +50,10 @@ export function RouteTab({
       itemNames={itemNames}
       positionLabels={positionLabels}
       hiddenIds={hiddenIds}
+      note={notes[entry.item.id]}
       onToggle={() => onToggle(entry.item.id, entry.status === "collected")}
       onReveal={() => onReveal(entry.item.id)}
+      onEditNote={() => onEditNote(entry.item.id)}
     />
   );
 

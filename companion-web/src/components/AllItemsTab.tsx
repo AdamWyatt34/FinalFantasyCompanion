@@ -9,8 +9,10 @@ interface AllItemsTabProps {
   itemNames: Record<string, string>;
   positionLabels: Record<number, string>;
   hiddenIds: ReadonlySet<string>;
+  notes: Record<string, string>;
   onToggle: (itemId: string, collected: boolean) => void;
   onReveal: (itemId: string) => void;
+  onEditNote: (itemId: string) => void;
 }
 
 const FILTERS = [
@@ -38,8 +40,10 @@ export function AllItemsTab({
   itemNames,
   positionLabels,
   hiddenIds,
+  notes,
   onToggle,
   onReveal,
+  onEditNote,
 }: AllItemsTabProps) {
   const [filter, setFilter] = useState<FilterId>("all");
   const [typeFilter, setTypeFilter] = useState<ItemType | "all">("all");
@@ -88,7 +92,7 @@ export function AllItemsTab({
         return false;
       }
       const haystack =
-        `${entry.item.name} ${entry.item.location} ${entry.item.notes}`.toLowerCase();
+        `${entry.item.name} ${entry.item.location} ${entry.item.notes} ${notes[entry.item.id] ?? ""}`.toLowerCase();
       if (!haystack.includes(needle)) {
         return false;
       }
@@ -178,10 +182,12 @@ export function AllItemsTab({
             itemNames={itemNames}
             positionLabels={positionLabels}
             hiddenIds={hiddenIds}
+            note={notes[entry.item.id]}
             onToggle={() =>
               onToggle(entry.item.id, entry.status === "collected")
             }
             onReveal={() => onReveal(entry.item.id)}
+            onEditNote={() => onEditNote(entry.item.id)}
           />
         ))}
       </div>

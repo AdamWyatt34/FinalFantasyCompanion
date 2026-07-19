@@ -1,10 +1,13 @@
 import type { Pack } from "../api/types";
 import type { ProgressEvent } from "../engine/events";
 import { readEvents, replaceLog } from "./eventLog";
+import { readNotes, writeNote } from "./notes";
 
 /**
  * Save export/import — localStorage is user-clearable, so saves need a way
  * out of the browser (backup, or moving between phone and desktop).
+ * `notes` was added later as an optional field; version stays 1 because old
+ * files (no notes) and old apps (ignore notes) both keep working.
  */
 export interface SaveFile {
   format: "ffcompanion-save";
@@ -12,6 +15,7 @@ export interface SaveFile {
   gameId: string;
   exportedAt: string;
   events: ProgressEvent[];
+  notes?: Record<string, string>;
 }
 
 export function exportSave(gameId: string): SaveFile {
@@ -21,6 +25,7 @@ export function exportSave(gameId: string): SaveFile {
     gameId,
     exportedAt: new Date().toISOString(),
     events: readEvents(gameId),
+    notes: readNotes(gameId),
   };
 }
 
@@ -98,6 +103,16 @@ export function installSave(pack: Pack, save: SaveFile): void {
   }
 
   replaceLog(pack.game.id, save.events as ProgressEvent[]);
+
+  // Notes merge in (imported text wins per item); unknown ids and non-string
+  // values from hand-edited files are dropped silently — notes are advisory.
+  if (save.notes !== null && typeof save.notes === "object") {
+    for (const [itemId, text] of Object.entries(save.notes)) {
+      if (itemIds.has(itemId) && typeof text === "string") {
+        writeNote(pack.game.id, itemId, text);
+      }
+    }
+  }
 }
 
 /** Parse + install in one step, for when the active game is the only target. */

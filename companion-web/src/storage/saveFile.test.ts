@@ -62,6 +62,23 @@ describe("save export/import", () => {
     );
   });
 
+  it("carries personal notes through export and import, dropping unknown ids", async () => {
+    const { writeNote, readNotes } = await import("./notes");
+    const { kv } = await import("./kv");
+    kv.remove("ffcompanion.ff7.notes");
+
+    writeNote("ff7", "beta", "Zolom trick");
+    const save = exportSave("ff7");
+    expect(save.notes).toEqual({ beta: "Zolom trick" });
+
+    kv.remove("ffcompanion.ff7.notes");
+    save.notes = { beta: "Zolom trick", ghost: "not a real item" };
+    importSave(ff7(), JSON.stringify(save));
+
+    expect(readNotes("ff7")).toEqual({ beta: "Zolom trick" });
+    kv.remove("ffcompanion.ff7.notes");
+  });
+
   it("rejects malformed event entries with a readable error", () => {
     const bad = {
       format: "ffcompanion-save",
