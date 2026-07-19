@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Pack } from "../api/types";
+import { useDialog } from "../hooks/useDialog";
 import { fold } from "../engine/state";
 import {
   deleteArchive,
@@ -22,6 +23,7 @@ export function ArchivesOverlay({
   const [archives, setArchives] = useState<ArchiveInfo[]>(() =>
     listArchives(pack.game.id),
   );
+  const panelRef = useDialog(onClose);
 
   const describe = (archive: ArchiveInfo) => {
     const state = fold(pack, archive.events);
@@ -69,6 +71,11 @@ export function ArchivesOverlay({
       onClick={onClose}
     >
       <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Previous playthroughs"
         className="ff-box p-3 w-full max-w-sm max-h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >

@@ -1,4 +1,5 @@
 import type { Position } from "../api/types";
+import { useDialog } from "../hooks/useDialog";
 
 interface TimelineOverlayProps {
   positions: Position[];
@@ -13,12 +14,19 @@ export function TimelineOverlay({
   onSelect,
   onClose,
 }: TimelineOverlayProps) {
+  const panelRef = useDialog(onClose);
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center p-4 z-50 bg-black/70"
       onClick={onClose}
     >
       <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Jump to story beat"
         className="ff-box p-3 w-full max-w-sm max-h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >

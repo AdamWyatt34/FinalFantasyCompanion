@@ -143,6 +143,7 @@ export function AllItemsTab({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search items…"
+        aria-label="Search items"
         className="w-full bg-transparent text-xs font-mono px-3 py-1.5 rounded border border-[var(--ff-bevel)] text-[var(--ff-ink)] placeholder:text-[var(--ff-faint)] focus:border-[var(--ff-cyan)] focus:outline-none"
       />
 

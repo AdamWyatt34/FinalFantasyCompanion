@@ -1,4 +1,5 @@
 import type { AdvanceImpact, Position } from "../api/types";
+import { useDialog } from "../hooks/useDialog";
 import { STATUS } from "../theme/statusColors";
 
 interface PointOfNoReturnModalProps {
@@ -17,10 +18,19 @@ export function PointOfNoReturnModal({
   onAdvance,
 }: PointOfNoReturnModalProps) {
   const target = positions.find((p) => p.order === impact.to);
+  // Escape means "stay" — dismissing a warning must never advance.
+  const panelRef = useDialog(onStay);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center p-4 z-50 bg-black/70">
-      <div className="ff-box p-4 w-full max-w-sm">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="alertdialog"
+        aria-modal="true"
+        aria-label="Point of no return warning"
+        className="ff-box p-4 w-full max-w-sm"
+      >
         <div
           className="text-xs font-mono tracking-[0.2em] animate-pulse"
           style={{ color: STATUS.lastChance.color }}
