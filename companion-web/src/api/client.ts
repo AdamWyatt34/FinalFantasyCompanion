@@ -12,7 +12,12 @@ import { computeImpact } from "../engine/impact";
 import { projectRoute } from "../engine/route";
 import { fold, type PlaythroughState } from "../engine/state";
 import { allPacks, getPackById } from "../packs";
-import { appendEvent, readEvents, resetLog } from "../storage/eventLog";
+import {
+  appendEvent,
+  readEvents,
+  replaceLog,
+  resetLog,
+} from "../storage/eventLog";
 
 /**
  * Same surface the HTTP client had, computed locally: the TypeScript engine
@@ -118,5 +123,24 @@ export const api = {
     const pack = requirePack(gameId);
     const archivedTo = resetLog(pack.game.id);
     return { ...snapshot(pack), archivedTo };
+  },
+
+  getEvents: async (gameId: string): Promise<ProgressEvent[]> => {
+    requirePack(gameId);
+    return readEvents(gameId);
+  },
+
+  /**
+   * Removes the newest event. Truncation, not an inverse event: undo exists to
+   * erase a mis-tap, and appending a correction would leave the mis-tap in the
+   * history it is trying to clean up.
+   */
+  postUndo: async (gameId: string): Promise<StateSnapshot> => {
+    const pack = requirePack(gameId);
+    const events = readEvents(pack.game.id);
+    if (events.length > 0) {
+      replaceLog(pack.game.id, events.slice(0, -1));
+    }
+    return snapshot(pack);
   },
 };

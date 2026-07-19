@@ -39,6 +39,24 @@ describe("local client", () => {
     ).rejects.toThrow("Unknown event type 'teleported'");
   });
 
+  it("undo removes exactly the newest event", async () => {
+    await api.postEvent("ff7", { type: "positionAdvanced", to: 3 });
+    await api.postEvent("ff7", { type: "itemCollected", itemId: "beta" });
+
+    const after = await api.postUndo("ff7");
+
+    expect(after.position).toBe(3);
+    expect(after.collected).toEqual([]);
+    expect(await api.getEvents("ff7")).toHaveLength(1);
+  });
+
+  it("undo on an empty log is a no-op", async () => {
+    const after = await api.postUndo("ff7");
+
+    expect(after.position).toBe(1);
+    expect(await api.getEvents("ff7")).toHaveLength(0);
+  });
+
   it("collecting an item flips it to collected and returns the snapshot", async () => {
     await api.postEvent("ff7", { type: "positionAdvanced", to: 2 });
     const snapshot = await api.postEvent("ff7", {

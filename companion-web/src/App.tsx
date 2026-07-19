@@ -13,6 +13,7 @@ import { UpdateToast } from "./components/UpdateToast";
 import { downloadSave, installSave, parseSave } from "./storage/saveFile";
 import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
+import { HistoryOverlay } from "./components/HistoryOverlay";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
@@ -82,6 +83,7 @@ function GameApp({
   );
   const [showTimeline, setShowTimeline] = useState(false);
   const [showArchives, setShowArchives] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const [pendingImpact, setPendingImpact] = useState<AdvanceImpact | null>(
     null,
   );
@@ -340,6 +342,9 @@ function GameApp({
             <button onClick={() => setShowArchives(true)} className="underline">
               Playthroughs
             </button>
+            <button onClick={() => setShowHistory(true)} className="underline">
+              History
+            </button>
           </div>
         </div>
       </div>
@@ -355,6 +360,14 @@ function GameApp({
             setPendingImpact(null);
             await postEvent({ type: "positionAdvanced", to: target });
           }}
+        />
+      )}
+
+      {showHistory && (
+        <HistoryOverlay
+          pack={pack.data}
+          onChanged={refetchState}
+          onClose={() => setShowHistory(false)}
         />
       )}
 
