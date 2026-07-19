@@ -16,8 +16,21 @@ import { ArchivesOverlay } from "./components/ArchivesOverlay";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const gameId = selectedId ?? games.data?.[0]?.id;
+  // ?game=ff9 deep-links straight to a game; unknown ids fall back to the first.
+  const [selectedId, setSelectedId] = useState<string | null>(() =>
+    new URLSearchParams(window.location.search).get("game"),
+  );
+  const gameId =
+    selectedId != null && games.data?.some((g) => g.id === selectedId)
+      ? selectedId
+      : games.data?.[0]?.id;
+
+  const selectGame = (id: string) => {
+    setSelectedId(id);
+    const url = new URL(window.location.href);
+    url.searchParams.set("game", id);
+    window.history.replaceState(null, "", url);
+  };
 
   // key remounts the whole game view on switch: per-game state (tab, reveals,
   // pending dialogs) must not leak between games.
@@ -30,7 +43,7 @@ export default function App() {
       key={gameId}
       gameId={gameId}
       games={games.data ?? []}
-      onSelectGame={setSelectedId}
+      onSelectGame={selectGame}
     />
   );
 
