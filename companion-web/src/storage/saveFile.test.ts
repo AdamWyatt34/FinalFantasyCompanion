@@ -49,6 +49,20 @@ describe("save export/import", () => {
     );
   });
 
+  it("rejects malformed event entries with a readable error", () => {
+    const bad = {
+      format: "ffcompanion-save",
+      version: 1,
+      gameId: "ff7",
+      exportedAt: "2026-07-05T12:00:00.000Z",
+      events: [null],
+    };
+
+    expect(() => importSave(ff7(), JSON.stringify(bad))).toThrow(
+      "malformed event",
+    );
+  });
+
   it("rejects a save referencing unknown items or positions", () => {
     const bad = {
       format: "ffcompanion-save",

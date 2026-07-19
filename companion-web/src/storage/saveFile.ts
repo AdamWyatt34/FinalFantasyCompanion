@@ -63,7 +63,13 @@ export function importSave(pack: Pack, text: string): void {
   const orders = new Set(pack.positions.map((p) => p.order));
   const itemIds = new Set(pack.items.map((i) => i.id));
 
-  for (const evt of save.events as ProgressEvent[]) {
+  for (const raw of save.events as unknown[]) {
+    // Guard the shape before touching .type — a hand-edited file with a null
+    // or non-object element must produce a readable error, not a TypeError.
+    if (raw === null || typeof raw !== "object") {
+      throw new Error("Save contains a malformed event.");
+    }
+    const evt = raw as ProgressEvent;
     switch (evt.type) {
       case "positionAdvanced":
       case "positionCorrected":
