@@ -9,6 +9,7 @@ import { AllItemsTab } from "./components/AllItemsTab";
 import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
+import { UpdateToast } from "./components/UpdateToast";
 import { downloadSave, importSave } from "./storage/saveFile";
 import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
@@ -18,23 +19,26 @@ export default function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const gameId = selectedId ?? games.data?.[0]?.id;
 
-  if (games.error) {
-    return <Splash text={`Could not load the game packs: ${games.error}`} />;
-  }
-
-  if (!gameId) {
-    return <Splash text="Loading…" />;
-  }
-
   // key remounts the whole game view on switch: per-game state (tab, reveals,
   // pending dialogs) must not leak between games.
-  return (
+  const body = games.error ? (
+    <Splash text={`Could not load the game packs: ${games.error}`} />
+  ) : !gameId ? (
+    <Splash text="Loading…" />
+  ) : (
     <GameApp
       key={gameId}
       gameId={gameId}
       games={games.data ?? []}
       onSelectGame={setSelectedId}
     />
+  );
+
+  return (
+    <>
+      {body}
+      <UpdateToast />
+    </>
   );
 }
 

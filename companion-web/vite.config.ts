@@ -11,7 +11,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate",
+      // "prompt": a new deploy waits until the user taps Refresh in the
+      // UpdateToast — never a surprise mid-session reload.
+      registerType: "prompt",
       includeAssets: ["favicon.png", "apple-touch-icon.png"],
       manifest: {
         name: "FF Companion",
