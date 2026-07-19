@@ -44,6 +44,15 @@ export function ItemCard({
           {!masked && (
             <div className="text-[11px] mt-0.5 text-[var(--ff-dim)]">
               {item.location}
+              {item.verified && (
+                <span
+                  className="text-[var(--ff-cyan)]"
+                  title="Window confirmed during a real playthrough"
+                >
+                  {" "}
+                  · ✓ verified
+                </span>
+              )}
             </div>
           )}
         </div>

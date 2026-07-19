@@ -287,7 +287,11 @@ function GameApp({
         )}
 
         <div className="text-center text-[10px] font-mono pb-4 text-[var(--ff-faint)]">
-          <div>Pack data is scaffolding — verified during play.</div>
+          <div>
+            Pack data is scaffolding —{" "}
+            {pack.data.items.filter((i) => i.verified).length}/
+            {pack.data.items.length} windows verified during play.
+          </div>
           <div className="mt-1 flex justify-center gap-3">
             <button onClick={resetPlaythrough} className="underline">
               New playthrough

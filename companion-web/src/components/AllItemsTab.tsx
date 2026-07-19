@@ -43,6 +43,7 @@ export function AllItemsTab({
 }: AllItemsTabProps) {
   const [filter, setFilter] = useState<FilterId>("all");
   const [typeFilter, setTypeFilter] = useState<ItemType | "all">("all");
+  const [missableOnly, setMissableOnly] = useState(false);
   const [query, setQuery] = useState("");
 
   const presentTypes = useMemo(
@@ -77,6 +78,9 @@ export function AllItemsTab({
     if (typeFilter !== "all" && entry.item.type !== typeFilter) {
       return false;
     }
+    if (missableOnly && entry.item.closesAt == null) {
+      return false;
+    }
     if (needle.length > 0) {
       // Spoiler-safe: masked items never match a search — matching would
       // confirm a hidden item's existence by name.
@@ -104,7 +108,7 @@ export function AllItemsTab({
         )}
       </div>
 
-      <div className="flex gap-1.5">
+      <div className="flex flex-wrap gap-1.5">
         {FILTERS.map((f) => (
           <button
             key={f.id}
@@ -118,6 +122,17 @@ export function AllItemsTab({
             {f.label}
           </button>
         ))}
+        <button
+          onClick={() => setMissableOnly((v) => !v)}
+          aria-pressed={missableOnly}
+          className={`text-[11px] font-mono px-2.5 py-1 rounded-full border ${
+            missableOnly
+              ? "border-[var(--ff-gold)] text-[var(--ff-gold)] bg-[var(--ff-gold)]/10"
+              : "border-[var(--ff-bevel)] text-[var(--ff-dim)]"
+          }`}
+        >
+          ⏳ Missable
+        </button>
       </div>
 
       {presentTypes.length > 1 && (
