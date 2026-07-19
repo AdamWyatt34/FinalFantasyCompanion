@@ -1,0 +1,475 @@
+{
+  "game": { "id": "ff8", "title": "Final Fantasy VIII" },
+  "theme": {
+    "tokens": {
+      "bgTop": "#070a12",
+      "bgMid": "#0d1322",
+      "bgBottom": "#090d18",
+      "panelTop": "#45526e",
+      "panelMid": "#232c42",
+      "panelBottom": "#131a2c",
+      "border": "#d0d6e2",
+      "bevel": "#3c465e",
+      "ink": "#eef2f8",
+      "dim": "#9aa6bc",
+      "dimmer": "#7d8aa2",
+      "faint": "#5c6880",
+      "gold": "#d9cf9a",
+      "cyan": "#9fd9f2",
+      "buttonBorder": "#5f6b85",
+      "tickDone": "#3d4a68",
+      "tickTodo": "#171e30"
+    }
+  },
+  "positions": [
+    { "id": "balamb", "order": 1, "label": "Balamb Garden", "disc": 1 },
+    { "id": "firecavern", "order": 2, "label": "Fire Cavern", "disc": 1 },
+    { "id": "dollet", "order": 3, "label": "Dollet Field Exam", "disc": 1 },
+    { "id": "seed", "order": 4, "label": "SeeD Inauguration", "disc": 1 },
+    { "id": "timber", "order": 5, "label": "Timber", "disc": 1 },
+    {
+      "id": "galbadiagarden",
+      "order": 6,
+      "label": "Galbadia Garden",
+      "disc": 1
+    },
+    { "id": "deling", "order": 7, "label": "Deling City", "disc": 1 },
+    { "id": "prison", "order": 8, "label": "D-District Prison", "disc": 2 },
+    {
+      "id": "missilebase",
+      "order": 9,
+      "label": "Missile Base & Garden Uprising",
+      "disc": 2
+    },
+    { "id": "fh", "order": 10, "label": "Fishermans Horizon", "disc": 2 },
+    {
+      "id": "balambtown",
+      "order": 11,
+      "label": "Balamb Town Liberation",
+      "disc": 2
+    },
+    { "id": "trabia", "order": 12, "label": "Trabia Garden", "disc": 2 },
+    {
+      "id": "gardenbattle",
+      "order": 13,
+      "label": "Battle of the Gardens",
+      "disc": 2
+    },
+    { "id": "orphanage", "order": 14, "label": "Edea's House", "disc": 3 },
+    { "id": "whiteseed", "order": 15, "label": "White SeeD Ship", "disc": 3 },
+    { "id": "esthar", "order": 16, "label": "Esthar City", "disc": 3 },
+    { "id": "lunarbase", "order": 17, "label": "Lunar Base", "disc": 3 },
+    {
+      "id": "lunaticpandora",
+      "order": 18,
+      "label": "Lunatic Pandora",
+      "disc": 3
+    },
+    {
+      "id": "timecompression",
+      "order": 19,
+      "label": "Time Compression",
+      "disc": 4
+    },
+    { "id": "ultimecia", "order": 20, "label": "Ultimecia's Castle", "disc": 4 }
+  ],
+  "items": [
+    {
+      "id": "siren",
+      "name": "Siren",
+      "type": "gf",
+      "location": "Dollet — atop the comm tower",
+      "window": { "opensAt": 3, "closesAt": 3 },
+      "route": {
+        "at": 3,
+        "rank": 0,
+        "why": "Draw from Elvoret during the exam — one fight, one chance"
+      },
+      "notes": "Draw-only. If missed, re-drawable from Tri-Point in Ultimecia's Castle — a much harder fight.",
+      "verified": false
+    },
+    {
+      "id": "diablos",
+      "name": "Diablos (Magical Lamp)",
+      "type": "gf",
+      "location": "Given by Cid when leaving for Timber",
+      "window": { "opensAt": 5 },
+      "route": {
+        "at": 5,
+        "rank": 3,
+        "why": "Use the lamp early — Diablos' Enc-None is the best QoL ability in the game"
+      },
+      "notes": "The lamp keeps forever; save before using it.",
+      "verified": false
+    },
+    {
+      "id": "brothers",
+      "name": "Brothers",
+      "type": "gf",
+      "location": "Tomb of the Unknown King",
+      "window": { "opensAt": 6, "closesAt": 18 },
+      "route": {
+        "at": 6,
+        "rank": 2,
+        "why": "Sacred & Minotaur while you have the rental car"
+      },
+      "notes": "Note the student ID number on the sword at the entrance. World locks on disc 4.",
+      "verified": false
+    },
+    {
+      "id": "carbuncle",
+      "name": "Carbuncle",
+      "type": "gf",
+      "location": "Deling City — parade ambush",
+      "window": { "opensAt": 7, "closesAt": 7 },
+      "route": {
+        "at": 7,
+        "rank": 0,
+        "why": "Draw from the Iguions before rescuing Rinoa"
+      },
+      "notes": "Draw-only. Re-drawable from Krysta in Ultimecia's Castle if missed.",
+      "verified": false
+    },
+    {
+      "id": "leviathan8",
+      "name": "Leviathan",
+      "type": "gf",
+      "location": "Balamb Garden — NORG's chamber",
+      "window": { "opensAt": 9, "closesAt": 9 },
+      "route": {
+        "at": 9,
+        "rank": 0,
+        "why": "Draw from NORG during the uprising"
+      },
+      "notes": "Draw-only. Re-drawable from Trauma in Ultimecia's Castle if missed.",
+      "verified": false
+    },
+    {
+      "id": "pandemona",
+      "name": "Pandemona",
+      "type": "gf",
+      "location": "Balamb Town — hotel showdown",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "route": {
+        "at": 11,
+        "rank": 0,
+        "why": "Draw from Fujin while liberating Balamb"
+      },
+      "notes": "Draw-only. Re-drawable from Red Giant in Ultimecia's Castle if missed.",
+      "verified": false
+    },
+    {
+      "id": "cerberus",
+      "name": "Cerberus",
+      "type": "gf",
+      "location": "Galbadia Garden — main lobby",
+      "window": { "opensAt": 13, "closesAt": 13 },
+      "route": {
+        "at": 13,
+        "rank": 0,
+        "why": "Optional lobby fight during the battle — easy to run past"
+      },
+      "notes": "Defeat it to receive the GF. Re-drawable from Gargantua in Ultimecia's Castle if missed.",
+      "verified": false
+    },
+    {
+      "id": "alexander8",
+      "name": "Alexander",
+      "type": "gf",
+      "location": "Galbadia Garden — Edea's stage",
+      "window": { "opensAt": 13, "closesAt": 13 },
+      "route": {
+        "at": 13,
+        "rank": 1,
+        "why": "Draw from Edea in the disc-2 finale"
+      },
+      "notes": "Draw-only. Re-drawable from Catoblepas in Ultimecia's Castle if missed.",
+      "verified": false
+    },
+    {
+      "id": "odin8",
+      "name": "Odin",
+      "type": "gf",
+      "location": "Centra Ruins",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "route": {
+        "at": 10,
+        "rank": 2,
+        "why": "20-minute timed climb once the Garden is mobile"
+      },
+      "notes": "Get him before disc 4 — a certain later duel turns him into something better.",
+      "verified": false
+    },
+    {
+      "id": "tonberryking",
+      "name": "Tonberry King",
+      "type": "gf",
+      "location": "Centra Ruins",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "notes": "Defeat ~20 Tonberries, then the King ambushes you. His shop abilities are superb.",
+      "verified": false
+    },
+    {
+      "id": "doomtrain",
+      "name": "Doomtrain (Solomon Ring)",
+      "type": "gf",
+      "location": "Tears Point, Esthar",
+      "window": { "opensAt": 16, "closesAt": 18 },
+      "route": {
+        "at": 16,
+        "rank": 2,
+        "why": "Grab the Solomon Ring before the world locks"
+      },
+      "notes": "Use the ring with 6× Remedy+, 6× Steel Pipe, 6× Malboro Tentacle in inventory.",
+      "verified": false
+    },
+    {
+      "id": "bahamut8",
+      "name": "Bahamut",
+      "type": "gf",
+      "location": "Deep Sea Research Center",
+      "window": { "opensAt": 16 },
+      "route": {
+        "at": 16,
+        "rank": 4,
+        "why": "Ragnarok can land on the research center now"
+      },
+      "notes": "Answer the blue light's questions (the third answer is the hidden one), then win the fight.",
+      "verified": false
+    },
+    {
+      "id": "eden",
+      "name": "Eden",
+      "type": "gf",
+      "location": "Deep Sea Research Center — excavation depths",
+      "window": { "opensAt": 16 },
+      "prereqs": ["bahamut8"],
+      "route": {
+        "at": 16,
+        "rank": 5,
+        "why": "Draw from Ultima Weapon at the bottom of the dig"
+      },
+      "notes": "Manage the steam pressure puzzle on the way down. Also drawable from Tiamat in the castle.",
+      "verified": false
+    },
+    {
+      "id": "cactuar8",
+      "name": "Cactuar",
+      "type": "gf",
+      "location": "Cactuar Island (east of Kashkabald Desert)",
+      "window": { "opensAt": 16 },
+      "notes": "Fight the wandering green sprout — Jumbo Cactuar. Kamikaze and 1000 Needles await.",
+      "verified": false
+    },
+    {
+      "id": "occultfan1",
+      "name": "Occult Fan I",
+      "type": "magazine",
+      "location": "Balamb Garden — library shelf",
+      "window": { "opensAt": 1, "closesAt": 18 },
+      "route": {
+        "at": 1,
+        "rank": 1,
+        "why": "One bookshelf check before the exam"
+      },
+      "notes": "In the library's rear rack. Garden is unreachable on disc 4.",
+      "verified": false
+    },
+    {
+      "id": "occultfan2",
+      "name": "Occult Fan II",
+      "type": "magazine",
+      "location": "Dollet — pub owner",
+      "window": { "opensAt": 5, "closesAt": 18 },
+      "notes": "Buy it from the pub. Also involves the sad card-playing owner upstairs.",
+      "verified": false
+    },
+    {
+      "id": "occultfan3",
+      "name": "Occult Fan III",
+      "type": "magazine",
+      "location": "Winhill",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "prereqs": ["winhillvase"],
+      "notes": "Tied to the vase quest's conclusion — verify the exact handover in play.",
+      "verified": false
+    },
+    {
+      "id": "occultfan4",
+      "name": "Occult Fan IV",
+      "type": "magazine",
+      "location": "Esthar — presidential aide",
+      "window": { "opensAt": 16, "closesAt": 18 },
+      "notes": "From the aide near the presidential palace after the Esthar story opens up.",
+      "verified": false
+    },
+    {
+      "id": "timbermaniacs",
+      "name": "Timber Maniacs issues",
+      "type": "magazine",
+      "location": "Hotels & bars across the world",
+      "window": { "opensAt": 5, "closesAt": 18 },
+      "notes": "Timber, Dollet pub, Balamb hotel, FH, Trabia, Shumi, White SeeD ship and more — several rooms lock on disc 4. They feed Selphie's website and the Sir Laguna lore.",
+      "verified": false
+    },
+    {
+      "id": "petpals1",
+      "name": "Pet Pals Vol. 1",
+      "type": "magazine",
+      "location": "The train to Timber",
+      "window": { "opensAt": 5, "closesAt": 5 },
+      "route": {
+        "at": 5,
+        "rank": 1,
+        "why": "Check Rinoa's bed on the train — gone when the mission ends"
+      },
+      "notes": "Angelo's first trick magazine. The rest are purchasable later; this one is not.",
+      "verified": false
+    },
+    {
+      "id": "combatking",
+      "name": "Combat King 001–005",
+      "type": "magazine",
+      "location": "Across the world",
+      "window": { "opensAt": 8, "closesAt": 18 },
+      "notes": "001 in D-District Prison and 002 in occupied Balamb are effectively one-shot windows — grab them during those beats. 003 from Zell's library admirer, 004 from an Esthar soldier, 005 on the Lunar Base.",
+      "verified": false
+    },
+    {
+      "id": "weaponsmonthly",
+      "name": "Weapons Monthly issues",
+      "type": "magazine",
+      "location": "Across the world",
+      "window": { "opensAt": 4, "closesAt": 18 },
+      "notes": "Remodel blueprints. The March issue (ultimate weapons) is the one that matters — Balamb Garden 2F classroom panel among others.",
+      "verified": false
+    },
+    {
+      "id": "queenofcards",
+      "name": "Queen of Cards questline",
+      "type": "card",
+      "location": "Starts in Balamb",
+      "window": { "opensAt": 1, "closesAt": 18 },
+      "notes": "Deliberately lose specific rare cards to move her around the world; her father then creates new rares (Kiros, Irvine, Chubby Chocobo, Doomtrain, Phoenix). Every lost card is winnable back.",
+      "verified": false
+    },
+    {
+      "id": "ccgroup",
+      "name": "CC Group card club",
+      "type": "card",
+      "location": "Balamb Garden",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "notes": "Beat Jack through King inside the Garden before disc 4 — the club then joins the Ragnarok holding nearly every rare card.",
+      "verified": false
+    },
+    {
+      "id": "rarecards",
+      "name": "Rare card sweep",
+      "type": "card",
+      "location": "NPCs across the world",
+      "window": { "opensAt": 1, "closesAt": 18 },
+      "notes": "Win the one-holder rares before the world locks: Seifer (Cid), Rinoa (General Caraway), Edea (herself, disc 3), Laguna (Ellone), Squall (Laguna). Most others migrate to the CC Group on disc 4.",
+      "verified": false
+    },
+    {
+      "id": "girlnextdoor",
+      "name": "Girl Next Door → Zone",
+      "type": "magazine",
+      "location": "Timber → White SeeD Ship",
+      "window": { "opensAt": 5, "closesAt": 15 },
+      "route": {
+        "at": 15,
+        "rank": 1,
+        "why": "Sell Zone his magazine aboard the ship — the visit doesn't repeat"
+      },
+      "notes": "Pick the magazine up in Timber's Maniacs building first. Reward: Shiva card via Rename Card chain? Verify — sources differ; treat the delivery as the one-shot.",
+      "verified": false
+    },
+    {
+      "id": "winhillvase",
+      "name": "Winhill vase shards",
+      "type": "quest",
+      "location": "Winhill",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "notes": "Reassemble the mayor's vase — four pieces around town; one involves the chicobo and one the flower field.",
+      "verified": false
+    },
+    {
+      "id": "obellake",
+      "name": "Obel Lake mystery",
+      "type": "quest",
+      "location": "Obel Lake, near Timber",
+      "window": { "opensAt": 5, "closesAt": 18 },
+      "notes": "Talk to the shadow in the lake, chase Mr. Monkey and the rock riddles across the continents. Ends in Three Stars and a Luck-J Scroll.",
+      "verified": false
+    },
+    {
+      "id": "shumivillage",
+      "name": "Shumi Village artisan quest",
+      "type": "quest",
+      "location": "Winter Island",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "notes": "The statue of Laguna, the Moomba, and the attendant's errands. Long, odd, worth it.",
+      "verified": false
+    },
+    {
+      "id": "masterfisherman",
+      "name": "Master Fisherman",
+      "type": "quest",
+      "location": "Fishermans Horizon",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "notes": "The old man fishing off the dock — follow his story through FH's shops for his reward.",
+      "verified": false
+    },
+    {
+      "id": "pupu",
+      "name": "PuPu (UFO quest)",
+      "type": "quest",
+      "location": "Four sightings, then Balamb crater",
+      "window": { "opensAt": 16, "closesAt": 18 },
+      "notes": "Encounter the UFO at Winhill, Mandy Beach, Heath Peninsula and Trabia's glacier, then land at the crater and hand PuPu five Elixirs for its card. Do not attack it.",
+      "verified": false
+    },
+    {
+      "id": "lionheart",
+      "name": "Lion Heart (Squall)",
+      "type": "weapon",
+      "location": "Any junk shop",
+      "window": { "opensAt": 5, "closesAt": 18 },
+      "route": {
+        "at": 16,
+        "rank": 3,
+        "why": "Remodel before disc 4 — no junk shops after the world locks"
+      },
+      "notes": "Adamantine ×1, Dragon Fang ×4, Pulse Ammo ×12. Famously possible on disc 1 via Elnoyle cards and T-Rexaur mods.",
+      "verified": false
+    },
+    {
+      "id": "ultimateweapons",
+      "name": "Everyone's final weapons",
+      "type": "weapon",
+      "location": "Any junk shop",
+      "window": { "opensAt": 10, "closesAt": 18 },
+      "notes": "Ehrgeiz, Exeter, Shooting Star, Strange Vision, Crescent Wish — remodel the party's best before junk shops become unreachable.",
+      "verified": false
+    },
+    {
+      "id": "chocoboforests",
+      "name": "Chocobo forests & Chicobo",
+      "type": "chocobo",
+      "location": "Six forests, Trabia to Centra",
+      "window": { "opensAt": 10 },
+      "notes": "Solve each forest with the ChocoZiner; the final forest yields Mog's Amulet and the Chicobo card. Forests stay reachable on disc 4.",
+      "verified": false
+    },
+    {
+      "id": "omega8",
+      "name": "Omega Weapon",
+      "type": "quest",
+      "location": "Ultimecia's Castle — chapel",
+      "window": { "opensAt": 20 },
+      "notes": "Ring the bell with one party, sprint to the chapel with the other. The true superboss.",
+      "verified": false
+    }
+  ]
+}

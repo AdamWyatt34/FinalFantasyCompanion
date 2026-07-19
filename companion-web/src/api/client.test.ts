@@ -9,10 +9,10 @@ beforeEach(async () => {
 });
 
 describe("local client", () => {
-  it("lists both games", async () => {
+  it("lists every game in series order", async () => {
     const games = await api.getGames();
 
-    expect(games.map((g) => g.id)).toEqual(["ff7", "ff9"]);
+    expect(games.map((g) => g.id)).toEqual(["ff7", "ff8", "ff9"]);
   });
 
   it("rejects an unknown game", async () => {
