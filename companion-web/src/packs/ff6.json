@@ -1,0 +1,467 @@
+{
+  "game": { "id": "ff6", "title": "Final Fantasy VI" },
+  "theme": {
+    "tokens": {
+      "bgTop": "#0a0812",
+      "bgMid": "#141024",
+      "bgBottom": "#0c0a1a",
+      "panelTop": "#3f3a78",
+      "panelMid": "#221e4e",
+      "panelBottom": "#121030",
+      "border": "#d8d4e8",
+      "bevel": "#45406e",
+      "ink": "#f0eefc",
+      "dim": "#a49ec8",
+      "dimmer": "#857fa8",
+      "faint": "#5f5a88",
+      "gold": "#e6c46a",
+      "cyan": "#7ee0d0",
+      "buttonBorder": "#625c92",
+      "tickDone": "#453f7e",
+      "tickTodo": "#1a1640"
+    }
+  },
+  "positions": [
+    { "id": "narshemines", "order": 1, "label": "Narshe Mines", "disc": 1 },
+    { "id": "figaro", "order": 2, "label": "Figaro Castle", "disc": 1 },
+    {
+      "id": "southfigaro",
+      "order": 3,
+      "label": "South Figaro & Mt. Kolts",
+      "disc": 1
+    },
+    { "id": "returners", "order": 4, "label": "Returners' Hideout", "disc": 1 },
+    {
+      "id": "scenarios",
+      "order": 5,
+      "label": "The Three Scenarios",
+      "disc": 1
+    },
+    {
+      "id": "narshebattle",
+      "order": 6,
+      "label": "Battle for Narshe",
+      "disc": 1
+    },
+    { "id": "zozo", "order": 7, "label": "Zozo", "disc": 1 },
+    {
+      "id": "opera",
+      "order": 8,
+      "label": "Jidoor & the Opera House",
+      "disc": 1
+    },
+    {
+      "id": "vector",
+      "order": 9,
+      "label": "Vector & the Magitek Factory",
+      "disc": 1
+    },
+    { "id": "sealedgate", "order": 10, "label": "The Sealed Gate", "disc": 1 },
+    { "id": "thamasa", "order": 11, "label": "Thamasa", "disc": 1 },
+    {
+      "id": "floatingcontinent",
+      "order": 12,
+      "label": "The Floating Continent",
+      "disc": 1
+    },
+    {
+      "id": "solitaryisland",
+      "order": 13,
+      "label": "Solitary Island",
+      "disc": 2
+    },
+    { "id": "tzen", "order": 14, "label": "Tzen & Mobliz", "disc": 2 },
+    { "id": "nikeah", "order": 15, "label": "Nikeah & Figaro", "disc": 2 },
+    {
+      "id": "darill",
+      "order": 16,
+      "label": "Kohlingen & Darill's Tomb",
+      "disc": 2
+    },
+    {
+      "id": "falcon",
+      "order": 17,
+      "label": "The Falcon — World Reopens",
+      "disc": 2
+    },
+    { "id": "mtzozo", "order": 18, "label": "Mt. Zozo & the Veldt", "disc": 2 },
+    {
+      "id": "owzer",
+      "order": 19,
+      "label": "Owzer's Mansion & Ebot's Rock",
+      "disc": 2
+    },
+    {
+      "id": "phoenixcave",
+      "order": 20,
+      "label": "The Phoenix Cave",
+      "disc": 2
+    },
+    {
+      "id": "ancientcastle",
+      "order": 21,
+      "label": "Ancient Castle & the Dragons",
+      "disc": 2
+    },
+    { "id": "kefkatower", "order": 22, "label": "Kefka's Tower", "disc": 2 }
+  ],
+  "items": [
+    {
+      "id": "genjiglove",
+      "name": "Genji Glove",
+      "type": "key",
+      "location": "Returners' Hideout",
+      "window": { "opensAt": 4, "closesAt": 4 },
+      "route": {
+        "at": 4,
+        "rank": 0,
+        "why": "Refuse Banon's plea three times, then accept — the reward changes"
+      },
+      "notes": "Say no to Banon three times before agreeing and the chest by the bed holds a Genji Glove instead of a Gauntlet.",
+      "verified": false
+    },
+    {
+      "id": "chainsaw",
+      "name": "Chainsaw (Edgar)",
+      "type": "key",
+      "location": "Zozo — clock puzzle",
+      "window": { "opensAt": 7 },
+      "route": {
+        "at": 7,
+        "rank": 1,
+        "why": "Set the clock (6:10:50) while you're here for the story"
+      },
+      "notes": "Every townsperson lies about the time. Zozo stays reachable in the World of Ruin.",
+      "verified": false
+    },
+    {
+      "id": "delayedchests",
+      "name": "The delayed-chest trick",
+      "type": "quest",
+      "location": "Narshe & South Figaro locked chests",
+      "window": { "opensAt": 3 },
+      "notes": "Several early chests upgrade their contents if left unopened until the World of Ruin (e.g. South Figaro basement, Narshe cliff chests). Patience pays in Elixirs and top-tier gear.",
+      "verified": false
+    },
+    {
+      "id": "lonewolf",
+      "name": "Lone Wolf: Gold Hairpin or Mog",
+      "type": "quest",
+      "location": "Narshe cliffs",
+      "window": { "opensAt": 7, "closesAt": 12 },
+      "route": {
+        "at": 11,
+        "rank": 1,
+        "why": "Decide before the Floating Continent"
+      },
+      "notes": "The thief holds Mog hostage on the cliff. Wait and choose: Gold Hairpin (item) or Mog (joins now). Mog can still be recruited in the World of Ruin either way.",
+      "verified": false
+    },
+    {
+      "id": "banquet",
+      "name": "The Emperor's banquet",
+      "type": "quest",
+      "location": "Vector — Imperial Palace",
+      "window": { "opensAt": 10, "closesAt": 10 },
+      "route": {
+        "at": 10,
+        "rank": 1,
+        "why": "Answer well — rewards scale with your score"
+      },
+      "notes": "Talk to every soldier, answer diplomatically, take exactly the right pauses. Top scores earn Tintinabar and charm gear.",
+      "verified": false
+    },
+    {
+      "id": "shadowwait",
+      "name": "WAIT FOR SHADOW",
+      "type": "character",
+      "location": "Floating Continent — escape sequence",
+      "window": { "opensAt": 12, "closesAt": 12 },
+      "route": {
+        "at": 12,
+        "rank": 0,
+        "why": "Let the escape timer run to ~5 seconds — jump early and Shadow dies forever"
+      },
+      "notes": "At the airship ledge, choose to wait until Shadow arrives. Leaving without him removes him — and everything downstream of him — from the rest of the game.",
+      "verified": false
+    },
+    {
+      "id": "savecid",
+      "name": "Keep Cid alive",
+      "type": "quest",
+      "location": "Solitary Island",
+      "window": { "opensAt": 13, "closesAt": 13 },
+      "route": {
+        "at": 13,
+        "rank": 0,
+        "why": "Feed him only the lively fast fish"
+      },
+      "notes": "Catch the fast-swimming fish; slow ones make him worse. Whether he lives changes how Celes leaves the island.",
+      "verified": false
+    },
+    {
+      "id": "terrawor",
+      "name": "Terra rejoins",
+      "type": "character",
+      "location": "Mobliz",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 17,
+        "rank": 3,
+        "why": "Return with the Falcon and finish the Humbaba fight"
+      },
+      "notes": "She stays with the children until Humbaba is driven off for good.",
+      "verified": false
+    },
+    {
+      "id": "mogwor",
+      "name": "Mog",
+      "type": "character",
+      "location": "Narshe — moogle caves",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 17,
+        "rank": 1,
+        "why": "First stop in ruined Narshe — he unlocks Umaro too"
+      },
+      "notes": "Alone in the old moogle den. Bring him along for the cliffs.",
+      "verified": false
+    },
+    {
+      "id": "umarowor",
+      "name": "Umaro",
+      "type": "character",
+      "location": "Narshe cliffs — behind Tritoch",
+      "window": { "opensAt": 17 },
+      "prereqs": ["mogwor", "tritoch"],
+      "notes": "Drop through the hole behind the esper, take the bone carving, and let Mog do the talking.",
+      "verified": false
+    },
+    {
+      "id": "cyanwor",
+      "name": "Cyan",
+      "type": "character",
+      "location": "Mt. Zozo",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 18,
+        "rank": 0,
+        "why": "Follow the Crimson Robbers from Nikeah up the mountain"
+      },
+      "notes": "His cliffside letters to Lola in Maranda are the trailhead.",
+      "verified": false
+    },
+    {
+      "id": "shadowor",
+      "name": "Shadow",
+      "type": "character",
+      "location": "Cave on the Veldt → Colosseum",
+      "window": { "opensAt": 17 },
+      "prereqs": ["shadowwait"],
+      "route": {
+        "at": 18,
+        "rank": 2,
+        "why": "Rescue him in the cave, then bet the Striker at the Colosseum"
+      },
+      "notes": "Only exists if you waited on the Floating Continent. If you didn't, Relm is found in the cave instead.",
+      "verified": false
+    },
+    {
+      "id": "gauwor",
+      "name": "Gau",
+      "type": "character",
+      "location": "The Veldt",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 18,
+        "rank": 1,
+        "why": "Leap with a three-member party while you're on the Veldt"
+      },
+      "notes": "He returns on the next encounter after the Leap. His father's house afterward is worth the detour.",
+      "verified": false
+    },
+    {
+      "id": "relmwor",
+      "name": "Relm",
+      "type": "character",
+      "location": "Owzer's Mansion, Jidoor",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 19,
+        "rank": 0,
+        "why": "The painting gallery — bring Lightning-proof gear"
+      },
+      "notes": "Read the diary in Jidoor, fight through the gallery, defeat Chadarnook.",
+      "verified": false
+    },
+    {
+      "id": "stragowor",
+      "name": "Strago",
+      "type": "character",
+      "location": "Fanatics' Tower",
+      "window": { "opensAt": 17 },
+      "prereqs": ["relmwor"],
+      "route": {
+        "at": 19,
+        "rank": 1,
+        "why": "He only snaps out of the cult trance if Relm is in the party"
+      },
+      "notes": "Walk up with Relm and he rejoins on the spot.",
+      "verified": false
+    },
+    {
+      "id": "lockewor",
+      "name": "Locke",
+      "type": "character",
+      "location": "Phoenix Cave",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 20,
+        "rank": 0,
+        "why": "Two-party dungeon — he's at the heart of it"
+      },
+      "notes": "Bring two capable teams. He hands over the cracked magicite on the way out.",
+      "verified": false
+    },
+    {
+      "id": "gogowor",
+      "name": "Gogo",
+      "type": "character",
+      "location": "Zone Eater's belly, Triangle Island",
+      "window": { "opensAt": 17 },
+      "notes": "Let the Zone Eater swallow the party, survive the crushing-ceiling gauntlet, and the mimic joins.",
+      "verified": false
+    },
+    {
+      "id": "tritoch",
+      "name": "Tritoch",
+      "type": "esper",
+      "location": "Narshe cliffs",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 17,
+        "rank": 2,
+        "why": "The frozen esper answers now — and opens the path to Umaro"
+      },
+      "notes": "Fight it on the cliff where the game began.",
+      "verified": false
+    },
+    {
+      "id": "ragnarokchoice",
+      "name": "Ragnarok: esper or sword",
+      "type": "esper",
+      "location": "Narshe — weapon shop",
+      "window": { "opensAt": 17 },
+      "notes": "Permanent choice. The esper teaches Ultima; the sword bets into the Lightbringer at the Colosseum. You cannot have both in one playthrough.",
+      "verified": false
+    },
+    {
+      "id": "cursedshield",
+      "name": "Cursed Shield",
+      "type": "key",
+      "location": "Narshe — the old man's house",
+      "window": { "opensAt": 17 },
+      "notes": "256 battles while equipped (with a Ribbon on) uncurses it into the Paladin Shield.",
+      "verified": false
+    },
+    {
+      "id": "odin6",
+      "name": "Odin",
+      "type": "esper",
+      "location": "Ancient Castle",
+      "window": { "opensAt": 21 },
+      "route": {
+        "at": 21,
+        "rank": 1,
+        "why": "Beneath Figaro's tunnels — and read the queen's story"
+      },
+      "notes": "The petrified king. A hidden switch by the throne room later upgrades him to Raiden — which permanently replaces Odin and his Meteor lesson.",
+      "verified": false
+    },
+    {
+      "id": "phoenix6",
+      "name": "Phoenix",
+      "type": "esper",
+      "location": "Phoenix Cave",
+      "window": { "opensAt": 17 },
+      "notes": "The cracked magicite from Locke's hunt — Rasp aside, its revival magic is unique.",
+      "verified": false
+    },
+    {
+      "id": "alexander6",
+      "name": "Alexander",
+      "type": "esper",
+      "location": "Doma Castle — Cyan's dream",
+      "window": { "opensAt": 17 },
+      "prereqs": ["cyanwor"],
+      "notes": "Sleep at Doma with Cyan in the party, survive the Dream Stooges and the train, free his soul.",
+      "verified": false
+    },
+    {
+      "id": "bahamut6",
+      "name": "Bahamut",
+      "type": "esper",
+      "location": "The skies — Deathgaze",
+      "window": { "opensAt": 17 },
+      "notes": "Deathgaze ambushes the Falcon at random; it flees and keeps its wounds between fights. Finish it to claim Bahamut.",
+      "verified": false
+    },
+    {
+      "id": "eightdragons",
+      "name": "The Eight Legendary Dragons",
+      "type": "quest",
+      "location": "Across the World of Ruin",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 21,
+        "rank": 2,
+        "why": "Six are reachable before the tower — save Gold and Skull for the assault"
+      },
+      "notes": "Ice — Narshe cliffs; Storm — Mt. Zozo; Earth — Opera House stage; Red — Phoenix Cave; Blue — Ancient Castle; White — Fanatics' Tower; Gold & Skull — Kefka's Tower.",
+      "verified": false
+    },
+    {
+      "id": "crusader",
+      "name": "Crusader",
+      "type": "esper",
+      "location": "Awarded for the eight dragons",
+      "window": { "opensAt": 17 },
+      "prereqs": ["eightdragons"],
+      "notes": "Merton is chaos incarnate — but the magicite's real prize is teaching it at all.",
+      "verified": false
+    },
+    {
+      "id": "bumrush",
+      "name": "Bum Rush (Sabin)",
+      "type": "quest",
+      "location": "Duncan's cabin, north of Narshe",
+      "window": { "opensAt": 17 },
+      "notes": "Duncan lives. Visit with Sabin for his final blitz.",
+      "verified": false
+    },
+    {
+      "id": "hidon",
+      "name": "Hidon & Grand Delta",
+      "type": "quest",
+      "location": "Ebot's Rock",
+      "window": { "opensAt": 17 },
+      "prereqs": ["stragowor"],
+      "route": {
+        "at": 19,
+        "rank": 2,
+        "why": "Strago's rival — feed the hungry chest coral until the path opens"
+      },
+      "notes": "Bring Strago (Relm along is even better). Teaches his ultimate lore.",
+      "verified": false
+    },
+    {
+      "id": "colosseum",
+      "name": "Colosseum wagers",
+      "type": "quest",
+      "location": "Dragon's Neck Colosseum",
+      "window": { "opensAt": 17 },
+      "notes": "Marquee bets: Striker → Shadow's duel, Ragnarok sword → Lightbringer, Elixir chains for rare gear. Every wager is a one-item gamble — save first.",
+      "verified": false
+    }
+  ]
+}

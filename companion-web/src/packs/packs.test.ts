@@ -3,7 +3,34 @@ import { allPacks, getPackById } from "./index";
 
 describe("shipped packs", () => {
   it("loads every pack in natural numeric order", () => {
-    expect(allPacks.map((p) => p.game.id)).toEqual(["ff7", "ff8", "ff9"]);
+    expect(allPacks.map((p) => p.game.id)).toEqual([
+      "ff6",
+      "ff7",
+      "ff8",
+      "ff9",
+    ]);
+  });
+
+  it("ff6 pack is structurally sound", () => {
+    const ff6 = getPackById("ff6")!;
+
+    expect(ff6.game.title).toBe("Final Fantasy VI");
+    expect(ff6.positions.length).toBe(22);
+    expect(ff6.items.length).toBeGreaterThanOrEqual(25);
+    expect(ff6.items.length).toBeLessThanOrEqual(50);
+    // Two worlds, not discs: 1 = Balance, 2 = Ruin.
+    expect([...new Set(ff6.positions.map((p) => p.disc))].sort()).toEqual([
+      1, 2,
+    ]);
+    expect(ff6.items.every((i) => !i.verified)).toBe(true);
+    // The signature chain: recruiting Shadow in the WoR requires having
+    // waited for him on the Floating Continent.
+    expect(ff6.items.find((i) => i.id === "shadowor")!.prereqs).toEqual([
+      "shadowwait",
+    ]);
+    const wait = ff6.items.find((i) => i.id === "shadowwait")!;
+    expect(wait.opensAt).toBe(12);
+    expect(wait.closesAt).toBe(12);
   });
 
   it("ff8 pack is structurally sound", () => {
