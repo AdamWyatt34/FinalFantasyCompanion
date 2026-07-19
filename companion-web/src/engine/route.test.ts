@@ -51,6 +51,38 @@ describe("route bucketing", () => {
     ]);
   });
 
+  it("unrouted closingSoon lands in Now, never buried in Later", () => {
+    const pack = makePack([makeItem("soon", { opensAt: 1, closesAt: 5 })]);
+
+    const view = projectRoute(pack, at(3));
+
+    expect(view.now.map((e) => e.item.id)).toEqual(["soon"]);
+    expect(view.now[0].status).toBe("closingSoon");
+    expect(view.later).toHaveLength(0);
+  });
+
+  it("closingSoon routed within the lookahead stays in Next — curation holds", () => {
+    const pack = makePack([
+      makeItem("soon", { opensAt: 1, closesAt: 5, route: route(4) }),
+    ]);
+
+    const view = projectRoute(pack, at(3));
+
+    expect(view.next.map((e) => e.item.id)).toEqual(["soon"]);
+  });
+
+  it("closingSoon routed beyond the lookahead is promoted to Now anyway", () => {
+    // Route data that schedules an item after its window shuts is a pack bug;
+    // the engine still refuses to hide the urgency.
+    const pack = makePack([
+      makeItem("soon", { opensAt: 1, closesAt: 5, route: route(8) }),
+    ]);
+
+    const view = projectRoute(pack, at(3));
+
+    expect(view.now.map((e) => e.item.id)).toEqual(["soon"]);
+  });
+
   it.each([1, 2])("routed %i ahead lands in Next", (distance) => {
     const pack = makePack([makeItem("x", { route: route(5 + distance) })]);
 
