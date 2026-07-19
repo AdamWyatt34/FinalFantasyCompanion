@@ -14,6 +14,7 @@ import { downloadSave, installSave, parseSave } from "./storage/saveFile";
 import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
 import { HistoryOverlay } from "./components/HistoryOverlay";
+import { ReportOverlay } from "./components/ReportOverlay";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
@@ -84,6 +85,7 @@ function GameApp({
   const [showTimeline, setShowTimeline] = useState(false);
   const [showArchives, setShowArchives] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
+  const [showReport, setShowReport] = useState(false);
   const [pendingImpact, setPendingImpact] = useState<AdvanceImpact | null>(
     null,
   );
@@ -329,7 +331,7 @@ function GameApp({
             {pack.data.items.filter((i) => i.verified).length}/
             {pack.data.items.length} windows verified during play.
           </div>
-          <div className="mt-1 flex justify-center gap-3">
+          <div className="mt-1 flex flex-wrap justify-center gap-x-3 gap-y-1">
             <button onClick={resetPlaythrough} className="underline">
               New playthrough
             </button>
@@ -344,6 +346,9 @@ function GameApp({
             </button>
             <button onClick={() => setShowHistory(true)} className="underline">
               History
+            </button>
+            <button onClick={() => setShowReport(true)} className="underline">
+              Report
             </button>
           </div>
         </div>
@@ -360,6 +365,14 @@ function GameApp({
             setPendingImpact(null);
             await postEvent({ type: "positionAdvanced", to: target });
           }}
+        />
+      )}
+
+      {showReport && (
+        <ReportOverlay
+          pack={pack.data}
+          availability={availability.data}
+          onClose={() => setShowReport(false)}
         />
       )}
 
