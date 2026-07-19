@@ -75,7 +75,8 @@ export function GameSwitcher({
   }
 
   return (
-    <div className="flex gap-2">
+    // Two columns: with 7 packs a single flex row would crush every card.
+    <div className="grid grid-cols-2 gap-2">
       {games.map((game) => {
         const active = game.id === currentId;
         const progress = active ? currentProgress : (saved[game.id] ?? null);
@@ -83,7 +84,7 @@ export function GameSwitcher({
           <button
             key={game.id}
             onClick={() => onSelect(game.id)}
-            className={`flex-1 min-w-0 text-left px-3 py-2 rounded-md border ${
+            className={`min-w-0 text-left px-3 py-2 rounded-md border ${
               active
                 ? "border-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
                 : "border-[var(--ff-bevel)]"

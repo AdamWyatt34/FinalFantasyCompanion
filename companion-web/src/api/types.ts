@@ -8,7 +8,21 @@ export type Status =
   | "available";
 
 export type ItemType =
-  "materia" | "limit" | "character" | "key" | "quest" | "summon" | "chocobo";
+  | "materia"
+  | "limit"
+  | "character"
+  | "key"
+  | "quest"
+  | "summon"
+  | "chocobo"
+  | "weapon"
+  | "gf"
+  | "card"
+  | "magazine"
+  | "esper"
+  | "aeon"
+  | "primer"
+  | "hunt";
 
 export interface GameSummary {
   id: string;

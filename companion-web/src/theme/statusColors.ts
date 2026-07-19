@@ -25,4 +25,12 @@ export const TYPE_LABEL: Record<string, string> = {
   quest: "QUEST",
   summon: "SUMMON",
   chocobo: "CHOCOBO",
+  weapon: "WEAPON",
+  gf: "G.F.",
+  card: "CARDS",
+  magazine: "MAGAZINE",
+  esper: "ESPER",
+  aeon: "AEON",
+  primer: "PRIMER",
+  hunt: "HUNT",
 };

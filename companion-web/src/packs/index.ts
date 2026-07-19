@@ -47,11 +47,19 @@ const modules = import.meta.glob<RawPack>("./*.json", {
   import: "default",
 });
 
-// Ordinal filename sort keeps game order deterministic (ff7 before ff9),
-// matching how the old server enumerated the pack directory.
+// Natural filename sort keeps game order deterministic AND numeric: digit runs
+// are zero-padded before the ordinal compare so ff4 < ff10 (plain ordinal would
+// put "ff10" before "ff4"). No locale collation — stable on every browser.
+const naturalKey = (file: string) =>
+  file.replace(/\d+/g, (digits) => digits.padStart(6, "0"));
+
 const packs = new Map<string, Pack>(
   Object.keys(modules)
-    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))
+    .sort((a, b) => {
+      const ka = naturalKey(a);
+      const kb = naturalKey(b);
+      return ka < kb ? -1 : ka > kb ? 1 : 0;
+    })
     .map((file) => {
       const pack = normalizePack(modules[file]);
       validateOrThrow(pack);
