@@ -12,7 +12,13 @@ describe("local client", () => {
   it("lists every game in series order", async () => {
     const games = await api.getGames();
 
-    expect(games.map((g) => g.id)).toEqual(["ff6", "ff7", "ff8", "ff9"]);
+    expect(games.map((g) => g.id)).toEqual([
+      "ff6",
+      "ff7",
+      "ff8",
+      "ff9",
+      "ff10",
+    ]);
   });
 
   it("rejects an unknown game", async () => {

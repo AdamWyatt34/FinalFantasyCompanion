@@ -8,6 +8,28 @@ describe("shipped packs", () => {
       "ff7",
       "ff8",
       "ff9",
+      "ff10",
+    ]);
+  });
+
+  it("ff10 pack is structurally sound", () => {
+    const ff10 = getPackById("ff10")!;
+
+    expect(ff10.game.title).toBe("Final Fantasy X");
+    expect(ff10.positions.length).toBe(18);
+    expect(ff10.items.length).toBeGreaterThanOrEqual(20);
+    expect(ff10.items.length).toBeLessThanOrEqual(40);
+    expect([...new Set(ff10.positions.map((p) => p.disc))].sort()).toEqual([
+      1, 2, 3,
+    ]);
+    expect(ff10.items.every((i) => !i.verified)).toBe(true);
+    // The Home primers are the pack's signature one-beat window.
+    const home = ff10.items.find((i) => i.id === "primershome")!;
+    expect(home.opensAt).toBe(12);
+    expect(home.closesAt).toBe(12);
+    // Anima requires every Destruction Sphere treasure.
+    expect(ff10.items.find((i) => i.id === "anima")!.prereqs).toEqual([
+      "destructionspheres",
     ]);
   });
 
