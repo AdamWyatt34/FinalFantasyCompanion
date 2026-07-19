@@ -13,6 +13,7 @@ describe("local client", () => {
     const games = await api.getGames();
 
     expect(games.map((g) => g.id)).toEqual([
+      "ff4",
       "ff6",
       "ff7",
       "ff8",

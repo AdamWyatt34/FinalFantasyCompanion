@@ -1,0 +1,328 @@
+{
+  "game": { "id": "ff4", "title": "Final Fantasy IV" },
+  "theme": {
+    "tokens": {
+      "bgTop": "#060616",
+      "bgMid": "#10102e",
+      "bgBottom": "#0a0a20",
+      "panelTop": "#2e3e8e",
+      "panelMid": "#1a2258",
+      "panelBottom": "#0e1234",
+      "border": "#ccd4f0",
+      "bevel": "#38427e",
+      "ink": "#eef2ff",
+      "dim": "#9aa8d4",
+      "dimmer": "#7e8ab4",
+      "faint": "#596494",
+      "gold": "#e8c860",
+      "cyan": "#8fe0f0",
+      "buttonBorder": "#5a68a0",
+      "tickDone": "#37448a",
+      "tickTodo": "#141a44"
+    }
+  },
+  "positions": [
+    { "id": "baron", "order": 1, "label": "Baron & Mist", "disc": 1 },
+    { "id": "kaipo", "order": 2, "label": "Kaipo & the Waterway", "disc": 1 },
+    {
+      "id": "damcyan",
+      "order": 3,
+      "label": "Damcyan & the Antlion",
+      "disc": 1
+    },
+    { "id": "fabul", "order": 4, "label": "Mt. Hobs & Fabul", "disc": 1 },
+    {
+      "id": "mysidia",
+      "order": 5,
+      "label": "Mysidia & Mt. Ordeals",
+      "disc": 1
+    },
+    {
+      "id": "baronliberation",
+      "order": 6,
+      "label": "Baron Liberation",
+      "disc": 1
+    },
+    { "id": "troia", "order": 7, "label": "Troia & the Dark Elf", "disc": 1 },
+    { "id": "zot", "order": 8, "label": "Tower of Zot", "disc": 1 },
+    { "id": "dwarves", "order": 9, "label": "Dwarven Castle", "disc": 2 },
+    { "id": "babil", "order": 10, "label": "Tower of Babil", "disc": 2 },
+    {
+      "id": "eblan",
+      "order": 11,
+      "label": "Cave of Eblan & Upper Babil",
+      "disc": 2
+    },
+    { "id": "sealedcave", "order": 12, "label": "The Sealed Cave", "disc": 2 },
+    { "id": "bigwhale", "order": 13, "label": "The Big Whale", "disc": 3 },
+    {
+      "id": "moon",
+      "order": 14,
+      "label": "The Moon — Lair of the Father",
+      "disc": 3
+    },
+    { "id": "giant", "order": 15, "label": "The Giant of Babil", "disc": 3 },
+    { "id": "subterrane", "order": 16, "label": "Lunar Subterrane", "disc": 3 },
+    {
+      "id": "finaldescent",
+      "order": 17,
+      "label": "The Final Descent",
+      "disc": 3
+    }
+  ],
+  "items": [
+    {
+      "id": "striprydia",
+      "name": "Strip Rydia's gear",
+      "type": "quest",
+      "location": "Before boarding the boat at Fabul",
+      "window": { "opensAt": 4, "closesAt": 4 },
+      "route": {
+        "at": 4,
+        "rank": 0,
+        "why": "Leviathan takes her — unequip everything before sailing"
+      },
+      "notes": "Older 2D versions lose departing characters' equipment forever; Pixel Remaster refunds it. Cheap insurance either way.",
+      "verified": false
+    },
+    {
+      "id": "stripedward",
+      "name": "Strip Edward's gear",
+      "type": "quest",
+      "location": "Before boarding the boat at Fabul",
+      "window": { "opensAt": 4, "closesAt": 4 },
+      "route": {
+        "at": 4,
+        "rank": 1,
+        "why": "He washes ashore alone — take his equipment first"
+      },
+      "notes": "Same boat, same storm. His Harps aren't worth much, but his armor slots are.",
+      "verified": false
+    },
+    {
+      "id": "striptellah",
+      "name": "Strip Tellah's gear",
+      "type": "quest",
+      "location": "Tower of Zot — before the confrontation",
+      "window": { "opensAt": 8, "closesAt": 8 },
+      "route": {
+        "at": 8,
+        "rank": 0,
+        "why": "The sage does not come back down the tower"
+      },
+      "notes": "Unequip him before the top-floor scenes.",
+      "verified": false
+    },
+    {
+      "id": "stripyang",
+      "name": "Strip Yang's gear",
+      "type": "quest",
+      "location": "Tower of Babil — before the escape",
+      "window": { "opensAt": 10, "closesAt": 10 },
+      "route": {
+        "at": 10,
+        "rank": 0,
+        "why": "He stays behind with the cannons"
+      },
+      "notes": "His claws travel with him unless you take them first.",
+      "verified": false
+    },
+    {
+      "id": "stripcid",
+      "name": "Strip Cid's gear",
+      "type": "quest",
+      "location": "The airship escape from the underworld",
+      "window": { "opensAt": 10, "closesAt": 10 },
+      "route": {
+        "at": 10,
+        "rank": 1,
+        "why": "He jumps with the bomb right after Yang's farewell"
+      },
+      "notes": "Two departures in one beat — check both before the cutscenes chain.",
+      "verified": false
+    },
+    {
+      "id": "stripfusoya",
+      "name": "Strip FuSoYa's gear",
+      "type": "quest",
+      "location": "After the Giant of Babil",
+      "window": { "opensAt": 15, "closesAt": 15 },
+      "notes": "He returns to the moon's core once the Giant falls.",
+      "verified": false
+    },
+    {
+      "id": "zotsweep",
+      "name": "Tower of Zot sweep",
+      "type": "quest",
+      "location": "Tower of Zot",
+      "window": { "opensAt": 8, "closesAt": 8 },
+      "route": {
+        "at": 8,
+        "rank": 2,
+        "why": "The tower vanishes from the world map afterward"
+      },
+      "notes": "Open every chest on the climb — there is no second visit.",
+      "verified": false
+    },
+    {
+      "id": "babilsweep",
+      "name": "Upper Babil sweep",
+      "type": "quest",
+      "location": "Tower of Babil — upper section",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "route": {
+        "at": 11,
+        "rank": 0,
+        "why": "The cannon floors collapse behind you"
+      },
+      "notes": "Everything above the Eblan crossing is one-visit-only.",
+      "verified": false
+    },
+    {
+      "id": "giantsweep",
+      "name": "Giant of Babil sweep",
+      "type": "quest",
+      "location": "Inside the Giant",
+      "window": { "opensAt": 15, "closesAt": 15 },
+      "route": {
+        "at": 15,
+        "rank": 0,
+        "why": "The Giant is destroyed when you win"
+      },
+      "notes": "The chests inside go down with it.",
+      "verified": false
+    },
+    {
+      "id": "sylph",
+      "name": "Sylph (and the Frying Pan)",
+      "type": "summon",
+      "location": "Sylvan Cave & Fabul",
+      "window": { "opensAt": 12 },
+      "notes": "Find Yang asleep in the Sylvan Cave, fetch the Frying Pan from his wife in Fabul, wake him with it, and return it for the Knife. Rydia learns Sylph at his bedside.",
+      "verified": false
+    },
+    {
+      "id": "asura",
+      "name": "Asura",
+      "type": "summon",
+      "location": "The Feymarch",
+      "window": { "opensAt": 12 },
+      "route": {
+        "at": 12,
+        "rank": 1,
+        "why": "The queen's test — Reflect trivializes her healing"
+      },
+      "notes": "Rydia only. The Feymarch hides in the underworld's western cavern.",
+      "verified": false
+    },
+    {
+      "id": "leviathan4",
+      "name": "Leviathan",
+      "type": "summon",
+      "location": "The Feymarch",
+      "window": { "opensAt": 12 },
+      "prereqs": ["asura"],
+      "notes": "The king fights only after his queen approves of you.",
+      "verified": false
+    },
+    {
+      "id": "odin4",
+      "name": "Odin",
+      "type": "summon",
+      "location": "Baron Castle — throne room basement",
+      "window": { "opensAt": 13 },
+      "notes": "The late king's ghost. Strike before he raises his sword — lightning helps.",
+      "verified": false
+    },
+    {
+      "id": "bahamut4",
+      "name": "Bahamut",
+      "type": "summon",
+      "location": "Lair of the Father, the moon",
+      "window": { "opensAt": 14 },
+      "route": {
+        "at": 14,
+        "rank": 1,
+        "why": "The Hallowed Father's cave is open the moment you land"
+      },
+      "notes": "Count his Mega Flare timer and mirror it with Reflect.",
+      "verified": false
+    },
+    {
+      "id": "rattail",
+      "name": "Rat Tail",
+      "type": "key",
+      "location": "The Feymarch — treasury",
+      "window": { "opensAt": 12 },
+      "route": {
+        "at": 12,
+        "rank": 2,
+        "why": "The oddest chest in the underworld starts the Excalibur chain"
+      },
+      "notes": "In the Passage of the Eidolons' treasure room.",
+      "verified": false
+    },
+    {
+      "id": "adamantite",
+      "name": "Adamantite",
+      "type": "key",
+      "location": "Adamant Isle Grotto",
+      "window": { "opensAt": 13 },
+      "prereqs": ["rattail"],
+      "notes": "The tail collector on the northeast isle trades Rat Tail for Adamantite. Reach him with the hovercraft carried by the Big Whale.",
+      "verified": false
+    },
+    {
+      "id": "excalibur4",
+      "name": "Excalibur",
+      "type": "weapon",
+      "location": "Kokkol's forge",
+      "window": { "opensAt": 13 },
+      "prereqs": ["adamantite"],
+      "route": {
+        "at": 13,
+        "rank": 2,
+        "why": "Hand Kokkol the adamantite and the legendary sword gets reforged"
+      },
+      "notes": "Return after a story beat to collect the finished blade for Cecil.",
+      "verified": false
+    },
+    {
+      "id": "lunarweapons",
+      "name": "Lunar Subterrane legendary gear",
+      "type": "weapon",
+      "location": "Lunar Subterrane",
+      "window": { "opensAt": 16 },
+      "notes": "Ragnarok, Murasame, the Masamune, Crystal Mail, the dragon set — each guarded by a chest fight that earns its reputation.",
+      "verified": false
+    },
+    {
+      "id": "pinktail",
+      "name": "Pink Tail",
+      "type": "key",
+      "location": "Lunar Subterrane — B5 alcove",
+      "window": { "opensAt": 16 },
+      "notes": "Flan Princesses in the pink-flan room drop it at roughly 1/64. The grind is the price of the best armor in the game.",
+      "verified": false
+    },
+    {
+      "id": "adamantarmor",
+      "name": "Adamant Armor",
+      "type": "key",
+      "location": "Adamant Isle Grotto",
+      "window": { "opensAt": 16 },
+      "prereqs": ["pinktail"],
+      "notes": "The tail collector's other trade. Wearable by anyone; wasted on no one.",
+      "verified": false
+    },
+    {
+      "id": "darkmatter",
+      "name": "Dark Matter",
+      "type": "key",
+      "location": "The final battle",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "notes": "Steal from Zeromus itself (GBA/PSP/Pixel Remaster). A trophy stolen from the end of the world.",
+      "verified": false
+    }
+  ]
+}

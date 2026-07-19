@@ -4,12 +4,30 @@ import { allPacks, getPackById } from "./index";
 describe("shipped packs", () => {
   it("loads every pack in natural numeric order", () => {
     expect(allPacks.map((p) => p.game.id)).toEqual([
+      "ff4",
       "ff6",
       "ff7",
       "ff8",
       "ff9",
       "ff10",
       "ff12",
+    ]);
+  });
+
+  it("ff4 pack is structurally sound", () => {
+    const ff4 = getPackById("ff4")!;
+
+    expect(ff4.game.title).toBe("Final Fantasy IV");
+    expect(ff4.positions.length).toBe(17);
+    expect(ff4.items.length).toBeGreaterThanOrEqual(18);
+    expect(ff4.items.length).toBeLessThanOrEqual(40);
+    expect(ff4.items.every((i) => !i.verified)).toBe(true);
+    // The Excalibur chain: Rat Tail → Adamantite → the forge.
+    expect(ff4.items.find((i) => i.id === "adamantite")!.prereqs).toEqual([
+      "rattail",
+    ]);
+    expect(ff4.items.find((i) => i.id === "excalibur4")!.prereqs).toEqual([
+      "adamantite",
     ]);
   });
 
