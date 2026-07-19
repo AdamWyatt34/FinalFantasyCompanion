@@ -1,44 +1,11 @@
 import type { ProgressEvent } from "../engine/events";
+import { kv } from "./kv";
 
 /**
  * localStorage-backed event log per game. Known trade-off: two tabs on the same
  * game can race the whole-array rewrite and drop an event — acceptable for a
  * single-user tool. Every read parses storage fresh; there is no in-memory cache.
  */
-interface KeyValueStore {
-  get(key: string): string | null;
-  set(key: string, value: string): void;
-  remove(key: string): void;
-  keys(): string[];
-}
-
-const kv: KeyValueStore = (() => {
-  try {
-    const probe = "__ffcompanion_probe__";
-    window.localStorage.setItem(probe, "1");
-    window.localStorage.removeItem(probe);
-    return {
-      get: (key) => window.localStorage.getItem(key),
-      set: (key, value) => window.localStorage.setItem(key, value),
-      remove: (key) => window.localStorage.removeItem(key),
-      keys: () => Object.keys(window.localStorage),
-    };
-  } catch {
-    // Blocked storage (privacy settings) or non-browser environment (tests):
-    // fall back to session-only memory so the app still runs.
-    const memory = new Map<string, string>();
-    return {
-      get: (key) => memory.get(key) ?? null,
-      set: (key, value) => {
-        memory.set(key, value);
-      },
-      remove: (key) => {
-        memory.delete(key);
-      },
-      keys: () => [...memory.keys()],
-    };
-  }
-})();
 
 const activeKey = (gameId: string) => `ffcompanion.${gameId}.events`;
 
