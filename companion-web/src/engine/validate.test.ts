@@ -104,6 +104,22 @@ describe("pack validation", () => {
     ).toBe(true);
   });
 
+  it("a gap in position orders is reported — the stepper advances by one", () => {
+    const pack = {
+      ...makePack([], 3),
+      positions: [
+        { id: "a", order: 1, label: "A", disc: 1 },
+        { id: "b", order: 2, label: "B", disc: 1 },
+        { id: "c", order: 5, label: "C", disc: 1 },
+      ],
+    };
+
+    const errors = validate(pack);
+
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain("not contiguous: 2 is followed by 5");
+  });
+
   it("all errors are collected, not just the first", () => {
     const pack = makePack(
       [makeItem("a", { opensAt: 9, prereqs: ["ghost"] })],

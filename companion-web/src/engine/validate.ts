@@ -44,6 +44,17 @@ export function validate(pack: Pack): string[] {
   const orders = new Set(pack.positions.map((p) => p.order));
   const itemIds = new Set(pack.items.map((i) => i.id));
 
+  // The position stepper advances by ±1; a gap in the orders would make the
+  // Advance button target a beat that doesn't exist.
+  const sortedOrders = [...orders].sort((a, b) => a - b);
+  for (let i = 1; i < sortedOrders.length; i++) {
+    if (sortedOrders[i] !== sortedOrders[i - 1] + 1) {
+      errors.push(
+        `position orders are not contiguous: ${sortedOrders[i - 1]} is followed by ${sortedOrders[i]}`,
+      );
+    }
+  }
+
   for (const item of pack.items) {
     for (const prereq of item.prereqs.filter((pr) => !itemIds.has(pr))) {
       errors.push(`item '${item.id}' has unknown prereq '${prereq}'`);
