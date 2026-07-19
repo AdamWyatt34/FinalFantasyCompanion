@@ -18,6 +18,7 @@ describe("local client", () => {
       "ff8",
       "ff9",
       "ff10",
+      "ff12",
     ]);
   });
 

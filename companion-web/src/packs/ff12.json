@@ -1,0 +1,251 @@
+{
+  "game": { "id": "ff12", "title": "Final Fantasy XII (PS2)" },
+  "theme": {
+    "tokens": {
+      "bgTop": "#120e08",
+      "bgMid": "#241c10",
+      "bgBottom": "#181208",
+      "panelTop": "#6b5530",
+      "panelMid": "#3e3018",
+      "panelBottom": "#241c0e",
+      "border": "#e2d4b4",
+      "bevel": "#6b593a",
+      "ink": "#f6eeda",
+      "dim": "#c0ae8c",
+      "dimmer": "#9c8c70",
+      "faint": "#6f6248",
+      "gold": "#e8c464",
+      "cyan": "#8fd8c8",
+      "buttonBorder": "#8a7550",
+      "tickDone": "#5e4d2e",
+      "tickTodo": "#241d10"
+    }
+  },
+  "positions": [
+    { "id": "rabanastre", "order": 1, "label": "Rabanastre", "disc": 1 },
+    {
+      "id": "giza",
+      "order": 2,
+      "label": "Giza Plains & Garamsythe",
+      "disc": 1
+    },
+    {
+      "id": "nalbina",
+      "order": 3,
+      "label": "Nalbina & Barheim Passage",
+      "disc": 1
+    },
+    {
+      "id": "bhujerba",
+      "order": 4,
+      "label": "Bhujerba & the Lhusu Mines",
+      "disc": 1
+    },
+    { "id": "leviathan12", "order": 5, "label": "The Leviathan", "disc": 1 },
+    {
+      "id": "raithwall",
+      "order": 6,
+      "label": "Ogir-Yensa & Raithwall's Tomb",
+      "disc": 1
+    },
+    {
+      "id": "jahara",
+      "order": 7,
+      "label": "Jahara & Eruyt Village",
+      "disc": 2
+    },
+    { "id": "hennemines", "order": 8, "label": "Henne Mines", "disc": 2 },
+    { "id": "buromisace", "order": 9, "label": "Mt Bur-Omisace", "disc": 2 },
+    { "id": "miriam", "order": 10, "label": "Stilshrine of Miriam", "disc": 2 },
+    {
+      "id": "salikawood",
+      "order": 11,
+      "label": "Mosphoran & the Salikawood",
+      "disc": 2
+    },
+    { "id": "phoncoast", "order": 12, "label": "Phon Coast", "disc": 2 },
+    {
+      "id": "sochen",
+      "order": 13,
+      "label": "Tchita Uplands & Sochen",
+      "disc": 2
+    },
+    { "id": "archades", "order": 14, "label": "Archades", "disc": 2 },
+    { "id": "draklor", "order": 15, "label": "Draklor Laboratory", "disc": 2 },
+    { "id": "giruvegan", "order": 16, "label": "Giruvegan", "disc": 3 },
+    {
+      "id": "pharos",
+      "order": 17,
+      "label": "Ridorana & the Pharos",
+      "disc": 3
+    },
+    {
+      "id": "bahamut12",
+      "order": 18,
+      "label": "The Sky Fortress Bahamut",
+      "disc": 3
+    }
+  ],
+  "items": [
+    {
+      "id": "zodiacrestraint",
+      "name": "Leave the four cursed chests closed",
+      "type": "key",
+      "location": "Lowtown · Palace cellar · Nalbina · Phon Coast",
+      "window": { "opensAt": 1 },
+      "route": {
+        "at": 1,
+        "rank": 0,
+        "why": "Opening ANY of these four chests silently deletes the Zodiac Spear from the game"
+      },
+      "notes": "Never open: the chest outside Old Dalan's place in Lowtown, the palace treasury cellar chests during the heist, the Confiscatory in Nalbina's dungeons, and the beach chest cluster on the Phon Coast. Mark this collected once you're past each without touching them.",
+      "verified": false
+    },
+    {
+      "id": "zodiacspear",
+      "name": "Zodiac Spear",
+      "type": "weapon",
+      "location": "Necrohol of Nabudis",
+      "window": { "opensAt": 11 },
+      "prereqs": ["zodiacrestraint"],
+      "route": {
+        "at": 11,
+        "rank": 1,
+        "why": "The strongest weapon in the game, in a plain unguarded chest — if you kept the pact"
+      },
+      "notes": "Enter Nabudis through the Salikawood's northeast gate. The chest sits in the Cloister of the Highborn.",
+      "verified": false
+    },
+    {
+      "id": "adrammelech",
+      "name": "Adrammelech",
+      "type": "esper",
+      "location": "Zertinan Caverns",
+      "window": { "opensAt": 6 },
+      "notes": "The Wroth reachable from Ogir-Yensa's sinkholes. Undead swarm the arena — bring Curaja or phoenix downs to weaponize.",
+      "verified": false
+    },
+    {
+      "id": "zalera",
+      "name": "Zalera",
+      "type": "esper",
+      "location": "Barheim Passage — revisit",
+      "window": { "opensAt": 11 },
+      "notes": "Finish the Dantro's Wife errand chain along the Nebra to earn the Barheim Key, then return to the deep tunnels.",
+      "verified": false
+    },
+    {
+      "id": "cuchulainn",
+      "name": "Cúchulainn",
+      "type": "esper",
+      "location": "Garamsythe Waterway — revisit",
+      "window": { "opensAt": 13 },
+      "notes": "The White Mousse hunt yields the Sluice Gate Key; drain the right channels to reach the Impure. The gate puzzle is the real boss.",
+      "verified": false
+    },
+    {
+      "id": "exodus",
+      "name": "Exodus",
+      "type": "esper",
+      "location": "Mosphoran Highwaste — shrine summit",
+      "window": { "opensAt": 11 },
+      "notes": "Free the shrine stones (weather-dependent floating paths) to reach the Judge-Sal.",
+      "verified": false
+    },
+    {
+      "id": "chaos",
+      "name": "Chaos",
+      "type": "esper",
+      "location": "Necrohol of Nabudis",
+      "window": { "opensAt": 11 },
+      "notes": "The three medallions quest (Nabreus Deadlands relics) opens the sealed doors. Fought with magick only — Silence is death.",
+      "verified": false
+    },
+    {
+      "id": "zeromus",
+      "name": "Zeromus",
+      "type": "esper",
+      "location": "Stilshrine of Miriam — revisit",
+      "window": { "opensAt": 16 },
+      "notes": "An acolyte on Mt Bur-Omisace hands over the Stone of the Condemner late in the story; use it at the shrine's waystone. No MP inside.",
+      "verified": false
+    },
+    {
+      "id": "ultima12",
+      "name": "Ultima",
+      "type": "esper",
+      "location": "The Great Crystal, Giruvegan",
+      "window": { "opensAt": 16 },
+      "notes": "The unmapped waystone maze above Giruvegan. Bring patience and a pen — the High Seraph waits at the top.",
+      "verified": false
+    },
+    {
+      "id": "zodiark",
+      "name": "Zodiark",
+      "type": "esper",
+      "location": "Henne Mines — deep section",
+      "window": { "opensAt": 16 },
+      "notes": "Speak with the Geomancer in Jahara once most espers are claimed to open the special charter shaft. The hardest fight on this list.",
+      "verified": false
+    },
+    {
+      "id": "hunts",
+      "name": "Clan hunts & Montblanc's board",
+      "type": "hunt",
+      "location": "Clan Centurio, Rabanastre",
+      "window": { "opensAt": 1 },
+      "route": {
+        "at": 1,
+        "rank": 1,
+        "why": "Sign with Clan Centurio early — hunts gate half the endgame"
+      },
+      "notes": "Petitioner boards refresh as the story advances. Several petitioners vanish into later story states — clear the board when you can.",
+      "verified": false
+    },
+    {
+      "id": "huntclub",
+      "name": "Phon Coast Hunt Club",
+      "type": "hunt",
+      "location": "Phon Coast — Hunters' Camp",
+      "window": { "opensAt": 12 },
+      "notes": "Thirty rare game trophies split between three brothers. How you split them decides the shop's stock — favor one brother deliberately.",
+      "verified": false
+    },
+    {
+      "id": "gilgamesh12",
+      "name": "Gilgamesh",
+      "type": "hunt",
+      "location": "Lhusu Mines — revisit",
+      "window": { "opensAt": 13 },
+      "notes": "Two duels deep in the mines (Site 7 needs the site key). He brings every famous sword that isn't real.",
+      "verified": false
+    },
+    {
+      "id": "genjigear",
+      "name": "Genji gear (steal from Gilgamesh)",
+      "type": "key",
+      "location": "During both Gilgamesh duels",
+      "window": { "opensAt": 13 },
+      "notes": "Glove, armor, helm and shield are STEAL-ONLY across the two fights — kill him without stealing and the set is gone. Steal at each health threshold.",
+      "verified": false
+    },
+    {
+      "id": "omega12",
+      "name": "Omega Mark XII",
+      "type": "hunt",
+      "location": "The Great Crystal",
+      "window": { "opensAt": 16 },
+      "notes": "Hidden in the crystal's second ascent. Drops nothing you need; exists to prove a point.",
+      "verified": false
+    },
+    {
+      "id": "yiazmat",
+      "name": "Yiazmat",
+      "type": "hunt",
+      "location": "Ridorana Cataract",
+      "window": { "opensAt": 17 },
+      "notes": "Unlocks after the rest of the board is clear. Fifty million HP. Bring a book.",
+      "verified": false
+    }
+  ]
+}

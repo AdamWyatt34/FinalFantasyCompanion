@@ -9,6 +9,22 @@ describe("shipped packs", () => {
       "ff8",
       "ff9",
       "ff10",
+      "ff12",
+    ]);
+  });
+
+  it("ff12 pack is structurally sound", () => {
+    const ff12 = getPackById("ff12")!;
+
+    expect(ff12.game.title).toBe("Final Fantasy XII (PS2)");
+    expect(ff12.positions.length).toBe(18);
+    expect(ff12.items.length).toBeGreaterThanOrEqual(14);
+    expect(ff12.items.length).toBeLessThanOrEqual(35);
+    expect(ff12.items.every((i) => !i.verified)).toBe(true);
+    // The most famous missable in the series: the spear requires having left
+    // the four cursed chests closed.
+    expect(ff12.items.find((i) => i.id === "zodiacspear")!.prereqs).toEqual([
+      "zodiacrestraint",
     ]);
   });
 
