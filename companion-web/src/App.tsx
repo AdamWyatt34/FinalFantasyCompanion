@@ -6,6 +6,7 @@ import { useApi } from "./hooks/useApi";
 import { PositionBanner } from "./components/PositionBanner";
 import { RouteTab } from "./components/RouteTab";
 import { AllItemsTab } from "./components/AllItemsTab";
+import { PlanTab } from "./components/PlanTab";
 import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
@@ -79,7 +80,7 @@ function GameApp({
   const availability = useApi(() => api.getAvailability(gameId), [gameId]);
   const route = useApi(() => api.getRoute(gameId), [gameId]);
 
-  const [tab, setTab] = useState<"route" | "all">("route");
+  const [tab, setTab] = useState<"route" | "all" | "plan">("route");
   const [revealed, setRevealed] = useState<Set<string>>(() =>
     readRevealed(gameId),
   );
@@ -368,6 +369,7 @@ function GameApp({
             [
               { id: "route", label: "Route" },
               { id: "all", label: "All items" },
+              { id: "plan", label: "Plan" },
             ] as const
           ).map((t) => (
             <button
@@ -397,7 +399,7 @@ function GameApp({
             onEditNote={editNote}
             onProgress={progressItem}
           />
-        ) : (
+        ) : tab === "all" ? (
           <AllItemsTab
             availability={availability.data}
             revealed={revealed}
@@ -409,6 +411,13 @@ function GameApp({
             onReveal={reveal}
             onEditNote={editNote}
             onProgress={progressItem}
+          />
+        ) : (
+          <PlanTab
+            positions={pack.data.positions}
+            availability={availability.data}
+            position={position}
+            hiddenIds={hiddenIds}
           />
         )}
 
