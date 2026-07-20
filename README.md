@@ -39,7 +39,16 @@ The build uses a relative base path, so it works at any `https://<user>.github.i
   **Import save** to restore it or move it to another device.
 - **New playthrough** archives the current save; **Playthroughs** browses and restores
   archives. **History** shows every tap with one-step undo. **Report** is a shareable
-  per-disc report card. Personal per-item notes (✎ on any card) travel with exports.
+  per-disc report card with a **copyable share link** — a read-only snapshot of your
+  run encoded in the URL itself, no server involved. Personal per-item notes (✎ on
+  any card) travel with exports.
+- The **Plan** tab shows the whole curated route beat by beat. Counter items track
+  tallies (26 primers, 99 frogs). Mutually exclusive choices (FF6's Ragnarok esper
+  vs sword) mark the road not taken as FORGONE. Games with meaningfully different
+  releases (FF10 HD, FF12 Zodiac Age) have a version picker per run.
+- **Add game** installs a community pack from JSON at runtime — see
+  [docs/PACKS.md](docs/PACKS.md). The ⚑ on any card files a prefilled data-correction
+  issue; that's how `verified: false` becomes `true`.
 - Small print: the same game open in two tabs at once can lose a tap to a race — one tab
   at a time per game is the supported mode.
 

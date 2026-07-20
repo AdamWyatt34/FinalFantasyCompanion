@@ -4,11 +4,20 @@ A pack is one JSON file in `companion-web/src/packs/<gameId>.json`. Drop it ther
 it is auto-discovered, validated at load (the app refuses to start on a broken pack),
 and appears in the game switcher. No code changes are required for a new game.
 
+Packs can also be installed at runtime — **Add game** in the app footer loads a
+pack JSON straight into the browser, validated the same way. Perfect for testing
+your pack (or shipping one that never lands in this repo).
+
 ## Anatomy
 
 ```jsonc
 {
-  "game": { "id": "ff8", "title": "Final Fantasy VIII" },
+  "game": {
+    "id": "ff8",
+    "title": "Final Fantasy VIII",
+    // optional: release variants with differing content; first = default
+    "versions": [{ "id": "ps2", "label": "PS2 original" }]
+  },
   "theme": { "tokens": { /* all 17 tokens, see below */ } },
   "positions": [
     { "id": "balamb", "order": 1, "label": "Balamb Garden", "disc": 1 }
@@ -50,6 +59,9 @@ and appears in the game switcher. No code changes are required for a new game.
 | `window.opensAt` | First beat (inclusive) the item is obtainable. |
 | `window.closesAt` | Last beat (inclusive) it is obtainable; **omit for "never closes"**. |
 | `prereqs` | Item ids that must be collected first. Must exist, no cycles. |
+| `excludes` | Mutually exclusive item ids — taking either side marks the other **FORGONE** forever (FF6's Ragnarok esper vs sword). Symmetric; declare on both sides for clarity. |
+| `count` | Target for counter items ("×26 primers" shows a tally with +/−). Omit for a plain checkbox. |
+| `versions` | Version ids (from `game.versions`) this item exists in. Omit for all versions. |
 | `route` | Optional curation: `at` = beat to do it, `rank` = order within that beat, `why` = one-line reason. Unrouted items still appear everywhere they should. |
 | `notes` | One or two sentences of how-to. Assume the player is mid-game on a phone. |
 | `verified` | `false` until the window is confirmed in a real playthrough. Ship `false`. |
@@ -64,8 +76,9 @@ technically possible but absurd, close the window).
 ### Engine semantics (what your data drives)
 
 Status rule chain, first match wins, at player position P:
-collected → missed (P > closesAt) → notYet (P < opensAt) → blocked (missing prereqs)
-→ lastChance (closesAt == P) → closingSoon (closesAt − P ≤ 2) → available.
+collected → forgone (an exclusion partner was taken) → missed (P > closesAt)
+→ notYet (P < opensAt) → blocked (missing prereqs) → lastChance (closesAt == P)
+→ closingSoon (closesAt − P ≤ 2) → available.
 
 Route buckets: NOW (routed at ≤ P, plus every lastChance item), NEXT (routed within
 2 beats), LATER (everything else). A closingSoon item is never allowed to sit in
@@ -82,8 +95,11 @@ that evokes the game's own menus and keep `ink`/`dim` readable on `panelMid`.
 ## Validation (load fails on any of these)
 
 Duplicate position orders or ids · non-contiguous orders · duplicate item ids ·
-unknown or cyclic prereqs · `opensAt`/`closesAt`/`route.at` referencing a missing
-beat · `closesAt` before `opensAt`.
+unknown or cyclic prereqs · unknown or self-referencing `excludes` · invalid
+`count` · `versions` naming an undeclared game version ·
+`opensAt`/`closesAt`/`route.at` referencing a missing beat · `closesAt` before
+`opensAt`. One caveat validation can't catch: don't give an item a prereq that
+only exists in a different version than the item itself.
 
 ## Workflow
 
