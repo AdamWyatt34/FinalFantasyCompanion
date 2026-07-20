@@ -486,6 +486,13 @@ function GameApp({
         <TimelineOverlay
           positions={pack.data.positions}
           position={position}
+          hiddenIds={hiddenIds}
+          getImpact={(target) => api.getAdvanceImpact(gameId, target)}
+          upcomingOpens={(target) =>
+            availability.data!.items.filter(
+              (e) => e.item.opensAt > position && e.item.opensAt <= target,
+            ).length
+          }
           onSelect={requestMove}
           onClose={() => setShowTimeline(false)}
         />
