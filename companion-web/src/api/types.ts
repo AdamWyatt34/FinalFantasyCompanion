@@ -53,6 +53,8 @@ export interface Item {
   prereqs: string[];
   /** Mutually exclusive counterparts — collecting either forecloses the other. */
   excludes: string[];
+  /** Target for counter items ("×26 primers"); 1 = plain checkbox. */
+  count: number;
   notes: string;
   verified: boolean;
   route: RouteInfo | null;
@@ -69,6 +71,8 @@ export interface AvailabilityEntry {
   item: Item;
   status: Status;
   missingPrereqs: string[];
+  /** Current tally for counter items; equals item.count once done. */
+  progress: number;
 }
 
 export interface Availability {
@@ -81,6 +85,7 @@ export interface RouteEntry {
   status: Status;
   masked: boolean;
   missingPrereqs: string[];
+  progress: number;
 }
 
 export interface RouteView {
@@ -99,4 +104,5 @@ export interface AdvanceImpact {
 export interface StateSnapshot {
   position: number;
   collected: string[];
+  progress: Record<string, number>;
 }

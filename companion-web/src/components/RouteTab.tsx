@@ -12,6 +12,7 @@ interface RouteTabProps {
   onToggle: (itemId: string, collected: boolean) => void;
   onReveal: (itemId: string) => void;
   onEditNote: (itemId: string) => void;
+  onProgress: (itemId: string, delta: number) => void;
 }
 
 const SECTIONS: {
@@ -33,6 +34,7 @@ export function RouteTab({
   onToggle,
   onReveal,
   onEditNote,
+  onProgress,
 }: RouteTabProps) {
   const [showHidden, setShowHidden] = useState(false);
 
@@ -51,9 +53,11 @@ export function RouteTab({
       positionLabels={positionLabels}
       hiddenIds={hiddenIds}
       note={notes[entry.item.id]}
+      progress={entry.progress}
       onToggle={() => onToggle(entry.item.id, entry.status === "collected")}
       onReveal={() => onReveal(entry.item.id)}
       onEditNote={() => onEditNote(entry.item.id)}
+      onProgress={(delta) => onProgress(entry.item.id, delta)}
     />
   );
 

@@ -13,6 +13,7 @@ interface AllItemsTabProps {
   onToggle: (itemId: string, collected: boolean) => void;
   onReveal: (itemId: string) => void;
   onEditNote: (itemId: string) => void;
+  onProgress: (itemId: string, delta: number) => void;
 }
 
 const FILTERS = [
@@ -44,6 +45,7 @@ export function AllItemsTab({
   onToggle,
   onReveal,
   onEditNote,
+  onProgress,
 }: AllItemsTabProps) {
   const [filter, setFilter] = useState<FilterId>("all");
   const [typeFilter, setTypeFilter] = useState<ItemType | "all">("all");
@@ -183,11 +185,13 @@ export function AllItemsTab({
             positionLabels={positionLabels}
             hiddenIds={hiddenIds}
             note={notes[entry.item.id]}
+            progress={entry.progress}
             onToggle={() =>
               onToggle(entry.item.id, entry.status === "collected")
             }
             onReveal={() => onReveal(entry.item.id)}
             onEditNote={() => onEditNote(entry.item.id)}
+            onProgress={(delta) => onProgress(entry.item.id, delta)}
           />
         ))}
       </div>

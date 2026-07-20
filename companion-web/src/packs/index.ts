@@ -10,6 +10,7 @@ interface RawItem {
   window: { opensAt: number; closesAt?: number | null };
   prereqs?: string[];
   excludes?: string[];
+  count?: number;
   notes?: string;
   verified?: boolean;
   route?: { at: number; rank: number; why: string } | null;
@@ -37,6 +38,7 @@ export function normalizePack(raw: RawPack): Pack {
       closesAt: i.window.closesAt ?? null,
       prereqs: i.prereqs ?? [],
       excludes: i.excludes ?? [],
+      count: i.count ?? 1,
       notes: i.notes ?? "",
       verified: i.verified ?? false,
       route: i.route ?? null,

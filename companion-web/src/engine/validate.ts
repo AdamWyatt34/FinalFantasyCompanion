@@ -67,6 +67,10 @@ export function validate(pack: Pack): string[] {
       errors.push(`item '${item.id}' excludes itself`);
     }
 
+    if (!Number.isInteger(item.count) || item.count < 1) {
+      errors.push(`item '${item.id}' has invalid count ${item.count}`);
+    }
+
     if (!orders.has(item.opensAt)) {
       errors.push(
         `item '${item.id}' opensAt ${item.opensAt} references a missing position order`,

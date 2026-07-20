@@ -152,6 +152,7 @@ function GameApp({
     type: string;
     to?: number;
     itemId?: string;
+    delta?: number;
   }) => {
     try {
       await api.postEvent(gameId, event);
@@ -212,6 +213,9 @@ function GameApp({
       itemId,
     });
   };
+
+  const progressItem = (itemId: string, delta: number) =>
+    postEvent({ type: "itemProgressed", itemId, delta });
 
   const reveal = (itemId: string) => {
     const next = new Set(revealed).add(itemId);
@@ -358,6 +362,7 @@ function GameApp({
             onToggle={toggleCollected}
             onReveal={reveal}
             onEditNote={editNote}
+            onProgress={progressItem}
           />
         ) : (
           <AllItemsTab
@@ -370,6 +375,7 @@ function GameApp({
             onToggle={toggleCollected}
             onReveal={reveal}
             onEditNote={editNote}
+            onProgress={progressItem}
           />
         )}
 

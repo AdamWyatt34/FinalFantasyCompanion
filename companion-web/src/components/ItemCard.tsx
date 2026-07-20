@@ -12,9 +12,11 @@ interface ItemCardProps {
   positionLabels: Record<number, string>;
   hiddenIds: ReadonlySet<string>;
   note?: string;
+  progress: number;
   onToggle: () => void;
   onReveal: () => void;
   onEditNote: () => void;
+  onProgress: (delta: number) => void;
 }
 
 export function ItemCard({
@@ -27,9 +29,11 @@ export function ItemCard({
   positionLabels,
   hiddenIds,
   note,
+  progress,
   onToggle,
   onReveal,
   onEditNote,
+  onProgress,
 }: ItemCardProps) {
   const isCollected = status === "collected";
   const missed = status === "missed";
@@ -138,7 +142,7 @@ export function ItemCard({
         <div className="text-[11px] mt-1 text-[var(--ff-gold)]">✎ {note}</div>
       )}
 
-      <div className="mt-2 flex gap-2">
+      <div className="mt-2 flex items-center gap-2">
         {masked ? (
           <button
             onClick={onReveal}
@@ -148,16 +152,46 @@ export function ItemCard({
           </button>
         ) : (
           <>
-            <button
-              onClick={onToggle}
-              className={`text-[11px] font-mono px-3 py-1 rounded border ${
-                isCollected
-                  ? "border-[var(--ff-cyan)]/55 text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
-                  : "border-[var(--ff-button-border)] text-[var(--ff-ink)]"
-              }`}
-            >
-              {isCollected ? "✓ Collected" : "Mark collected"}
-            </button>
+            {item.count > 1 ? (
+              <span className="flex items-center gap-1.5">
+                <button
+                  onClick={() => onProgress(-1)}
+                  disabled={progress <= 0}
+                  aria-label={`Decrease ${item.name} tally`}
+                  className="text-[13px] font-mono w-7 py-0.5 rounded border border-[var(--ff-button-border)] text-[var(--ff-ink)] disabled:opacity-40"
+                >
+                  −
+                </button>
+                <span
+                  className={`text-[11px] font-mono min-w-12 text-center ${
+                    isCollected
+                      ? "text-[var(--ff-cyan)]"
+                      : "text-[var(--ff-ink)]"
+                  }`}
+                >
+                  {progress} / {item.count}
+                </span>
+                <button
+                  onClick={() => onProgress(1)}
+                  disabled={progress >= item.count}
+                  aria-label={`Increase ${item.name} tally`}
+                  className="text-[13px] font-mono w-7 py-0.5 rounded border border-[var(--ff-button-border)] text-[var(--ff-ink)] disabled:opacity-40"
+                >
+                  ＋
+                </button>
+              </span>
+            ) : (
+              <button
+                onClick={onToggle}
+                className={`text-[11px] font-mono px-3 py-1 rounded border ${
+                  isCollected
+                    ? "border-[var(--ff-cyan)]/55 text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/10"
+                    : "border-[var(--ff-button-border)] text-[var(--ff-ink)]"
+                }`}
+              >
+                {isCollected ? "✓ Collected" : "Mark collected"}
+              </button>
+            )}
             <button
               onClick={onEditNote}
               aria-label={`Edit note for ${item.name}`}

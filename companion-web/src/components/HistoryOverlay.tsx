@@ -42,6 +42,8 @@ export function HistoryOverlay({
         return `✓ Collected ${itemNames[evt.itemId] ?? evt.itemId}`;
       case "itemUncollected":
         return `✗ Unmarked ${itemNames[evt.itemId] ?? evt.itemId}`;
+      case "itemProgressed":
+        return `${evt.delta > 0 ? "＋" : "−"}${Math.abs(evt.delta)} ${itemNames[evt.itemId] ?? evt.itemId}`;
     }
   };
 

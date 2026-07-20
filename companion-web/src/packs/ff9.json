@@ -237,6 +237,7 @@
       "type": "quest",
       "location": "Every Qu's Marsh in the world",
       "window": { "opensAt": 5 },
+      "count": 99,
       "prereqs": ["quina"],
       "notes": "Long-haul minigame. Rewards scale with the count; the 99th brings Quale's challenge.",
       "verified": false
@@ -372,6 +373,7 @@
       "type": "quest",
       "location": "Forest, Lagoon, and Air Garden digs",
       "window": { "opensAt": 16 },
+      "count": 24,
       "prereqs": ["skychoco"],
       "notes": "Completion sweep of every chocograph treasure.",
       "verified": false,
@@ -438,6 +440,7 @@
       "type": "quest",
       "location": "Hidden across the world — turn in to Queen Stella, Treno",
       "window": { "opensAt": 7 },
+      "count": 12,
       "prereqs": [],
       "notes": "Rewards per coin turned in — the Blood Sword for Steiner arrives at five.",
       "verified": false

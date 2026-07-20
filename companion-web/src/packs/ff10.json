@@ -1,5 +1,8 @@
 {
-  "game": { "id": "ff10", "title": "Final Fantasy X" },
+  "game": {
+    "id": "ff10",
+    "title": "Final Fantasy X"
+  },
   "theme": {
     "tokens": {
       "bgTop": "#03121a",
@@ -22,26 +25,96 @@
     }
   },
   "positions": [
-    { "id": "zanarkandstart", "order": 1, "label": "Zanarkand", "disc": 1 },
-    { "id": "baaj", "order": 2, "label": "Baaj Temple", "disc": 1 },
-    { "id": "besaid", "order": 3, "label": "Besaid Island", "disc": 1 },
-    { "id": "kilika", "order": 4, "label": "S.S. Liki & Kilika", "disc": 1 },
-    { "id": "luca", "order": 5, "label": "Luca", "disc": 1 },
-    { "id": "miihen", "order": 6, "label": "Mi'ihen Highroad", "disc": 1 },
-    { "id": "operation", "order": 7, "label": "Operation Mi'ihen", "disc": 1 },
-    { "id": "djose", "order": 8, "label": "Djose & the Moonflow", "disc": 1 },
-    { "id": "guadosalam", "order": 9, "label": "Guadosalam", "disc": 1 },
+    {
+      "id": "zanarkandstart",
+      "order": 1,
+      "label": "Zanarkand",
+      "disc": 1
+    },
+    {
+      "id": "baaj",
+      "order": 2,
+      "label": "Baaj Temple",
+      "disc": 1
+    },
+    {
+      "id": "besaid",
+      "order": 3,
+      "label": "Besaid Island",
+      "disc": 1
+    },
+    {
+      "id": "kilika",
+      "order": 4,
+      "label": "S.S. Liki & Kilika",
+      "disc": 1
+    },
+    {
+      "id": "luca",
+      "order": 5,
+      "label": "Luca",
+      "disc": 1
+    },
+    {
+      "id": "miihen",
+      "order": 6,
+      "label": "Mi'ihen Highroad",
+      "disc": 1
+    },
+    {
+      "id": "operation",
+      "order": 7,
+      "label": "Operation Mi'ihen",
+      "disc": 1
+    },
+    {
+      "id": "djose",
+      "order": 8,
+      "label": "Djose & the Moonflow",
+      "disc": 1
+    },
+    {
+      "id": "guadosalam",
+      "order": 9,
+      "label": "Guadosalam",
+      "disc": 1
+    },
     {
       "id": "thunderplains",
       "order": 10,
       "label": "Thunder Plains",
       "disc": 1
     },
-    { "id": "macalania", "order": 11, "label": "Macalania Temple", "disc": 1 },
-    { "id": "home", "order": 12, "label": "Sanubia Desert & Home", "disc": 2 },
-    { "id": "bevelle", "order": 13, "label": "Bevelle", "disc": 2 },
-    { "id": "calmlands", "order": 14, "label": "The Calm Lands", "disc": 2 },
-    { "id": "gagazet", "order": 15, "label": "Mt. Gagazet", "disc": 2 },
+    {
+      "id": "macalania",
+      "order": 11,
+      "label": "Macalania Temple",
+      "disc": 1
+    },
+    {
+      "id": "home",
+      "order": 12,
+      "label": "Sanubia Desert & Home",
+      "disc": 2
+    },
+    {
+      "id": "bevelle",
+      "order": 13,
+      "label": "Bevelle",
+      "disc": 2
+    },
+    {
+      "id": "calmlands",
+      "order": 14,
+      "label": "The Calm Lands",
+      "disc": 2
+    },
+    {
+      "id": "gagazet",
+      "order": 15,
+      "label": "Mt. Gagazet",
+      "disc": 2
+    },
     {
       "id": "zanarkandruins",
       "order": 16,
@@ -54,7 +127,12 @@
       "label": "The Airship — World Opens",
       "disc": 3
     },
-    { "id": "sin", "order": 18, "label": "Inside Sin", "disc": 3 }
+    {
+      "id": "sin",
+      "order": 18,
+      "label": "Inside Sin",
+      "disc": 3
+    }
   ],
   "items": [
     {
@@ -62,7 +140,10 @@
       "name": "Al Bhed Primers in Home",
       "type": "primer",
       "location": "Home — every room",
-      "window": { "opensAt": 12, "closesAt": 12 },
+      "window": {
+        "opensAt": 12,
+        "closesAt": 12
+      },
       "route": {
         "at": 12,
         "rank": 0,
@@ -76,7 +157,10 @@
       "name": "Al Bhed Primer — Via Purifico",
       "type": "primer",
       "location": "Bevelle — Via Purifico",
-      "window": { "opensAt": 13, "closesAt": 13 },
+      "window": {
+        "opensAt": 13,
+        "closesAt": 13
+      },
       "route": {
         "at": 13,
         "rank": 0,
@@ -90,16 +174,22 @@
       "name": "All other Al Bhed Primers",
       "type": "primer",
       "location": "Across Spira",
-      "window": { "opensAt": 1 },
+      "window": {
+        "opensAt": 1
+      },
       "notes": "The rest stay collectible (compilation spheres can copy previously found volumes). Full literacy pays off in Rikku's Home and the Omega Ruins chatter.",
-      "verified": false
+      "verified": false,
+      "count": 21
     },
     {
       "id": "valefor2",
       "name": "Valefor's second Overdrive",
       "type": "aeon",
       "location": "Besaid Village",
-      "window": { "opensAt": 3, "closesAt": 12 },
+      "window": {
+        "opensAt": 3,
+        "closesAt": 12
+      },
       "route": {
         "at": 3,
         "rank": 2,
@@ -113,35 +203,44 @@
       "name": "Destruction Sphere treasures",
       "type": "quest",
       "location": "Every Cloister of Trials",
-      "window": { "opensAt": 3, "closesAt": 16 },
+      "window": {
+        "opensAt": 3,
+        "closesAt": 16
+      },
       "route": {
         "at": 3,
         "rank": 1,
         "why": "Take each temple's hidden treasure during its first visit"
       },
       "notes": "Besaid, Kilika, Djose, Macalania, Bevelle, Zanarkand. All six are needed for Anima. In HD, Dark Aeons block several return trips — treat each first visit as the only visit.",
-      "verified": false
+      "verified": false,
+      "count": 6
     },
     {
       "id": "jechtspheres",
       "name": "Jecht Spheres ×10",
       "type": "quest",
       "location": "Across Spira",
-      "window": { "opensAt": 11 },
+      "window": {
+        "opensAt": 11
+      },
       "route": {
         "at": 14,
         "rank": 2,
         "why": "Start the circuit — they unlock Auron's overdrives"
       },
       "notes": "First one drops from Spherimorph. Besaid, S.S. Liki, Luca stadium, Mi'ihen, Moonflow, Macalania woods and more — a few sit behind HD Dark Aeon territory, so sweep early where possible.",
-      "verified": false
+      "verified": false,
+      "count": 10
     },
     {
       "id": "yojimbo",
       "name": "Yojimbo",
       "type": "aeon",
       "location": "Cavern of the Stolen Fayth",
-      "window": { "opensAt": 14 },
+      "window": {
+        "opensAt": 14
+      },
       "route": {
         "at": 14,
         "rank": 1,
@@ -155,7 +254,10 @@
       "name": "Sun Crest",
       "type": "key",
       "location": "Zanarkand Dome",
-      "window": { "opensAt": 16, "closesAt": 16 },
+      "window": {
+        "opensAt": 16,
+        "closesAt": 16
+      },
       "route": {
         "at": 16,
         "rank": 0,
@@ -169,7 +271,9 @@
       "name": "Celestial Mirror",
       "type": "key",
       "location": "Remiem Temple → Macalania Woods",
-      "window": { "opensAt": 14 },
+      "window": {
+        "opensAt": 14
+      },
       "route": {
         "at": 14,
         "rank": 0,
@@ -183,8 +287,12 @@
       "name": "Anima",
       "type": "aeon",
       "location": "Baaj Temple",
-      "window": { "opensAt": 17 },
-      "prereqs": ["destructionspheres"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "destructionspheres"
+      ],
       "route": {
         "at": 17,
         "rank": 1,
@@ -198,8 +306,13 @@
       "name": "The Magus Sisters",
       "type": "aeon",
       "location": "Remiem Temple",
-      "window": { "opensAt": 17 },
-      "prereqs": ["anima", "yojimbo"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "anima",
+        "yojimbo"
+      ],
       "notes": "Blossom Crown (capture Gagazet's fiends) + Flower Sceptre (beat Belgemine's Bahamut) open the sealed door.",
       "verified": false
     },
@@ -208,8 +321,13 @@
       "name": "Caladbolg (Tidus)",
       "type": "weapon",
       "location": "Calm Lands — northwest gorge",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror", "suncrest"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror",
+        "suncrest"
+      ],
       "notes": "Beat the chocobo trainer's race to open the chest, then the Sun Sigil demands 0:00.0 in the balloon race. The sigil race is the hard part.",
       "verified": false
     },
@@ -218,8 +336,12 @@
       "name": "Nirvana (Yuna)",
       "type": "weapon",
       "location": "Monster Arena chest",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror"
+      ],
       "notes": "Capture one of each Calm Lands species. Moon Crest is on Besaid beach (HD: Dark Valefor territory); Moon Sigil comes from defeating all of Belgemine's aeons at Remiem.",
       "verified": false
     },
@@ -228,8 +350,12 @@
       "name": "World Champion (Wakka)",
       "type": "weapon",
       "location": "Luca — café owner",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror"
+      ],
       "notes": "Requires blitzball standing. Jupiter Crest in the Aurochs' locker room; Jupiter Sigil from league prizes with Attack/Status/Aurochs Reels learned.",
       "verified": false
     },
@@ -238,8 +364,12 @@
       "name": "God-hand (Rikku)",
       "type": "weapon",
       "location": "Mushroom Rock — hovering chest",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror"
+      ],
       "notes": "Input GODHAND at the airship console. Mercury Crest in Sanubia's sandpit; Mercury Sigil from the Village of the Cactuars gauntlet.",
       "verified": false
     },
@@ -248,8 +378,12 @@
       "name": "Masamune (Auron)",
       "type": "weapon",
       "location": "Mushroom Rock — the statue",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror"
+      ],
       "notes": "Mars Crest on the Old Mi'ihen Road; Mars Sigil for unlocking ten Monster Arena creations. Offer the crest at the sealed statue.",
       "verified": false
     },
@@ -258,8 +392,12 @@
       "name": "Onion Knight (Lulu)",
       "type": "weapon",
       "location": "Baaj Temple — underwater chest",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror"
+      ],
       "notes": "Venus Crest in the Farplane; Venus Sigil for dodging 200 consecutive lightning bolts. Yes, two hundred.",
       "verified": false
     },
@@ -268,8 +406,12 @@
       "name": "Spirit Lance (Kimahri)",
       "type": "weapon",
       "location": "Thunder Plains — the cactuar stones",
-      "window": { "opensAt": 17 },
-      "prereqs": ["celestialmirror"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "celestialmirror"
+      ],
       "notes": "Pray at the three cactuar stones, catch the ghost. Saturn Crest on Gagazet; Saturn Sigil from the butterfly hunts in Macalania.",
       "verified": false
     },
@@ -278,7 +420,9 @@
       "name": "Monster Arena",
       "type": "quest",
       "location": "The Calm Lands",
-      "window": { "opensAt": 14 },
+      "window": {
+        "opensAt": 14
+      },
       "route": {
         "at": 14,
         "rank": 3,
@@ -292,7 +436,9 @@
       "name": "Blitzball & the Reels",
       "type": "quest",
       "location": "Luca stadium — anywhere via save spheres",
-      "window": { "opensAt": 5 },
+      "window": {
+        "opensAt": 5
+      },
       "route": {
         "at": 5,
         "rank": 1,
@@ -306,7 +452,9 @@
       "name": "Airship passwords & coordinates",
       "type": "key",
       "location": "Airship console",
-      "window": { "opensAt": 17 },
+      "window": {
+        "opensAt": 17
+      },
       "notes": "GODHAND, VICTORIOUS, MURASA as passwords; Baaj and the Sanubia ruins via hidden coordinates. Free gear for typing.",
       "verified": false
     },
@@ -315,17 +463,24 @@
       "name": "Dark Aeons",
       "type": "quest",
       "location": "Across Spira (HD remaster)",
-      "window": { "opensAt": 17 },
+      "window": {
+        "opensAt": 17
+      },
       "notes": "Valefor at Besaid, Ifrit at Bikanel, Ixion on the Thunder Plains, Shiva at Macalania, Bahamut at the Zanarkand Dome, Yojimbo in the cavern, Anima at Baaj, the Magus Sisters on Gagazet. Superboss tier — approach with a finished grid.",
-      "verified": false
+      "verified": false,
+      "count": 8
     },
     {
       "id": "penance",
       "name": "Penance",
       "type": "quest",
       "location": "Airship destination list",
-      "window": { "opensAt": 17 },
-      "prereqs": ["darkaeons"],
+      "window": {
+        "opensAt": 17
+      },
+      "prereqs": [
+        "darkaeons"
+      ],
       "notes": "Appears after every Dark Aeon falls. The true final exam.",
       "verified": false
     }

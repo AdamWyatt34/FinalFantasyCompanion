@@ -39,13 +39,18 @@ function stateOf(pack: Pack): PlaythroughState {
 
 function snapshot(pack: Pack): StateSnapshot {
   const state = stateOf(pack);
-  return { position: state.position, collected: [...state.collected] };
+  return {
+    position: state.position,
+    collected: [...state.collected],
+    progress: Object.fromEntries(state.progress),
+  };
 }
 
 export interface ProgressEventRequest {
   type: string;
   to?: number;
   itemId?: string;
+  delta?: number;
 }
 
 function toProgressEvent(
@@ -75,6 +80,34 @@ function toProgressEvent(
         throw new Error(`Unknown item id '${itemId}'`);
       }
       return { type: request.type, itemId, occurredAt };
+    }
+    case "itemProgressed": {
+      if (request.itemId === undefined) {
+        throw new Error(`Event type 'itemProgressed' requires 'itemId'`);
+      }
+      const itemId = request.itemId;
+      const item = pack.items.find((i) => i.id === itemId);
+      if (item === undefined) {
+        throw new Error(`Unknown item id '${itemId}'`);
+      }
+      if (item.count <= 1) {
+        throw new Error(`Item '${itemId}' is not a counter item`);
+      }
+      if (
+        request.delta === undefined ||
+        !Number.isInteger(request.delta) ||
+        request.delta === 0
+      ) {
+        throw new Error(
+          `Event type 'itemProgressed' requires a non-zero integer 'delta'`,
+        );
+      }
+      return {
+        type: "itemProgressed",
+        itemId,
+        delta: request.delta,
+        occurredAt,
+      };
     }
     default:
       throw new Error(`Unknown event type '${request.type}'`);

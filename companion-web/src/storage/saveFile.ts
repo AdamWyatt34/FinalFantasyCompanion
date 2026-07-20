@@ -97,6 +97,14 @@ export function installSave(pack: Pack, save: SaveFile): void {
           throw new Error(`Save references unknown item '${evt.itemId}'.`);
         }
         break;
+      case "itemProgressed":
+        if (!itemIds.has(evt.itemId)) {
+          throw new Error(`Save references unknown item '${evt.itemId}'.`);
+        }
+        if (!Number.isInteger(evt.delta)) {
+          throw new Error("Save contains a malformed event.");
+        }
+        break;
       default:
         throw new Error(`Save contains an unknown event type.`);
     }

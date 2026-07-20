@@ -43,37 +43,44 @@ export function classify(
   foreclosed: ReadonlySet<string> = NO_FORECLOSURES,
 ): AvailabilityEntry {
   const p = state.position;
+  const progress =
+    state.progress.get(item.id) ??
+    (state.collected.has(item.id) ? item.count : 0);
+  const entry = (
+    status: AvailabilityEntry["status"],
+    missingPrereqs: string[] = [],
+  ): AvailabilityEntry => ({ item, status, missingPrereqs, progress });
 
   if (state.collected.has(item.id)) {
-    return { item, status: "collected", missingPrereqs: [] };
+    return entry("collected");
   }
 
   if (foreclosed.has(item.id)) {
-    return { item, status: "forgone", missingPrereqs: [] };
+    return entry("forgone");
   }
 
   if (item.closesAt != null && p > item.closesAt) {
-    return { item, status: "missed", missingPrereqs: [] };
+    return entry("missed");
   }
 
   if (p < item.opensAt) {
-    return { item, status: "notYet", missingPrereqs: [] };
+    return entry("notYet");
   }
 
   const missing = item.prereqs.filter((pr) => !state.collected.has(pr));
   if (missing.length > 0) {
-    return { item, status: "blocked", missingPrereqs: missing };
+    return entry("blocked", missing);
   }
 
   if (item.closesAt === p) {
-    return { item, status: "lastChance", missingPrereqs: [] };
+    return entry("lastChance");
   }
 
   if (item.closesAt != null && item.closesAt - p <= LOOKAHEAD) {
-    return { item, status: "closingSoon", missingPrereqs: [] };
+    return entry("closingSoon");
   }
 
-  return { item, status: "available", missingPrereqs: [] };
+  return entry("available");
 }
 
 export function projectAvailability(

@@ -1,5 +1,8 @@
 {
-  "game": { "id": "ff12", "title": "Final Fantasy XII (PS2)" },
+  "game": {
+    "id": "ff12",
+    "title": "Final Fantasy XII (PS2)"
+  },
   "theme": {
     "tokens": {
       "bgTop": "#120e08",
@@ -22,7 +25,12 @@
     }
   },
   "positions": [
-    { "id": "rabanastre", "order": 1, "label": "Rabanastre", "disc": 1 },
+    {
+      "id": "rabanastre",
+      "order": 1,
+      "label": "Rabanastre",
+      "disc": 1
+    },
     {
       "id": "giza",
       "order": 2,
@@ -41,7 +49,12 @@
       "label": "Bhujerba & the Lhusu Mines",
       "disc": 1
     },
-    { "id": "leviathan12", "order": 5, "label": "The Leviathan", "disc": 1 },
+    {
+      "id": "leviathan12",
+      "order": 5,
+      "label": "The Leviathan",
+      "disc": 1
+    },
     {
       "id": "raithwall",
       "order": 6,
@@ -54,25 +67,60 @@
       "label": "Jahara & Eruyt Village",
       "disc": 2
     },
-    { "id": "hennemines", "order": 8, "label": "Henne Mines", "disc": 2 },
-    { "id": "buromisace", "order": 9, "label": "Mt Bur-Omisace", "disc": 2 },
-    { "id": "miriam", "order": 10, "label": "Stilshrine of Miriam", "disc": 2 },
+    {
+      "id": "hennemines",
+      "order": 8,
+      "label": "Henne Mines",
+      "disc": 2
+    },
+    {
+      "id": "buromisace",
+      "order": 9,
+      "label": "Mt Bur-Omisace",
+      "disc": 2
+    },
+    {
+      "id": "miriam",
+      "order": 10,
+      "label": "Stilshrine of Miriam",
+      "disc": 2
+    },
     {
       "id": "salikawood",
       "order": 11,
       "label": "Mosphoran & the Salikawood",
       "disc": 2
     },
-    { "id": "phoncoast", "order": 12, "label": "Phon Coast", "disc": 2 },
+    {
+      "id": "phoncoast",
+      "order": 12,
+      "label": "Phon Coast",
+      "disc": 2
+    },
     {
       "id": "sochen",
       "order": 13,
       "label": "Tchita Uplands & Sochen",
       "disc": 2
     },
-    { "id": "archades", "order": 14, "label": "Archades", "disc": 2 },
-    { "id": "draklor", "order": 15, "label": "Draklor Laboratory", "disc": 2 },
-    { "id": "giruvegan", "order": 16, "label": "Giruvegan", "disc": 3 },
+    {
+      "id": "archades",
+      "order": 14,
+      "label": "Archades",
+      "disc": 2
+    },
+    {
+      "id": "draklor",
+      "order": 15,
+      "label": "Draklor Laboratory",
+      "disc": 2
+    },
+    {
+      "id": "giruvegan",
+      "order": 16,
+      "label": "Giruvegan",
+      "disc": 3
+    },
     {
       "id": "pharos",
       "order": 17,
@@ -92,7 +140,9 @@
       "name": "Leave the four cursed chests closed",
       "type": "key",
       "location": "Lowtown · Palace cellar · Nalbina · Phon Coast",
-      "window": { "opensAt": 1 },
+      "window": {
+        "opensAt": 1
+      },
       "route": {
         "at": 1,
         "rank": 0,
@@ -106,8 +156,12 @@
       "name": "Zodiac Spear",
       "type": "weapon",
       "location": "Necrohol of Nabudis",
-      "window": { "opensAt": 11 },
-      "prereqs": ["zodiacrestraint"],
+      "window": {
+        "opensAt": 11
+      },
+      "prereqs": [
+        "zodiacrestraint"
+      ],
       "route": {
         "at": 11,
         "rank": 1,
@@ -121,7 +175,9 @@
       "name": "Adrammelech",
       "type": "esper",
       "location": "Zertinan Caverns",
-      "window": { "opensAt": 6 },
+      "window": {
+        "opensAt": 6
+      },
       "notes": "The Wroth reachable from Ogir-Yensa's sinkholes. Undead swarm the arena — bring Curaja or phoenix downs to weaponize.",
       "verified": false
     },
@@ -130,7 +186,9 @@
       "name": "Zalera",
       "type": "esper",
       "location": "Barheim Passage — revisit",
-      "window": { "opensAt": 11 },
+      "window": {
+        "opensAt": 11
+      },
       "notes": "Finish the Dantro's Wife errand chain along the Nebra to earn the Barheim Key, then return to the deep tunnels.",
       "verified": false
     },
@@ -139,7 +197,9 @@
       "name": "Cúchulainn",
       "type": "esper",
       "location": "Garamsythe Waterway — revisit",
-      "window": { "opensAt": 13 },
+      "window": {
+        "opensAt": 13
+      },
       "notes": "The White Mousse hunt yields the Sluice Gate Key; drain the right channels to reach the Impure. The gate puzzle is the real boss.",
       "verified": false
     },
@@ -148,7 +208,9 @@
       "name": "Exodus",
       "type": "esper",
       "location": "Mosphoran Highwaste — shrine summit",
-      "window": { "opensAt": 11 },
+      "window": {
+        "opensAt": 11
+      },
       "notes": "Free the shrine stones (weather-dependent floating paths) to reach the Judge-Sal.",
       "verified": false
     },
@@ -157,7 +219,9 @@
       "name": "Chaos",
       "type": "esper",
       "location": "Necrohol of Nabudis",
-      "window": { "opensAt": 11 },
+      "window": {
+        "opensAt": 11
+      },
       "notes": "The three medallions quest (Nabreus Deadlands relics) opens the sealed doors. Fought with magick only — Silence is death.",
       "verified": false
     },
@@ -166,7 +230,9 @@
       "name": "Zeromus",
       "type": "esper",
       "location": "Stilshrine of Miriam — revisit",
-      "window": { "opensAt": 16 },
+      "window": {
+        "opensAt": 16
+      },
       "notes": "An acolyte on Mt Bur-Omisace hands over the Stone of the Condemner late in the story; use it at the shrine's waystone. No MP inside.",
       "verified": false
     },
@@ -175,7 +241,9 @@
       "name": "Ultima",
       "type": "esper",
       "location": "The Great Crystal, Giruvegan",
-      "window": { "opensAt": 16 },
+      "window": {
+        "opensAt": 16
+      },
       "notes": "The unmapped waystone maze above Giruvegan. Bring patience and a pen — the High Seraph waits at the top.",
       "verified": false
     },
@@ -184,7 +252,9 @@
       "name": "Zodiark",
       "type": "esper",
       "location": "Henne Mines — deep section",
-      "window": { "opensAt": 16 },
+      "window": {
+        "opensAt": 16
+      },
       "notes": "Speak with the Geomancer in Jahara once most espers are claimed to open the special charter shaft. The hardest fight on this list.",
       "verified": false
     },
@@ -193,7 +263,9 @@
       "name": "Clan hunts & Montblanc's board",
       "type": "hunt",
       "location": "Clan Centurio, Rabanastre",
-      "window": { "opensAt": 1 },
+      "window": {
+        "opensAt": 1
+      },
       "route": {
         "at": 1,
         "rank": 1,
@@ -207,16 +279,21 @@
       "name": "Phon Coast Hunt Club",
       "type": "hunt",
       "location": "Phon Coast — Hunters' Camp",
-      "window": { "opensAt": 12 },
+      "window": {
+        "opensAt": 12
+      },
       "notes": "Thirty rare game trophies split between three brothers. How you split them decides the shop's stock — favor one brother deliberately.",
-      "verified": false
+      "verified": false,
+      "count": 30
     },
     {
       "id": "gilgamesh12",
       "name": "Gilgamesh",
       "type": "hunt",
       "location": "Lhusu Mines — revisit",
-      "window": { "opensAt": 13 },
+      "window": {
+        "opensAt": 13
+      },
       "notes": "Two duels deep in the mines (Site 7 needs the site key). He brings every famous sword that isn't real.",
       "verified": false
     },
@@ -225,7 +302,9 @@
       "name": "Genji gear (steal from Gilgamesh)",
       "type": "key",
       "location": "During both Gilgamesh duels",
-      "window": { "opensAt": 13 },
+      "window": {
+        "opensAt": 13
+      },
       "notes": "Glove, armor, helm and shield are STEAL-ONLY across the two fights — kill him without stealing and the set is gone. Steal at each health threshold.",
       "verified": false
     },
@@ -234,7 +313,9 @@
       "name": "Omega Mark XII",
       "type": "hunt",
       "location": "The Great Crystal",
-      "window": { "opensAt": 16 },
+      "window": {
+        "opensAt": 16
+      },
       "notes": "Hidden in the crystal's second ascent. Drops nothing you need; exists to prove a point.",
       "verified": false
     },
@@ -243,7 +324,9 @@
       "name": "Yiazmat",
       "type": "hunt",
       "location": "Ridorana Cataract",
-      "window": { "opensAt": 17 },
+      "window": {
+        "opensAt": 17
+      },
       "notes": "Unlocks after the rest of the board is clear. Fifty million HP. Bring a book.",
       "verified": false
     }

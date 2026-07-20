@@ -23,6 +23,7 @@ export function makeItem(id: string, over: Partial<Item> = {}): Item {
     closesAt: null,
     prereqs: [],
     excludes: [],
+    count: 1,
     notes: `Notes for ${id}`,
     verified: false,
     route: null,
@@ -63,7 +64,15 @@ export const uncollected = (itemId: string): ProgressEvent => ({
   occurredAt: TIMESTAMP,
 });
 
+export const progressed = (itemId: string, delta: number): ProgressEvent => ({
+  type: "itemProgressed",
+  itemId,
+  delta,
+  occurredAt: TIMESTAMP,
+});
+
 export const at = (position: number, ...collectedIds: string[]) => ({
   position,
   collected: new Set(collectedIds),
+  progress: new Map<string, number>(),
 });

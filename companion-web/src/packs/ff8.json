@@ -309,6 +309,7 @@
       "type": "magazine",
       "location": "Hotels & bars across the world",
       "window": { "opensAt": 5, "closesAt": 18 },
+      "count": 12,
       "notes": "Timber, Dollet pub, Balamb hotel, FH, Trabia, Shumi, White SeeD ship and more — several rooms lock on disc 4. They feed Selphie's website and the Sir Laguna lore.",
       "verified": false
     },

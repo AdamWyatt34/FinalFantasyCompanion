@@ -6,10 +6,50 @@ import {
   corrected,
   makeItem,
   makePack,
+  progressed,
   uncollected,
 } from "./testing/builders";
 
 const pack = makePack([makeItem("beta")]);
+
+describe("counter items (itemProgressed)", () => {
+  const counterPack = makePack([makeItem("primers", { count: 5 })]);
+
+  it("progress accumulates and clamps to [0, count]", () => {
+    const state = fold(counterPack, [
+      progressed("primers", 2),
+      progressed("primers", 9),
+      progressed("primers", -1),
+    ]);
+
+    expect(state.progress.get("primers")).toBe(4);
+    expect(state.collected.has("primers")).toBe(false);
+  });
+
+  it("reaching the count marks the item collected; dropping below unmarks it", () => {
+    const full = fold(counterPack, [progressed("primers", 5)]);
+    expect(full.collected.has("primers")).toBe(true);
+
+    const dropped = fold(counterPack, [
+      progressed("primers", 5),
+      progressed("primers", -1),
+    ]);
+    expect(dropped.collected.has("primers")).toBe(false);
+    expect(dropped.progress.get("primers")).toBe(4);
+  });
+
+  it("itemCollected on a counter fills its progress; uncollect resets it", () => {
+    const filled = fold(counterPack, [collected("primers")]);
+    expect(filled.progress.get("primers")).toBe(5);
+
+    const reset = fold(counterPack, [
+      collected("primers"),
+      uncollected("primers"),
+    ]);
+    expect(reset.progress.get("primers") ?? 0).toBe(0);
+    expect(reset.collected.has("primers")).toBe(false);
+  });
+});
 
 describe("PlaythroughState fold", () => {
   it("empty log starts at the lowest position order with nothing collected", () => {

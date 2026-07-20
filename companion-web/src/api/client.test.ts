@@ -47,6 +47,46 @@ describe("local client", () => {
     ).rejects.toThrow("Unknown event type 'teleported'");
   });
 
+  it("itemProgressed advances a counter and completes it at the target", async () => {
+    // ff9's stellazzio coins are a 12-count counter item.
+    await api.postEvent("ff9", {
+      type: "itemProgressed",
+      itemId: "stellazzio",
+      delta: 11,
+    });
+    let availability = await api.getAvailability("ff9");
+    let entry = availability.items.find((e) => e.item.id === "stellazzio")!;
+    expect(entry.progress).toBe(11);
+    expect(entry.status).not.toBe("collected");
+
+    await api.postEvent("ff9", {
+      type: "itemProgressed",
+      itemId: "stellazzio",
+      delta: 1,
+    });
+    availability = await api.getAvailability("ff9");
+    entry = availability.items.find((e) => e.item.id === "stellazzio")!;
+    expect(entry.progress).toBe(12);
+    expect(entry.status).toBe("collected");
+  });
+
+  it("rejects itemProgressed on a non-counter item and zero deltas", async () => {
+    await expect(
+      api.postEvent("ff7", {
+        type: "itemProgressed",
+        itemId: "kotr",
+        delta: 1,
+      }),
+    ).rejects.toThrow("not a counter item");
+    await expect(
+      api.postEvent("ff9", {
+        type: "itemProgressed",
+        itemId: "stellazzio",
+        delta: 0,
+      }),
+    ).rejects.toThrow("non-zero integer");
+  });
+
   it("undo removes exactly the newest event", async () => {
     await api.postEvent("ff7", { type: "positionAdvanced", to: 3 });
     await api.postEvent("ff7", { type: "itemCollected", itemId: "beta" });

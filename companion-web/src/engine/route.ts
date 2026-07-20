@@ -30,6 +30,7 @@ const toEntry = (e: AvailabilityEntry, p: number): RouteEntry => ({
   status: e.status,
   masked: e.item.opensAt > p,
   missingPrereqs: e.missingPrereqs,
+  progress: e.progress,
 });
 
 /**

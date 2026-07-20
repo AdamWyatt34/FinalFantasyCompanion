@@ -434,6 +434,7 @@
       "type": "quest",
       "location": "Across the World of Ruin",
       "window": { "opensAt": 17 },
+      "count": 8,
       "route": {
         "at": 21,
         "rank": 2,
