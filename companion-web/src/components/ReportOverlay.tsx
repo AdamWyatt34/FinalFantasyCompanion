@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { Availability, Pack } from "../api/types";
 import { useDialog } from "../hooks/useDialog";
+import { encodeShareFragment, type SharedRun } from "../storage/shareLink";
 
 interface ReportOverlayProps {
   pack: Pack;
@@ -92,6 +93,33 @@ export function ReportOverlay({
     }
   };
 
+  const copyShareLink = async () => {
+    try {
+      const run: SharedRun = {
+        gameId: pack.game.id,
+        position: availability.position,
+        version: availability.version,
+        collected: availability.items
+          .filter((e) => e.status === "collected")
+          .map((e) => e.item.id),
+        progress: Object.fromEntries(
+          availability.items
+            .filter((e) => e.item.count > 1 && e.progress > 0)
+            .map((e) => [e.item.id, e.progress]),
+        ),
+      };
+      const fragment = await encodeShareFragment(run);
+      await navigator.clipboard.writeText(
+        `${window.location.origin}${window.location.pathname}#run=${fragment}`,
+      );
+      window.alert(
+        "Share link copied — anyone opening it sees this run, read-only.",
+      );
+    } catch {
+      window.alert("Could not build the share link.");
+    }
+  };
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center p-4 z-50 bg-black/70"
@@ -159,12 +187,18 @@ export function ReportOverlay({
           </div>
         )}
 
-        <div className="mt-3 flex gap-2">
+        <div className="mt-3 flex flex-wrap gap-2">
           <button
             onClick={copy}
             className="text-[11px] font-mono px-3 py-1 rounded border border-[var(--ff-cyan)]/55 text-[var(--ff-cyan)]"
           >
             Copy as text
+          </button>
+          <button
+            onClick={copyShareLink}
+            className="text-[11px] font-mono px-3 py-1 rounded border border-[var(--ff-gold)]/55 text-[var(--ff-gold)]"
+          >
+            Copy share link
           </button>
         </div>
       </div>

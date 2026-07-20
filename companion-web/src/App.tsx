@@ -10,7 +10,9 @@ import { PlanTab } from "./components/PlanTab";
 import { TimelineOverlay } from "./components/TimelineOverlay";
 import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
+import { SharedRunView } from "./components/SharedRunView";
 import { UpdateToast } from "./components/UpdateToast";
+import { decodeShareFragment, type SharedRun } from "./storage/shareLink";
 import { downloadSave, installSave, parseSave } from "./storage/saveFile";
 import { lastSessionRecap, type SessionRecap } from "./engine/recap";
 import { readNotes, writeNote } from "./storage/notes";
@@ -21,6 +23,32 @@ import { ReportOverlay } from "./components/ReportOverlay";
 
 export default function App() {
   const games = useApi(() => api.getGames(), []);
+  // #run=… in the fragment means someone opened a shared-run link: show the
+  // read-only viewer without touching this browser's own saves.
+  const [shared, setShared] = useState<SharedRun | "error" | null>(null);
+  const [hashChecked, setHashChecked] = useState(
+    () => !window.location.hash.startsWith("#run="),
+  );
+
+  useEffect(() => {
+    const match = window.location.hash.match(/^#run=(.+)$/);
+    if (!match) {
+      return;
+    }
+    decodeShareFragment(match[1])
+      .then(setShared)
+      .catch(() => setShared("error"))
+      .finally(() => setHashChecked(true));
+  }, []);
+
+  const exitShared = () => {
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search,
+    );
+    setShared(null);
+  };
   // ?game=ff9 deep-links straight to a game; unknown ids fall back to the first.
   const [selectedId, setSelectedId] = useState<string | null>(() =>
     new URLSearchParams(window.location.search).get("game"),
@@ -36,6 +64,23 @@ export default function App() {
     url.searchParams.set("game", id);
     window.history.replaceState(null, "", url);
   };
+
+  if (!hashChecked) {
+    return <Splash text="Loading…" />;
+  }
+  if (shared === "error") {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-3 text-xs font-mono text-neutral-400">
+        That share link is damaged or truncated.
+        <button onClick={exitShared} className="underline">
+          Open my companion
+        </button>
+      </div>
+    );
+  }
+  if (shared !== null) {
+    return <SharedRunView run={shared} onExit={exitShared} />;
+  }
 
   // key remounts the whole game view on switch: per-game state (tab, reveals,
   // pending dialogs) must not leak between games.
