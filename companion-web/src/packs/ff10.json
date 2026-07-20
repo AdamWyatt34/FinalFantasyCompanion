@@ -1,7 +1,17 @@
 {
   "game": {
     "id": "ff10",
-    "title": "Final Fantasy X"
+    "title": "Final Fantasy X",
+    "versions": [
+      {
+        "id": "hd",
+        "label": "HD Remaster"
+      },
+      {
+        "id": "original",
+        "label": "PS2 original"
+      }
+    ]
   },
   "theme": {
     "tokens": {
@@ -468,7 +478,10 @@
       },
       "notes": "Valefor at Besaid, Ifrit at Bikanel, Ixion on the Thunder Plains, Shiva at Macalania, Bahamut at the Zanarkand Dome, Yojimbo in the cavern, Anima at Baaj, the Magus Sisters on Gagazet. Superboss tier — approach with a finished grid.",
       "verified": false,
-      "count": 8
+      "count": 8,
+      "versions": [
+        "hd"
+      ]
     },
     {
       "id": "penance",
@@ -482,7 +495,10 @@
         "darkaeons"
       ],
       "notes": "Appears after every Dark Aeon falls. The true final exam.",
-      "verified": false
+      "verified": false,
+      "versions": [
+        "hd"
+      ]
     }
   ]
 }

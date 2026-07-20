@@ -36,6 +36,16 @@ export function foreclosedIds(
 
 const NO_FORECLOSURES: ReadonlySet<string> = new Set();
 
+/** Items that exist in the run's active game version. */
+export function activeItems(pack: Pack, state: PlaythroughState): Item[] {
+  return pack.items.filter(
+    (i) =>
+      i.versions.length === 0 ||
+      state.version === null ||
+      i.versions.includes(state.version),
+  );
+}
+
 /** Rule chain, first match wins — order is the contract. */
 export function classify(
   item: Item,
@@ -90,6 +100,9 @@ export function projectAvailability(
   const foreclosed = foreclosedIds(pack, state);
   return {
     position: state.position,
-    items: pack.items.map((item) => classify(item, state, foreclosed)),
+    version: state.version,
+    items: activeItems(pack, state).map((item) =>
+      classify(item, state, foreclosed),
+    ),
   };
 }

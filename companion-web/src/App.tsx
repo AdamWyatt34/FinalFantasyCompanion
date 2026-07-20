@@ -136,6 +136,7 @@ function GameApp({
   }
 
   const position = availability.data.position;
+  const activeVersion = availability.data.version;
   const refetchState = () => {
     availability.refetch();
     route.refetch();
@@ -153,6 +154,7 @@ function GameApp({
     to?: number;
     itemId?: string;
     delta?: number;
+    version?: string;
   }) => {
     try {
       await api.postEvent(gameId, event);
@@ -216,6 +218,19 @@ function GameApp({
 
   const progressItem = (itemId: string, delta: number) =>
     postEvent({ type: "itemProgressed", itemId, delta });
+
+  const changeVersion = (versionId: string, label: string) => {
+    if (versionId === availability.data?.version) {
+      return;
+    }
+    if (
+      window.confirm(
+        `Switch this run to ${label}? Availability recalculates for that version.`,
+      )
+    ) {
+      postEvent({ type: "versionSelected", version: versionId });
+    }
+  };
 
   const reveal = (itemId: string) => {
     const next = new Set(revealed).add(itemId);
@@ -320,6 +335,24 @@ function GameApp({
           <div className="text-xl font-bold tracking-widest mt-0.5 text-[var(--ff-gold)] [text-shadow:0_2px_8px_#00000088]">
             {pack.data.game.title.toUpperCase()}
           </div>
+          {pack.data.game.versions && (
+            <div className="mt-1.5 flex justify-center gap-1.5">
+              {pack.data.game.versions.map((v) => (
+                <button
+                  key={v.id}
+                  onClick={() => changeVersion(v.id, v.label)}
+                  aria-pressed={activeVersion === v.id}
+                  className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border ${
+                    activeVersion === v.id
+                      ? "border-[var(--ff-cyan)] text-[var(--ff-cyan)] bg-[var(--ff-cyan)]/8"
+                      : "border-[var(--ff-bevel)] text-[var(--ff-dim)]"
+                  }`}
+                >
+                  {v.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <PositionBanner
@@ -382,8 +415,8 @@ function GameApp({
         <div className="text-center text-[10px] font-mono pb-4 text-[var(--ff-faint)]">
           <div>
             Pack data is scaffolding —{" "}
-            {pack.data.items.filter((i) => i.verified).length}/
-            {pack.data.items.length} windows verified during play.
+            {availability.data.items.filter((e) => e.item.verified).length}/
+            {availability.data.items.length} windows verified during play.
           </div>
           <div className="mt-1 flex flex-wrap justify-center gap-x-3 gap-y-1">
             <button onClick={resetPlaythrough} className="underline">

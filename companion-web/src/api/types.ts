@@ -25,9 +25,16 @@ export type ItemType =
   | "primer"
   | "hunt";
 
+export interface GameVersion {
+  id: string;
+  label: string;
+}
+
 export interface GameSummary {
   id: string;
   title: string;
+  /** Release variants with differing content (PS2 vs Zodiac Age). Absent = one version. */
+  versions?: GameVersion[];
 }
 
 export interface Position {
@@ -55,6 +62,8 @@ export interface Item {
   excludes: string[];
   /** Target for counter items ("×26 primers"); 1 = plain checkbox. */
   count: number;
+  /** Version ids this item exists in; empty = every version. */
+  versions: string[];
   notes: string;
   verified: boolean;
   route: RouteInfo | null;
@@ -77,6 +86,8 @@ export interface AvailabilityEntry {
 
 export interface Availability {
   position: number;
+  /** Active game version for this run; null when the pack has only one. */
+  version: string | null;
   items: AvailabilityEntry[];
 }
 

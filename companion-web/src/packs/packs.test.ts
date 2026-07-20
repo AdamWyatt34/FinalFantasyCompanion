@@ -34,7 +34,15 @@ describe("shipped packs", () => {
   it("ff12 pack is structurally sound", () => {
     const ff12 = getPackById("ff12")!;
 
-    expect(ff12.game.title).toBe("Final Fantasy XII (PS2)");
+    expect(ff12.game.title).toBe("Final Fantasy XII");
+    // Two release variants; the spear works completely differently in each.
+    expect(ff12.game.versions?.map((v) => v.id)).toEqual(["ps2", "za"]);
+    expect(ff12.items.find((i) => i.id === "zodiacspear")!.versions).toEqual([
+      "ps2",
+    ]);
+    expect(ff12.items.find((i) => i.id === "zodiacspearza")!.versions).toEqual([
+      "za",
+    ]);
     expect(ff12.positions.length).toBe(18);
     expect(ff12.items.length).toBeGreaterThanOrEqual(14);
     expect(ff12.items.length).toBeLessThanOrEqual(35);

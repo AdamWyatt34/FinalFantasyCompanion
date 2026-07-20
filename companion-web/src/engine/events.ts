@@ -9,4 +9,5 @@ export type ProgressEvent =
       itemId: string;
       delta: number;
       occurredAt: string;
-    };
+    }
+  | { type: "versionSelected"; version: string; occurredAt: string };

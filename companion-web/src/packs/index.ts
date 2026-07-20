@@ -11,13 +11,18 @@ interface RawItem {
   prereqs?: string[];
   excludes?: string[];
   count?: number;
+  versions?: string[];
   notes?: string;
   verified?: boolean;
   route?: { at: number; rank: number; why: string } | null;
 }
 
 interface RawPack {
-  game: { id: string; title: string };
+  game: {
+    id: string;
+    title: string;
+    versions?: { id: string; label: string }[];
+  };
   theme: { tokens: Record<string, string> };
   positions: Position[];
   items: RawItem[];
@@ -39,6 +44,7 @@ export function normalizePack(raw: RawPack): Pack {
       prereqs: i.prereqs ?? [],
       excludes: i.excludes ?? [],
       count: i.count ?? 1,
+      versions: i.versions ?? [],
       notes: i.notes ?? "",
       verified: i.verified ?? false,
       route: i.route ?? null,

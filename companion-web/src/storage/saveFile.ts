@@ -105,6 +105,13 @@ export function installSave(pack: Pack, save: SaveFile): void {
           throw new Error("Save contains a malformed event.");
         }
         break;
+      case "versionSelected":
+        if (!(pack.game.versions ?? []).some((v) => v.id === evt.version)) {
+          throw new Error(
+            `Save references unknown game version '${evt.version}'.`,
+          );
+        }
+        break;
       default:
         throw new Error(`Save contains an unknown event type.`);
     }

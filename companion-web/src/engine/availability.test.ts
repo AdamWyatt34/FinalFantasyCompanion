@@ -2,6 +2,40 @@ import { describe, expect, it } from "vitest";
 import { classify, foreclosedIds, projectAvailability } from "./availability";
 import { at, makeItem, makePack } from "./testing/builders";
 
+describe("game-version filtering", () => {
+  const versionedPack = {
+    ...makePack([
+      makeItem("both"),
+      makeItem("aonly", { versions: ["a"] }),
+      makeItem("bonly", { versions: ["b"] }),
+    ]),
+    game: {
+      id: "test",
+      title: "Test Game",
+      versions: [
+        { id: "a", label: "A" },
+        { id: "b", label: "B" },
+      ],
+    },
+  };
+
+  it("projects only items existing in the active version", () => {
+    const view = projectAvailability(versionedPack, {
+      ...at(5),
+      version: "a",
+    });
+
+    expect(view.items.map((e) => e.item.id).sort()).toEqual(["aonly", "both"]);
+    expect(view.version).toBe("a");
+  });
+
+  it("a null version (single-version pack) includes everything", () => {
+    const view = projectAvailability(versionedPack, at(5));
+
+    expect(view.items).toHaveLength(3);
+  });
+});
+
 describe("forgone (mutually exclusive choices)", () => {
   it("collecting one side forecloses the declared other side", () => {
     const pack = makePack([

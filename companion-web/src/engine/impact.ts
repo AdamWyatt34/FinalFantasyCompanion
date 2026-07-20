@@ -1,5 +1,5 @@
 import type { AdvanceImpact, Pack } from "../api/types";
-import { classify, foreclosedIds } from "./availability";
+import { activeItems, classify, foreclosedIds } from "./availability";
 import type { PlaythroughState } from "./state";
 
 /**
@@ -16,7 +16,7 @@ export function computeImpact(
   const p = state.position;
   const foreclosed = foreclosedIds(pack, state);
 
-  const closing = pack.items
+  const closing = activeItems(pack, state)
     .filter(
       (i) =>
         !state.collected.has(i.id) &&

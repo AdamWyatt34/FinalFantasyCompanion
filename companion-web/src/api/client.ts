@@ -51,6 +51,7 @@ export interface ProgressEventRequest {
   to?: number;
   itemId?: string;
   delta?: number;
+  version?: string;
 }
 
 function toProgressEvent(
@@ -108,6 +109,21 @@ function toProgressEvent(
         delta: request.delta,
         occurredAt,
       };
+    }
+    case "versionSelected": {
+      const declared = pack.game.versions ?? [];
+      if (declared.length === 0) {
+        throw new Error(
+          `Game '${pack.game.id}' does not have selectable versions`,
+        );
+      }
+      if (
+        request.version === undefined ||
+        !declared.some((v) => v.id === request.version)
+      ) {
+        throw new Error(`Unknown game version '${request.version}'`);
+      }
+      return { type: "versionSelected", version: request.version, occurredAt };
     }
     default:
       throw new Error(`Unknown event type '${request.type}'`);

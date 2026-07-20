@@ -12,6 +12,33 @@ import {
 
 const pack = makePack([makeItem("beta")]);
 
+describe("game versions", () => {
+  const versionedPack = {
+    ...makePack([makeItem("x")]),
+    game: {
+      id: "test",
+      title: "Test Game",
+      versions: [
+        { id: "ps2", label: "PS2" },
+        { id: "za", label: "Zodiac Age" },
+      ],
+    },
+  };
+
+  it("defaults to the first declared version", () => {
+    expect(fold(versionedPack, []).version).toBe("ps2");
+    expect(fold(pack, []).version).toBeNull();
+  });
+
+  it("versionSelected switches the run's version", () => {
+    const state = fold(versionedPack, [
+      { type: "versionSelected", version: "za", occurredAt: "2026-01-01" },
+    ]);
+
+    expect(state.version).toBe("za");
+  });
+});
+
 describe("counter items (itemProgressed)", () => {
   const counterPack = makePack([makeItem("primers", { count: 5 })]);
 

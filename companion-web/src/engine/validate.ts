@@ -43,6 +43,7 @@ export function validate(pack: Pack): string[] {
 
   const orders = new Set(pack.positions.map((p) => p.order));
   const itemIds = new Set(pack.items.map((i) => i.id));
+  const declaredVersions = new Set((pack.game.versions ?? []).map((v) => v.id));
 
   // The position stepper advances by ±1; a gap in the orders would make the
   // Advance button target a beat that doesn't exist.
@@ -69,6 +70,14 @@ export function validate(pack: Pack): string[] {
 
     if (!Number.isInteger(item.count) || item.count < 1) {
       errors.push(`item '${item.id}' has invalid count ${item.count}`);
+    }
+
+    for (const version of item.versions.filter(
+      (v) => !declaredVersions.has(v),
+    )) {
+      errors.push(
+        `item '${item.id}' references undeclared game version '${version}'`,
+      );
     }
 
     if (!orders.has(item.opensAt)) {

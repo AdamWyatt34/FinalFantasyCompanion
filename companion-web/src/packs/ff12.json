@@ -1,7 +1,17 @@
 {
   "game": {
     "id": "ff12",
-    "title": "Final Fantasy XII (PS2)"
+    "title": "Final Fantasy XII",
+    "versions": [
+      {
+        "id": "ps2",
+        "label": "PS2 original"
+      },
+      {
+        "id": "za",
+        "label": "Zodiac Age"
+      }
+    ]
   },
   "theme": {
     "tokens": {
@@ -149,7 +159,10 @@
         "why": "Opening ANY of these four chests silently deletes the Zodiac Spear from the game"
       },
       "notes": "Never open: the chest outside Old Dalan's place in Lowtown, the palace treasury cellar chests during the heist, the Confiscatory in Nalbina's dungeons, and the beach chest cluster on the Phon Coast. Mark this collected once you're past each without touching them.",
-      "verified": false
+      "verified": false,
+      "versions": [
+        "ps2"
+      ]
     },
     {
       "id": "zodiacspear",
@@ -168,6 +181,23 @@
         "why": "The strongest weapon in the game, in a plain unguarded chest — if you kept the pact"
       },
       "notes": "Enter Nabudis through the Salikawood's northeast gate. The chest sits in the Cloister of the Highborn.",
+      "verified": false,
+      "versions": [
+        "ps2"
+      ]
+    },
+    {
+      "id": "zodiacspearza",
+      "name": "Zodiac Spear (Henne Mines)",
+      "type": "weapon",
+      "location": "Henne Mines — special charter section",
+      "window": {
+        "opensAt": 16
+      },
+      "versions": [
+        "za"
+      ],
+      "notes": "Zodiac Age removed the cursed-chest pact; the spear is instead a low-odds chest deep in the Henne Mines (better odds with the Diamond Armlet). No pact required — just persistence.",
       "verified": false
     },
     {

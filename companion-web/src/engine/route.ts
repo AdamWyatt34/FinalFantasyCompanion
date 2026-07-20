@@ -4,7 +4,12 @@ import type {
   RouteEntry,
   RouteView,
 } from "../api/types";
-import { classify, foreclosedIds, LOOKAHEAD } from "./availability";
+import {
+  activeItems,
+  classify,
+  foreclosedIds,
+  LOOKAHEAD,
+} from "./availability";
 import type { PlaythroughState } from "./state";
 
 const UNROUTED_RANK = Number.MAX_SAFE_INTEGER;
@@ -43,7 +48,7 @@ export function projectRoute(pack: Pack, state: PlaythroughState): RouteView {
   const p = state.position;
 
   const foreclosed = foreclosedIds(pack, state);
-  const candidates = pack.items
+  const candidates = activeItems(pack, state)
     .map((item) => classify(item, state, foreclosed))
     .filter(
       (e) =>

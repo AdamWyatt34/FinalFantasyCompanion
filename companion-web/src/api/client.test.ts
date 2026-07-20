@@ -87,6 +87,31 @@ describe("local client", () => {
     ).rejects.toThrow("non-zero integer");
   });
 
+  it("version selection swaps version-specific items", async () => {
+    // ff12 defaults to the PS2 original: the cursed-chest pact exists,
+    // the Zodiac Age spear chest does not.
+    let ids = (await api.getAvailability("ff12")).items.map((e) => e.item.id);
+    expect(ids).toContain("zodiacrestraint");
+    expect(ids).not.toContain("zodiacspearza");
+
+    await api.postEvent("ff12", { type: "versionSelected", version: "za" });
+
+    ids = (await api.getAvailability("ff12")).items.map((e) => e.item.id);
+    expect(ids).toContain("zodiacspearza");
+    expect(ids).not.toContain("zodiacrestraint");
+
+    await api.postReset("ff12");
+  });
+
+  it("rejects version selection on single-version games and unknown versions", async () => {
+    await expect(
+      api.postEvent("ff7", { type: "versionSelected", version: "hd" }),
+    ).rejects.toThrow("does not have selectable versions");
+    await expect(
+      api.postEvent("ff12", { type: "versionSelected", version: "switch" }),
+    ).rejects.toThrow("Unknown game version 'switch'");
+  });
+
   it("undo removes exactly the newest event", async () => {
     await api.postEvent("ff7", { type: "positionAdvanced", to: 3 });
     await api.postEvent("ff7", { type: "itemCollected", itemId: "beta" });

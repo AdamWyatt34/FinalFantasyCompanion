@@ -24,6 +24,7 @@ export function makeItem(id: string, over: Partial<Item> = {}): Item {
     prereqs: [],
     excludes: [],
     count: 1,
+    versions: [],
     notes: `Notes for ${id}`,
     verified: false,
     route: null,
@@ -75,4 +76,5 @@ export const at = (position: number, ...collectedIds: string[]) => ({
   position,
   collected: new Set(collectedIds),
   progress: new Map<string, number>(),
+  version: null,
 });

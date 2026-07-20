@@ -23,7 +23,8 @@ export function summarize(
       pack.positions.find((p) => p.order === availability.position)?.disc ?? 1,
     collected: availability.items.filter((e) => e.status === "collected")
       .length,
-    total: pack.items.length,
+    // availability.items is already filtered to the run's game version.
+    total: availability.items.length,
     missed: availability.items.filter((e) => e.status === "missed").length,
   };
 }

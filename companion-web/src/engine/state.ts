@@ -14,6 +14,8 @@ export interface PlaythroughState {
   position: number;
   collected: ReadonlySet<string>;
   progress: ReadonlyMap<string, number>;
+  /** Active game version; the pack's first declared version until selected. */
+  version: string | null;
 }
 
 const NO_COUNTS: ReadonlyMap<string, number> = new Map();
@@ -23,6 +25,7 @@ export function initialState(pack: Pack): PlaythroughState {
     position: Math.min(...pack.positions.map((p) => p.order)),
     collected: new Set(),
     progress: new Map(),
+    version: pack.game.versions?.[0]?.id ?? null,
   };
 }
 
@@ -53,6 +56,8 @@ export function applyEvent(
       progress.delete(e.itemId);
       return { ...state, collected, progress };
     }
+    case "versionSelected":
+      return { ...state, version: e.version };
     case "itemProgressed": {
       const count = counts.get(e.itemId) ?? 1;
       const current = state.progress.get(e.itemId) ?? 0;

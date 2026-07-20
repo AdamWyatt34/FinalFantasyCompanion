@@ -44,6 +44,11 @@ export function HistoryOverlay({
         return `✗ Unmarked ${itemNames[evt.itemId] ?? evt.itemId}`;
       case "itemProgressed":
         return `${evt.delta > 0 ? "＋" : "−"}${Math.abs(evt.delta)} ${itemNames[evt.itemId] ?? evt.itemId}`;
+      case "versionSelected":
+        return `⚙ Version: ${
+          pack.game.versions?.find((v) => v.id === evt.version)?.label ??
+          evt.version
+        }`;
     }
   };
 
