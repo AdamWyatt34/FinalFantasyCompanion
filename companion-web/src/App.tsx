@@ -12,6 +12,7 @@ import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { UpdateToast } from "./components/UpdateToast";
 import { downloadSave, installSave, parseSave } from "./storage/saveFile";
+import { lastSessionRecap, type SessionRecap } from "./engine/recap";
 import { readNotes, writeNote } from "./storage/notes";
 import { readRevealed, writeRevealed } from "./storage/revealed";
 import { ArchivesOverlay } from "./components/ArchivesOverlay";
@@ -94,6 +95,16 @@ function GameApp({
   const [pendingImpact, setPendingImpact] = useState<AdvanceImpact | null>(
     null,
   );
+  const [recap, setRecap] = useState<SessionRecap | null>(null);
+
+  useEffect(() => {
+    api
+      .getEvents(gameId)
+      .then((events) => setRecap(lastSessionRecap(events, new Date())))
+      .catch(() => {
+        // Recap is a nicety; a broken log already surfaces elsewhere.
+      });
+  }, [gameId]);
 
   useEffect(() => {
     if (pack.data) {
@@ -363,6 +374,33 @@ function GameApp({
           onAdvance={() => requestMove(position + 1)}
           onTimeline={() => setShowTimeline(true)}
         />
+
+        {recap && (
+          <div className="ff-box px-3 py-2 flex items-start justify-between gap-2">
+            <div className="text-[11px] leading-snug text-[var(--ff-dim)]">
+              <span className="font-mono text-[var(--ff-cyan)]">
+                WELCOME BACK
+              </span>{" "}
+              — last session:{" "}
+              {[
+                recap.collected > 0 ? `${recap.collected} collected` : null,
+                recap.progressed > 0 ? `+${recap.progressed} tallies` : null,
+                recap.reachedOrder !== null
+                  ? `reached ${positionLabels[recap.reachedOrder] ?? `beat ${recap.reachedOrder}`}`
+                  : null,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </div>
+            <button
+              onClick={() => setRecap(null)}
+              aria-label="Dismiss recap"
+              className="text-[var(--ff-dim)] text-xs leading-none mt-0.5"
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         <div className="flex gap-1.5">
           {(
