@@ -11,7 +11,7 @@ import { projectAvailability } from "../engine/availability";
 import { computeImpact } from "../engine/impact";
 import { projectRoute } from "../engine/route";
 import { fold, type PlaythroughState } from "../engine/state";
-import { allPacks, getPackById } from "../packs";
+import { getPackById, listPacks } from "../packs";
 import {
   appendEvent,
   readEvents,
@@ -131,7 +131,7 @@ function toProgressEvent(
 }
 
 export const api = {
-  getGames: async (): Promise<GameSummary[]> => allPacks.map((p) => p.game),
+  getGames: async (): Promise<GameSummary[]> => listPacks().map((p) => p.game),
 
   getPack: async (gameId: string): Promise<Pack> => requirePack(gameId),
 

@@ -13,6 +13,7 @@ import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { SharedRunView } from "./components/SharedRunView";
 import { UpdateToast } from "./components/UpdateToast";
 import { decodeShareFragment, type SharedRun } from "./storage/shareLink";
+import { addCustomPack, isCustomPack, removeCustomPack } from "./packs";
 import { downloadSave, installSave, parseSave } from "./storage/saveFile";
 import { lastSessionRecap, type SessionRecap } from "./engine/recap";
 import { readNotes, writeNote } from "./storage/notes";
@@ -94,6 +95,7 @@ export default function App() {
       gameId={gameId}
       games={games.data ?? []}
       onSelectGame={selectGame}
+      onGamesChanged={games.refetch}
     />
   );
 
@@ -117,10 +119,12 @@ function GameApp({
   gameId,
   games,
   onSelectGame,
+  onGamesChanged,
 }: {
   gameId: string;
   games: GameSummary[];
   onSelectGame: (id: string) => void;
+  onGamesChanged: () => void;
 }) {
   const pack = useApi(() => api.getPack(gameId), [gameId]);
   const availability = useApi(() => api.getAvailability(gameId), [gameId]);
@@ -320,6 +324,43 @@ function GameApp({
         await api.postReset(gameId);
         clearRevealed();
         refetchState();
+      } catch (e) {
+        reportError(e);
+      }
+    }
+  };
+
+  const addGameFromFile = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json,.json";
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) {
+        return;
+      }
+      try {
+        const added = addCustomPack(await file.text());
+        onGamesChanged();
+        onSelectGame(added.game.id);
+      } catch (e) {
+        window.alert(
+          e instanceof Error ? e.message : "Could not add that pack.",
+        );
+      }
+    };
+    input.click();
+  };
+
+  const removeGame = () => {
+    if (
+      window.confirm(
+        `Remove ${pack.data?.game.title} from this device? Its saves, archives, and notes are deleted too.`,
+      )
+    ) {
+      try {
+        removeCustomPack(gameId);
+        onGamesChanged();
       } catch (e) {
         reportError(e);
       }
@@ -529,6 +570,14 @@ function GameApp({
             <button onClick={() => setShowReport(true)} className="underline">
               Report
             </button>
+            <button onClick={addGameFromFile} className="underline">
+              Add game
+            </button>
+            {isCustomPack(gameId) && (
+              <button onClick={removeGame} className="underline">
+                Remove game
+              </button>
+            )}
           </div>
         </div>
       </div>
