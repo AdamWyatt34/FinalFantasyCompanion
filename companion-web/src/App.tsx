@@ -280,6 +280,35 @@ function GameApp({
   const progressItem = (itemId: string, delta: number) =>
     postEvent({ type: "itemProgressed", itemId, delta });
 
+  // The verification flywheel: every card can file a prefilled pack-data
+  // issue. Real playthroughs are the only source of `verified: true`.
+  const reportItem = (itemId: string) => {
+    const item = pack.data?.items.find((i) => i.id === itemId);
+    if (!item || !pack.data) {
+      return;
+    }
+    const title = encodeURIComponent(
+      `[pack] ${pack.data.game.id}/${item.id}: window correction`,
+    );
+    const body = encodeURIComponent(
+      [
+        `Game: ${pack.data.game.title} (${pack.data.game.id})`,
+        `Item: ${item.name} (\`${item.id}\`)`,
+        `Current window: opensAt ${item.opensAt}, closesAt ${item.closesAt ?? "never"}`,
+        `Verified flag: ${item.verified}`,
+        `My position when I noticed: beat ${position}`,
+        "",
+        "What did you see in-game?",
+        "",
+      ].join("\n"),
+    );
+    window.open(
+      `https://github.com/AdamWyatt34/FinalFantasyCompanion/issues/new?title=${title}&body=${body}`,
+      "_blank",
+      "noopener",
+    );
+  };
+
   const changeVersion = (versionId: string, label: string) => {
     if (versionId === availability.data?.version) {
       return;
@@ -522,6 +551,7 @@ function GameApp({
             onReveal={reveal}
             onEditNote={editNote}
             onProgress={progressItem}
+            onReport={reportItem}
           />
         ) : tab === "all" ? (
           <AllItemsTab
@@ -535,6 +565,7 @@ function GameApp({
             onReveal={reveal}
             onEditNote={editNote}
             onProgress={progressItem}
+            onReport={reportItem}
           />
         ) : (
           <PlanTab

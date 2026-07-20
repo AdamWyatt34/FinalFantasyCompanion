@@ -14,6 +14,7 @@ interface AllItemsTabProps {
   onReveal: (itemId: string) => void;
   onEditNote: (itemId: string) => void;
   onProgress: (itemId: string, delta: number) => void;
+  onReport: (itemId: string) => void;
 }
 
 const FILTERS = [
@@ -46,6 +47,7 @@ export function AllItemsTab({
   onReveal,
   onEditNote,
   onProgress,
+  onReport,
 }: AllItemsTabProps) {
   const [filter, setFilter] = useState<FilterId>("all");
   const [typeFilter, setTypeFilter] = useState<ItemType | "all">("all");
@@ -192,6 +194,7 @@ export function AllItemsTab({
             onReveal={() => onReveal(entry.item.id)}
             onEditNote={() => onEditNote(entry.item.id)}
             onProgress={(delta) => onProgress(entry.item.id, delta)}
+            onReport={() => onReport(entry.item.id)}
           />
         ))}
       </div>

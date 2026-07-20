@@ -17,6 +17,7 @@ interface ItemCardProps {
   onReveal: () => void;
   onEditNote: () => void;
   onProgress: (delta: number) => void;
+  onReport: () => void;
 }
 
 export function ItemCard({
@@ -34,6 +35,7 @@ export function ItemCard({
   onReveal,
   onEditNote,
   onProgress,
+  onReport,
 }: ItemCardProps) {
   const isCollected = status === "collected";
   const missed = status === "missed";
@@ -198,6 +200,14 @@ export function ItemCard({
               className="text-[11px] font-mono px-3 py-1 rounded border border-[var(--ff-bevel)] text-[var(--ff-dim)]"
             >
               ✎ {note ? "Edit note" : "Note"}
+            </button>
+            <button
+              onClick={onReport}
+              aria-label={`Report wrong data for ${item.name}`}
+              title="Window wrong? Report it — every report improves the pack"
+              className="text-[11px] font-mono px-2 py-1 rounded border border-[var(--ff-bevel)] text-[var(--ff-faint)]"
+            >
+              ⚑
             </button>
           </>
         )}
