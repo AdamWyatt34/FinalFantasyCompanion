@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Availability, RouteEntry, RouteView } from "../api/types";
 import { ItemCard } from "./ItemCard";
+import { groupByLeg } from "./legs";
 import { TrackerPanel } from "./TrackerPanel";
 
 interface RouteTabProps {
@@ -29,30 +30,6 @@ const SECTIONS: { key: SectionKey; title: string }[] = [
   { key: "next", title: "NEXT" },
   { key: "later", title: "LATER" },
 ];
-
-interface Group {
-  key: string;
-  leg: string | null;
-  at: number | null;
-  entries: RouteEntry[];
-}
-
-/** Consecutive entries sharing a route leg fold into one group; the rest stand alone. */
-function groupByLeg(entries: RouteEntry[]): Group[] {
-  const groups: Group[] = [];
-  for (const entry of entries) {
-    const leg = entry.item.route?.leg ?? null;
-    const at = entry.item.route?.at ?? null;
-    const key = leg === null ? `item:${entry.item.id}` : `leg:${at}|${leg}`;
-    const last = groups[groups.length - 1];
-    if (leg !== null && last !== undefined && last.key === key) {
-      last.entries.push(entry);
-    } else {
-      groups.push({ key, leg, at, entries: [entry] });
-    }
-  }
-  return groups;
-}
 
 export function RouteTab({
   route,
@@ -125,11 +102,11 @@ export function RouteTab({
   );
 
   const renderGroups = (entries: RouteEntry[], section: SectionKey) =>
-    groupByLeg(entries).map((group, index) => {
+    groupByLeg(entries, (e) => e.item).map((group) => {
       if (group.leg === null) {
         return group.entries.map(renderEntry);
       }
-      const groupKey = `${group.key}#${index}`;
+      const groupKey = `${section}:${group.key}`;
       const collapsed =
         section === "later"
           ? !flipped.has(groupKey)

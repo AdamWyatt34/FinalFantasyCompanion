@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Availability, AvailabilityEntry, Position } from "../api/types";
 import { STATUS } from "../theme/statusColors";
+import { groupByLeg } from "./legs";
 
 interface PlanTabProps {
   positions: Position[];
@@ -71,26 +72,19 @@ export function PlanTab({
   // Legs render as sub-headings inside a beat, in rank order.
   const renderBeat = (entries: AvailabilityEntry[]) => {
     const nodes: ReactNode[] = [];
-    let currentLeg: string | null | undefined;
-    for (const entry of entries) {
-      const leg = entry.item.route!.leg;
-      if (leg !== currentLeg) {
-        currentLeg = leg;
-        if (leg !== null) {
-          const masked = entries
-            .filter((e) => e.item.route!.leg === leg)
-            .every((e) => hiddenIds.has(e.item.id));
-          nodes.push(
-            <div
-              key={`leg:${leg}`}
-              className="ml-4 mt-1 text-[10px] font-mono tracking-wider text-[var(--ff-cyan)]"
-            >
-              {masked ? "？？？" : leg.toUpperCase()}
-            </div>,
-          );
-        }
+    for (const group of groupByLeg(entries, (e) => e.item)) {
+      if (group.leg !== null) {
+        const masked = group.entries.every((e) => hiddenIds.has(e.item.id));
+        nodes.push(
+          <div
+            key={group.key}
+            className="ml-4 mt-1 text-[10px] font-mono tracking-wider text-[var(--ff-cyan)]"
+          >
+            {masked ? "？？？" : group.leg.toUpperCase()}
+          </div>,
+        );
       }
-      nodes.push(renderEntry(entry));
+      nodes.push(...group.entries.map(renderEntry));
     }
     return nodes;
   };
