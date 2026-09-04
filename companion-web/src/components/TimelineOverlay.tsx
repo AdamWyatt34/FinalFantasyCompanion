@@ -55,6 +55,11 @@ export function TimelineOverlay({
     onSelect(order);
   };
 
+  const names = (entries: AdvanceImpact["closing"]) =>
+    entries
+      .map((e) => (hiddenIds.has(e.item.id) ? "？？？" : e.item.name))
+      .join(", ");
+
   const renderPreview = (order: number) => (
     <div className="mx-2 mb-1.5 rounded border border-[var(--ff-bevel)] px-2.5 py-2">
       {order < position ? (
@@ -66,25 +71,38 @@ export function TimelineOverlay({
         <>
           {impact === null ? (
             <div className="text-[11px] font-mono text-[var(--ff-dim)]">…</div>
-          ) : impact.closing.length === 0 ? (
+          ) : impact.closing.length === 0 && impact.reopening.length === 0 ? (
             <div className="text-[11px] text-[var(--ff-dim)]">
               Nothing closes between here and this beat.
             </div>
           ) : (
-            <div className="text-[11px]">
-              <span
-                className="font-mono"
-                style={{ color: STATUS.lastChance.color }}
-              >
-                Closes forever ({impact.closing.length}):
-              </span>{" "}
-              <span className="text-[var(--ff-dim)]">
-                {impact.closing
-                  .map((e) =>
-                    hiddenIds.has(e.item.id) ? "？？？" : e.item.name,
-                  )
-                  .join(", ")}
-              </span>
+            <div className="text-[11px] flex flex-col gap-0.5">
+              {impact.closing.length > 0 && (
+                <div>
+                  <span
+                    className="font-mono"
+                    style={{ color: STATUS.lastChance.color }}
+                  >
+                    Closes forever ({impact.closing.length}):
+                  </span>{" "}
+                  <span className="text-[var(--ff-dim)]">
+                    {names(impact.closing)}
+                  </span>
+                </div>
+              )}
+              {impact.reopening.length > 0 && (
+                <div>
+                  <span
+                    className="font-mono"
+                    style={{ color: STATUS.closingSoon.color }}
+                  >
+                    Closes for now, reopens later ({impact.reopening.length}):
+                  </span>{" "}
+                  <span className="text-[var(--ff-dim)]">
+                    {names(impact.reopening)}
+                  </span>
+                </div>
+              )}
             </div>
           )}
           <div className="text-[11px] mt-1 text-[var(--ff-dim)]">
@@ -141,6 +159,11 @@ export function TimelineOverlay({
                 <span className="text-[var(--ff-cyan)]">▶</span>
               )}
               {p.label}
+              {p.pace && (
+                <span className="ml-auto text-[10px] font-mono text-[var(--ff-faint)]">
+                  ⏱
+                </span>
+              )}
             </button>
             {p.order === selected && renderPreview(p.order)}
           </div>

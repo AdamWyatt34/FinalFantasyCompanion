@@ -1,5 +1,14 @@
-import type { Availability, AvailabilityEntry, Item, Pack } from "../api/types";
+import type {
+  Availability,
+  AvailabilityEntry,
+  Item,
+  Pack,
+  PrereqGroup,
+  Window,
+} from "../api/types";
 import type { PlaythroughState } from "./state";
+import { projectTrackers } from "./trackers";
+import { parseRef } from "./validate";
 
 export const LOOKAHEAD = 2;
 
@@ -46,6 +55,44 @@ export function activeItems(pack: Pack, state: PlaythroughState): Item[] {
   );
 }
 
+/** A single ref is met by a collected item, or by the named option being the chosen one. */
+export function refSatisfied(ref: string, state: PlaythroughState): boolean {
+  const { itemId, optionId } = parseRef(ref);
+  return optionId === null
+    ? state.collected.has(itemId)
+    : state.choices.get(itemId) === optionId;
+}
+
+/** The prereq groups (AND of any-of) that are not yet met. */
+export function missingPrereqGroups(
+  item: Item,
+  state: PlaythroughState,
+): PrereqGroup[] {
+  return item.prereqs.filter(
+    (group) => !group.some((ref) => refSatisfied(ref, state)),
+  );
+}
+
+/**
+ * Where position `p` sits relative to an item's windows: the window it is
+ * inside (if any) and the first window still ahead of it.
+ */
+export function windowsAt(
+  item: Item,
+  p: number,
+): { current: Window | null; next: Window | null } {
+  let current: Window | null = null;
+  let next: Window | null = null;
+  for (const window of item.windows) {
+    if (window.opensAt <= p && (window.closesAt == null || p <= window.closesAt)) {
+      current = window;
+    } else if (window.opensAt > p && next === null) {
+      next = window;
+    }
+  }
+  return { current, next };
+}
+
 /** Rule chain, first match wins — order is the contract. */
 export function classify(
   item: Item,
@@ -56,10 +103,21 @@ export function classify(
   const progress =
     state.progress.get(item.id) ??
     (state.collected.has(item.id) ? item.count : 0);
+  const chosen = state.choices.get(item.id) ?? null;
+  const { current, next } = windowsAt(item, p);
   const entry = (
     status: AvailabilityEntry["status"],
-    missingPrereqs: string[] = [],
-  ): AvailabilityEntry => ({ item, status, missingPrereqs, progress });
+    missingPrereqs: PrereqGroup[] = [],
+    reopensAt: number | null = null,
+  ): AvailabilityEntry => ({
+    item,
+    status,
+    missingPrereqs,
+    progress,
+    windowClosesAt: current?.closesAt ?? null,
+    reopensAt,
+    chosen,
+  });
 
   if (state.collected.has(item.id)) {
     return entry("collected");
@@ -69,25 +127,29 @@ export function classify(
     return entry("forgone");
   }
 
-  if (item.closesAt != null && p > item.closesAt) {
-    return entry("missed");
+  if (current === null) {
+    if (p < item.opensAt) {
+      return entry("notYet");
+    }
+    // Between windows: closed for now, but a later window brings it back.
+    return next === null
+      ? entry("missed")
+      : entry("reopensLater", [], next.opensAt);
   }
 
-  if (p < item.opensAt) {
-    return entry("notYet");
-  }
-
-  const missing = item.prereqs.filter((pr) => !state.collected.has(pr));
+  const missing = missingPrereqGroups(item, state);
   if (missing.length > 0) {
     return entry("blocked", missing);
   }
 
-  if (item.closesAt === p) {
-    return entry("lastChance");
+  const reopensAt = next?.opensAt ?? null;
+
+  if (current.closesAt === p) {
+    return entry("lastChance", [], reopensAt);
   }
 
-  if (item.closesAt != null && item.closesAt - p <= LOOKAHEAD) {
-    return entry("closingSoon");
+  if (current.closesAt != null && current.closesAt - p <= LOOKAHEAD) {
+    return entry("closingSoon", [], reopensAt);
   }
 
   return entry("available");
@@ -104,5 +166,7 @@ export function projectAvailability(
     items: activeItems(pack, state).map((item) =>
       classify(item, state, foreclosed),
     ),
+    trackers: projectTrackers(pack, state),
+    adjustments: Object.fromEntries(state.adjustments),
   };
 }

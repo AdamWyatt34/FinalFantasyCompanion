@@ -7,7 +7,9 @@ import { readNotes, writeNote } from "./notes";
  * Save export/import — localStorage is user-clearable, so saves need a way
  * out of the browser (backup, or moving between phone and desktop).
  * `notes` was added later as an optional field; version stays 1 because old
- * files (no notes) and old apps (ignore notes) both keep working.
+ * files (no notes) and old apps (ignore notes) both keep working. New event
+ * types (choiceMade, trackerAdjusted) ride the same version: an old app
+ * rejects a file carrying them at import, which is the honest outcome.
  */
 export interface SaveFile {
   format: "ffcompanion-save";
@@ -75,7 +77,8 @@ export function installSave(pack: Pack, save: SaveFile): void {
   }
 
   const orders = new Set(pack.positions.map((p) => p.order));
-  const itemIds = new Set(pack.items.map((i) => i.id));
+  const items = new Map(pack.items.map((i) => [i.id, i] as const));
+  const trackers = new Map(pack.trackers.map((t) => [t.id, t] as const));
 
   for (const raw of save.events as unknown[]) {
     // Guard the shape before touching .type — a hand-edited file with a null
@@ -93,18 +96,45 @@ export function installSave(pack: Pack, save: SaveFile): void {
         break;
       case "itemCollected":
       case "itemUncollected":
-        if (!itemIds.has(evt.itemId)) {
+        if (!items.has(evt.itemId)) {
           throw new Error(`Save references unknown item '${evt.itemId}'.`);
         }
         break;
       case "itemProgressed":
-        if (!itemIds.has(evt.itemId)) {
+        if (!items.has(evt.itemId)) {
           throw new Error(`Save references unknown item '${evt.itemId}'.`);
         }
         if (!Number.isInteger(evt.delta)) {
           throw new Error("Save contains a malformed event.");
         }
         break;
+      case "choiceMade": {
+        const item = items.get(evt.itemId);
+        if (item === undefined) {
+          throw new Error(`Save references unknown item '${evt.itemId}'.`);
+        }
+        if (!item.options.some((o) => o.id === evt.optionId)) {
+          throw new Error(
+            `Save references unknown option '${evt.optionId}' for '${evt.itemId}'.`,
+          );
+        }
+        break;
+      }
+      case "trackerAdjusted": {
+        const tracker = trackers.get(evt.trackerId);
+        if (
+          tracker === undefined ||
+          !tracker.values.some((v) => v.id === evt.valueId)
+        ) {
+          throw new Error(
+            `Save references unknown tracker value '${evt.trackerId}.${evt.valueId}'.`,
+          );
+        }
+        if (!Number.isInteger(evt.delta)) {
+          throw new Error("Save contains a malformed event.");
+        }
+        break;
+      }
       case "versionSelected":
         if (!(pack.game.versions ?? []).some((v) => v.id === evt.version)) {
           throw new Error(
@@ -123,7 +153,7 @@ export function installSave(pack: Pack, save: SaveFile): void {
   // values from hand-edited files are dropped silently — notes are advisory.
   if (save.notes !== null && typeof save.notes === "object") {
     for (const [itemId, text] of Object.entries(save.notes)) {
-      if (itemIds.has(itemId) && typeof text === "string") {
+      if (items.has(itemId) && typeof text === "string") {
         writeNote(pack.game.id, itemId, text);
       }
     }

@@ -42,15 +42,28 @@ The build uses a relative base path, so it works at any `https://<user>.github.i
   per-disc report card with a **copyable share link** — a read-only snapshot of your
   run encoded in the URL itself, no server involved. Personal per-item notes (✎ on
   any card) travel with exports.
-- The **Plan** tab shows the whole curated route beat by beat. Counter items track
-  tallies (26 primers, 99 frogs). Mutually exclusive choices (FF6's Ragnarok esper
+- The **Plan** tab shows the whole curated route beat by beat, legs and all. Counter
+  items track tallies (26 primers, 99 frogs) or labelled step checklists (Lucrecia's
+  cave: visit, ten battles, return). Mutually exclusive choices (FF6's Ragnarok esper
   vs sword) mark the road not taken as FORGONE. Games with meaningfully different
-  releases (FF10 HD, FF12 Zodiac Age) have a version picker per run.
+  releases (FF4 2D/3D, FF6 GBA, FF10 HD, FF12 Zodiac Age) have a version picker per run.
+- **Choices** are decisions with graded outcomes — Wall Market's five dress-up slots,
+  FF6's Odin or Raiden, FF9's Festival winner. Pick the outcome you got; the best one is
+  starred, and the report card lists anything you settled for.
+- **Trackers** show hidden running totals the game never tells you about (FF7's
+  Gold Saucer date affection), fed by your choices and by ± nudges you log from a guide.
+- **Reopening windows**: an item that closes and comes back (FF7's Elemental materia,
+  Shinra HQ then the Midgar raid) reads REOPENS LATER in between instead of MISSED, and
+  the point-of-no-return dialog separates "closes forever" from "closes for now".
+- Every beat carries a **briefing** (what to set up here, what shuts behind you) and,
+  where a game has a clock, a **pace** note (FF9's Excalibur II splits). Cards say when
+  something is **possible now but planned for later**, and why the route waits.
 - **Add game** installs a community pack from JSON at runtime — see
   [docs/PACKS.md](docs/PACKS.md). The ⚑ on any card files a prefilled data-correction
   issue; that's how `verified: false` becomes `true`.
-- Small print: the same game open in two tabs at once can lose a tap to a race — one tab
-  at a time per game is the supported mode.
+- Small print: two tabs on the same game serialize their writes through the Web Locks
+  API where the browser has it, and re-read each other's changes; older browsers fall
+  back to last-write-wins, so one tab at a time per game is still the safest mode.
 
 ## Demo script
 
@@ -63,21 +76,29 @@ default), then from a fresh playthrough:
    Turtle's Paradise flyer, Enemy Skill, and Elemental. *Stay — grab them first* or advance anyway.
 3. **Timeline** → jump to *Junon Escape — the Highwind* (Disc 2). The dialog lists every
    window the jump skips; advance anyway.
-4. The Route tab shows the full chocobo breeding chain in order — with **Knights of the
-   Round Blocked** at the end.
+4. The Route tab shows the chocobo breeding chain as four legs — set up, the colored
+   pair, the black, the gold — with **Knights of the Round Blocked** at the end and the
+   materia caves waiting on the right bird.
 5. Collect the chain top to bottom → KotR flips to **Available**.
+6. Jump back to *Sector 5 & Wall Market* → the five dress-up choices, "Corneo picks
+   Cloud" blocked until every slot is at its best, and the date standings panel above.
 
 ## How it works
 
-- **Packs** (`companion-web/src/packs/*.json`) — story positions, items with availability
-  windows, prereqs, and optional curated route data (`at`, `rank`, `why`). Validated at
-  load; the app refuses to start on unknown prereqs, cycles, or bad windows.
+- **Packs** (`companion-web/src/packs/*.json`) — story positions with briefings, items
+  with one or more availability windows, any-of prereqs (including `item:option`
+  outcomes), choices, step checklists, party requirements, trackers, and optional
+  curated route data (`at`, `rank`, `why`, `leg`, `tradeoff`). Validated at load; the
+  app refuses to start on unknown prereqs, cycles, or bad windows.
 - **Engine** (`companion-web/src/engine/`) — pure functions `(pack, events) → views`: a
-  seven-rule availability projection, Now/Next/Later route bucketing (a closing missable
-  always outranks curation), and advance-impact ("what closes if I jump to X").
+  nine-rule availability projection, Now/Next/Later route bucketing (a closing missable
+  always outranks curation; a closed-for-now item never sits in Now), advance-impact
+  ("what closes forever, what closes for now, if I jump to X"), and tracker standings.
 - **Saves** (`companion-web/src/storage/`) — an append-only event log
-  (`positionAdvanced` / `positionCorrected` / `itemCollected` / `itemUncollected`) in
-  localStorage, replayed through the engine on every view.
+  (`positionAdvanced` / `positionCorrected` / `itemCollected` / `itemUncollected` /
+  `itemProgressed` / `choiceMade` / `trackerAdjusted` / `versionSelected`) in
+  localStorage, replayed through the engine on every view. Unknown event types from a
+  newer build are ignored rather than breaking the fold.
 - **Theming** — all chrome comes from pack theme tokens exposed as `--ff-*` CSS variables;
   components contain zero chrome color literals. Functional status colors are app-constant
   across games. Spoiler masking is soft by design ("Reveal anyway" is always there).

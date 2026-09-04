@@ -18,6 +18,7 @@ import {
   replaceLog,
   resetLog,
 } from "../storage/eventLog";
+import { withLock } from "../storage/lock";
 
 /**
  * Same surface the HTTP client had, computed locally: the TypeScript engine
@@ -43,8 +44,11 @@ function snapshot(pack: Pack): StateSnapshot {
     position: state.position,
     collected: [...state.collected],
     progress: Object.fromEntries(state.progress),
+    choices: Object.fromEntries(state.choices),
   };
 }
+
+const lockName = (pack: Pack) => `ffcompanion.${pack.game.id}.log`;
 
 export interface ProgressEventRequest {
   type: string;
@@ -52,6 +56,9 @@ export interface ProgressEventRequest {
   itemId?: string;
   delta?: number;
   version?: string;
+  optionId?: string;
+  trackerId?: string;
+  valueId?: string;
 }
 
 function toProgressEvent(
@@ -77,8 +84,14 @@ function toProgressEvent(
         throw new Error(`Event type '${request.type}' requires 'itemId'`);
       }
       const itemId = request.itemId;
-      if (!pack.items.some((i) => i.id === itemId)) {
+      const item = pack.items.find((i) => i.id === itemId);
+      if (item === undefined) {
         throw new Error(`Unknown item id '${itemId}'`);
+      }
+      if (request.type === "itemCollected" && item.options.length > 0) {
+        throw new Error(
+          `Item '${itemId}' is a choice — record it with 'choiceMade'`,
+        );
       }
       return { type: request.type, itemId, occurredAt };
     }
@@ -106,6 +119,55 @@ function toProgressEvent(
       return {
         type: "itemProgressed",
         itemId,
+        delta: request.delta,
+        occurredAt,
+      };
+    }
+    case "choiceMade": {
+      if (request.itemId === undefined || request.optionId === undefined) {
+        throw new Error(
+          `Event type 'choiceMade' requires 'itemId' and 'optionId'`,
+        );
+      }
+      const itemId = request.itemId;
+      const optionId = request.optionId;
+      const item = pack.items.find((i) => i.id === itemId);
+      if (item === undefined) {
+        throw new Error(`Unknown item id '${itemId}'`);
+      }
+      if (!item.options.some((o) => o.id === optionId)) {
+        throw new Error(`Item '${itemId}' has no option '${optionId}'`);
+      }
+      return { type: "choiceMade", itemId, optionId, occurredAt };
+    }
+    case "trackerAdjusted": {
+      if (request.trackerId === undefined || request.valueId === undefined) {
+        throw new Error(
+          `Event type 'trackerAdjusted' requires 'trackerId' and 'valueId'`,
+        );
+      }
+      const trackerId = request.trackerId;
+      const valueId = request.valueId;
+      const tracker = pack.trackers.find((t) => t.id === trackerId);
+      if (tracker === undefined) {
+        throw new Error(`Unknown tracker '${trackerId}'`);
+      }
+      if (!tracker.values.some((v) => v.id === valueId)) {
+        throw new Error(`Tracker '${trackerId}' has no value '${valueId}'`);
+      }
+      if (
+        request.delta === undefined ||
+        !Number.isInteger(request.delta) ||
+        request.delta === 0
+      ) {
+        throw new Error(
+          `Event type 'trackerAdjusted' requires a non-zero integer 'delta'`,
+        );
+      }
+      return {
+        type: "trackerAdjusted",
+        trackerId,
+        valueId,
         delta: request.delta,
         occurredAt,
       };
@@ -162,7 +224,11 @@ export const api = {
   ): Promise<StateSnapshot> => {
     const pack = requirePack(gameId);
     const progressEvent = toProgressEvent(pack, event);
-    appendEvent(pack.game.id, progressEvent);
+    // The append is a read-modify-write of the whole log; the lock keeps two
+    // tabs on the same game from dropping each other's taps.
+    await withLock(lockName(pack), () =>
+      appendEvent(pack.game.id, progressEvent),
+    );
     return snapshot(pack);
   },
 
@@ -170,7 +236,9 @@ export const api = {
     gameId: string,
   ): Promise<StateSnapshot & { archivedTo: string | null }> => {
     const pack = requirePack(gameId);
-    const archivedTo = resetLog(pack.game.id);
+    const archivedTo = await withLock(lockName(pack), () =>
+      resetLog(pack.game.id),
+    );
     return { ...snapshot(pack), archivedTo };
   },
 
@@ -186,10 +254,12 @@ export const api = {
    */
   postUndo: async (gameId: string): Promise<StateSnapshot> => {
     const pack = requirePack(gameId);
-    const events = readEvents(pack.game.id);
-    if (events.length > 0) {
-      replaceLog(pack.game.id, events.slice(0, -1));
-    }
+    await withLock(lockName(pack), () => {
+      const events = readEvents(pack.game.id);
+      if (events.length > 0) {
+        replaceLog(pack.game.id, events.slice(0, -1));
+      }
+    });
     return snapshot(pack);
   },
 };

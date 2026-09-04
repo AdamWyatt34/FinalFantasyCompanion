@@ -3,20 +3,14 @@
     "id": "ff10",
     "title": "Final Fantasy X",
     "versions": [
-      {
-        "id": "hd",
-        "label": "HD Remaster"
-      },
-      {
-        "id": "original",
-        "label": "PS2 original"
-      }
+      { "id": "hd", "label": "HD Remaster" },
+      { "id": "original", "label": "PS2 original" }
     ]
   },
   "theme": {
     "tokens": {
-      "bgTop": "#03121a",
-      "bgMid": "#072634",
+      "bgTop": "#031420",
+      "bgMid": "#07283a",
       "bgBottom": "#051a26",
       "panelTop": "#1e5a72",
       "panelMid": "#0f3a4e",
@@ -39,144 +33,237 @@
       "id": "zanarkandstart",
       "order": 1,
       "label": "Zanarkand",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "HD Remaster asks Standard or Expert Sphere Grid before the first fight — it cannot be changed later. Nothing else here closes."
+      ]
     },
     {
       "id": "baaj",
       "order": 2,
       "label": "Baaj Temple",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The first Al Bhed Primer is on the Al Bhed ship. Baaj itself reopens with the airship for Anima and the Onion Knight."
+      ]
     },
     {
       "id": "besaid",
       "order": 3,
       "label": "Besaid Island",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Take the Destruction Sphere treasure in the Cloister and talk to the girl and the dog for Valefor's second Overdrive. In HD, Dark Valefor camps the village once you are branded traitors."
+      ]
     },
     {
       "id": "kilika",
       "order": 4,
       "label": "S.S. Liki & Kilika",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Learn the Jecht Shot on the S.S. Winno's deck — the pack treats the crossing as the only chance. Kilika's Cloister has a Destruction Sphere treasure too."
+      ]
     },
     {
       "id": "luca",
       "order": 5,
       "label": "Luca",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The first tournament is scripted into the story. Blitzball prizes (Wakka's Reels, the Jupiter Sigil) are league and tournament rewards from here on."
+      ]
     },
     {
       "id": "miihen",
       "order": 6,
       "label": "Mi'ihen Highroad",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The Mars Crest is at the end of the Oldroad; the highroad stays reachable, so it can wait. Belgemine's first aeon duel is optional practice."
+      ]
     },
     {
       "id": "operation",
       "order": 7,
       "label": "Operation Mi'ihen",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Nothing closes. Mushroom Rock Road later hosts the Masamune statue and Rikku's God-hand chest."
+      ]
     },
     {
       "id": "djose",
       "order": 8,
       "label": "Djose & the Moonflow",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Djose's Cloister has a Destruction Sphere treasure. Rikku joins at the Moonflow — her Al Bhed Primers start paying off."
+      ]
     },
     {
       "id": "guadosalam",
       "order": 9,
       "label": "Guadosalam",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The Venus Crest is in the Farplane — grab it on the first visit even though it never closes."
+      ]
     },
     {
       "id": "thunderplains",
       "order": 10,
       "label": "Thunder Plains",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The 200-bolt Venus Sigil dodge can wait for the airship; the Kimahri cactuar stones cannot be done yet either. Just pass through."
+      ]
     },
     {
       "id": "macalania",
       "order": 11,
       "label": "Macalania Temple",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Spherimorph drops the first Jecht Sphere. Macalania's Cloister has a Destruction Sphere treasure; the temple stays reachable but HD's Dark Shiva guards it later."
+      ]
     },
     {
       "id": "home",
       "order": 12,
       "label": "Sanubia Desert & Home",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Four Al Bhed Primers burn with Home — sweep every room before the story moves. The Mercury Crest is in the Sanubia sandpit."
+      ]
     },
     {
       "id": "bevelle",
       "order": 13,
       "label": "Bevelle",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "The Via Purifico primer is on the floor of the underwater maze — no second visit. Let Kimahri learn Thrust Kick from the YKT machina while you are inside; HD's Dark Bahamut blocks the temple later."
+      ]
     },
     {
       "id": "calmlands",
       "order": 14,
       "label": "The Calm Lands",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "The Celestial Mirror chain starts here (Remiem race → the family in Macalania Woods). Buy capture weapons at the Monster Arena; haggle Yojimbo down in the gorge cavern."
+      ]
     },
     {
       "id": "gagazet",
       "order": 15,
       "label": "Mt. Gagazet",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "The Saturn Crest is on the mountain past the prayer scene. Capture Gagazet's fiends for the Blossom Crown later."
+      ]
     },
     {
       "id": "zanarkandruins",
       "order": 16,
       "label": "Zanarkand Ruins",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Climb back up right after the dome's boss for the Sun Crest — in HD, Dark Bahamut guards it afterward. The dome's Destruction Sphere treasure is the last of the six."
+      ]
     },
     {
       "id": "airship",
       "order": 17,
       "label": "The Airship — World Opens",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Everything is open: airship passwords and coordinates, Anima at Baaj, the Magus Sisters, the seven Celestial weapons with their crests and sigils, the Monster Arena, the Dark Aeons (HD)."
+      ]
     },
     {
       "id": "sin",
       "order": 18,
       "label": "Inside Sin",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "The airship still flies you out until the final descent. Finish the arena and the sigils before Braska's Final Aeon."
+      ]
     }
   ],
   "items": [
+    {
+      "id": "spheregrid",
+      "name": "Sphere Grid: Standard or Expert",
+      "type": "choice",
+      "location": "Prompt before the first battle (HD / International)",
+      "window": { "opensAt": 1, "closesAt": 1 },
+      "versions": ["hd"],
+      "options": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "note": "Fixed character paths; more nodes overall. The safer first-run choice."
+        },
+        {
+          "id": "expert",
+          "label": "Expert",
+          "note": "Everyone starts in the middle; fewer nodes, total freedom. For players who already know the grid."
+        }
+      ],
+      "route": {
+        "at": 1,
+        "rank": 0,
+        "why": "One prompt, permanent for the whole run"
+      },
+      "notes": "Neither is wrong; the pack only records which you took.",
+      "verified": false
+    },
     {
       "id": "primershome",
       "name": "Al Bhed Primers in Home",
       "type": "primer",
       "location": "Home — every room",
-      "window": {
-        "opensAt": 12,
-        "closesAt": 12
-      },
+      "window": { "opensAt": 12, "closesAt": 12 },
       "route": {
         "at": 12,
         "rank": 0,
         "why": "Four primers burn with Home — sweep every room before the story moves"
       },
       "notes": "Living quarters, main corridor and environs. Home is destroyed at the end of this beat; these volumes are gone forever after.",
-      "verified": false
+      "verified": false,
+      "count": 4
     },
     {
       "id": "primerbevelle",
       "name": "Al Bhed Primer — Via Purifico",
       "type": "primer",
       "location": "Bevelle — Via Purifico",
-      "window": {
-        "opensAt": 13,
-        "closesAt": 13
-      },
+      "window": { "opensAt": 13, "closesAt": 13 },
       "route": {
         "at": 13,
         "rank": 0,
-        "why": "On the floor of the underwater maze — no second visit"
+        "why": "On the floor of the underwater maze — no second visit",
+        "leg": "Bevelle — one pass"
       },
       "notes": "Grab it during Yuna's escape section. Bevelle's halls are closed afterward.",
+      "verified": false
+    },
+    {
+      "id": "thrustkick",
+      "name": "Thrust Kick (Kimahri's Ronso Rage)",
+      "type": "quest",
+      "location": "Bevelle — YKT-63 / YKT-11 machina",
+      "window": { "opensAt": 13, "closesAt": 16 },
+      "party": ["Kimahri"],
+      "route": {
+        "at": 13,
+        "rank": 1,
+        "why": "Lancet the walking machina while Bevelle is open",
+        "leg": "Bevelle — one pass"
+      },
+      "notes": "The YKT models only walk Bevelle's halls. In HD, Dark Bahamut stands in the temple doorway once the airship flies — the pack closes the window before that.",
       "verified": false
     },
     {
@@ -184,22 +271,31 @@
       "name": "All other Al Bhed Primers",
       "type": "primer",
       "location": "Across Spira",
-      "window": {
-        "opensAt": 1
-      },
+      "window": { "opensAt": 1 },
       "notes": "The rest stay collectible (compilation spheres can copy previously found volumes). Full literacy pays off in Rikku's Home and the Omega Ruins chatter.",
       "verified": false,
       "count": 21
+    },
+    {
+      "id": "jechtshot",
+      "name": "Jecht Shot",
+      "type": "quest",
+      "location": "S.S. Winno — the blitzball on deck",
+      "window": { "opensAt": 4, "closesAt": 4 },
+      "route": {
+        "at": 4,
+        "rank": 0,
+        "why": "The deck minigame is the one clean chance to learn Tidus' signature shot"
+      },
+      "notes": "Hit the prompts as Jecht's taunts appear. Widely listed as re-learnable later by re-boarding the Winno — the pack keeps the crossing as the window until verified.",
+      "verified": false
     },
     {
       "id": "valefor2",
       "name": "Valefor's second Overdrive",
       "type": "aeon",
       "location": "Besaid Village",
-      "window": {
-        "opensAt": 3,
-        "closesAt": 12
-      },
+      "window": { "opensAt": 3, "closesAt": 12 },
       "route": {
         "at": 3,
         "rank": 2,
@@ -213,27 +309,29 @@
       "name": "Destruction Sphere treasures",
       "type": "quest",
       "location": "Every Cloister of Trials",
-      "window": {
-        "opensAt": 3,
-        "closesAt": 16
-      },
+      "window": { "opensAt": 3, "closesAt": 16 },
       "route": {
         "at": 3,
         "rank": 1,
         "why": "Take each temple's hidden treasure during its first visit"
       },
-      "notes": "Besaid, Kilika, Djose, Macalania, Bevelle, Zanarkand. All six are needed for Anima. In HD, Dark Aeons block several return trips — treat each first visit as the only visit.",
-      "verified": false,
-      "count": 6
+      "steps": [
+        "Besaid — Rod of Wisdom",
+        "Kilika — Red Armlet",
+        "Djose — Magic Sphere",
+        "Macalania — Luck Sphere",
+        "Bevelle — HP Sphere (only during the story visit)",
+        "Zanarkand — Magistral Rod"
+      ],
+      "notes": "All six are needed for Anima. In HD, Dark Aeons block several return trips — treat each first visit as the only visit.",
+      "verified": false
     },
     {
       "id": "jechtspheres",
       "name": "Jecht Spheres ×10",
       "type": "quest",
       "location": "Across Spira",
-      "window": {
-        "opensAt": 11
-      },
+      "window": { "opensAt": 11 },
       "route": {
         "at": 14,
         "rank": 2,
@@ -248,9 +346,7 @@
       "name": "Yojimbo",
       "type": "aeon",
       "location": "Cavern of the Stolen Fayth",
-      "window": {
-        "opensAt": 14
-      },
+      "window": { "opensAt": 14 },
       "route": {
         "at": 14,
         "rank": 1,
@@ -264,10 +360,7 @@
       "name": "Sun Crest",
       "type": "key",
       "location": "Zanarkand Dome",
-      "window": {
-        "opensAt": 16,
-        "closesAt": 16
-      },
+      "window": { "opensAt": 16, "closesAt": 16 },
       "route": {
         "at": 16,
         "rank": 0,
@@ -281,14 +374,17 @@
       "name": "Celestial Mirror",
       "type": "key",
       "location": "Remiem Temple → Macalania Woods",
-      "window": {
-        "opensAt": 14
-      },
+      "window": { "opensAt": 14 },
       "route": {
         "at": 14,
         "rank": 0,
         "why": "Chocobo race for the Cloudy Mirror, then the family in the woods upgrades it"
       },
+      "steps": [
+        "Win the Remiem Temple chocobo race for the Cloudy Mirror",
+        "Find the lost boy in Macalania Woods and reunite the family",
+        "Touch the crystal for the Celestial Mirror"
+      ],
       "notes": "The key to every ultimate weapon chest and crest slot.",
       "verified": false
     },
@@ -297,16 +393,13 @@
       "name": "Anima",
       "type": "aeon",
       "location": "Baaj Temple",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "destructionspheres"
-      ],
+      "window": { "opensAt": 17 },
+      "prereqs": ["destructionspheres"],
       "route": {
         "at": 17,
         "rank": 1,
-        "why": "Dive back to Baaj once the airship flies"
+        "why": "Dive back to Baaj once the airship flies",
+        "leg": "Aeons"
       },
       "notes": "Seymour's mother waits beneath the ruins where the game nearly drowned you.",
       "verified": false
@@ -316,14 +409,20 @@
       "name": "The Magus Sisters",
       "type": "aeon",
       "location": "Remiem Temple",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "anima",
-        "yojimbo"
+      "window": { "opensAt": 17 },
+      "prereqs": ["anima", "yojimbo"],
+      "steps": [
+        "Blossom Crown — capture one of each Mt. Gagazet fiend for the arena owner",
+        "Flower Sceptre — beat Belgemine's Bahamut at Remiem",
+        "Open the sealed door at Remiem Temple"
       ],
-      "notes": "Blossom Crown (capture Gagazet's fiends) + Flower Sceptre (beat Belgemine's Bahamut) open the sealed door.",
+      "route": {
+        "at": 17,
+        "rank": 2,
+        "why": "The last aeon needs every other one first",
+        "leg": "Aeons"
+      },
+      "notes": "Three summons that fight on their own terms.",
       "verified": false
     },
     {
@@ -331,14 +430,20 @@
       "name": "Caladbolg (Tidus)",
       "type": "weapon",
       "location": "Calm Lands — northwest gorge",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror",
-        "suncrest"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror", "suncrest"],
+      "steps": [
+        "Beat the chocobo trainer's race to open the gorge chest",
+        "Sun Sigil — 0:00.0 in the Calm Lands balloon race",
+        "Power up at the Macalania crystal with the Mirror"
       ],
-      "notes": "Beat the chocobo trainer's race to open the chest, then the Sun Sigil demands 0:00.0 in the balloon race. The sigil race is the hard part.",
+      "route": {
+        "at": 17,
+        "rank": 3,
+        "why": "The sigil race is the hardest minigame in the game — start early",
+        "leg": "Celestial weapons"
+      },
+      "notes": "The crest is the Zanarkand chest; the sigil race is the hard part.",
       "verified": false
     },
     {
@@ -346,13 +451,21 @@
       "name": "Nirvana (Yuna)",
       "type": "weapon",
       "location": "Monster Arena chest",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror"],
+      "steps": [
+        "Capture one of each Calm Lands species for the arena chest",
+        "Moon Crest — the cove on Besaid beach (HD: Dark Valefor territory)",
+        "Moon Sigil — defeat all of Belgemine's aeons at Remiem",
+        "Power up at the Macalania crystal"
       ],
-      "notes": "Capture one of each Calm Lands species. Moon Crest is on Besaid beach (HD: Dark Valefor territory); Moon Sigil comes from defeating all of Belgemine's aeons at Remiem.",
+      "route": {
+        "at": 17,
+        "rank": 4,
+        "why": "Belgemine's aeon gauntlet doubles as Magus Sisters prep",
+        "leg": "Celestial weapons"
+      },
+      "notes": "Yuna's staff.",
       "verified": false
     },
     {
@@ -360,13 +473,21 @@
       "name": "World Champion (Wakka)",
       "type": "weapon",
       "location": "Luca — café owner",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror"],
+      "steps": [
+        "Café owner in Luca hands it over once your blitzball standing is high enough",
+        "Jupiter Crest — the Aurochs' locker room",
+        "Jupiter Sigil — league prize after Attack, Status and Aurochs Reels are learned",
+        "Power up at the Macalania crystal"
       ],
-      "notes": "Requires blitzball standing. Jupiter Crest in the Aurochs' locker room; Jupiter Sigil from league prizes with Attack/Status/Aurochs Reels learned.",
+      "route": {
+        "at": 17,
+        "rank": 5,
+        "why": "Hours of blitzball — the sigil is the slowest in the game",
+        "leg": "Celestial weapons"
+      },
+      "notes": "Requires blitzball standing.",
       "verified": false
     },
     {
@@ -374,13 +495,21 @@
       "name": "God-hand (Rikku)",
       "type": "weapon",
       "location": "Mushroom Rock — hovering chest",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror"],
+      "steps": [
+        "Input GODHAND at the airship console and open the Mushroom Rock chest",
+        "Mercury Crest — the Sanubia sandpit",
+        "Mercury Sigil — the Village of the Cactuars gauntlet",
+        "Power up at the Macalania crystal"
       ],
-      "notes": "Input GODHAND at the airship console. Mercury Crest in Sanubia's sandpit; Mercury Sigil from the Village of the Cactuars gauntlet.",
+      "route": {
+        "at": 17,
+        "rank": 6,
+        "why": "The cactuar gauntlet is a one-evening job",
+        "leg": "Celestial weapons"
+      },
+      "notes": "Input GODHAND at the airship console.",
       "verified": false
     },
     {
@@ -388,13 +517,22 @@
       "name": "Masamune (Auron)",
       "type": "weapon",
       "location": "Mushroom Rock — the statue",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror"],
+      "steps": [
+        "Rusty Sword — the Cavern of the Stolen Fayth's back path",
+        "Offer it at the statue on Mushroom Rock Road with the Mirror",
+        "Mars Crest — the end of the Mi'ihen Oldroad",
+        "Mars Sigil — unlock ten Monster Arena creations",
+        "Power up at the Macalania crystal"
       ],
-      "notes": "Mars Crest on the Old Mi'ihen Road; Mars Sigil for unlocking ten Monster Arena creations. Offer the crest at the sealed statue.",
+      "route": {
+        "at": 17,
+        "rank": 7,
+        "why": "Ten arena creations is the real cost",
+        "leg": "Celestial weapons"
+      },
+      "notes": "Offer the crest at the sealed statue.",
       "verified": false
     },
     {
@@ -402,13 +540,21 @@
       "name": "Onion Knight (Lulu)",
       "type": "weapon",
       "location": "Baaj Temple — underwater chest",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror"],
+      "steps": [
+        "Underwater chest at Baaj Temple (after Geosgaeno)",
+        "Venus Crest — the Farplane in Guadosalam",
+        "Venus Sigil — dodge 200 consecutive lightning bolts",
+        "Power up at the Macalania crystal"
       ],
-      "notes": "Venus Crest in the Farplane; Venus Sigil for dodging 200 consecutive lightning bolts. Yes, two hundred.",
+      "route": {
+        "at": 17,
+        "rank": 8,
+        "why": "Two hundred bolts. Yes, two hundred.",
+        "leg": "Celestial weapons"
+      },
+      "notes": "Lulu's doll.",
       "verified": false
     },
     {
@@ -416,13 +562,32 @@
       "name": "Spirit Lance (Kimahri)",
       "type": "weapon",
       "location": "Thunder Plains — the cactuar stones",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "celestialmirror"
+      "window": { "opensAt": 17 },
+      "prereqs": ["celestialmirror"],
+      "steps": [
+        "Pray at the three Thunder Plains cactuar stones, then catch the ghost",
+        "Saturn Crest — Mt. Gagazet, past the prayer scene",
+        "Saturn Sigil — the Macalania butterfly hunts",
+        "Power up at the Macalania crystal"
       ],
-      "notes": "Pray at the three cactuar stones, catch the ghost. Saturn Crest on Gagazet; Saturn Sigil from the butterfly hunts in Macalania.",
+      "route": {
+        "at": 17,
+        "rank": 9,
+        "why": "The butterfly hunts are short but unforgiving",
+        "leg": "Celestial weapons"
+      },
+      "notes": "Kimahri's spear.",
+      "verified": false
+    },
+    {
+      "id": "ronsorages",
+      "name": "Kimahri's Ronso Rages",
+      "type": "quest",
+      "location": "Lancet the right fiends across Spira",
+      "window": { "opensAt": 3 },
+      "party": ["Kimahri"],
+      "count": 12,
+      "notes": "Twelve Overdrives learned by Lancet: Jump, Seed Cannon, Self-Destruct, Thrust Kick, Stone Breath, Aqua Breath, Doom, Fire Breath, White Wind, Bad Breath, Mighty Guard, Nova. Thrust Kick has its own entry — it is the one on a clock.",
       "verified": false
     },
     {
@@ -430,9 +595,7 @@
       "name": "Monster Arena",
       "type": "quest",
       "location": "The Calm Lands",
-      "window": {
-        "opensAt": 14
-      },
+      "window": { "opensAt": 14 },
       "route": {
         "at": 14,
         "rank": 3,
@@ -446,14 +609,17 @@
       "name": "Blitzball & the Reels",
       "type": "quest",
       "location": "Luca stadium — anywhere via save spheres",
-      "window": {
-        "opensAt": 5
-      },
+      "window": { "opensAt": 5 },
       "route": {
         "at": 5,
         "rank": 1,
         "why": "The first tournament is scripted into the story — league prizes start here"
       },
+      "steps": [
+        "Attack Reels — tournament prize",
+        "Status Reels — league prize",
+        "Aurochs Reels — league prize once the other two are learned"
+      ],
       "notes": "Wakka's overdrive Reels are league/tournament prizes; they also gate his Jupiter Sigil. Recruitable free agents rotate, so check contracts after story beats.",
       "verified": false
     },
@@ -462,9 +628,7 @@
       "name": "Airship passwords & coordinates",
       "type": "key",
       "location": "Airship console",
-      "window": {
-        "opensAt": 17
-      },
+      "window": { "opensAt": 17 },
       "notes": "GODHAND, VICTORIOUS, MURASA as passwords; Baaj and the Sanubia ruins via hidden coordinates. Free gear for typing.",
       "verified": false
     },
@@ -473,32 +637,22 @@
       "name": "Dark Aeons",
       "type": "quest",
       "location": "Across Spira (HD remaster)",
-      "window": {
-        "opensAt": 17
-      },
+      "window": { "opensAt": 17 },
       "notes": "Valefor at Besaid, Ifrit at Bikanel, Ixion on the Thunder Plains, Shiva at Macalania, Bahamut at the Zanarkand Dome, Yojimbo in the cavern, Anima at Baaj, the Magus Sisters on Gagazet. Superboss tier — approach with a finished grid.",
       "verified": false,
       "count": 8,
-      "versions": [
-        "hd"
-      ]
+      "versions": ["hd"]
     },
     {
       "id": "penance",
       "name": "Penance",
       "type": "quest",
       "location": "Airship destination list",
-      "window": {
-        "opensAt": 17
-      },
-      "prereqs": [
-        "darkaeons"
-      ],
+      "window": { "opensAt": 17 },
+      "prereqs": ["darkaeons"],
       "notes": "Appears after every Dark Aeon falls. The true final exam.",
       "verified": false,
-      "versions": [
-        "hd"
-      ]
+      "versions": ["hd"]
     }
   ]
 }

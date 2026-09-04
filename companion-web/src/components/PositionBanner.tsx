@@ -31,6 +31,11 @@ export function PositionBanner({
       <div className="text-[11px] font-mono text-[var(--ff-dim)]">
         Disc {current?.disc ?? 1} · beat {position} / {maxOrder}
       </div>
+      {current?.pace && (
+        <div className="text-[11px] font-mono mt-0.5 text-[var(--ff-cyan)]">
+          ⏱ {current.pace}
+        </div>
+      )}
 
       <ProgressTicks positions={positions} current={position} />
 

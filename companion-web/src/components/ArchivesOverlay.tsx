@@ -8,6 +8,7 @@ import {
   restoreArchive,
   type ArchiveInfo,
 } from "../storage/eventLog";
+import { useDialogs } from "../hooks/useDialogs";
 
 interface ArchivesOverlayProps {
   pack: Pack;
@@ -24,6 +25,7 @@ export function ArchivesOverlay({
     listArchives(pack.game.id),
   );
   const panelRef = useDialog(onClose);
+  const dialogs = useDialogs();
 
   const describe = (archive: ArchiveInfo) => {
     const state = fold(pack, archive.events);
@@ -40,26 +42,31 @@ export function ArchivesOverlay({
       : date.toLocaleString();
   };
 
-  const restore = (archive: ArchiveInfo) => {
-    if (
-      window.confirm(
-        "Restore this playthrough? Your current run will be archived first — nothing is lost.",
-      )
-    ) {
-      try {
-        restoreArchive(pack.game.id, archive.key);
-      } catch (e) {
-        window.alert(e instanceof Error ? e.message : "Restore failed.");
-        setArchives(listArchives(pack.game.id));
-        return;
-      }
-      onRestored();
-      onClose();
+  const restore = async (archive: ArchiveInfo) => {
+    const ok = await dialogs.confirm(
+      "Restore this playthrough? Your current run will be archived first — nothing is lost.",
+      { confirmLabel: "Restore" },
+    );
+    if (!ok) {
+      return;
     }
+    try {
+      restoreArchive(pack.game.id, archive.key);
+    } catch (e) {
+      await dialogs.alert(e instanceof Error ? e.message : "Restore failed.");
+      setArchives(listArchives(pack.game.id));
+      return;
+    }
+    onRestored();
+    onClose();
   };
 
-  const remove = (archive: ArchiveInfo) => {
-    if (window.confirm("Delete this archived playthrough permanently?")) {
+  const remove = async (archive: ArchiveInfo) => {
+    const ok = await dialogs.confirm(
+      "Delete this archived playthrough permanently?",
+      { confirmLabel: "Delete", danger: true },
+    );
+    if (ok) {
       deleteArchive(pack.game.id, archive.key);
       setArchives(listArchives(pack.game.id));
     }

@@ -2,21 +2,21 @@
   "game": { "id": "ff9", "title": "Final Fantasy IX" },
   "theme": {
     "tokens": {
-      "bgTop": "#150d03",
-      "bgMid": "#241605",
-      "bgBottom": "#170f06",
-      "panelTop": "#7a5a2e",
-      "panelMid": "#4a3316",
-      "panelBottom": "#241705",
-      "border": "#e6d2a8",
-      "bevel": "#78602e",
-      "ink": "#fdf3dd",
-      "dim": "#c9b48c",
-      "dimmer": "#a08a62",
-      "faint": "#6e5f42",
-      "gold": "#ffd97a",
-      "cyan": "#8ed8b0",
-      "buttonBorder": "#8a7244",
+      "bgTop": "#1c1408",
+      "bgMid": "#2e2210",
+      "bgBottom": "#1a1208",
+      "panelTop": "#7a5a2a",
+      "panelMid": "#4a3618",
+      "panelBottom": "#2c200e",
+      "border": "#e8d8b0",
+      "bevel": "#7a6236",
+      "ink": "#f8f0dc",
+      "dim": "#c8b48c",
+      "dimmer": "#a49070",
+      "faint": "#786448",
+      "gold": "#ecc964",
+      "cyan": "#9adcc8",
+      "buttonBorder": "#96784a",
       "tickDone": "#6e5626",
       "tickTodo": "#2e2210"
     }
@@ -26,118 +26,204 @@
       "id": "alexandria1",
       "order": 1,
       "label": "Alexandria — the kidnapping",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Impress 100 nobles in the sword fight and start Vivi's jump rope now — the square is gone after Disc 2. Excalibur II runs start their clock here."
+      ],
+      "pace": "Excalibur II: keep the whole run under 12:00:00"
     },
     {
       "id": "evilforest",
       "order": 2,
       "label": "Evil Forest & Ice Cavern",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The Evil Forest petrifies when you leave — take its chests and the spring scene first. Stiltzkin's first bundle is here."
+      ]
     },
-    { "id": "dali", "order": 3, "label": "Dali", "disc": 1 },
+    {
+      "id": "dali",
+      "order": 3,
+      "label": "Dali",
+      "disc": 1,
+      "tips": [
+        "Morrid's coffee chain begins (Moccha coffee). The Friendly Mu on the plains wants an Ore — the chain must be done in order."
+      ]
+    },
     {
       "id": "lindblum",
       "order": 4,
       "label": "Lindblum — Festival of the Hunt",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The Festival's prize depends on who wins: Zidane 5,000 gil, Vivi a Theater Ticket, Freya the Coral Ring."
+      ]
     },
     {
       "id": "marsh",
       "order": 5,
       "label": "Qu's Marsh & Gizamaluke's Grotto",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Recruit Quina early for Blue Magic and start the frog count. Chocobo's Forest is between Lindblum and the marsh — Hot & Cold funds the whole endgame."
+      ]
     },
-    { "id": "burmecia", "order": 6, "label": "Burmecia", "disc": 1 },
+    {
+      "id": "burmecia",
+      "order": 6,
+      "label": "Burmecia",
+      "disc": 1,
+      "tips": [
+        "Sweep the ruined city — the pack closes it pessimistically. Disc 1 ends here."
+      ],
+      "pace": "Excalibur II: finish Disc 1 by ≈2:00"
+    },
     {
       "id": "cleyra",
       "order": 7,
       "label": "Summit Station & Cleyra",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Cleyra is erased by Odin — anything not taken from the settlement and the trunk is gone forever. Treno opens from here: Stellazzio, the auction, the weapon shop's monster."
+      ]
     },
     {
       "id": "alexandria2",
       "order": 8,
       "label": "Alexandria — the rescue",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Tantarian hides in the castle library's moving book while the castle still stands."
+      ]
     },
     {
       "id": "fossilroo",
       "order": 9,
       "label": "Pinnacle Rocks & Fossil Roo",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Assemble Ramuh's tale for the Peridot; both endings pay. Fossil Roo is revisitable."
+      ]
     },
     {
       "id": "condepetie",
       "order": 10,
       "label": "Conde Petie & Black Mage Village",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Kirman coffee is at Madain Sari next; the Friendly Ladybug is on the Eunorus Plains."
+      ]
     },
     {
       "id": "madainsari",
       "order": 11,
       "label": "Madain Sari & the Iifa Tree",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Chocograph digs continue: the red Mountain Choco is reachable now. Disc 2 ends at the Iifa Tree."
+      ],
+      "pace": "Excalibur II: finish Disc 2 by ≈4:30"
     },
     {
       "id": "coronation",
       "order": 12,
       "label": "Alexandria — Dagger's coronation",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "The coronation stretch is one beat of missables: Hippaul racing to level 80, Steiner's Pluto Knights roll call, Eiko's jump rope, the last Tantarian chance."
+      ]
     },
     {
       "id": "treno2",
       "order": 13,
       "label": "Treno tournament & the fall of Alexandria",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Dali's mayor naps now — pickpocket his key for the windmill's Mini-Brahne and Burman coffee. Alexandria falls at the end of this beat."
+      ]
     },
     {
       "id": "desertpalace",
       "order": 14,
       "label": "Desert Palace & Oeilvert",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Two one-visit dungeons at once: light every lamp in the Desert Palace, empty Oeilvert with a physical team."
+      ]
     },
     {
       "id": "gulug",
       "order": 15,
       "label": "Esto Gaza & Mount Gulug",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Red Hat, Golden Hairpin and the last unrepeatable chests on the way down Gulug."
+      ]
     },
     {
       "id": "hildagarde",
       "order": 16,
       "label": "Hilda Garde 3 — free flight",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "The chocograph chain runs to the Sky Choco from here; Daguerreo's shops are the best in the game. The friendly monster chain continues on the Forgotten Continent."
+      ]
     },
     {
       "id": "ipsens",
       "order": 17,
       "label": "Ipsen's Castle & the four shrines",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Weaker weapons hit harder in Ipsen's Castle. Nothing at the shrines is missable."
+      ]
     },
     {
       "id": "terra",
       "order": 18,
       "label": "Terra — Bran Bal & Pandemonium",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Terra does not survive the disc: buy what Bran Bal sells and sweep Pandemonium before the escape."
+      ],
+      "pace": "Excalibur II: finish Disc 3 by ≈9:30"
     },
     {
       "id": "invincible",
       "order": 19,
       "label": "The Invincible — Disc 4",
-      "disc": 4
+      "disc": 4,
+      "tips": [
+        "The mop-up disc: Mognet Central, the Eidolon Wall secret, Ozma, Ophiuchus, the Dead Pepper ultimate weapons, the Nero brothers between Memoria trips."
+      ]
     },
     {
       "id": "memoria1",
       "order": 20,
       "label": "Memoria — outer halls",
-      "disc": 4
+      "disc": 4,
+      "tips": [
+        "Excalibur II sits by the Lich fight only under 12:00:00. Hades hides in Memoria and opens the last synth shop."
+      ],
+      "pace": "Excalibur II: reach the Lich under 12:00:00"
     },
-    { "id": "memoria2", "order": 21, "label": "Memoria — depths", "disc": 4 },
+    {
+      "id": "memoria2",
+      "order": 21,
+      "label": "Memoria — depths",
+      "disc": 4,
+      "tips": [
+        "Mace of Zeus and Rune Claws are in the final corridors; Stiltzkin's last bundle (a Ribbon) is here too."
+      ]
+    },
     {
       "id": "crystalworld",
       "order": 22,
       "label": "Crystal World — point of no return",
-      "disc": 4
+      "disc": 4,
+      "tips": [
+        "Last chance to leave. Everything still open on the list is behind you once the crystal fights begin."
+      ]
     }
   ],
   "items": [
@@ -156,15 +242,18 @@
       "name": "Jump rope — King of Jump Rope",
       "type": "quest",
       "location": "Alexandria square — as Vivi (Disc 1) or Eiko (Disc 3)",
-      "window": { "opensAt": 1, "closesAt": 12 },
+      "windows": [
+        { "opensAt": 1, "closesAt": 1 },
+        { "opensAt": 12, "closesAt": 12 }
+      ],
       "prereqs": [],
-      "notes": "1000 jumps for the King of Jump Rope key item. Alexandria's square is gone after the fall.",
+      "notes": "1000 jumps for the King of Jump Rope key item. Two visits to the square: Vivi at the start, Eiko during the coronation. Alexandria's square is gone after the fall.",
       "verified": false
     },
     {
       "id": "evilforestsweep",
       "name": "Evil Forest sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Evil Forest — before it petrifies",
       "window": { "opensAt": 2, "closesAt": 2 },
       "prereqs": [],
@@ -178,6 +267,7 @@
       "location": "Traveling moogle — appears across the whole game",
       "window": { "opensAt": 2, "closesAt": 21 },
       "prereqs": [],
+      "count": 7,
       "notes": "Buy his discount bundle at every encounter; the final Memoria meeting sells a Ribbon.",
       "verified": false
     },
@@ -188,7 +278,8 @@
       "location": "Random encounters in forests, all discs",
       "window": { "opensAt": 2 },
       "prereqs": [],
-      "notes": "Answer his true/false theater trivia across the game; full marks pays out on Disc 4.",
+      "count": 16,
+      "notes": "Answer his true/false theater trivia across the game; sixteen questions, full marks pays out on Disc 4.",
       "verified": false
     },
     {
@@ -198,6 +289,11 @@
       "location": "Moccha (observatory area), Kirman (Madain Sari), Burman (Dali windmill)",
       "window": { "opensAt": 3, "closesAt": 18 },
       "prereqs": [],
+      "steps": [
+        "Moccha Coffee — the observatory mountain near Dali",
+        "Kirman Coffee — Madain Sari",
+        "Burman Coffee — Dali's windmill, with the Mayor's Key"
+      ],
       "notes": "Deliver all three to Morrid's tower for the Mini-Prima Vista. Windows on individual coffees vary — verify.",
       "verified": false
     },
@@ -214,11 +310,25 @@
     {
       "id": "huntfestival",
       "name": "Festival of the Hunt",
-      "type": "quest",
+      "type": "choice",
       "location": "Lindblum",
       "window": { "opensAt": 4, "closesAt": 4 },
-      "prereqs": [],
-      "notes": "Winner and prize depend on who scores highest — Zidane's win pays the most gil.",
+      "options": [
+        { "id": "zidane", "label": "Zidane wins — 5,000 gil", "note": "Highest score as Zidane." },
+        { "id": "vivi", "label": "Vivi wins — Theater Ticket", "note": "Let Vivi score highest." },
+        {
+          "id": "freya",
+          "label": "Freya wins — Coral Ring",
+          "best": true,
+          "note": "Stay out of fights and let Freya take the Zaghnol at the end."
+        }
+      ],
+      "route": {
+        "at": 4,
+        "rank": 0,
+        "why": "The Coral Ring is the only prize that matters later"
+      },
+      "notes": "Winner and prize depend on who scores highest.",
       "verified": false
     },
     {
@@ -239,7 +349,8 @@
       "window": { "opensAt": 5 },
       "count": 99,
       "prereqs": ["quina"],
-      "notes": "Long-haul minigame. Rewards scale with the count; the 99th brings Quale's challenge.",
+      "party": ["Quina"],
+      "notes": "Long-haul minigame. Rewards scale with the count; the 99th brings Quale's challenge. Leave a pair behind in each marsh so they breed.",
       "verified": false
     },
     {
@@ -274,7 +385,9 @@
       "route": {
         "at": 16,
         "rank": 1,
-        "why": "The chocograph chain starts here — everything below needs Choco"
+        "why": "The chocograph chain starts here — everything below needs Choco",
+        "leg": "Chocograph chain",
+        "tradeoff": "Open from Disc 1 — early digs pay for the whole midgame and shorten the Disc 3 chain"
       }
     },
     {
@@ -289,7 +402,9 @@
       "route": {
         "at": 16,
         "rank": 2,
-        "why": "First ability upgrade — unlocks the lagoon"
+        "why": "First ability upgrade — unlocks the lagoon",
+        "leg": "Chocograph chain",
+        "tradeoff": "Reachable in Disc 1 with a few forest digs"
       }
     },
     {
@@ -304,7 +419,9 @@
       "route": {
         "at": 16,
         "rank": 3,
-        "why": "Second upgrade — cliffs stop being walls"
+        "why": "Second upgrade — cliffs stop being walls",
+        "leg": "Chocograph chain",
+        "tradeoff": "Possible from Disc 2's Outer Continent — the lagoon is reachable from Madain Sari"
       }
     },
     {
@@ -319,7 +436,8 @@
       "route": {
         "at": 16,
         "rank": 4,
-        "why": "Open ocean — most ultimate-weapon digs need this"
+        "why": "Open ocean — most ultimate-weapon digs need this",
+        "leg": "Chocograph chain"
       }
     },
     {
@@ -334,7 +452,8 @@
       "route": {
         "at": 16,
         "rank": 5,
-        "why": "The Dead Pepper caches hold half the endgame gear"
+        "why": "The Dead Pepper caches hold half the endgame gear",
+        "leg": "Chocograph chain"
       }
     },
     {
@@ -349,7 +468,8 @@
       "route": {
         "at": 16,
         "rank": 6,
-        "why": "Flight — the Air Garden is the point"
+        "why": "Flight — the Air Garden is the point",
+        "leg": "Chocograph chain"
       }
     },
     {
@@ -364,7 +484,8 @@
       "route": {
         "at": 16,
         "rank": 7,
-        "why": "The final digs, and the superboss lives upstairs"
+        "why": "The final digs, and the superboss lives upstairs",
+        "leg": "Chocograph chain"
       }
     },
     {
@@ -380,8 +501,12 @@
       "route": {
         "at": 16,
         "rank": 8,
-        "why": "Mop up the map while the abilities are fresh"
-      }
+        "why": "Mop up the map while the abilities are fresh",
+        "leg": "Chocograph chain"
+      },
+      "refs": [
+        { "label": "Chocograph locations on the FF wiki", "url": "https://finalfantasy.fandom.com/wiki/Chocograph" }
+      ]
     },
     {
       "id": "ozma",
@@ -412,7 +537,7 @@
     {
       "id": "burmeciasweep",
       "name": "Burmecia sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Burmecia — the ruined city",
       "window": { "opensAt": 6, "closesAt": 6 },
       "prereqs": [],
@@ -422,7 +547,7 @@
     {
       "id": "cleyrasweep",
       "name": "Cleyra goodies before the fall",
-      "type": "quest",
+      "type": "sweep",
       "location": "Cleyra — settlement and trunk",
       "window": { "opensAt": 7, "closesAt": 7 },
       "prereqs": [],
@@ -457,7 +582,8 @@
       "route": {
         "at": 19,
         "rank": 5,
-        "why": "The Hammer is the secret-ending ticket"
+        "why": "The Hammer is the secret-ending ticket",
+        "leg": "Disc 4 mop-up"
       }
     },
     {
@@ -467,7 +593,8 @@
       "location": "Treno — monster in the weapon shop basement, new each disc",
       "window": { "opensAt": 7 },
       "prereqs": [],
-      "notes": "A different beatable monster per disc with a prize each. Earlier discs' monsters are lost as time moves on.",
+      "count": 4,
+      "notes": "A different beatable monster per disc with a prize each. Earlier discs' monsters are lost as time moves on — fight each one before its disc ends.",
       "verified": false
     },
     {
@@ -552,7 +679,24 @@
       "route": {
         "at": 12,
         "rank": 1,
-        "why": "Gone the moment the story leaves Alexandria"
+        "why": "Gone the moment the story leaves Alexandria",
+        "leg": "Coronation stretch — one beat"
+      }
+    },
+    {
+      "id": "plutoknights",
+      "name": "Pluto Knights roll call (Steiner)",
+      "type": "quest",
+      "location": "Alexandria — find all eight knights around the town and castle",
+      "window": { "opensAt": 12, "closesAt": 12 },
+      "prereqs": [],
+      "notes": "Talk to every Pluto Knight during Steiner's stretch of the coronation for a reward from the last one. Verify the exact reward on your version.",
+      "verified": false,
+      "route": {
+        "at": 12,
+        "rank": 2,
+        "why": "Eight conversations, one beat",
+        "leg": "Coronation stretch — one beat"
       }
     },
     {
@@ -568,7 +712,7 @@
     {
       "id": "desertpalacesweep",
       "name": "Desert Palace sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Kuja's Desert Palace — bluish light chests",
       "window": { "opensAt": 14, "closesAt": 14 },
       "prereqs": [],
@@ -579,7 +723,7 @@
     {
       "id": "oeilvertsweep",
       "name": "Oeilvert sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Oeilvert — the anti-magic facility",
       "window": { "opensAt": 14, "closesAt": 14 },
       "prereqs": [],
@@ -590,7 +734,7 @@
     {
       "id": "gulugsweep",
       "name": "Mount Gulug sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Mount Gulug — via Esto Gaza",
       "window": { "opensAt": 15, "closesAt": 15 },
       "prereqs": [],
@@ -654,7 +798,8 @@
       "route": {
         "at": 19,
         "rank": 6,
-        "why": "Finish the chain before stepping to Ozma"
+        "why": "Finish the chain before stepping to Ozma",
+        "leg": "Disc 4 mop-up"
       }
     },
     {
@@ -698,6 +843,21 @@
       "verified": false
     },
     {
+      "id": "terrasweep",
+      "name": "Terra sweep — Bran Bal & Pandemonium",
+      "type": "sweep",
+      "location": "Terra",
+      "window": { "opensAt": 18, "closesAt": 18 },
+      "prereqs": [],
+      "notes": "Terra is gone after this beat: buy out Bran Bal's shops and open every Pandemonium chest (Carabini Mail, Battle Boots, Elixir and more — verify).",
+      "verified": false,
+      "route": {
+        "at": 18,
+        "rank": 1,
+        "why": "The planet does not survive the disc"
+      }
+    },
+    {
       "id": "invincible",
       "name": "The Invincible",
       "type": "key",
@@ -709,7 +869,8 @@
       "route": {
         "at": 19,
         "rank": 1,
-        "why": "Disc 4 — the mop-up disc starts now"
+        "why": "Disc 4 — the mop-up disc starts now",
+        "leg": "Disc 4 mop-up"
       }
     },
     {
@@ -724,7 +885,8 @@
       "route": {
         "at": 19,
         "rank": 2,
-        "why": "The letter chain resolves only from here"
+        "why": "The letter chain resolves only from here",
+        "leg": "Disc 4 mop-up"
       }
     },
     {
@@ -739,7 +901,8 @@
       "route": {
         "at": 19,
         "rank": 3,
-        "why": "Two minutes of walking for one of FF9's best secrets"
+        "why": "Two minutes of walking for one of FF9's best secrets",
+        "leg": "Disc 4 mop-up"
       }
     },
     {
@@ -754,7 +917,8 @@
       "route": {
         "at": 19,
         "rank": 4,
-        "why": "The dive only exists after Terra"
+        "why": "The dive only exists after Terra",
+        "leg": "Disc 4 mop-up"
       }
     },
     {
@@ -808,18 +972,44 @@
       "verified": false
     },
     {
+      "id": "tetramaster",
+      "name": "Tetra Master — the full card list",
+      "type": "card",
+      "location": "Card players in every town",
+      "window": { "opensAt": 1 },
+      "prereqs": [],
+      "count": 100,
+      "notes": "One hundred cards. A few come only from specific players or events (the Namingway card from Mognet, the Airship cards from Disc 4) — collect as you go rather than at the end.",
+      "verified": false
+    },
+    {
       "id": "excalibur2",
       "name": "Excalibur II — under 12:00:00",
       "type": "key",
       "location": "Memoria — near the Lich fight, only if play time < 12 hours",
       "window": { "opensAt": 20, "closesAt": 21 },
       "prereqs": [],
-      "notes": "The most infamous timed item in the series. A dedicated speed-run playthrough, not a pickup.",
+      "notes": "The most infamous timed item in the series. A dedicated speed-run playthrough, not a pickup — the pace notes on each beat mark the splits.",
       "verified": false,
       "route": {
         "at": 20,
         "rank": 3,
         "why": "Only exists on a sub-12-hour clock — know before you go"
+      }
+    },
+    {
+      "id": "hades9",
+      "name": "Hades & the last synth shop",
+      "type": "quest",
+      "location": "Memoria — the hidden room past the pillar",
+      "window": { "opensAt": 20, "closesAt": 21 },
+      "prereqs": [],
+      "notes": "Beat Hades and he opens a synth shop for the game's final gear (Robe of Lords, Tin Armor, Protect Ring and more).",
+      "verified": false,
+      "route": {
+        "at": 20,
+        "rank": 4,
+        "why": "The last shop in the game hides behind a boss"
       }
     },
     {

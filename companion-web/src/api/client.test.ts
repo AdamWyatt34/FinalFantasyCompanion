@@ -167,11 +167,16 @@ describe("local client", () => {
     await api.postEvent("ff7", { type: "positionAdvanced", to: 2 });
     await api.postEvent("ff7", { type: "positionAdvanced", to: 3 });
 
-    // Advancing out of Midgar fires the point-of-no-return warning.
+    // Advancing out of Midgar fires the point-of-no-return warning. Elemental
+    // and the first flyer get a second window during the Disc 2 raid, so they
+    // are "closing for now", not gone.
     const impact = await api.getAdvanceImpact("ff7", 4);
     expect(impact.closing.map((e) => e.item.id).sort()).toEqual([
-      "elemental",
+      "coupons",
       "enemyskill1",
+    ]);
+    expect(impact.reopening.map((e) => e.item.id).sort()).toEqual([
+      "elemental",
       "flyer1",
     ]);
 
@@ -204,7 +209,7 @@ describe("local client", () => {
 
     const kotr = route.now.find((e) => e.item.id === "kotr")!;
     expect(kotr.status).toBe("blocked");
-    expect(kotr.missingPrereqs).toEqual(["goldchocobo"]);
+    expect(kotr.missingPrereqs).toEqual([["goldchocobo"]]);
     expect(kotr.item.route!.why).toBe("The whole point of the gold bird");
 
     // Collect the chain; KotR flips to available.
@@ -223,5 +228,84 @@ describe("local client", () => {
 
     const kotr = route.later.find((e) => e.item.id === "kotr")!;
     expect(kotr.masked).toBe(true);
+  });
+});
+
+describe("choices and trackers through the client", () => {
+  it("records a choice, rejects unknown options, and refuses plain collects on choice items", async () => {
+    const pack = await api.getPack("ff7");
+    const choice = pack.items.find((i) => i.options.length > 0);
+    // Every shipped pack with a choice item exercises this path; ff7 ships Wall Market.
+    expect(choice).toBeDefined();
+    const best = choice!.options.find((o) => o.best) ?? choice!.options[0];
+
+    const snapshot = await api.postEvent("ff7", {
+      type: "choiceMade",
+      itemId: choice!.id,
+      optionId: best.id,
+    });
+    expect(snapshot.choices[choice!.id]).toBe(best.id);
+    expect(snapshot.collected).toContain(choice!.id);
+
+    const availability = await api.getAvailability("ff7");
+    const entry = availability.items.find((e) => e.item.id === choice!.id)!;
+    expect(entry.status).toBe("collected");
+    expect(entry.chosen).toBe(best.id);
+
+    await expect(
+      api.postEvent("ff7", {
+        type: "choiceMade",
+        itemId: choice!.id,
+        optionId: "nope",
+      }),
+    ).rejects.toThrow("has no option 'nope'");
+    await expect(
+      api.postEvent("ff7", { type: "itemCollected", itemId: choice!.id }),
+    ).rejects.toThrow("is a choice");
+  });
+
+  it("adjusts a tracker value and rejects unknown trackers or values", async () => {
+    const pack = await api.getPack("ff7");
+    const tracker = pack.trackers[0];
+    expect(tracker).toBeDefined();
+    const value = tracker.values[0];
+
+    await api.postEvent("ff7", {
+      type: "trackerAdjusted",
+      trackerId: tracker.id,
+      valueId: value.id,
+      delta: 7,
+    });
+
+    const availability = await api.getAvailability("ff7");
+    const view = availability.trackers.find((t) => t.tracker.id === tracker.id)!;
+    expect(view.standings.find((s) => s.id === value.id)!.value).toBe(
+      value.start + 7,
+    );
+
+    await expect(
+      api.postEvent("ff7", {
+        type: "trackerAdjusted",
+        trackerId: "ghost",
+        valueId: value.id,
+        delta: 1,
+      }),
+    ).rejects.toThrow("Unknown tracker 'ghost'");
+    await expect(
+      api.postEvent("ff7", {
+        type: "trackerAdjusted",
+        trackerId: tracker.id,
+        valueId: "ghost",
+        delta: 1,
+      }),
+    ).rejects.toThrow("has no value 'ghost'");
+    await expect(
+      api.postEvent("ff7", {
+        type: "trackerAdjusted",
+        trackerId: tracker.id,
+        valueId: value.id,
+        delta: 0,
+      }),
+    ).rejects.toThrow("non-zero integer");
   });
 });

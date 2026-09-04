@@ -12,6 +12,7 @@ import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { SharedRunView } from "./components/SharedRunView";
 import { UpdateToast } from "./components/UpdateToast";
+import { useDialogs } from "./hooks/useDialogs";
 import { decodeShareFragment, type SharedRun } from "./storage/shareLink";
 import { addCustomPack, isCustomPack, removeCustomPack } from "./packs";
 import { downloadSave, installSave, parseSave } from "./storage/saveFile";
@@ -129,6 +130,7 @@ function GameApp({
   const pack = useApi(() => api.getPack(gameId), [gameId]);
   const availability = useApi(() => api.getAvailability(gameId), [gameId]);
   const route = useApi(() => api.getRoute(gameId), [gameId]);
+  const dialogs = useDialogs();
 
   const [tab, setTab] = useState<"route" | "all" | "plan">("route");
   const [revealed, setRevealed] = useState<Set<string>>(() =>
@@ -161,9 +163,34 @@ function GameApp({
     }
   }, [pack.data]);
 
+  // Another tab (or the same game in a second window) wrote this game's log:
+  // re-project so both views agree. Writes themselves are serialized by the
+  // Web Lock in the client.
+  const refetchAvailability = availability.refetch;
+  const refetchRoute = route.refetch;
+  useEffect(() => {
+    const key = `ffcompanion.${gameId}.events`;
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === null || e.key === key) {
+        refetchAvailability();
+        refetchRoute();
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [gameId, refetchAvailability, refetchRoute]);
+
+  // Item names, plus `item:option` keys so prereq labels can name an outcome.
   const itemNames = useMemo(
     () =>
-      Object.fromEntries((pack.data?.items ?? []).map((i) => [i.id, i.name])),
+      Object.fromEntries(
+        (pack.data?.items ?? []).flatMap((i) => [
+          [i.id, i.name] as const,
+          ...i.options.map(
+            (o) => [`${i.id}:${o.id}`, `${i.name}: ${o.label}`] as const,
+          ),
+        ]),
+      ),
     [pack.data],
   );
   const positionLabels = useMemo(
@@ -198,6 +225,7 @@ function GameApp({
 
   const position = availability.data.position;
   const activeVersion = availability.data.version;
+  const currentPosition = pack.data.positions.find((p) => p.order === position);
   const refetchState = () => {
     availability.refetch();
     route.refetch();
@@ -206,7 +234,7 @@ function GameApp({
   // Writes can fail (full localStorage quota, blocked storage) — a tap that
   // silently does nothing is worse than an ugly alert.
   const reportError = (e: unknown) =>
-    window.alert(
+    dialogs.alert(
       e instanceof Error ? e.message : "Something went wrong saving progress.",
     );
 
@@ -216,12 +244,15 @@ function GameApp({
     itemId?: string;
     delta?: number;
     version?: string;
+    optionId?: string;
+    trackerId?: string;
+    valueId?: string;
   }) => {
     try {
       await api.postEvent(gameId, event);
       refetchState();
     } catch (e) {
-      reportError(e);
+      await reportError(e);
     }
   };
 
@@ -235,21 +266,25 @@ function GameApp({
     }
     try {
       const impact = await api.getAdvanceImpact(gameId, target);
-      if (impact.closing.length > 0) {
+      if (impact.closing.length > 0 || impact.reopening.length > 0) {
         setPendingImpact(impact);
       } else {
         await postEvent({ type: "positionAdvanced", to: target });
       }
     } catch (e) {
-      reportError(e);
+      await reportError(e);
     }
   };
 
-  const toggleCollected = (itemId: string, collected: boolean) => {
+  const toggleCollected = async (itemId: string, collected: boolean) => {
+    const item = pack.data?.items.find((i) => i.id === itemId);
+    if (!collected && item !== undefined && item.options.length > 0) {
+      // Choice items are collected by picking an outcome, never by a bare tap.
+      return;
+    }
     if (!collected && pack.data && availability.data) {
       // Collecting one side of a mutually exclusive pair forecloses the other
       // forever — that deserves a confirm, spoiler-masked like everything else.
-      const item = pack.data.items.find((i) => i.id === itemId);
       const partners = pack.data.items.filter(
         (other) =>
           other.id !== itemId &&
@@ -262,16 +297,16 @@ function GameApp({
         const names = partners
           .map((p) => (hiddenIds.has(p.id) ? "a hidden item" : p.name))
           .join(", ");
-        if (
-          !window.confirm(
-            `Taking this permanently forecloses: ${names}. Continue?`,
-          )
-        ) {
+        const ok = await dialogs.confirm(
+          `Taking this permanently forecloses: ${names}. Continue?`,
+          { confirmLabel: "Take it", danger: true },
+        );
+        if (!ok) {
           return;
         }
       }
     }
-    postEvent({
+    await postEvent({
       type: collected ? "itemUncollected" : "itemCollected",
       itemId,
     });
@@ -279,6 +314,12 @@ function GameApp({
 
   const progressItem = (itemId: string, delta: number) =>
     postEvent({ type: "itemProgressed", itemId, delta });
+
+  const chooseOption = (itemId: string, optionId: string) =>
+    postEvent({ type: "choiceMade", itemId, optionId });
+
+  const adjustTracker = (trackerId: string, valueId: string, delta: number) =>
+    postEvent({ type: "trackerAdjusted", trackerId, valueId, delta });
 
   // The verification flywheel: every card can file a prefilled pack-data
   // issue. Real playthroughs are the only source of `verified: true`.
@@ -290,11 +331,14 @@ function GameApp({
     const title = encodeURIComponent(
       `[pack] ${pack.data.game.id}/${item.id}: window correction`,
     );
+    const windows = item.windows
+      .map((w) => `${w.opensAt}–${w.closesAt ?? "never"}`)
+      .join(", ");
     const body = encodeURIComponent(
       [
         `Game: ${pack.data.game.title} (${pack.data.game.id})`,
         `Item: ${item.name} (\`${item.id}\`)`,
-        `Current window: opensAt ${item.opensAt}, closesAt ${item.closesAt ?? "never"}`,
+        `Current window(s): ${windows}`,
         `Verified flag: ${item.verified}`,
         `My position when I noticed: beat ${position}`,
         "",
@@ -309,16 +353,16 @@ function GameApp({
     );
   };
 
-  const changeVersion = (versionId: string, label: string) => {
+  const changeVersion = async (versionId: string, label: string) => {
     if (versionId === availability.data?.version) {
       return;
     }
-    if (
-      window.confirm(
-        `Switch this run to ${label}? Availability recalculates for that version.`,
-      )
-    ) {
-      postEvent({ type: "versionSelected", version: versionId });
+    const ok = await dialogs.confirm(
+      `Switch this run to ${label}? Availability recalculates for that version.`,
+      { confirmLabel: "Switch" },
+    );
+    if (ok) {
+      await postEvent({ type: "versionSelected", version: versionId });
     }
   };
 
@@ -328,9 +372,9 @@ function GameApp({
     setRevealed(next);
   };
 
-  const editNote = (itemId: string) => {
+  const editNote = async (itemId: string) => {
     const name = itemNames[itemId] ?? itemId;
-    const next = window.prompt(
+    const next = await dialogs.prompt(
       `Your note for ${name} (empty to remove):`,
       notes[itemId] ?? "",
     );
@@ -348,14 +392,19 @@ function GameApp({
   };
 
   const resetPlaythrough = async () => {
-    if (window.confirm("Archive this playthrough and start fresh?")) {
-      try {
-        await api.postReset(gameId);
-        clearRevealed();
-        refetchState();
-      } catch (e) {
-        reportError(e);
-      }
+    const ok = await dialogs.confirm(
+      "Archive this playthrough and start fresh?",
+      { confirmLabel: "Start fresh" },
+    );
+    if (!ok) {
+      return;
+    }
+    try {
+      await api.postReset(gameId);
+      clearRevealed();
+      refetchState();
+    } catch (e) {
+      await reportError(e);
     }
   };
 
@@ -373,7 +422,7 @@ function GameApp({
         onGamesChanged();
         onSelectGame(added.game.id);
       } catch (e) {
-        window.alert(
+        await dialogs.alert(
           e instanceof Error ? e.message : "Could not add that pack.",
         );
       }
@@ -381,18 +430,19 @@ function GameApp({
     input.click();
   };
 
-  const removeGame = () => {
-    if (
-      window.confirm(
-        `Remove ${pack.data?.game.title} from this device? Its saves, archives, and notes are deleted too.`,
-      )
-    ) {
-      try {
-        removeCustomPack(gameId);
-        onGamesChanged();
-      } catch (e) {
-        reportError(e);
-      }
+  const removeGame = async () => {
+    const ok = await dialogs.confirm(
+      `Remove ${pack.data?.game.title} from this device? Its saves, archives, and notes are deleted too.`,
+      { confirmLabel: "Remove", danger: true },
+    );
+    if (!ok) {
+      return;
+    }
+    try {
+      removeCustomPack(gameId);
+      onGamesChanged();
+    } catch (e) {
+      await reportError(e);
     }
   };
 
@@ -416,11 +466,11 @@ function GameApp({
               `That save belongs to '${save.gameId}', which isn't a game in this app.`,
             );
           }
-          if (
-            window.confirm(
-              `This save is for ${target.game.title}. Switch to it and import?`,
-            )
-          ) {
+          const ok = await dialogs.confirm(
+            `This save is for ${target.game.title}. Switch to it and import?`,
+            { confirmLabel: "Switch & import" },
+          );
+          if (ok) {
             installSave(target, save);
             writeRevealed(target.game.id, new Set());
             onSelectGame(target.game.id);
@@ -428,11 +478,11 @@ function GameApp({
           return;
         }
 
-        if (
-          !window.confirm(
-            `Replace the current ${pack.data.game.title} playthrough with this save?`,
-          )
-        ) {
+        const ok = await dialogs.confirm(
+          `Replace the current ${pack.data.game.title} playthrough with this save?`,
+          { confirmLabel: "Replace", danger: true },
+        );
+        if (!ok) {
           return;
         }
         installSave(pack.data, save);
@@ -440,7 +490,7 @@ function GameApp({
         setNotes(readNotes(gameId));
         refetchState();
       } catch (e) {
-        window.alert(e instanceof Error ? e.message : "Import failed.");
+        await dialogs.alert(e instanceof Error ? e.message : "Import failed.");
       }
     };
     input.click();
@@ -542,6 +592,8 @@ function GameApp({
         {tab === "route" ? (
           <RouteTab
             route={route.data}
+            availability={availability.data}
+            tips={currentPosition?.tips ?? []}
             revealed={revealed}
             itemNames={itemNames}
             positionLabels={positionLabels}
@@ -551,6 +603,8 @@ function GameApp({
             onReveal={reveal}
             onEditNote={editNote}
             onProgress={progressItem}
+            onChoose={chooseOption}
+            onAdjustTracker={adjustTracker}
             onReport={reportItem}
           />
         ) : tab === "all" ? (
@@ -565,6 +619,7 @@ function GameApp({
             onReveal={reveal}
             onEditNote={editNote}
             onProgress={progressItem}
+            onChoose={chooseOption}
             onReport={reportItem}
           />
         ) : (
@@ -661,8 +716,10 @@ function GameApp({
           hiddenIds={hiddenIds}
           getImpact={(target) => api.getAdvanceImpact(gameId, target)}
           upcomingOpens={(target) =>
-            availability.data!.items.filter(
-              (e) => e.item.opensAt > position && e.item.opensAt <= target,
+            availability.data!.items.filter((e) =>
+              e.item.windows.some(
+                (w) => w.opensAt > position && w.opensAt <= target,
+              ),
             ).length
           }
           onSelect={requestMove}

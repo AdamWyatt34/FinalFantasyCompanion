@@ -4,6 +4,7 @@ import { api } from "../api/client";
 import type { ProgressEvent } from "../engine/events";
 import { useApi } from "../hooks/useApi";
 import { useDialog } from "../hooks/useDialog";
+import { useDialogs } from "../hooks/useDialogs";
 
 interface HistoryOverlayProps {
   pack: Pack;
@@ -22,6 +23,7 @@ export function HistoryOverlay({
 }: HistoryOverlayProps) {
   const events = useApi(() => api.getEvents(pack.game.id), []);
   const panelRef = useDialog(onClose);
+  const dialogs = useDialogs();
 
   const itemNames = useMemo(
     () => Object.fromEntries(pack.items.map((i) => [i.id, i.name])),
@@ -49,6 +51,18 @@ export function HistoryOverlay({
           pack.game.versions?.find((v) => v.id === evt.version)?.label ??
           evt.version
         }`;
+      case "choiceMade": {
+        const item = pack.items.find((i) => i.id === evt.itemId);
+        const option = item?.options.find((o) => o.id === evt.optionId);
+        return `◆ ${item?.name ?? evt.itemId}: ${option?.label ?? evt.optionId}`;
+      }
+      case "trackerAdjusted": {
+        const tracker = pack.trackers.find((t) => t.id === evt.trackerId);
+        const value = tracker?.values.find((v) => v.id === evt.valueId);
+        return `${evt.delta > 0 ? "＋" : "−"}${Math.abs(evt.delta)} ${value?.label ?? evt.valueId} (${tracker?.name ?? evt.trackerId})`;
+      }
+      default:
+        return `· ${(evt as { type: string }).type}`;
     }
   };
 
@@ -65,7 +79,7 @@ export function HistoryOverlay({
       events.refetch();
       onChanged();
     } catch (e) {
-      window.alert(e instanceof Error ? e.message : "Undo failed.");
+      await dialogs.alert(e instanceof Error ? e.message : "Undo failed.");
     }
   };
 

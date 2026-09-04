@@ -1,21 +1,77 @@
-import type { Item, ItemType, Pack, Position } from "../api/types";
+import type {
+  ChoiceOption,
+  Item,
+  ItemType,
+  Pack,
+  Position,
+  PrereqGroup,
+  Reference,
+  Tracker,
+  Window,
+} from "../api/types";
 import { validateOrThrow } from "../engine/validate";
 import { kv } from "../storage/kv";
 
 /** On-disk pack JSON shapes: nested window/theme, optional fields. */
+interface RawWindow {
+  opensAt: number;
+  closesAt?: number | null;
+}
+
+interface RawOption {
+  id: string;
+  label: string;
+  best?: boolean;
+  note?: string;
+  effects?: Record<string, number>;
+}
+
 interface RawItem {
   id: string;
   name: string;
   type: string;
   location: string;
-  window: { opensAt: number; closesAt?: number | null };
-  prereqs?: string[];
+  /** Single window — the common case. */
+  window?: RawWindow;
+  /** Several windows for items that close and reopen; wins over `window`. */
+  windows?: RawWindow[];
+  /** A string is a plain requirement; an inner array is an any-of group. */
+  prereqs?: (string | string[])[];
   excludes?: string[];
   count?: number;
+  steps?: string[];
+  options?: RawOption[];
+  party?: string[];
+  effects?: Record<string, number>;
+  refs?: Reference[];
   versions?: string[];
   notes?: string;
   verified?: boolean;
-  route?: { at: number; rank: number; why: string } | null;
+  route?: {
+    at: number;
+    rank: number;
+    why: string;
+    leg?: string | null;
+    tradeoff?: string | null;
+  } | null;
+}
+
+interface RawPosition {
+  id: string;
+  order: number;
+  label: string;
+  disc: number;
+  tips?: string[];
+  pace?: string | null;
+}
+
+interface RawTracker {
+  id: string;
+  name: string;
+  window?: { opensAt: number; locksAt?: number | null };
+  notes?: string;
+  values: { id: string; label: string; start?: number }[];
+  verified?: boolean;
 }
 
 interface RawPack {
@@ -25,8 +81,107 @@ interface RawPack {
     versions?: { id: string; label: string }[];
   };
   theme: { tokens: Record<string, string> };
-  positions: Position[];
+  positions: RawPosition[];
   items: RawItem[];
+  trackers?: RawTracker[];
+}
+
+const asArray = <T>(value: T[] | undefined | null): T[] =>
+  Array.isArray(value) ? value : [];
+
+const asRecord = (value: unknown): Record<string, number> =>
+  value !== null && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, number>)
+    : {};
+
+function normalizeWindows(raw: RawItem): Window[] {
+  const source =
+    Array.isArray(raw.windows) && raw.windows.length > 0
+      ? raw.windows
+      : raw.window !== undefined
+        ? [raw.window]
+        : [];
+  return source.map((w) => ({ opensAt: w.opensAt, closesAt: w.closesAt ?? null }));
+}
+
+function normalizePrereqs(raw: RawItem): PrereqGroup[] {
+  return asArray(raw.prereqs).map((entry) =>
+    Array.isArray(entry) ? [...entry] : [entry],
+  );
+}
+
+function normalizeOptions(raw: RawItem): ChoiceOption[] {
+  return asArray(raw.options).map((o) => ({
+    id: o.id,
+    label: o.label,
+    best: o.best ?? false,
+    note: o.note ?? "",
+    effects: asRecord(o.effects),
+  }));
+}
+
+function normalizeItem(i: RawItem): Item {
+  const windows = normalizeWindows(i);
+  const steps = asArray(i.steps);
+  return {
+    id: i.id,
+    name: i.name,
+    type: i.type as ItemType,
+    location: i.location,
+    windows,
+    // Derived views of the window list — an empty list is a validation error,
+    // so the placeholders below never survive to the app.
+    opensAt: windows[0]?.opensAt ?? Number.NaN,
+    closesAt: windows.length > 0 ? windows[windows.length - 1].closesAt : null,
+    prereqs: normalizePrereqs(i),
+    excludes: asArray(i.excludes),
+    count: i.count ?? (steps.length > 0 ? steps.length : 1),
+    steps,
+    options: normalizeOptions(i),
+    party: asArray(i.party),
+    effects: asRecord(i.effects),
+    refs: asArray(i.refs),
+    versions: asArray(i.versions),
+    notes: i.notes ?? "",
+    verified: i.verified ?? false,
+    route:
+      i.route === undefined || i.route === null
+        ? null
+        : {
+            at: i.route.at,
+            rank: i.route.rank,
+            why: i.route.why,
+            leg: i.route.leg ?? null,
+            tradeoff: i.route.tradeoff ?? null,
+          },
+  };
+}
+
+function normalizePosition(p: RawPosition): Position {
+  return {
+    id: p.id,
+    order: p.order,
+    label: p.label,
+    disc: p.disc,
+    tips: asArray(p.tips),
+    pace: p.pace ?? null,
+  };
+}
+
+function normalizeTracker(t: RawTracker): Tracker {
+  return {
+    id: t.id,
+    name: t.name,
+    opensAt: t.window?.opensAt ?? Number.NaN,
+    locksAt: t.window?.locksAt ?? null,
+    notes: t.notes ?? "",
+    values: asArray(t.values).map((v) => ({
+      id: v.id,
+      label: v.label,
+      start: v.start ?? 0,
+    })),
+    verified: t.verified ?? false,
+  };
 }
 
 /** Normalizes raw pack JSON to the flattened shape the app consumes. */
@@ -34,22 +189,9 @@ export function normalizePack(raw: RawPack): Pack {
   return {
     game: raw.game,
     theme: raw.theme.tokens,
-    positions: raw.positions,
-    items: raw.items.map((i): Item => ({
-      id: i.id,
-      name: i.name,
-      type: i.type as ItemType,
-      location: i.location,
-      opensAt: i.window.opensAt,
-      closesAt: i.window.closesAt ?? null,
-      prereqs: i.prereqs ?? [],
-      excludes: i.excludes ?? [],
-      count: i.count ?? 1,
-      versions: i.versions ?? [],
-      notes: i.notes ?? "",
-      verified: i.verified ?? false,
-      route: i.route ?? null,
-    })),
+    positions: raw.positions.map(normalizePosition),
+    items: raw.items.map(normalizeItem),
+    trackers: asArray(raw.trackers).map(normalizeTracker),
   };
 }
 

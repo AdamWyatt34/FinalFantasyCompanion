@@ -67,13 +67,13 @@ describe("advance impact", () => {
 
   it("includes blocked items with their missing prereqs", () => {
     const pack = makePack([
-      makeItem("x", { opensAt: 1, closesAt: 4, prereqs: ["key"] }),
+      makeItem("x", { opensAt: 1, closesAt: 4, prereqs: [["key"]] }),
     ]);
 
     const impact = computeImpact(pack, at(3), 6);
 
     expect(impact.closing[0].status).toBe("blocked");
-    expect(impact.closing[0].missingPrereqs).toEqual(["key"]);
+    expect(impact.closing[0].missingPrereqs).toEqual([["key"]]);
   });
 
   it("backward correction un-misses an item and it reappears in impact", () => {

@@ -108,12 +108,12 @@ describe("availability rule chain (first match wins)", () => {
   });
 
   it("rule 4: uncollected prereq is blocked, listing the missing", () => {
-    const item = makeItem("x", { prereqs: ["a", "b"] });
+    const item = makeItem("x", { prereqs: [["a"], ["b"]] });
 
     const entry = classify(item, at(2, "a"));
 
     expect(entry.status).toBe("blocked");
-    expect(entry.missingPrereqs).toEqual(["b"]);
+    expect(entry.missingPrereqs).toEqual([["b"]]);
   });
 
   it("rule 5: closes at current position is lastChance", () => {
@@ -141,12 +141,12 @@ describe("availability rule chain (first match wins)", () => {
   });
 
   it("precedence: blocked beats lastChance", () => {
-    const item = makeItem("x", { opensAt: 1, closesAt: 4, prereqs: ["key"] });
+    const item = makeItem("x", { opensAt: 1, closesAt: 4, prereqs: [["key"]] });
 
     const entry = classify(item, at(4));
 
     expect(entry.status).toBe("blocked");
-    expect(entry.missingPrereqs).toEqual(["key"]);
+    expect(entry.missingPrereqs).toEqual([["key"]]);
   });
 
   it("boundary: closesAt minus position of three is available, not closingSoon", () => {
