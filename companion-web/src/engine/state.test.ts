@@ -140,3 +140,45 @@ describe("PlaythroughState fold", () => {
     expect(initialState(oddPack).position).toBe(3);
   });
 });
+
+describe("forward compatibility", () => {
+  it("ignores event types this build does not know instead of breaking the fold", () => {
+    const state = fold(pack, [
+      collected("beta"),
+      // A newer build's event, as an older build would see it.
+      { type: "teleported", to: 9, occurredAt: "2026-01-01" } as unknown as Parameters<typeof applyEvent>[1],
+      advanced(4),
+    ]);
+
+    expect([...state.collected]).toEqual(["beta"]);
+    expect(state.position).toBe(4);
+  });
+});
+
+describe("choices and tracker adjustments", () => {
+  it("choiceMade collects the item and records the option; the snapshot carries both", () => {
+    const choicePack = makePack([
+      makeItem("dress", {
+        options: [
+          { id: "silk", label: "Silk", best: true, note: "", effects: {} },
+        ],
+      }),
+    ]);
+
+    const state = fold(choicePack, [
+      { type: "choiceMade", itemId: "dress", optionId: "silk", occurredAt: "2026-01-01" },
+    ]);
+
+    expect(state.collected.has("dress")).toBe(true);
+    expect(state.choices.get("dress")).toBe("silk");
+  });
+
+  it("trackerAdjusted sums per value key", () => {
+    const state = fold(pack, [
+      { type: "trackerAdjusted", trackerId: "date", valueId: "tifa", delta: 5, occurredAt: "2026-01-01" },
+      { type: "trackerAdjusted", trackerId: "date", valueId: "tifa", delta: -2, occurredAt: "2026-01-01" },
+    ]);
+
+    expect(state.adjustments.get("date.tifa")).toBe(3);
+  });
+});

@@ -11,6 +11,8 @@ const run: SharedRun = {
   version: null,
   collected: ["kotr", "goldchocobo", "beta"],
   progress: { flyers: 4 },
+  choices: { wmdress: "silk" },
+  adjustments: { "date.tifa": 5 },
 };
 
 describe("share links", () => {
@@ -31,6 +33,26 @@ describe("share links", () => {
       .replace(/=+$/, "")}`;
 
     expect(await decodeShareFragment(plain)).toEqual(run);
+  });
+
+  it("links minted before choices and trackers existed decode with empty maps", async () => {
+    const legacy = {
+      gameId: "ff7",
+      position: 3,
+      version: null,
+      collected: ["beta"],
+      progress: {},
+    };
+    const plain = `j.${btoa(JSON.stringify(legacy))
+      .replaceAll("+", "-")
+      .replaceAll("/", "_")
+      .replace(/=+$/, "")}`;
+
+    expect(await decodeShareFragment(plain)).toEqual({
+      ...legacy,
+      choices: {},
+      adjustments: {},
+    });
   });
 
   it("rejects garbage and shape mismatches", async () => {

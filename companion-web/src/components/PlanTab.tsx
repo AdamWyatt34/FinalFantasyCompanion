@@ -1,4 +1,5 @@
-import type { Availability, Position } from "../api/types";
+import type { ReactNode } from "react";
+import type { Availability, AvailabilityEntry, Position } from "../api/types";
 import { STATUS } from "../theme/statusColors";
 
 interface PlanTabProps {
@@ -19,7 +20,7 @@ export function PlanTab({
   position,
   hiddenIds,
 }: PlanTabProps) {
-  const byBeat = new Map<number, typeof availability.items>();
+  const byBeat = new Map<number, AvailabilityEntry[]>();
   let unrouted = 0;
   for (const entry of availability.items) {
     if (entry.item.route === null) {
@@ -38,11 +39,68 @@ export function PlanTab({
     );
   }
 
+  const renderEntry = (entry: AvailabilityEntry) => {
+    const hidden = hiddenIds.has(entry.item.id);
+    const done = entry.status === "collected";
+    const gone = entry.status === "missed" || entry.status === "forgone";
+    return (
+      <div
+        key={entry.item.id}
+        className={`ml-4 text-xs leading-snug ${gone ? "opacity-60" : ""}`}
+      >
+        <span style={{ color: STATUS[entry.status].color }}>
+          {done ? "✓" : gone ? "✗" : "•"}
+        </span>{" "}
+        <span
+          className={`${gone ? "line-through" : ""} ${
+            hidden ? "text-[var(--ff-dim)]" : "text-[var(--ff-ink)]"
+          }`}
+        >
+          {hidden ? "— ？ ？ ？ —" : entry.item.name}
+        </span>
+        {!hidden && entry.item.route!.why && (
+          <span className="text-[var(--ff-dimmer)]">
+            {" "}
+            — {entry.item.route!.why}
+          </span>
+        )}
+      </div>
+    );
+  };
+
+  // Legs render as sub-headings inside a beat, in rank order.
+  const renderBeat = (entries: AvailabilityEntry[]) => {
+    const nodes: ReactNode[] = [];
+    let currentLeg: string | null | undefined;
+    for (const entry of entries) {
+      const leg = entry.item.route!.leg;
+      if (leg !== currentLeg) {
+        currentLeg = leg;
+        if (leg !== null) {
+          const masked = entries
+            .filter((e) => e.item.route!.leg === leg)
+            .every((e) => hiddenIds.has(e.item.id));
+          nodes.push(
+            <div
+              key={`leg:${leg}`}
+              className="ml-4 mt-1 text-[10px] font-mono tracking-wider text-[var(--ff-cyan)]"
+            >
+              {masked ? "？？？" : leg.toUpperCase()}
+            </div>,
+          );
+        }
+      }
+      nodes.push(renderEntry(entry));
+    }
+    return nodes;
+  };
+
   return (
     <div className="flex flex-col gap-3">
       {positions.map((p) => {
         const entries = byBeat.get(p.order);
         const here = p.order === position;
+        const reached = p.order <= position;
         return (
           <section key={p.id}>
             <div
@@ -56,44 +114,40 @@ export function PlanTab({
             >
               {here && <span>▶</span>}
               {p.order}. {p.label.toUpperCase()}
+              {p.pace && (
+                <span className="text-[var(--ff-dim)] tracking-normal">
+                  ⏱ {p.pace}
+                </span>
+              )}
             </div>
-            {entries === undefined ? (
+            {/* Tips stay hidden for beats the player hasn't reached — they read like spoilers. */}
+            {reached && p.tips.length > 0 && (
+              <ul className="ml-4 mt-0.5 flex flex-col gap-0.5">
+                {p.tips.map((tip) => (
+                  <li
+                    key={tip}
+                    className="text-[11px] leading-snug text-[var(--ff-dim)]"
+                  >
+                    ▶ {tip}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {!reached && p.tips.length > 0 && (
               <div className="text-[10px] font-mono ml-4 mt-0.5 text-[var(--ff-faint)]">
-                — story only —
+                — {p.tips.length} tip{p.tips.length === 1 ? "" : "s"} once you
+                arrive —
               </div>
+            )}
+            {entries === undefined ? (
+              p.tips.length === 0 && (
+                <div className="text-[10px] font-mono ml-4 mt-0.5 text-[var(--ff-faint)]">
+                  — story only —
+                </div>
+              )
             ) : (
               <div className="mt-1 flex flex-col gap-1">
-                {entries.map((entry) => {
-                  const hidden = hiddenIds.has(entry.item.id);
-                  const done = entry.status === "collected";
-                  const gone =
-                    entry.status === "missed" || entry.status === "forgone";
-                  return (
-                    <div
-                      key={entry.item.id}
-                      className={`ml-4 text-xs leading-snug ${gone ? "opacity-60" : ""}`}
-                    >
-                      <span style={{ color: STATUS[entry.status].color }}>
-                        {done ? "✓" : gone ? "✗" : "•"}
-                      </span>{" "}
-                      <span
-                        className={`${gone ? "line-through" : ""} ${
-                          hidden
-                            ? "text-[var(--ff-dim)]"
-                            : "text-[var(--ff-ink)]"
-                        }`}
-                      >
-                        {hidden ? "— ？ ？ ？ —" : entry.item.name}
-                      </span>
-                      {!hidden && entry.item.route!.why && (
-                        <span className="text-[var(--ff-dimmer)]">
-                          {" "}
-                          — {entry.item.route!.why}
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
+                {renderBeat(entries)}
               </div>
             )}
           </section>

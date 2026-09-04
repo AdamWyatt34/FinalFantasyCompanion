@@ -17,6 +17,7 @@ const SECTIONS: { title: string; statuses: Status[] }[] = [
     title: "OPEN RIGHT NOW",
     statuses: ["lastChance", "closingSoon", "blocked", "available"],
   },
+  { title: "CLOSED FOR NOW — REOPENS LATER", statuses: ["reopensLater"] },
   { title: "COLLECTED", statuses: ["collected"] },
   { title: "MISSED", statuses: ["missed"] },
   { title: "FORGONE BY CHOICE", statuses: ["forgone"] },
@@ -48,6 +49,10 @@ export function SharedRunView({ run, onExit }: SharedRunViewProps) {
         Object.entries(run.progress).filter(([id]) => itemIds.has(id)),
       ),
       version: run.version,
+      choices: new Map(
+        Object.entries(run.choices).filter(([id]) => itemIds.has(id)),
+      ),
+      adjustments: new Map(Object.entries(run.adjustments)),
     };
     return projectAvailability(pack, state);
   }, [pack, run]);
@@ -72,6 +77,7 @@ export function SharedRunView({ run, onExit }: SharedRunViewProps) {
   const collectedCount = availability.items.filter(
     (e) => e.status === "collected",
   ).length;
+  const standings = availability.trackers.filter((t) => t.open);
 
   return (
     <div className="ff-bg py-5 px-3 min-h-screen">
@@ -100,6 +106,29 @@ export function SharedRunView({ run, onExit }: SharedRunViewProps) {
           </div>
         </div>
 
+        {standings.map((view) => (
+          <section key={view.tracker.id}>
+            <div className="text-[10px] font-mono tracking-[0.3em] mb-1.5 text-[var(--ff-gold)]">
+              {view.tracker.name.toUpperCase()}
+              {view.locked ? " · FINAL" : ""}
+            </div>
+            <div className="ff-box px-3 py-2 flex flex-col gap-1">
+              {view.standings.map((s, index) => (
+                <div
+                  key={s.id}
+                  className="flex justify-between text-xs text-[var(--ff-ink)]"
+                >
+                  <span>
+                    {index === 0 ? "▶ " : "　"}
+                    {s.label}
+                  </span>
+                  <span className="font-mono">{s.value}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+
         {SECTIONS.map(({ title, statuses }) => {
           const entries = availability.items.filter((e) =>
             statuses.includes(e.status),
@@ -113,24 +142,39 @@ export function SharedRunView({ run, onExit }: SharedRunViewProps) {
                 {title}
               </div>
               <div className="ff-box px-3 py-2 flex flex-col gap-1">
-                {entries.map((e) => (
-                  <div key={e.item.id} className="text-xs leading-snug">
-                    <span style={{ color: STATUS[e.status].color }}>
-                      {e.status === "collected"
-                        ? "✓"
-                        : e.status === "missed" || e.status === "forgone"
-                          ? "✗"
-                          : "•"}
-                    </span>{" "}
-                    <span className="text-[var(--ff-ink)]">{e.item.name}</span>
-                    {e.item.count > 1 && (
-                      <span className="text-[var(--ff-dim)] font-mono">
-                        {" "}
-                        {e.progress}/{e.item.count}
+                {entries.map((e) => {
+                  const chosen =
+                    e.chosen === null
+                      ? null
+                      : e.item.options.find((o) => o.id === e.chosen);
+                  return (
+                    <div key={e.item.id} className="text-xs leading-snug">
+                      <span style={{ color: STATUS[e.status].color }}>
+                        {e.status === "collected"
+                          ? "✓"
+                          : e.status === "missed" || e.status === "forgone"
+                            ? "✗"
+                            : "•"}
+                      </span>{" "}
+                      <span className="text-[var(--ff-ink)]">
+                        {e.item.name}
                       </span>
-                    )}
-                  </div>
-                ))}
+                      {e.item.count > 1 && (
+                        <span className="text-[var(--ff-dim)] font-mono">
+                          {" "}
+                          {e.progress}/{e.item.count}
+                        </span>
+                      )}
+                      {chosen && (
+                        <span className="text-[var(--ff-dim)]">
+                          {" "}
+                          — {chosen.label}
+                          {chosen.best ? " ★" : ""}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </section>
           );

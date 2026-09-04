@@ -9,6 +9,10 @@ export interface SharedRun {
   version: string | null;
   collected: string[];
   progress: Record<string, number>;
+  /** Choice item → chosen option id. */
+  choices: Record<string, string>;
+  /** Manual tracker nudges, keyed `trackerId.valueId`. */
+  adjustments: Record<string, number>;
 }
 
 const b64url = (bytes: Uint8Array): string =>
@@ -38,6 +42,24 @@ export async function encodeShareFragment(run: SharedRun): Promise<string> {
   const deflated = await pipe(json, new CompressionStream("deflate-raw"));
   return `d.${b64url(deflated)}`;
 }
+
+const numberEntries = (value: unknown): Record<string, number> =>
+  value !== null && typeof value === "object"
+    ? Object.fromEntries(
+        Object.entries(value).filter(
+          (entry): entry is [string, number] => typeof entry[1] === "number",
+        ),
+      )
+    : {};
+
+const stringEntries = (value: unknown): Record<string, string> =>
+  value !== null && typeof value === "object"
+    ? Object.fromEntries(
+        Object.entries(value).filter(
+          (entry): entry is [string, string] => typeof entry[1] === "string",
+        ),
+      )
+    : {};
 
 export async function decodeShareFragment(
   fragment: string,
@@ -69,10 +91,9 @@ export async function decodeShareFragment(
     position: run.position,
     version: typeof run.version === "string" ? run.version : null,
     collected: run.collected as string[],
-    progress: Object.fromEntries(
-      Object.entries(run.progress).filter(
-        (entry): entry is [string, number] => typeof entry[1] === "number",
-      ),
-    ),
+    progress: numberEntries(run.progress),
+    // Links minted before choices and trackers existed simply carry none.
+    choices: stringEntries(run.choices),
+    adjustments: numberEntries(run.adjustments),
   };
 }

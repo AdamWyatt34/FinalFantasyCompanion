@@ -113,3 +113,79 @@ describe("save export/import", () => {
     );
   });
 });
+
+describe("saves with choices and tracker adjustments", () => {
+  const save = (events: unknown[]) =>
+    JSON.stringify({
+      format: "ffcompanion-save",
+      version: 1,
+      gameId: "ff7",
+      exportedAt: "2026-07-05T12:00:00.000Z",
+      events,
+    });
+
+  it("round-trips choiceMade and trackerAdjusted events", async () => {
+    const pack = ff7();
+    const choice = pack.items.find((i) => i.options.length > 0)!;
+    const tracker = pack.trackers[0];
+
+    await api.postEvent("ff7", {
+      type: "choiceMade",
+      itemId: choice.id,
+      optionId: choice.options[0].id,
+    });
+    await api.postEvent("ff7", {
+      type: "trackerAdjusted",
+      trackerId: tracker.id,
+      valueId: tracker.values[0].id,
+      delta: 2,
+    });
+    const text = JSON.stringify(exportSave("ff7"));
+    await api.postReset("ff7");
+
+    importSave(pack, text);
+
+    const availability = await api.getAvailability("ff7");
+    expect(
+      availability.items.find((e) => e.item.id === choice.id)!.chosen,
+    ).toBe(choice.options[0].id);
+    expect(
+      availability.trackers[0].standings.find(
+        (s) => s.id === tracker.values[0].id,
+      )!.value,
+    ).toBe(tracker.values[0].start + 2);
+  });
+
+  it("rejects choices naming unknown options and adjustments naming unknown values", () => {
+    const pack = ff7();
+    const choice = pack.items.find((i) => i.options.length > 0)!;
+
+    expect(() =>
+      importSave(
+        pack,
+        save([
+          {
+            type: "choiceMade",
+            itemId: choice.id,
+            optionId: "nope",
+            occurredAt: "2026-07-05T12:00:00.000Z",
+          },
+        ]),
+      ),
+    ).toThrow("unknown option 'nope'");
+    expect(() =>
+      importSave(
+        pack,
+        save([
+          {
+            type: "trackerAdjusted",
+            trackerId: "ghost",
+            valueId: "x",
+            delta: 1,
+            occurredAt: "2026-07-05T12:00:00.000Z",
+          },
+        ]),
+      ),
+    ).toThrow("unknown tracker value 'ghost.x'");
+  });
+});

@@ -23,12 +23,8 @@ describe("shipped packs", () => {
     expect(ff4.items.length).toBeLessThanOrEqual(40);
     expect(ff4.items.every((i) => !i.verified)).toBe(true);
     // The Excalibur chain: Rat Tail → Adamantite → the forge.
-    expect(ff4.items.find((i) => i.id === "adamantite")!.prereqs).toEqual([
-      "rattail",
-    ]);
-    expect(ff4.items.find((i) => i.id === "excalibur4")!.prereqs).toEqual([
-      "adamantite",
-    ]);
+    expect(ff4.items.find((i) => i.id === "adamantite")!.prereqs).toEqual([["rattail"]]);
+    expect(ff4.items.find((i) => i.id === "excalibur4")!.prereqs).toEqual([["adamantite"]]);
   });
 
   it("ff12 pack is structurally sound", () => {
@@ -49,9 +45,7 @@ describe("shipped packs", () => {
     expect(ff12.items.every((i) => !i.verified)).toBe(true);
     // The most famous missable in the series: the spear requires having left
     // the four cursed chests closed.
-    expect(ff12.items.find((i) => i.id === "zodiacspear")!.prereqs).toEqual([
-      "zodiacrestraint",
-    ]);
+    expect(ff12.items.find((i) => i.id === "zodiacspear")!.prereqs).toEqual([["zodiacrestraint"]]);
   });
 
   it("ff10 pack is structurally sound", () => {
@@ -70,9 +64,7 @@ describe("shipped packs", () => {
     expect(home.opensAt).toBe(12);
     expect(home.closesAt).toBe(12);
     // Anima requires every Destruction Sphere treasure.
-    expect(ff10.items.find((i) => i.id === "anima")!.prereqs).toEqual([
-      "destructionspheres",
-    ]);
+    expect(ff10.items.find((i) => i.id === "anima")!.prereqs).toEqual([["destructionspheres"]]);
   });
 
   it("ff6 pack is structurally sound", () => {
@@ -89,9 +81,7 @@ describe("shipped packs", () => {
     expect(ff6.items.every((i) => !i.verified)).toBe(true);
     // The signature chain: recruiting Shadow in the WoR requires having
     // waited for him on the Floating Continent.
-    expect(ff6.items.find((i) => i.id === "shadowor")!.prereqs).toEqual([
-      "shadowwait",
-    ]);
+    expect(ff6.items.find((i) => i.id === "shadowor")!.prereqs).toEqual([["shadowwait"]]);
     // Mutually exclusive pairs are declared on both sides.
     expect(ff6.items.find((i) => i.id === "ragnarokesper")!.excludes).toEqual([
       "lightbringer",
@@ -116,9 +106,7 @@ describe("shipped packs", () => {
     ]);
     expect(ff8.items.every((i) => !i.verified)).toBe(true);
     // Signature chain: Eden's draw requires reaching Bahamut's dig first.
-    expect(ff8.items.find((i) => i.id === "eden")!.prereqs).toEqual([
-      "bahamut8",
-    ]);
+    expect(ff8.items.find((i) => i.id === "eden")!.prereqs).toEqual([["bahamut8"]]);
     // The disc-4 world lock: most windows close at beat 18.
     expect(
       ff8.items.filter((i) => i.closesAt === 18).length,
@@ -131,16 +119,65 @@ describe("shipped packs", () => {
     expect(ff7.game.title).toBe("Final Fantasy VII");
     expect(ff7.positions.length).toBeGreaterThanOrEqual(20);
     expect(ff7.positions.length).toBeLessThanOrEqual(24);
-    expect(ff7.items.length).toBeGreaterThanOrEqual(70);
-    expect(ff7.items.length).toBeLessThanOrEqual(100);
+    expect(ff7.items.length).toBeGreaterThanOrEqual(90);
+    expect(ff7.items.length).toBeLessThanOrEqual(130);
     expect([...new Set(ff7.positions.map((p) => p.disc))].sort()).toEqual([
       1, 2, 3,
     ]);
     expect(ff7.items.every((i) => !i.verified)).toBe(true);
-    expect(ff7.items.find((i) => i.id === "kotr")!.prereqs).toEqual([
-      "goldchocobo",
-    ]);
+    expect(ff7.items.find((i) => i.id === "kotr")!.prereqs).toEqual([["goldchocobo"]]);
     expect(ff7.theme).toHaveProperty("gold");
+  });
+
+  it("ff7 pack exercises every extended-schema feature", () => {
+    const ff7 = getPackById("ff7")!;
+    const item = (id: string) => ff7.items.find((i) => i.id === id)!;
+
+    // Wall Market: five choice slots feeding one outcome via option refs.
+    const slots = ["wmdress", "wmwig", "wmtiara", "wmcologne", "wmunderwear"];
+    for (const id of slots) {
+      expect(item(id).options.length).toBeGreaterThanOrEqual(2);
+      expect(item(id).options.filter((o) => o.best)).toHaveLength(1);
+    }
+    expect(item("wmcorneo").prereqs.flat()).toEqual([
+      "wmdress:silk",
+      "wmwig:blonde",
+      "wmtiara:diamond",
+      "wmcologne:sexy",
+      "wmunderwear:lingerie",
+    ]);
+
+    // The date tracker starts at the game's own values.
+    expect(ff7.trackers.map((t) => t.id)).toEqual(["date"]);
+    expect(ff7.trackers[0].values.map((v) => `${v.id}:${v.start}`)).toEqual([
+      "aerith:50",
+      "tifa:30",
+      "yuffie:10",
+      "barret:0",
+    ]);
+    expect(ff7.trackers[0].locksAt).toBe(10);
+
+    // Reopening windows: Elemental comes back during the raid.
+    expect(item("elemental").windows).toEqual([
+      { opensAt: 3, closesAt: 3 },
+      { opensAt: 19, closesAt: 19 },
+    ]);
+
+    // Any-of prereqs: the caves need the right bird; the gold has two routes.
+    expect(item("mime").prereqs).toEqual([["blackchocobo", "goldchocobo"]]);
+    expect(item("goldchocobo").prereqs).toEqual([
+      ["racing3", "desertrose"],
+      ["zeionut", "desertrose"],
+    ]);
+
+    // Legs, tradeoffs, steps, party, tips.
+    expect(item("bluechocobo").route!.leg).toContain("leg 2");
+    expect(item("chocobolure").route!.tradeoff).not.toBeNull();
+    expect(item("deathpenalty").steps).toHaveLength(3);
+    expect(item("deathpenalty").count).toBe(3);
+    expect(item("missingscore").party).toEqual(["Barret"]);
+    expect(item("guidebook").prereqs).toEqual([["morph"]]);
+    expect(ff7.positions.every((p) => p.tips.length > 0)).toBe(true);
   });
 
   it("ff9 pack is structurally sound", () => {
@@ -155,9 +192,7 @@ describe("shipped packs", () => {
       1, 2, 3, 4,
     ]);
     expect(ff9.items.every((i) => !i.verified)).toBe(true);
-    expect(ff9.items.find((i) => i.id === "ozma")!.prereqs).toEqual([
-      "airgarden",
-    ]);
+    expect(ff9.items.find((i) => i.id === "ozma")!.prereqs).toEqual([["airgarden"]]);
   });
 
   it("all packs define the same theme token names — the frontend binds --ff-* by name", () => {

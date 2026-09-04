@@ -22,63 +22,224 @@
     }
   },
   "positions": [
-    { "id": "reactor1", "order": 1, "label": "Sector 1 Reactor", "disc": 1 },
+    {
+      "id": "reactor1",
+      "order": 1,
+      "label": "Sector 1 Reactor",
+      "disc": 1,
+      "tips": [
+        "The Gold Saucer date is decided by hidden affection that starts now (Aerith 50, Tifa 30, Yuffie 10, Barret 0). Dialogue choices from here until the Keystone move it — keep the standings honest with the ± buttons as you go."
+      ]
+    },
     {
       "id": "sector5",
       "order": 2,
       "label": "Sector 5 & Wall Market",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Wall Market before Corneo's mansion: five one-shot picks (dress, wig, tiara, cologne, underwear). The full best set guarantees Corneo picks Cloud — the dress and wig matter most.",
+        "Everything in Wall Market shuts once you enter the mansion; do the shopping loop first, then the Honey Bee Inn, then the dressmaker's shop to change."
+      ]
     },
-    { "id": "shinra", "order": 3, "label": "Shinra HQ", "disc": 1 },
-    { "id": "kalm", "order": 4, "label": "Kalm & the World Map", "disc": 1 },
+    {
+      "id": "shinra",
+      "order": 3,
+      "label": "Shinra HQ",
+      "disc": 1,
+      "tips": [
+        "Three one-shot pickups on the climb: the Fl.63 coupons, Elemental (Fl.62 password), Enemy Skill (Fl.67 lab). Elemental gets a second chance during the Disc 2 raid; the others do not."
+      ]
+    },
+    {
+      "id": "kalm",
+      "order": 4,
+      "label": "Kalm & the World Map",
+      "disc": 1,
+      "tips": [
+        "Yuffie can be met in any forest from here on. Say the right things (never 'Wait!' when she offers to leave) or she robs you and runs."
+      ]
+    },
     {
       "id": "farm",
       "order": 5,
       "label": "Chocobo Farm & Mythril Mine",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Buy a Chocobo Lure and say 'Wark' to the birds for Choco/Mog. Stables can be rented now too — the breeding chain is scheduled for Disc 2, but nothing stops an early start.",
+        "Fort Condor's first battle is live; each Condor battle expires quietly as the story moves on."
+      ]
     },
-    { "id": "junon", "order": 6, "label": "Junon", "disc": 1 },
-    { "id": "costa", "order": 7, "label": "Costa del Sol & Corel", "disc": 1 },
-    { "id": "saucer", "order": 8, "label": "Gold Saucer & Gongaga", "disc": 1 },
+    {
+      "id": "junon",
+      "order": 6,
+      "label": "Junon",
+      "disc": 1,
+      "tips": [
+        "The send-off performance is graded: 100 points is the only way to the Force Stealer. Practice the parade first — its reward is graded too.",
+        "Enemy Skill #2 is lying on the floor of the house beside the respectable inn."
+      ]
+    },
+    {
+      "id": "costa",
+      "order": 7,
+      "label": "Costa del Sol & Corel",
+      "disc": 1,
+      "tips": [
+        "Nothing here closes. Mt. Corel's chests are revisitable; the villa is flavor. Save your gil for stables and the Sneak Glove."
+      ]
+    },
+    {
+      "id": "saucer",
+      "order": 8,
+      "label": "Gold Saucer & Gongaga",
+      "disc": 1,
+      "tips": [
+        "Ramuh is on the floor of the Chocobo Square jockeys' room. With the Buggy, the Sleeping Man's cave near Junon gives Mythril — trade it at the Weapon Seller for Great Gospel before the Temple."
+      ]
+    },
     {
       "id": "cosmo",
       "order": 9,
       "label": "Cosmo Canyon & Nibelheim",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The Cave of the Gi is a one-time dungeon: sweep it. Nibelheim's safe (Vincent, Odin, Cosmo Memory) and Mt. Nibel's Materia Keeper (Trine) are the other stops."
+      ]
     },
-    { "id": "rocket", "order": 10, "label": "Rocket Town & Wutai", "disc": 1 },
+    {
+      "id": "rocket",
+      "order": 10,
+      "label": "Rocket Town & Wutai",
+      "disc": 1,
+      "tips": [
+        "Talk to the old man in Rocket Town for the Yoshiyuki before the plot moves. Wutai: Yuffie's pagoda and the Turtle's Paradise prize once all six flyers are read.",
+        "The Gold Saucer date happens right after this beat — the standings lock when you pick up the Keystone."
+      ]
+    },
     {
       "id": "temple",
       "order": 11,
       "label": "Temple of the Ancients",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "One visit only: Morph (the only one in the game), Luck Plus, Ribbon, Princess Guard (clock hand IV), Bahamut from the Red Dragon. Aerith's limit levels must be earned before the end of this beat."
+      ]
     },
-    { "id": "city", "order": 12, "label": "Forgotten City", "disc": 1 },
+    {
+      "id": "city",
+      "order": 12,
+      "label": "Forgotten City",
+      "disc": 1,
+      "tips": [
+        "Kujata drifts through the Sleeping Forest; Enemy Skill #3 is in the house with the bed. Vlakorados roams near Bone Village — the Carob Nut source."
+      ]
+    },
     {
       "id": "icicle",
       "order": 13,
       "label": "Icicle Inn & Great Glacier",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Gaea's Cliff is one-time (and Stilva there is the last Trine source). Alexander: touch the hot spring, then beat the Snow woman. Wonderful chocobos live on the Icicle tracks."
+      ]
     },
-    { "id": "maze", "order": 14, "label": "Whirlwind Maze", "disc": 2 },
+    {
+      "id": "maze",
+      "order": 14,
+      "label": "Whirlwind Maze",
+      "disc": 2,
+      "tips": [
+        "No return trip: Neo Bahamut on the path, MP Turbo, Kaiser Knuckle and Poison Ring in the maze."
+      ]
+    },
     {
       "id": "junon2",
       "order": 15,
       "label": "Junon Escape — the Highwind",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Free flight. The breeding chain runs in legs: catch and race, breed, then fight ten or so battles elsewhere before the next breed — interleave it with everything else on the list."
+      ]
     },
-    { "id": "mideel", "order": 16, "label": "Mideel", "disc": 2 },
-    { "id": "huge", "order": 17, "label": "Huge Materia Hunt", "disc": 2 },
+    {
+      "id": "mideel",
+      "order": 16,
+      "label": "Mideel",
+      "disc": 2,
+      "tips": [
+        "Contain from the white chocobo (Samolen greens, then scratch behind its ears) and the Curse Ring behind the locked door. Both are usually still reachable in ruined Mideel — the pack closes them early until verified."
+      ]
+    },
+    {
+      "id": "huge",
+      "order": 17,
+      "label": "Huge Materia Hunt",
+      "disc": 2,
+      "tips": [
+        "Four one-shot minigames. In the Underwater Reactor tunnel, morph a Ghost Ship for the Guide Book. The Sunken Gelnika is open from here: Hades, Double Cut, Conformer, Highwind, Outsider, Spirit Lance, Heaven's Cloud."
+      ]
+    },
     {
       "id": "lifestream",
       "order": 18,
       "label": "Lifestream & Cloud's Return",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Chase Ultimate Weapon with the Highwind for the Ultima Weapon; its fall opens the Ancient Forest. Final Heaven needs Tifa leading the party at her piano."
+      ]
     },
-    { "id": "midgar2", "order": 19, "label": "Return to Midgar", "disc": 2 },
-    { "id": "crater", "order": 20, "label": "Northern Crater Rim", "disc": 3 },
-    { "id": "descent", "order": 21, "label": "Crater Descent", "disc": 3 },
-    { "id": "finale", "order": 22, "label": "Point of No Return", "disc": 3 }
+    {
+      "id": "midgar2",
+      "order": 19,
+      "label": "Return to Midgar",
+      "disc": 2,
+      "tips": [
+        "The raid is one pass through the tunnels: Missing Score needs Barret in the party on the stairs to Proud Clod; W-Item is off the winding tunnel. Wall Market's shops (Premium Heart, Sneak Glove) and Shinra HQ's Elemental are on the route.",
+        "After the raid, dig the Key to Sector 5 in Bone Village to reopen the slums and Wall Market."
+      ]
+    },
+    {
+      "id": "crater",
+      "order": 20,
+      "label": "Northern Crater Rim",
+      "disc": 3,
+      "tips": [
+        "Superboss loadout check: KotR + W-Summon, HP Absorb linked to KotR, Underwater for Emerald, Mime, Final Attack + Phoenix. Nothing in the crater rim closes."
+      ]
+    },
+    {
+      "id": "descent",
+      "order": 21,
+      "label": "Crater Descent",
+      "disc": 3,
+      "tips": [
+        "The first Dragon Zombie to die casts Pandora's Box exactly once per save — have every Enemy Skill materia you care about equipped before the fight."
+      ]
+    },
+    {
+      "id": "finale",
+      "order": 22,
+      "label": "Point of No Return",
+      "disc": 3,
+      "tips": [
+        "Last save point before the end. Anything still open on this list is now or never."
+      ]
+    }
+  ],
+  "trackers": [
+    {
+      "id": "date",
+      "name": "Gold Saucer date",
+      "window": { "opensAt": 1, "locksAt": 10 },
+      "notes": "Whoever leads when the party is stranded at the Gold Saucer with the Keystone takes Cloud out (ties break Aerith > Tifa > Yuffie > Barret). Dialogue choices, whose side you take, party picks and who Corneo chooses all move these numbers. The starting values are the game's own; the swings are not modelled yet — log them with ± from a date guide as you play.",
+      "values": [
+        { "id": "aerith", "label": "Aerith", "start": 50 },
+        { "id": "tifa", "label": "Tifa", "start": 30 },
+        { "id": "yuffie", "label": "Yuffie", "start": 10 },
+        { "id": "barret", "label": "Barret", "start": 0 }
+      ],
+      "verified": false
+    }
   ],
   "items": [
     {
@@ -86,9 +247,169 @@
       "name": "Turtle's Paradise Flyer #1",
       "type": "quest",
       "location": "Sector 5 slums — kid's house, upstairs",
-      "window": { "opensAt": 2, "closesAt": 3 },
+      "windows": [
+        { "opensAt": 2, "closesAt": 3 },
+        { "opensAt": 19 }
+      ],
       "prereqs": [],
-      "notes": "First of six flyers. Widely listed as missable once you leave Midgar (some guides say the Disc 2 raid offers a second chance — verify).",
+      "notes": "First of six flyers. Read it before leaving Midgar; the slums reopen late in Disc 2 with the Key to Sector 5, so the second window needs that key. Verify the reopening in play.",
+      "verified": false
+    },
+    {
+      "id": "wmdress",
+      "name": "Wall Market — the dress",
+      "type": "choice",
+      "location": "Wall Market — dress shop, then the owner in the bar",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "options": [
+        {
+          "id": "cotton",
+          "label": "Cotton Dress",
+          "note": "'Something that feels clean' and 'something that shines'."
+        },
+        {
+          "id": "satin",
+          "label": "Satin Dress",
+          "note": "One of each — mixing the answers."
+        },
+        {
+          "id": "silk",
+          "label": "Silk Dress",
+          "best": true,
+          "note": "Tell the dressmaker 'something that feels soft' and 'something that shimmers'."
+        }
+      ],
+      "route": {
+        "at": 2,
+        "rank": 0,
+        "why": "The dress carries the most weight in Corneo's pick",
+        "leg": "Wall Market — before Corneo's mansion"
+      },
+      "notes": "Find the shop owner drinking in the bar and answer his two questions; the dress is waiting back at the shop.",
+      "refs": [
+        { "label": "Wall Market on the FF wiki", "url": "https://finalfantasy.fandom.com/wiki/Wall_Market" }
+      ],
+      "verified": false
+    },
+    {
+      "id": "wmwig",
+      "name": "Wall Market — the wig",
+      "type": "choice",
+      "location": "Wall Market — gym, squat contest",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "options": [
+        { "id": "plain", "label": "Wig", "note": "Lose the squat contest." },
+        { "id": "dyed", "label": "Dyed Wig", "note": "Tie the squat contest." },
+        {
+          "id": "blonde",
+          "label": "Blonde Wig",
+          "best": true,
+          "note": "Win the squat contest — rhythm over speed; a mistimed press costs a squat."
+        }
+      ],
+      "route": {
+        "at": 2,
+        "rank": 1,
+        "why": "Second-heaviest weight in the pick",
+        "leg": "Wall Market — before Corneo's mansion"
+      },
+      "notes": "Talk to the coach in the gym; the contest is the whole price.",
+      "verified": false
+    },
+    {
+      "id": "wmtiara",
+      "name": "Wall Market — the tiara",
+      "type": "choice",
+      "location": "Wall Market — materia shop errand, inn vending machine",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "options": [
+        { "id": "glass", "label": "Glass Tiara", "note": "Buy the 50 gil item from the vending machine." },
+        { "id": "ruby", "label": "Ruby Tiara", "note": "Buy the 100 gil item." },
+        {
+          "id": "diamond",
+          "label": "Diamond Tiara",
+          "best": true,
+          "note": "Buy the 200 gil item from the inn's vending machine and bring it back to the materia shop."
+        }
+      ],
+      "route": {
+        "at": 2,
+        "rank": 2,
+        "why": "Cheap points — spend the 200 gil",
+        "leg": "Wall Market — before Corneo's mansion"
+      },
+      "notes": "The materia shop owner asks for something from the inn's vending machine; what you buy decides the tiara.",
+      "verified": false
+    },
+    {
+      "id": "wmcologne",
+      "name": "Wall Market — the cologne",
+      "type": "choice",
+      "location": "Wall Market — diner coupon → pharmacy → bar restroom",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "options": [
+        { "id": "cologne", "label": "Cologne", "note": "Bring the Disinfectant." },
+        { "id": "flower", "label": "Flower Cologne", "note": "Bring the Deodorant." },
+        {
+          "id": "sexy",
+          "label": "Sexy Cologne",
+          "best": true,
+          "note": "Eat at the diner, say it was all right for the Pharmacy Coupon, trade it for the Digestive, hand that to the woman in the bar's restroom."
+        }
+      ],
+      "route": {
+        "at": 2,
+        "rank": 3,
+        "why": "Three errands for one bottle",
+        "leg": "Wall Market — before Corneo's mansion"
+      },
+      "notes": "The coupon is the key: the pharmacist offers three items and the restroom woman turns whichever you bring into a cologne.",
+      "verified": false
+    },
+    {
+      "id": "wmunderwear",
+      "name": "Wall Market — underwear",
+      "type": "choice",
+      "location": "Honey Bee Inn — needs the Member's Card",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "options": [
+        { "id": "bikini", "label": "Bikini Briefs", "note": "Pick the Group Room." },
+        {
+          "id": "lingerie",
+          "label": "Lingerie",
+          "best": true,
+          "note": "Pick the &$#% Room."
+        }
+      ],
+      "route": {
+        "at": 2,
+        "rank": 4,
+        "why": "The Member's Card comes from the man loitering by the inn",
+        "leg": "Wall Market — before Corneo's mansion"
+      },
+      "notes": "Get the Member's Card from the man outside the Honey Bee Inn, then choose a room. Cut in some releases — if the inn is closed to you, skip this slot.",
+      "verified": false
+    },
+    {
+      "id": "wmcorneo",
+      "name": "Corneo picks Cloud",
+      "type": "quest",
+      "location": "Don Corneo's mansion",
+      "window": { "opensAt": 2, "closesAt": 2 },
+      "prereqs": [
+        ["wmdress:silk"],
+        ["wmwig:blonde"],
+        ["wmtiara:diamond"],
+        ["wmcologne:sexy"],
+        ["wmunderwear:lingerie"]
+      ],
+      "route": {
+        "at": 2,
+        "rank": 5,
+        "why": "The payoff of the whole dress-up loop",
+        "leg": "Wall Market — before Corneo's mansion"
+      },
+      "notes": "Guides put the real threshold lower (Silk Dress, Blonde Wig and any two of the other three); the full set is the sure thing, so the pack asks for all five. Who he picks also nudges the date standings — log it.",
       "verified": false
     },
     {
@@ -98,6 +419,12 @@
       "location": "Shinra HQ — Fl.67 specimen lab",
       "window": { "opensAt": 3, "closesAt": 3 },
       "prereqs": [],
+      "route": {
+        "at": 3,
+        "rank": 1,
+        "why": "First of four — and the only one this early",
+        "leg": "Shinra HQ — before the tower fight"
+      },
       "notes": "First of four Enemy Skill materia in the game. Gone once you leave the tower.",
       "verified": false
     },
@@ -106,9 +433,34 @@
       "name": "Elemental Materia",
       "type": "materia",
       "location": "Shinra HQ — Fl.62, Mayor Domino's password",
+      "windows": [
+        { "opensAt": 3, "closesAt": 3 },
+        { "opensAt": 19, "closesAt": 19 }
+      ],
+      "prereqs": [],
+      "route": {
+        "at": 3,
+        "rank": 2,
+        "why": "Guess the password (or bribe the deputy) before the elevator",
+        "leg": "Shinra HQ — before the tower fight"
+      },
+      "notes": "Miss it now and the Midgar raid passes the mayor's office one more time. Two chances, both one-visit.",
+      "verified": false
+    },
+    {
+      "id": "coupons",
+      "name": "Fl.63 coupons — Star Pendant, Four Slots, All",
+      "type": "key",
+      "location": "Shinra HQ — Fl.63 vents and coupon machine",
       "window": { "opensAt": 3, "closesAt": 3 },
       "prereqs": [],
-      "notes": "Guess the password (or bribe the deputy) before leaving the tower.",
+      "route": {
+        "at": 3,
+        "rank": 3,
+        "why": "Three coupons, three prizes, one visit",
+        "leg": "Shinra HQ — before the tower fight"
+      },
+      "notes": "Crawl the Fl.63 vents for the three coupons and trade them at the machine: A = Star Pendant, B = Four Slots, C = All materia.",
       "verified": false
     },
     {
@@ -118,6 +470,7 @@
       "location": "Earned in battle with Aerith in the party",
       "window": { "opensAt": 1, "closesAt": 11 },
       "prereqs": [],
+      "party": ["Aerith"],
       "notes": "Hard deadline — she leaves the party after the Temple of the Ancients.",
       "verified": false
     },
@@ -128,7 +481,7 @@
       "location": "Sleeping Man's cave near Junon (Buggy required)",
       "window": { "opensAt": 8, "closesAt": 11 },
       "prereqs": [],
-      "notes": "Battle-count trick; trade it at the Weapon Seller's house for Great Gospel.",
+      "notes": "The Sleeping Man hands it over when the last two digits of your battle count match; trade it at the Weapon Seller's house for Great Gospel.",
       "verified": false,
       "route": {
         "at": 8,
@@ -142,8 +495,8 @@
       "type": "limit",
       "location": "Weapon Seller's house near Gongaga",
       "window": { "opensAt": 8, "closesAt": 11 },
-      "prereqs": ["mythril"],
-      "notes": "Aerith's final Limit Break. Same deadline as her other limits.",
+      "prereqs": [["mythril"]],
+      "notes": "Aerith's final Limit Break. Same deadline as her other limits — pick the small box upstairs.",
       "verified": false,
       "route": {
         "at": 8,
@@ -202,7 +555,7 @@
       "type": "materia",
       "location": "Grasslands marshes — Midgar Zolom",
       "window": { "opensAt": 5 },
-      "prereqs": ["enemyskill1"],
+      "prereqs": [["enemyskill1"]],
       "notes": "Brutal fight this early; one of the best pickups in the game.",
       "verified": false,
       "route": {
@@ -210,6 +563,30 @@
         "rank": 1,
         "why": "Painful now, pays off for two discs"
       }
+    },
+    {
+      "id": "junonsendoff",
+      "name": "Junon send-off performance",
+      "type": "choice",
+      "location": "Junon — Rufus's send-off, the second minigame",
+      "window": { "opensAt": 6, "closesAt": 6 },
+      "options": [
+        { "id": "glasses", "label": "Silver Glasses", "note": "Under 50 points." },
+        { "id": "hpplus", "label": "HP Plus", "note": "50 to 99 points." },
+        {
+          "id": "forcestealer",
+          "label": "Force Stealer",
+          "best": true,
+          "note": "A perfect 100: follow the commander's calls with exact timing."
+        }
+      ],
+      "route": {
+        "at": 6,
+        "rank": 1,
+        "why": "One take — the reward tier is set the moment the music stops"
+      },
+      "notes": "The parade before it is graded too (higher TV ratings pay better consumables). Practice there, then perform.",
+      "verified": false
     },
     {
       "id": "titan",
@@ -227,8 +604,71 @@
       "type": "quest",
       "location": "Wutai",
       "window": { "opensAt": 10 },
-      "prereqs": ["yuffie"],
+      "prereqs": [["yuffie"]],
+      "party": ["Yuffie"],
       "notes": "Yuffie's personal questline; rewards Leviathan and All Creation (her Lv.4 limit).",
+      "verified": false
+    },
+    {
+      "id": "yoshiyuki",
+      "name": "Yoshiyuki (Cloud)",
+      "type": "weapon",
+      "location": "Rocket Town — the old man by the item shop",
+      "window": { "opensAt": 10, "closesAt": 10 },
+      "prereqs": [],
+      "route": {
+        "at": 10,
+        "rank": 1,
+        "why": "A free sword for a conversation"
+      },
+      "notes": "Talk to the old man wandering outside the shop. Reported available until the rocket launches; the pack closes the window early until verified.",
+      "verified": false
+    },
+    {
+      "id": "gisweep",
+      "name": "Cave of the Gi sweep",
+      "type": "sweep",
+      "location": "Cosmo Canyon — the cave behind the sealed door",
+      "window": { "opensAt": 9, "closesAt": 9 },
+      "prereqs": [],
+      "route": {
+        "at": 9,
+        "rank": 1,
+        "why": "One-time dungeon — the door seals behind you"
+      },
+      "notes": "Added Effect, Black M-phone, Fairy Tale, Gravity Ball, X-Potion, Wizard Staff. The Gi Nattak fight ends the visit.",
+      "verified": false
+    },
+    {
+      "id": "templesweep",
+      "name": "Temple of the Ancients sweep",
+      "type": "sweep",
+      "location": "Temple of the Ancients",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "prereqs": [],
+      "route": {
+        "at": 11,
+        "rank": 2,
+        "why": "The temple collapses — every chest is one-visit",
+        "leg": "Temple sweep — one visit"
+      },
+      "notes": "Luck Plus, Ribbon, Trumpet Shell, Work Glove, Rocket Punch, Silver Rifle, Turbo Ether. Morph, Bahamut and the Princess Guard have their own entries.",
+      "verified": false
+    },
+    {
+      "id": "morph",
+      "name": "Morph Materia",
+      "type": "materia",
+      "location": "Temple of the Ancients — the boulder-run corridor",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "prereqs": [],
+      "route": {
+        "at": 11,
+        "rank": 1,
+        "why": "The only Morph in the game — the Guide Book and Source farming need it",
+        "leg": "Temple sweep — one visit"
+      },
+      "notes": "Miss it and the Underwater materia trade is off the table for the whole run.",
       "verified": false
     },
     {
@@ -238,7 +678,44 @@
       "location": "Temple of the Ancients — Red Dragon fight",
       "window": { "opensAt": 11, "closesAt": 11 },
       "prereqs": [],
+      "route": {
+        "at": 11,
+        "rank": 3,
+        "why": "Dropped by the Red Dragon on the way through",
+        "leg": "Temple sweep — one visit"
+      },
       "notes": "The temple collapses after the story sequence — pick it up during the visit.",
+      "verified": false
+    },
+    {
+      "id": "princessguard",
+      "name": "Princess Guard (Aerith)",
+      "type": "key",
+      "location": "Temple of the Ancients — clock room, hand IV",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "prereqs": [],
+      "route": {
+        "at": 11,
+        "rank": 4,
+        "why": "Her ultimate weapon, in the temple that collapses",
+        "leg": "Temple sweep — one visit"
+      },
+      "notes": "Poignant and easy to skip.",
+      "verified": false
+    },
+    {
+      "id": "gaeasweep",
+      "name": "Gaea's Cliff sweep",
+      "type": "sweep",
+      "location": "Gaea's Cliff — the climb past the Great Glacier",
+      "window": { "opensAt": 13, "closesAt": 13 },
+      "prereqs": [],
+      "route": {
+        "at": 13,
+        "rank": 1,
+        "why": "No way back down once the crater opens"
+      },
+      "notes": "Enhance Sword, Ribbon, Fire Armlet, Javelin, Speed Source, Elixir, Megalixir. Stilva here is the last Trine caster.",
       "verified": false
     },
     {
@@ -248,7 +725,27 @@
       "location": "Great Glacier — touch the hot springs, then beat the Snow woman",
       "window": { "opensAt": 13, "closesAt": 13 },
       "prereqs": [],
+      "route": {
+        "at": 13,
+        "rank": 2,
+        "why": "Hot spring first, then the Snow woman"
+      },
       "notes": "Awkward to return to the glacier later — treat it as a one-shot window.",
+      "verified": false
+    },
+    {
+      "id": "mazesweep",
+      "name": "Whirlwind Maze sweep",
+      "type": "sweep",
+      "location": "Whirlwind Maze",
+      "window": { "opensAt": 14, "closesAt": 14 },
+      "prereqs": [],
+      "route": {
+        "at": 14,
+        "rank": 1,
+        "why": "No return trip through the maze"
+      },
+      "notes": "MP Turbo, Kaiser Knuckle, Poison Ring — plus Neo Bahamut, which has its own entry.",
       "verified": false
     },
     {
@@ -258,6 +755,11 @@
       "location": "Whirlwind Maze — on the path",
       "window": { "opensAt": 14, "closesAt": 14 },
       "prereqs": [],
+      "route": {
+        "at": 14,
+        "rank": 2,
+        "why": "Lying on the ground — do not walk past it"
+      },
       "notes": "Lying on the ground inside the maze; no return trip.",
       "verified": false
     },
@@ -288,7 +790,9 @@
       "route": {
         "at": 15,
         "rank": 2,
-        "why": "No lure, no chocobos — buy it on the way in"
+        "why": "No lure, no chocobos — buy it on the way in",
+        "leg": "Breeding · leg 1 — set up and catch the parents",
+        "tradeoff": "On sale from your first Farm visit; buying early saves a trip later"
       }
     },
     {
@@ -296,14 +800,16 @@
       "name": "Rent 6 Chocobo Stables",
       "type": "key",
       "location": "Chocobo Farm — talk to Choco Billy",
-      "window": { "opensAt": 15 },
-      "prereqs": ["highwind"],
+      "window": { "opensAt": 5 },
+      "prereqs": [],
       "notes": "10,000 gil each. You need room for parents, babies, and the gold.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 3,
-        "why": "Breeding needs the stable space up front"
+        "why": "Breeding needs the stable space up front",
+        "leg": "Breeding · leg 1 — set up and catch the parents",
+        "tradeoff": "Rentable any time you can reach the Farm; 60,000 gil is the only reason to wait"
       }
     },
     {
@@ -311,14 +817,16 @@
       "name": "3 Carob Nuts",
       "type": "key",
       "location": "Steal from Vlakorados near Bone Village",
-      "window": { "opensAt": 15 },
-      "prereqs": ["highwind"],
+      "window": { "opensAt": 12 },
+      "prereqs": [],
       "notes": "One per colored breeding step. The Gold Saucer sells one for 500 GP as a fallback.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 4,
-        "why": "Each colored chick costs a nut — stock up once"
+        "why": "Each colored chick costs a nut — stock up once",
+        "leg": "Breeding · leg 1 — set up and catch the parents",
+        "tradeoff": "Vlakorados roams the Bone Village plain from your first story visit there"
       }
     },
     {
@@ -326,14 +834,16 @@
       "name": "Good Chocobo (female)",
       "type": "chocobo",
       "location": "Tracks near the Gold Saucer",
-      "window": { "opensAt": 15 },
-      "prereqs": ["chocobolure", "stables"],
+      "window": { "opensAt": 8 },
+      "prereqs": [["chocobolure"], ["stables"]],
       "notes": "Catch with a Wonderful/Good rating per Choco Billy.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 5,
-        "why": "First parent of the blue/green pair"
+        "why": "First parent of the blue/green pair",
+        "leg": "Breeding · leg 1 — set up and catch the parents",
+        "tradeoff": "The Gold Saucer tracks are walkable from Disc 1; the Highwind only makes ferrying birds home quicker"
       }
     },
     {
@@ -341,14 +851,16 @@
       "name": "Great Chocobo (male)",
       "type": "chocobo",
       "location": "Tracks near Mideel",
-      "window": { "opensAt": 15 },
-      "prereqs": ["chocobolure", "stables"],
+      "window": { "opensAt": 10 },
+      "prereqs": [["chocobolure"], ["stables"]],
       "notes": "Second parent. Feed both plenty of greens before racing.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 6,
-        "why": "Second parent of the blue/green pair"
+        "why": "Second parent of the blue/green pair",
+        "leg": "Breeding · leg 1 — set up and catch the parents",
+        "tradeoff": "Guides route a Disc 1 catch via the Tiny Bronco's beaches — possible, fiddly; verify before relying on it"
       }
     },
     {
@@ -356,14 +868,15 @@
       "name": "Race the pair to Class B",
       "type": "quest",
       "location": "Gold Saucer — Chocobo Square",
-      "window": { "opensAt": 15 },
-      "prereqs": ["goodchocobo", "greatchocobo"],
+      "window": { "opensAt": 8 },
+      "prereqs": [["goodchocobo"], ["greatchocobo"]],
       "notes": "Higher-class parents dramatically improve breeding odds.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 7,
-        "why": "Class B parents before the first Carob breed"
+        "why": "Class B parents before the first Carob breed",
+        "leg": "Breeding · leg 1 — set up and catch the parents"
       }
     },
     {
@@ -371,25 +884,31 @@
       "name": "Blue (River) Chocobo",
       "type": "chocobo",
       "location": "Breed Good × Great with a Carob Nut",
-      "window": { "opensAt": 15 },
-      "prereqs": ["racing1", "carobnuts"],
+      "window": { "opensAt": 12 },
+      "prereqs": [["racing1"], ["carobnuts"]],
       "notes": "Save before breeding; reload until the color lands.",
       "verified": false,
-      "route": { "at": 15, "rank": 8, "why": "Half of the black chocobo pair" }
+      "route": {
+        "at": 15,
+        "rank": 8,
+        "why": "Half of the black chocobo pair",
+        "leg": "Breeding · leg 2 — the colored pair (parents need ~10 battles between breeds)"
+      }
     },
     {
       "id": "greenchocobo",
       "name": "Green (Mountain) Chocobo",
       "type": "chocobo",
       "location": "Breed Good × Great with a Carob Nut",
-      "window": { "opensAt": 15 },
-      "prereqs": ["racing1", "carobnuts"],
-      "notes": "Needs opposite sex to the blue — reload until you get the pair.",
+      "window": { "opensAt": 12 },
+      "prereqs": [["racing1"], ["carobnuts"]],
+      "notes": "Needs opposite sex to the blue — reload until you get the pair. The parents can breed again after roughly ten battles elsewhere.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 9,
-        "why": "Other half of the black chocobo pair"
+        "why": "Other half of the black chocobo pair",
+        "leg": "Breeding · leg 2 — the colored pair (parents need ~10 battles between breeds)"
       }
     },
     {
@@ -397,14 +916,15 @@
       "name": "Race blue & green to Class A",
       "type": "quest",
       "location": "Gold Saucer — Chocobo Square",
-      "window": { "opensAt": 15 },
-      "prereqs": ["bluechocobo", "greenchocobo"],
-      "notes": "Both colored birds should hit Class A before the next breed.",
+      "window": { "opensAt": 12 },
+      "prereqs": [["bluechocobo"], ["greenchocobo"]],
+      "notes": "Both colored birds should hit Class A before the next breed. The chicks need a few battles to grow up first.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 10,
-        "why": "Class A colors before breeding the black"
+        "why": "Class A colors before breeding the black",
+        "leg": "Breeding · leg 2 — the colored pair (parents need ~10 battles between breeds)"
       }
     },
     {
@@ -412,25 +932,31 @@
       "name": "Black Chocobo",
       "type": "chocobo",
       "location": "Breed Blue × Green with a Carob Nut",
-      "window": { "opensAt": 15 },
-      "prereqs": ["racing2", "carobnuts"],
+      "window": { "opensAt": 12 },
+      "prereqs": [["racing2"], ["carobnuts"]],
       "notes": "Can cross rivers and mountains — and is half of the gold pair.",
       "verified": false,
-      "route": { "at": 15, "rank": 11, "why": "Parent of the gold" }
+      "route": {
+        "at": 15,
+        "rank": 11,
+        "why": "Parent of the gold",
+        "leg": "Breeding · leg 3 — the black (come back after ~10 more battles)"
+      }
     },
     {
       "id": "racing3",
       "name": "Race the black to Class S",
       "type": "quest",
       "location": "Gold Saucer — Chocobo Square",
-      "window": { "opensAt": 15 },
-      "prereqs": ["blackchocobo"],
-      "notes": "A Class S black plus a Wonderful partner all but guarantees the gold.",
+      "window": { "opensAt": 12 },
+      "prereqs": [["blackchocobo"]],
+      "notes": "A Class S black plus a Wonderful partner (Icicle tracks) all but guarantees the gold.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 12,
-        "why": "Stack the odds before the final breed"
+        "why": "Stack the odds before the final breed",
+        "leg": "Breeding · leg 3 — the black (come back after ~10 more battles)"
       }
     },
     {
@@ -439,29 +965,34 @@
       "type": "key",
       "location": "Steal from Goblin — Goblin Island (northeast sea)",
       "window": { "opensAt": 15 },
-      "prereqs": ["highwind"],
+      "prereqs": [],
       "notes": "The gold breed needs this specific nut.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 13,
-        "why": "The gold breed consumes exactly one"
+        "why": "The gold breed consumes exactly one",
+        "leg": "Breeding · leg 4 — the gold"
       }
     },
     {
       "id": "goldchocobo",
       "name": "Gold Chocobo",
       "type": "chocobo",
-      "location": "Breed Black × Wonderful with the Zeio Nut",
+      "location": "Breed Black × Wonderful with the Zeio Nut — or trade Ruby's Desert Rose in Kalm",
       "window": { "opensAt": 15 },
-      "prereqs": ["racing3", "zeionut"],
-      "notes": "Crosses everything. The key to Round Island.",
+      "prereqs": [["racing3", "desertrose"], ["zeionut", "desertrose"]],
+      "notes": "Crosses everything. The key to Round Island. The Kalm traveler hands one over for the Desert Rose, if you would rather beat Ruby Weapon than breed.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 14,
-        "why": "The only way to reach Round Island"
-      }
+        "why": "The only way to reach Round Island",
+        "leg": "Breeding · leg 4 — the gold"
+      },
+      "refs": [
+        { "label": "Chocobo breeding on the FF wiki", "url": "https://finalfantasy.fandom.com/wiki/Chocobo_(Final_Fantasy_VII)" }
+      ]
     },
     {
       "id": "kotr",
@@ -469,13 +1000,62 @@
       "type": "summon",
       "location": "Round Island — northeast corner of the map",
       "window": { "opensAt": 15 },
-      "prereqs": ["goldchocobo"],
-      "notes": "The strongest summon in the game. Master it for a second via Bugenhagen? Later problem.",
+      "prereqs": [["goldchocobo"]],
+      "notes": "The strongest summon in the game. Master it and Bugenhagen will not help — but the Kalm traveler's Master Summon covers the second copy.",
       "verified": false,
       "route": {
         "at": 15,
         "rank": 15,
-        "why": "The whole point of the gold bird"
+        "why": "The whole point of the gold bird",
+        "leg": "Breeding · leg 4 — the gold"
+      }
+    },
+    {
+      "id": "mime",
+      "name": "Mime Materia",
+      "type": "materia",
+      "location": "Materia cave south of Wutai — needs a black or gold chocobo",
+      "window": { "opensAt": 12 },
+      "prereqs": [["blackchocobo", "goldchocobo"]],
+      "notes": "Rivers and mountains in the way — black or gold only. Mime + KotR is the classic loop.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 18,
+        "why": "First stop once the black hatches",
+        "leg": "Materia caves — bring the right bird"
+      }
+    },
+    {
+      "id": "quadramagic",
+      "name": "Quadra Magic Materia",
+      "type": "materia",
+      "location": "Materia cave northeast of Mideel — needs a river-capable chocobo",
+      "window": { "opensAt": 12 },
+      "prereqs": [["bluechocobo", "blackchocobo", "goldchocobo"]],
+      "notes": "Blue, black or gold. Pairs with KotR for four casts a turn.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 16,
+        "why": "Reachable the moment the blue hatches — do it between breeds",
+        "leg": "Materia caves — bring the right bird"
+      }
+    },
+    {
+      "id": "hpmp",
+      "name": "HP↔MP Materia",
+      "type": "materia",
+      "location": "Materia cave north of Corel — needs a mountain-capable chocobo",
+      "window": { "opensAt": 12 },
+      "prereqs": [["greenchocobo", "blackchocobo", "goldchocobo"]],
+      "notes": "Green, black or gold. Niche, but it's a collectible cave.",
+      "verified": false,
+      "route": {
+        "at": 15,
+        "rank": 17,
+        "why": "Reachable the moment the green hatches — do it between breeds",
+        "leg": "Materia caves — bring the right bird"
       }
     },
     {
@@ -505,7 +1085,8 @@
       "route": {
         "at": 20,
         "rank": 1,
-        "why": "KotR + HP Absorb is the superboss sustain loop"
+        "why": "KotR + HP Absorb is the superboss sustain loop",
+        "leg": "Superboss loadout"
       }
     },
     {
@@ -519,8 +1100,9 @@
       "verified": false,
       "route": {
         "at": 20,
-        "rank": 2,
-        "why": "The loadout is ready — go hunting"
+        "rank": 3,
+        "why": "The loadout is ready — go hunting",
+        "leg": "Weapon hunts"
       }
     },
     {
@@ -534,11 +1116,21 @@
       "verified": false,
       "route": {
         "at": 20,
-        "rank": 3,
-        "why": "Last checkmark before the finale"
+        "rank": 4,
+        "why": "Last checkmark before the finale",
+        "leg": "Weapon hunts"
       }
     },
-
+    {
+      "id": "desertrose",
+      "name": "Desert Rose → gold chocobo",
+      "type": "key",
+      "location": "Kalm — the traveler, in exchange for Ruby Weapon's Desert Rose",
+      "window": { "opensAt": 19 },
+      "prereqs": [["ruby"]],
+      "notes": "The traveler hands over a gold chocobo for the rose. A second route to Round Island for anyone who would rather fight than breed.",
+      "verified": false
+    },
     {
       "id": "flyer2",
       "name": "Turtle's Paradise Flyer #2",
@@ -595,7 +1187,14 @@
       "type": "quest",
       "location": "Wutai — Turtle's Paradise owner",
       "window": { "opensAt": 10 },
-      "prereqs": ["flyer1", "flyer2", "flyer3", "flyer4", "flyer5", "flyer6"],
+      "prereqs": [
+        ["flyer1"],
+        ["flyer2"],
+        ["flyer3"],
+        ["flyer4"],
+        ["flyer5"],
+        ["flyer6"]
+      ],
       "notes": "Power Source, Guard Source, Magic Source, Mind Source, Speed Source, Luck Source, Megalixir — if you read all six flyers.",
       "verified": false
     },
@@ -635,14 +1234,17 @@
       "type": "materia",
       "location": "Materia Keeper (Mt. Nibel), Godo (Wutai pagoda), or Stilva (Gaea's Cliff)",
       "window": { "opensAt": 9, "closesAt": 13 },
-      "prereqs": ["enemyskill1"],
+      "prereqs": [["enemyskill1"]],
       "notes": "Only three casters in the game — Gaea's Cliff is the last chance. Learn it on every Enemy Skill materia you care about.",
       "verified": false,
       "route": {
         "at": 9,
         "rank": 3,
         "why": "Three sources total; do not leave Mt. Nibel without it"
-      }
+      },
+      "refs": [
+        { "label": "Enemy Skill list on the FF wiki", "url": "https://finalfantasy.fandom.com/wiki/Enemy_Skill_(Final_Fantasy_VII)" }
+      ]
     },
     {
       "id": "pandorasbox",
@@ -650,7 +1252,7 @@
       "type": "materia",
       "location": "Northern Crater — Dragon Zombie",
       "window": { "opensAt": 21, "closesAt": 22 },
-      "prereqs": ["enemyskill1"],
+      "prereqs": [["enemyskill1"]],
       "notes": "Cast exactly once per save — by the first Dragon Zombie that dies. Have every Enemy Skill materia equipped for it.",
       "verified": false,
       "route": { "at": 21, "rank": 1, "why": "One cast per save file, ever" }
@@ -661,11 +1263,10 @@
       "type": "materia",
       "location": "Any chocobo — feed Mimett Greens, cast L4 Suicide",
       "window": { "opensAt": 5 },
-      "prereqs": ["chocobolure", "enemyskill1"],
+      "prereqs": [["chocobolure"], ["enemyskill1"]],
       "notes": "Fiddly setup; needs a level-16 chocobo for the classic version.",
       "verified": false
     },
-
     {
       "id": "ultimaweapon",
       "name": "Ultima Weapon (Cloud)",
@@ -688,12 +1289,30 @@
       "location": "Midgar raid — stairs to the Proud Clod fight, ONLY with Barret in party",
       "window": { "opensAt": 19, "closesAt": 19 },
       "prereqs": [],
+      "party": ["Barret"],
       "notes": "The most missable ultimate weapon in the game. One screen, one chance, Barret required.",
       "verified": false,
       "route": {
         "at": 19,
         "rank": 1,
-        "why": "One screen, one chance — bring Barret"
+        "why": "One screen, one chance — bring Barret",
+        "leg": "Midgar raid — one pass"
+      }
+    },
+    {
+      "id": "witem",
+      "name": "W-Item Materia",
+      "type": "materia",
+      "location": "Midgar raid — winding tunnel, off the main path",
+      "window": { "opensAt": 19, "closesAt": 19 },
+      "prereqs": [],
+      "notes": "Grab it during the raid. The Key to Sector 5 reopens the slums, not the plate tunnels — treat this as one chance.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 2,
+        "why": "In the raid tunnels you are already walking",
+        "leg": "Midgar raid — one pass"
       }
     },
     {
@@ -704,17 +1323,29 @@
       "window": { "opensAt": 19 },
       "prereqs": [],
       "notes": "Grab during the raid, or return later with the Key to Sector 5.",
-      "verified": false
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 3,
+        "why": "Wall Market is on the raid's path anyway",
+        "leg": "Midgar raid — one pass"
+      }
     },
     {
-      "id": "princessguard",
-      "name": "Princess Guard (Aerith)",
+      "id": "sneakglove",
+      "name": "Sneak Glove",
       "type": "key",
-      "location": "Temple of the Ancients — clock room, hand IV",
-      "window": { "opensAt": 11, "closesAt": 11 },
+      "location": "Wall Market — weapon shop, 129,000 gil",
+      "window": { "opensAt": 19 },
       "prereqs": [],
-      "notes": "Her ultimate weapon, in the temple that collapses. Poignant and easy to skip.",
-      "verified": false
+      "notes": "Doubles steal odds — the Gelnika and crater steals get a lot friendlier. Reachable in the raid or with the Key to Sector 5.",
+      "verified": false,
+      "route": {
+        "at": 19,
+        "rank": 4,
+        "why": "Same shop street as Premium Heart",
+        "leg": "Midgar raid — one pass"
+      }
     },
     {
       "id": "venusgospel",
@@ -743,6 +1374,7 @@
       "location": "Cosmo Canyon — Bugenhagen, late Disc 2",
       "window": { "opensAt": 19 },
       "prereqs": [],
+      "party": ["Red XIII"],
       "notes": "Visit Bugenhagen with Red XIII after the Midgar raid.",
       "verified": false
     },
@@ -752,16 +1384,22 @@
       "type": "key",
       "location": "Lucrecia's Cave — waterfall lake (submarine or gold chocobo)",
       "window": { "opensAt": 17 },
-      "prereqs": ["vincent"],
-      "notes": "Visit with Vincent, leave, fight ~10 battles, return. Weapon and final limit together.",
+      "prereqs": [["vincent"]],
+      "party": ["Vincent"],
+      "steps": [
+        "Visit the cave with Vincent in the party and watch the scene",
+        "Leave and fight roughly ten battles anywhere",
+        "Return with Vincent for the Death Penalty and Chaos"
+      ],
+      "notes": "Weapon and final limit together — but only on the second visit.",
       "verified": false,
       "route": {
         "at": 17,
         "rank": 8,
-        "why": "The sub is new — Lucrecia's cave is now reachable"
+        "why": "The sub is new — Lucrecia's cave is now reachable",
+        "leg": "Submarine & Gelnika"
       }
     },
-
     {
       "id": "omnislash",
       "name": "Omnislash (Cloud Lv.4)",
@@ -794,6 +1432,7 @@
       "location": "Nibelheim — Tifa's piano, with Tifa leading the party",
       "window": { "opensAt": 18 },
       "prereqs": [],
+      "party": ["Tifa"],
       "notes": "Play the piano tune from the flashback. Requires Cloud's return from the Lifestream.",
       "verified": false
     },
@@ -817,7 +1456,6 @@
       "notes": "In the same wreck as the Conformer.",
       "verified": false
     },
-
     {
       "id": "ramuh",
       "name": "Ramuh Materia",
@@ -853,14 +1491,17 @@
       "name": "Typhon Materia + Ancient Forest",
       "type": "summon",
       "location": "Ancient Forest — puzzle grove near Cosmo Canyon",
-      "window": { "opensAt": 18 },
-      "prereqs": [],
-      "notes": "Forest opens after Ultimate Weapon falls (or early with a gold chocobo). Also holds Apocalypse and Elixirs.",
+      "window": { "opensAt": 12 },
+      "prereqs": [
+        ["ultimaweapon", "greenchocobo", "blackchocobo", "goldchocobo"]
+      ],
+      "notes": "Forest opens after Ultimate Weapon falls, or early over the mountains with any green-or-better chocobo. Also holds Apocalypse and Elixirs.",
       "verified": false,
       "route": {
         "at": 18,
         "rank": 2,
-        "why": "Opens the moment Ultimate Weapon dies"
+        "why": "Opens the moment Ultimate Weapon dies",
+        "tradeoff": "A mountain bird gets you in earlier — Apocalypse is a strong mid-Disc-2 sword"
       }
     },
     {
@@ -889,16 +1530,16 @@
       "type": "summon",
       "location": "Cosmo Canyon — blue Huge Materia at the observatory",
       "window": { "opensAt": 17 },
-      "prereqs": ["hugemat4", "bahamut", "neobahamut"],
+      "prereqs": [["hugemat4"], ["bahamut"], ["neobahamut"]],
       "notes": "Examine the blue Huge Materia while carrying Bahamut and Neo Bahamut.",
       "verified": false,
       "route": {
         "at": 17,
         "rank": 5,
-        "why": "Needs the rocket's Huge Materia plus both Bahamuts"
+        "why": "Needs the rocket's Huge Materia plus both Bahamuts",
+        "leg": "Huge Materia — four one-shot minigames"
       }
     },
-
     {
       "id": "hugemat1",
       "name": "Huge Materia — Corel train",
@@ -908,7 +1549,12 @@
       "prereqs": [],
       "notes": "Fail the minigame and the materia (and part of Corel) is gone for good.",
       "verified": false,
-      "route": { "at": 17, "rank": 1, "why": "Timed minigame — one attempt" }
+      "route": {
+        "at": 17,
+        "rank": 1,
+        "why": "Timed minigame — one attempt",
+        "leg": "Huge Materia — four one-shot minigames"
+      }
     },
     {
       "id": "hugemat2",
@@ -922,7 +1568,8 @@
       "route": {
         "at": 17,
         "rank": 2,
-        "why": "The condor egg hatches with or without you"
+        "why": "The condor egg hatches with or without you",
+        "leg": "Huge Materia — four one-shot minigames"
       }
     },
     {
@@ -937,7 +1584,8 @@
       "route": {
         "at": 17,
         "rank": 3,
-        "why": "Win the sub chase and keep the set intact"
+        "why": "Win the sub chase and keep the set intact",
+        "leg": "Huge Materia — four one-shot minigames"
       }
     },
     {
@@ -952,23 +1600,8 @@
       "route": {
         "at": 17,
         "rank": 4,
-        "why": "Bahamut ZERO depends on this one"
-      }
-    },
-
-    {
-      "id": "witem",
-      "name": "W-Item Materia",
-      "type": "materia",
-      "location": "Midgar raid — winding tunnel, off the main path",
-      "window": { "opensAt": 19, "closesAt": 19 },
-      "prereqs": [],
-      "notes": "Grab it during the raid. Some guides say the Key to Sector 5 offers a second chance — verify.",
-      "verified": false,
-      "route": {
-        "at": 19,
-        "rank": 2,
-        "why": "In the raid tunnels you are already walking"
+        "why": "Bahamut ZERO depends on this one",
+        "leg": "Huge Materia — four one-shot minigames"
       }
     },
     {
@@ -979,41 +1612,6 @@
       "window": { "opensAt": 21 },
       "prereqs": [],
       "notes": "Deep in the crater on the way down.",
-      "verified": false
-    },
-    {
-      "id": "mime",
-      "name": "Mime Materia",
-      "type": "materia",
-      "location": "Materia cave south of Wutai",
-      "window": { "opensAt": 15 },
-      "prereqs": [],
-      "notes": "Needs a river-capable chocobo (blue or better) or the gold. Mime + KotR is the classic loop.",
-      "verified": false,
-      "route": {
-        "at": 15,
-        "rank": 16,
-        "why": "First stop once any colored bird can cross water"
-      }
-    },
-    {
-      "id": "quadramagic",
-      "name": "Quadra Magic Materia",
-      "type": "materia",
-      "location": "Materia cave northeast of Mideel",
-      "window": { "opensAt": 15 },
-      "prereqs": [],
-      "notes": "Mountain/river chocobo required.",
-      "verified": false
-    },
-    {
-      "id": "hpmp",
-      "name": "HP↔MP Materia",
-      "type": "materia",
-      "location": "Materia cave north of Corel",
-      "window": { "opensAt": 15 },
-      "prereqs": [],
-      "notes": "Green or better chocobo required. Niche, but it's a collectible cave.",
       "verified": false
     },
     {
@@ -1042,13 +1640,14 @@
       "type": "key",
       "location": "Morph the Ghost Ship — Underwater Reactor tunnel",
       "window": { "opensAt": 17 },
-      "prereqs": [],
+      "prereqs": [["morph"]],
       "notes": "Trade to the Kalm Traveler for the Underwater materia.",
       "verified": false,
       "route": {
         "at": 17,
         "rank": 6,
-        "why": "Morph one Ghost Ship while you are down here"
+        "why": "Morph one Ghost Ship while you are down here",
+        "leg": "Submarine & Gelnika"
       }
     },
     {
@@ -1057,13 +1656,14 @@
       "type": "materia",
       "location": "Kalm — traveler, in exchange for the Guide Book",
       "window": { "opensAt": 17 },
-      "prereqs": ["guidebook"],
+      "prereqs": [["guidebook"]],
       "notes": "Removes Emerald Weapon's 20-minute timer.",
       "verified": false,
       "route": {
         "at": 17,
         "rank": 7,
-        "why": "Turns Emerald from a race into a fight"
+        "why": "Turns Emerald from a race into a fight",
+        "leg": "Submarine & Gelnika"
       }
     },
     {
@@ -1072,7 +1672,7 @@
       "type": "materia",
       "location": "Kalm — traveler, in exchange for Emerald Weapon's Earth Harp",
       "window": { "opensAt": 17 },
-      "prereqs": ["emerald"],
+      "prereqs": [["emerald"]],
       "notes": "Master Magic, Master Command, Master Summon in one trade.",
       "verified": false
     },
@@ -1082,13 +1682,14 @@
       "type": "materia",
       "location": "Gold Saucer — Battle Square special battle",
       "window": { "opensAt": 20 },
-      "prereqs": ["omnislash", "wsummon"],
+      "prereqs": [["omnislash"], ["wsummon"]],
       "notes": "Special battle unlocks after earning Omnislash and W-Summon. Final Attack + Phoenix = practical immortality.",
       "verified": false,
       "route": {
         "at": 20,
-        "rank": 4,
-        "why": "Pair with Phoenix before the superbosses"
+        "rank": 2,
+        "why": "Pair with Phoenix before the superbosses",
+        "leg": "Superboss loadout"
       }
     },
     {
@@ -1101,7 +1702,6 @@
       "notes": "2x-Cut/4x-Cut. The Gelnika sweep also holds Outsider, Spirit Lance, Heaven's Cloud, and Megalixirs.",
       "verified": false
     },
-
     {
       "id": "sector5key",
       "name": "Key to Sector 5",
@@ -1109,7 +1709,7 @@
       "location": "Bone Village — dig near the tent (normal treasure hunt)",
       "window": { "opensAt": 19 },
       "prereqs": [],
-      "notes": "Reopens Midgar after the raid — mop up whatever you missed there.",
+      "notes": "Reopens Midgar after the raid — mop up whatever you missed in the slums and Wall Market.",
       "verified": false
     },
     {

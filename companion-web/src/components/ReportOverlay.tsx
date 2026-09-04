@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { Availability, Pack } from "../api/types";
 import { useDialog } from "../hooks/useDialog";
 import { encodeShareFragment, type SharedRun } from "../storage/shareLink";
+import { useDialogs } from "../hooks/useDialogs";
 
 interface ReportOverlayProps {
   pack: Pack;
@@ -20,6 +21,7 @@ export function ReportOverlay({
   onClose,
 }: ReportOverlayProps) {
   const panelRef = useDialog(onClose);
+  const dialogs = useDialogs();
 
   const report = useMemo(() => {
     const discOfOrder = new Map(pack.positions.map((p) => [p.order, p.disc]));
@@ -48,6 +50,27 @@ export function ReportOverlay({
     const forgoneNames = availability.items
       .filter((e) => e.status === "forgone")
       .map((e) => e.item.name);
+    // Choices made below the recommended outcome — the "could have been
+    // better" list a replay report exists for.
+    const belowBest = availability.items
+      .filter((e) => e.chosen !== null && e.item.options.some((o) => o.best))
+      .filter((e) => !e.item.options.find((o) => o.id === e.chosen)?.best)
+      .map((e) => {
+        const chosen = e.item.options.find((o) => o.id === e.chosen)!;
+        const best = e.item.options.find((o) => o.best)!;
+        return `${e.item.name} (chose ${chosen.label}, best ${best.label})`;
+      });
+    const choicesMade = availability.items.filter(
+      (e) => e.chosen !== null,
+    ).length;
+    const standings = availability.trackers
+      .filter((t) => t.open)
+      .map(
+        (t) =>
+          `${t.tracker.name}${t.locked ? " (final)" : ""}: ${t.standings
+            .map((s) => `${s.label} ${s.value}`)
+            .join(" · ")}`,
+      );
     const positionLabel =
       pack.positions.find((p) => p.order === availability.position)?.label ??
       `beat ${availability.position}`;
@@ -57,6 +80,9 @@ export function ReportOverlay({
       collected,
       missedNames,
       forgoneNames,
+      belowBest,
+      choicesMade,
+      standings,
       positionLabel,
       total: availability.items.length,
     };
@@ -83,13 +109,17 @@ export function ReportOverlay({
       ...(report.forgoneNames.length > 0
         ? [`Forgone by choice: ${report.forgoneNames.join(", ")}`]
         : []),
+      ...(report.belowBest.length > 0
+        ? [`Below best: ${report.belowBest.join("; ")}`]
+        : []),
+      ...report.standings,
     ].join("\n");
 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(asText());
     } catch {
-      window.alert("Could not access the clipboard.");
+      await dialogs.alert("Could not access the clipboard.");
     }
   };
 
@@ -107,16 +137,22 @@ export function ReportOverlay({
             .filter((e) => e.item.count > 1 && e.progress > 0)
             .map((e) => [e.item.id, e.progress]),
         ),
+        choices: Object.fromEntries(
+          availability.items
+            .filter((e) => e.chosen !== null)
+            .map((e) => [e.item.id, e.chosen!]),
+        ),
+        adjustments: availability.adjustments,
       };
       const fragment = await encodeShareFragment(run);
       await navigator.clipboard.writeText(
         `${window.location.origin}${window.location.pathname}#run=${fragment}`,
       );
-      window.alert(
+      await dialogs.alert(
         "Share link copied — anyone opening it sees this run, read-only.",
       );
     } catch {
-      window.alert("Could not build the share link.");
+      await dialogs.alert("Could not build the share link.");
     }
   };
 
@@ -186,6 +222,22 @@ export function ReportOverlay({
             {report.forgoneNames.join(", ")}
           </div>
         )}
+
+        {report.choicesMade > 0 && (
+          <div className="mt-1 text-[11px] text-[var(--ff-dim)]">
+            <span className="font-mono text-[var(--ff-gold)]">Choices:</span>{" "}
+            {report.choicesMade - report.belowBest.length}/{report.choicesMade}{" "}
+            at the best outcome
+            {report.belowBest.length > 0 && <> — {report.belowBest.join("; ")}</>}
+          </div>
+        )}
+
+        {report.standings.map((line) => (
+          <div key={line} className="mt-1 text-[11px] text-[var(--ff-dim)]">
+            <span className="font-mono text-[var(--ff-gold)]">Standings:</span>{" "}
+            {line}
+          </div>
+        ))}
 
         <div className="mt-3 flex flex-wrap gap-2">
           <button

@@ -14,6 +14,7 @@ interface AllItemsTabProps {
   onReveal: (itemId: string) => void;
   onEditNote: (itemId: string) => void;
   onProgress: (itemId: string, delta: number) => void;
+  onChoose: (itemId: string, optionId: string) => void;
   onReport: (itemId: string) => void;
 }
 
@@ -31,7 +32,7 @@ const FILTER_MAP: Record<FilterId, (s: Status) => boolean> = {
   all: () => true,
   open: (s) =>
     ["available", "closingSoon", "lastChance", "blocked"].includes(s),
-  upcoming: (s) => s === "notYet",
+  upcoming: (s) => s === "notYet" || s === "reopensLater",
   missed: (s) => s === "missed" || s === "forgone",
   done: (s) => s === "collected",
 };
@@ -47,6 +48,7 @@ export function AllItemsTab({
   onReveal,
   onEditNote,
   onProgress,
+  onChoose,
   onReport,
 }: AllItemsTabProps) {
   const [filter, setFilter] = useState<FilterId>("all");
@@ -96,7 +98,7 @@ export function AllItemsTab({
         return false;
       }
       const haystack =
-        `${entry.item.name} ${entry.item.location} ${entry.item.notes} ${notes[entry.item.id] ?? ""}`.toLowerCase();
+        `${entry.item.name} ${entry.item.location} ${entry.item.notes} ${entry.item.party.join(" ")} ${notes[entry.item.id] ?? ""}`.toLowerCase();
       if (!haystack.includes(needle)) {
         return false;
       }
@@ -188,12 +190,19 @@ export function AllItemsTab({
             hiddenIds={hiddenIds}
             note={notes[entry.item.id]}
             progress={entry.progress}
+            windowClosesAt={entry.windowClosesAt}
+            reopensAt={entry.reopensAt}
+            chosen={entry.chosen}
+            justOpened={entry.item.windows.some(
+              (w) => w.opensAt === availability.position,
+            )}
             onToggle={() =>
               onToggle(entry.item.id, entry.status === "collected")
             }
             onReveal={() => onReveal(entry.item.id)}
             onEditNote={() => onEditNote(entry.item.id)}
             onProgress={(delta) => onProgress(entry.item.id, delta)}
+            onChoose={(optionId) => onChoose(entry.item.id, optionId)}
             onReport={() => onReport(entry.item.id)}
           />
         ))}

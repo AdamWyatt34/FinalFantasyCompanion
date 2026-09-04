@@ -19,9 +19,9 @@ const CHAIN = [
 
 function chainPack() {
   const items = CHAIN.map((link, i) =>
-    makeItem(link, { opensAt: 13, prereqs: i === 0 ? [] : [CHAIN[i - 1]] }),
+    makeItem(link, { opensAt: 13, prereqs: i === 0 ? [] : [[CHAIN[i - 1]]] }),
   );
-  items.push(makeItem("kotr", { opensAt: 13, prereqs: ["gold"] }));
+  items.push(makeItem("kotr", { opensAt: 13, prereqs: [["gold"]] }));
   return makePack(items, 20);
 }
 
@@ -46,7 +46,7 @@ describe("prereq chain", () => {
     const entry = classify(kotr, at(13, ...CHAIN.slice(0, -1)));
 
     expect(entry.status).toBe("blocked");
-    expect(entry.missingPrereqs).toEqual(["gold"]);
+    expect(entry.missingPrereqs).toEqual([["gold"]]);
   });
 
   it("each chain link is blocked by its direct predecessor only", () => {
@@ -56,6 +56,6 @@ describe("prereq chain", () => {
     const entry = classify(black, at(13));
 
     expect(entry.status).toBe("blocked");
-    expect(entry.missingPrereqs).toEqual(["bluegreen"]);
+    expect(entry.missingPrereqs).toEqual([["bluegreen"]]);
   });
 });

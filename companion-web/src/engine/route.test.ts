@@ -3,6 +3,8 @@ import { projectRoute } from "./route";
 import { at, makeItem, makePack } from "./testing/builders";
 
 const route = (atBeat: number, rank = 0, why = "curated") => ({
+  leg: null,
+  tradeoff: null,
   at: atBeat,
   rank,
   why,
@@ -169,12 +171,12 @@ describe("route bucketing", () => {
 
   it("blocked items keep their missing prereqs in the route entry", () => {
     const pack = makePack([
-      makeItem("kotr", { prereqs: ["gold"], route: route(5) }),
+      makeItem("kotr", { prereqs: [["gold"]], route: route(5) }),
     ]);
 
     const view = projectRoute(pack, at(5));
 
     expect(view.now[0].status).toBe("blocked");
-    expect(view.now[0].missingPrereqs).toEqual(["gold"]);
+    expect(view.now[0].missingPrereqs).toEqual([["gold"]]);
   });
 });

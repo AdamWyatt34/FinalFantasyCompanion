@@ -13,9 +13,10 @@ export const STATUS: Record<
   blocked: { label: "NEEDS PREREQ", color: "#ffab66", rank: 2 },
   available: { label: "AVAILABLE", color: "#82ffb8", rank: 3 },
   notYet: { label: "UPCOMING", color: "#8a93b8", rank: 4 },
-  missed: { label: "MISSED", color: "#f0526e", rank: 5 },
-  forgone: { label: "FORGONE", color: "#c894e8", rank: 6 },
-  collected: { label: "COLLECTED", color: "#7de8e0", rank: 7 },
+  reopensLater: { label: "REOPENS LATER", color: "#9fc4ff", rank: 5 },
+  missed: { label: "MISSED", color: "#f0526e", rank: 6 },
+  forgone: { label: "FORGONE", color: "#c894e8", rank: 7 },
+  collected: { label: "COLLECTED", color: "#7de8e0", rank: 8 },
 };
 
 export const TYPE_LABEL: Record<string, string> = {
@@ -34,4 +35,6 @@ export const TYPE_LABEL: Record<string, string> = {
   aeon: "AEON",
   primer: "PRIMER",
   hunt: "HUNT",
+  choice: "CHOICE",
+  sweep: "SWEEP",
 };

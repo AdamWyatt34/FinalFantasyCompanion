@@ -9,6 +9,11 @@ import type { ProgressEvent } from "./events";
  * Counter items (count > 1) accumulate via itemProgressed; `collected`
  * remains the single authoritative done-set — a counter enters it when its
  * progress reaches the target and leaves it when progress drops below.
+ *
+ * Choice items enter `collected` the moment an outcome is chosen; the chosen
+ * option lives in `choices`. Tracker nudges accumulate in `adjustments`,
+ * keyed `trackerId.valueId` — the tracker projection adds them to the
+ * starting values and to the effects of whatever is collected or chosen.
  */
 export interface PlaythroughState {
   position: number;
@@ -16,6 +21,8 @@ export interface PlaythroughState {
   progress: ReadonlyMap<string, number>;
   /** Active game version; the pack's first declared version until selected. */
   version: string | null;
+  choices: ReadonlyMap<string, string>;
+  adjustments: ReadonlyMap<string, number>;
 }
 
 const NO_COUNTS: ReadonlyMap<string, number> = new Map();
@@ -26,6 +33,8 @@ export function initialState(pack: Pack): PlaythroughState {
     collected: new Set(),
     progress: new Map(),
     version: pack.game.versions?.[0]?.id ?? null,
+    choices: new Map(),
+    adjustments: new Map(),
   };
 }
 
@@ -54,7 +63,9 @@ export function applyEvent(
       collected.delete(e.itemId);
       const progress = new Map(state.progress);
       progress.delete(e.itemId);
-      return { ...state, collected, progress };
+      const choices = new Map(state.choices);
+      choices.delete(e.itemId);
+      return { ...state, collected, progress, choices };
     }
     case "versionSelected":
       return { ...state, version: e.version };
@@ -72,6 +83,24 @@ export function applyEvent(
       }
       return { ...state, collected, progress };
     }
+    case "choiceMade": {
+      const choices = new Map(state.choices);
+      choices.set(e.itemId, e.optionId);
+      const collected = new Set(state.collected);
+      collected.add(e.itemId);
+      return { ...state, choices, collected };
+    }
+    case "trackerAdjusted": {
+      const key = `${e.trackerId}.${e.valueId}`;
+      const adjustments = new Map(state.adjustments);
+      adjustments.set(key, (adjustments.get(key) ?? 0) + e.delta);
+      return { ...state, adjustments };
+    }
+    default:
+      // Forward compatibility: a log written by a newer build may carry event
+      // types this build does not know. Ignoring them keeps the fold total —
+      // the alternative is a playthrough that refuses to load after a rollback.
+      return state;
   }
 }
 

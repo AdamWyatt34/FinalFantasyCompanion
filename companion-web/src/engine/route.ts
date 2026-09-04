@@ -17,18 +17,32 @@ const UNROUTED_RANK = Number.MAX_SAFE_INTEGER;
 /** Ordinal comparison to match the C# engine's StringComparer.Ordinal exactly. */
 const ordinal = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
+/**
+ * The beat an entry is scheduled for: a closed-for-now item reschedules to
+ * its reopening, otherwise the curated beat, otherwise the window's open.
+ */
+const scheduledAt = (e: AvailabilityEntry): number =>
+  e.status === "reopensLater" && e.reopensAt != null
+    ? e.reopensAt
+    : (e.item.route?.at ?? e.item.opensAt);
+
+// A closed-for-now item cannot be acted on until its window reopens: it never
+// sits in Now, and it lands in Next only when the reopening is close.
 const inNext = (e: AvailabilityEntry, p: number) =>
-  e.item.route != null &&
-  e.item.route.at > p &&
-  e.item.route.at - p <= LOOKAHEAD;
+  e.status === "reopensLater"
+    ? e.reopensAt != null && e.reopensAt - p <= LOOKAHEAD
+    : e.item.route != null &&
+      e.item.route.at > p &&
+      e.item.route.at - p <= LOOKAHEAD;
 
 // Urgency outranks curation: LastChance always lands in Now, and a ClosingSoon
 // item may never sink into Later — if the route hasn't scheduled it within the
 // lookahead, it is promoted to Now before the window shuts.
 const inNow = (e: AvailabilityEntry, p: number) =>
-  e.status === "lastChance" ||
-  (e.item.route != null && e.item.route.at <= p) ||
-  (e.status === "closingSoon" && !inNext(e, p));
+  e.status !== "reopensLater" &&
+  (e.status === "lastChance" ||
+    (e.item.route != null && e.item.route.at <= p) ||
+    (e.status === "closingSoon" && !inNext(e, p)));
 
 const toEntry = (e: AvailabilityEntry, p: number): RouteEntry => ({
   item: e.item,
@@ -36,6 +50,17 @@ const toEntry = (e: AvailabilityEntry, p: number): RouteEntry => ({
   masked: e.item.opensAt > p,
   missingPrereqs: e.missingPrereqs,
   progress: e.progress,
+  windowClosesAt: e.windowClosesAt,
+  reopensAt: e.reopensAt,
+  chosen: e.chosen,
+  // "Possible now, planned for later": obtainable at this beat, but the route
+  // deliberately schedules it further ahead (the tradeoff says why).
+  possibleNow:
+    !inNow(e, p) &&
+    e.item.route != null &&
+    e.item.route.at > p &&
+    (e.status === "available" || e.status === "closingSoon"),
+  justOpened: e.item.windows.some((w) => w.opensAt === p),
 });
 
 /**
@@ -73,8 +98,9 @@ export function projectRoute(pack: Pack, state: PlaythroughState): RouteView {
     .filter((e) => !inNow(e, p) && inNext(e, p))
     .sort(
       (a, b) =>
-        a.item.route!.at - b.item.route!.at ||
-        a.item.route!.rank - b.item.route!.rank ||
+        scheduledAt(a) - scheduledAt(b) ||
+        (a.item.route?.rank ?? UNROUTED_RANK) -
+          (b.item.route?.rank ?? UNROUTED_RANK) ||
         ordinal(a.item.name, b.item.name),
     )
     .map((e) => toEntry(e, p));
@@ -83,8 +109,7 @@ export function projectRoute(pack: Pack, state: PlaythroughState): RouteView {
     .filter((e) => !inNow(e, p) && !inNext(e, p))
     .sort(
       (a, b) =>
-        (a.item.route?.at ?? a.item.opensAt) -
-          (b.item.route?.at ?? b.item.opensAt) ||
+        scheduledAt(a) - scheduledAt(b) ||
         (a.item.route?.rank ?? UNROUTED_RANK) -
           (b.item.route?.rank ?? UNROUTED_RANK) ||
         ordinal(a.item.name, b.item.name),
