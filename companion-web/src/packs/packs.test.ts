@@ -195,6 +195,53 @@ describe("shipped packs", () => {
     expect(ff9.items.find((i) => i.id === "ozma")!.prereqs).toEqual([["airgarden"]]);
   });
 
+  it("every pack briefs every beat, and the new schema shows up where the games need it", () => {
+    for (const pack of allPacks) {
+      expect(
+        pack.positions.every((p) => p.tips.length > 0),
+        `${pack.game.id} has a beat without tips`,
+      ).toBe(true);
+      expect(pack.items.every((i) => !i.verified)).toBe(true);
+    }
+    const item = (game: string, id: string) =>
+      getPackById(game)!.items.find((i) => i.id === id)!;
+
+    // FF4: 2D vs 3D, and the departure strips as a Fabul leg.
+    expect(getPackById("ff4")!.game.versions?.map((v) => v.id)).toEqual(["2d", "3d"]);
+    expect(item("ff4", "augments").versions).toEqual(["3d"]);
+    expect(item("ff4", "augments").steps).toHaveLength(5);
+    expect(item("ff4", "striprydia").route!.leg).toBe("Fabul departures");
+
+    // FF6: the Water Harmony dance needs Mog and the World of Balance.
+    expect(item("ff6", "waterrondo").prereqs).toEqual([["lonewolfmog"]]);
+    expect(item("ff6", "waterrondo").party).toEqual(["Mog"]);
+    expect(item("ff6", "waterrondo").closesAt).toBe(12);
+    expect(item("ff6", "odinfate").options.find((o) => o.best)!.id).toBe("raiden");
+    expect(item("ff6", "gilgamesh6").versions).toEqual(["gba"]);
+
+    // FF8: Combat King 002 is its own one-beat window; Lion Heart carries the Disc 1 tradeoff.
+    expect(item("ff8", "combatking002").windows).toEqual([{ opensAt: 11, closesAt: 11 }]);
+    expect(item("ff8", "lionheart").route!.tradeoff).toContain("Disc 1");
+    expect(item("ff8", "gilgamesh8").prereqs).toEqual([["odin8"]]);
+
+    // FF9: jump rope has two windows; Excalibur II pace notes exist; the Festival is a choice.
+    expect(item("ff9", "jumprope").windows).toHaveLength(2);
+    expect(getPackById("ff9")!.positions.filter((p) => p.pace !== null).length).toBeGreaterThanOrEqual(4);
+    expect(item("ff9", "huntfestival").options.find((o) => o.best)!.id).toBe("freya");
+
+    // FF10: every celestial weapon is a step checklist; the grid choice is HD-only.
+    for (const id of ["caladbolg", "nirvana", "worldchampion", "godhand", "masamune", "onionknight", "spiritlance"]) {
+      expect(item("ff10", id).steps.length).toBeGreaterThanOrEqual(3);
+      expect(item("ff10", id).count).toBe(item("ff10", id).steps.length);
+    }
+    expect(item("ff10", "spheregrid").versions).toEqual(["hd"]);
+
+    // FF12: the pact is a four-step checklist and the one-pass places are sweeps.
+    expect(item("ff12", "zodiacrestraint").steps).toHaveLength(4);
+    expect(item("ff12", "draklorsweep").closesAt).toBe(15);
+    expect(item("ff12", "bahamutsweep").type).toBe("sweep");
+  });
+
   it("all packs define the same theme token names — the frontend binds --ff-* by name", () => {
     const [reference, ...rest] = allPacks;
     const referenceKeys = Object.keys(reference.theme).sort();

@@ -1,109 +1,233 @@
 {
-  "game": { "id": "ff6", "title": "Final Fantasy VI" },
+  "game": {
+    "id": "ff6",
+    "title": "Final Fantasy VI",
+    "versions": [
+      { "id": "classic", "label": "SNES · PS1 · Pixel Remaster" },
+      { "id": "gba", "label": "GBA (Advance)" }
+    ]
+  },
   "theme": {
     "tokens": {
-      "bgTop": "#0a0812",
-      "bgMid": "#141024",
-      "bgBottom": "#0c0a1a",
-      "panelTop": "#3f3a78",
-      "panelMid": "#221e4e",
-      "panelBottom": "#121030",
-      "border": "#d8d4e8",
-      "bevel": "#45406e",
-      "ink": "#f0eefc",
-      "dim": "#a49ec8",
-      "dimmer": "#857fa8",
-      "faint": "#5f5a88",
-      "gold": "#e6c46a",
-      "cyan": "#7ee0d0",
-      "buttonBorder": "#625c92",
+      "bgTop": "#0d0a20",
+      "bgMid": "#1a1440",
+      "bgBottom": "#0f0c2a",
+      "panelTop": "#5a4a9e",
+      "panelMid": "#332a66",
+      "panelBottom": "#1e1842",
+      "border": "#d8d0f0",
+      "bevel": "#5a4f8a",
+      "ink": "#f3efff",
+      "dim": "#b2a8d8",
+      "dimmer": "#8f86b8",
+      "faint": "#66609a",
+      "gold": "#e6c66e",
+      "cyan": "#8fe4e0",
+      "buttonBorder": "#6f65a4",
       "tickDone": "#453f7e",
       "tickTodo": "#1a1640"
     }
   },
   "positions": [
-    { "id": "narshemines", "order": 1, "label": "Narshe Mines", "disc": 1 },
-    { "id": "figaro", "order": 2, "label": "Figaro Castle", "disc": 1 },
+    {
+      "id": "narshemines",
+      "order": 1,
+      "label": "Narshe Mines",
+      "disc": 1,
+      "tips": [
+        "Nothing closes yet. Narshe's locked treasure room and a few early chests upgrade their contents if you leave them until the World of Ruin."
+      ]
+    },
+    {
+      "id": "figaro",
+      "order": 2,
+      "label": "Figaro Castle",
+      "disc": 1,
+      "tips": [
+        "Buy Edgar's tools; the Auto Crossbow carries the first half of the game."
+      ]
+    },
     {
       "id": "southfigaro",
       "order": 3,
       "label": "South Figaro & Mt. Kolts",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Leave the South Figaro basement chests alone — they refill with better gear in the World of Ruin."
+      ]
     },
-    { "id": "returners", "order": 4, "label": "Returners' Hideout", "disc": 1 },
+    {
+      "id": "returners",
+      "order": 4,
+      "label": "Returners' Hideout",
+      "disc": 1,
+      "tips": [
+        "Refuse Banon three times before accepting: the chest by the bed holds a Genji Glove instead of a Gauntlet."
+      ]
+    },
     {
       "id": "scenarios",
       "order": 5,
       "label": "The Three Scenarios",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Sabin's scenario is a string of one-time places: the Imperial Camp, the Phantom Train, Baren Falls. Take what you see. Shadow is with you at inns here — his dreams start playing.",
+        "Gau joins on the Veldt during Sabin's scenario. Feed him Rages from the fights you have already had."
+      ]
     },
     {
       "id": "narshebattle",
       "order": 6,
       "label": "Battle for Narshe",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Choose party members for the snowfield defence carefully; nothing is missable, but Kefka's troops are the first real test."
+      ]
     },
-    { "id": "zozo", "order": 7, "label": "Zozo", "disc": 1 },
+    {
+      "id": "zozo",
+      "order": 7,
+      "label": "Zozo",
+      "disc": 1,
+      "tips": [
+        "Set the clock (6:10:50) for Edgar's Chainsaw. From here Lone Wolf sits on Narshe's cliffs: Mog or the Gold Hairpin, decide before the Floating Continent."
+      ]
+    },
     {
       "id": "opera",
       "order": 8,
       "label": "Jidoor & the Opera House",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Jidoor's auction house sells the Golem and ZoneSeek magicite when your gil is high enough. Nothing at the opera is missable."
+      ]
     },
     {
       "id": "vector",
       "order": 9,
       "label": "Vector & the Magitek Factory",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "The Magitek Research Facility is one visit: sweep its chests before the mine-cart escape."
+      ]
     },
-    { "id": "sealedgate", "order": 10, "label": "The Sealed Gate", "disc": 1 },
-    { "id": "thamasa", "order": 11, "label": "Thamasa", "disc": 1 },
+    {
+      "id": "sealedgate",
+      "order": 10,
+      "label": "The Sealed Gate",
+      "disc": 1,
+      "tips": [
+        "The Emperor's banquet is graded: talk to every soldier, answer diplomatically, take the exact pauses. The top score adds the Tintinabar."
+      ]
+    },
+    {
+      "id": "thamasa",
+      "order": 11,
+      "label": "Thamasa",
+      "disc": 1,
+      "tips": [
+        "Last stop before the point of no return. If Mog joined via Lone Wolf, ride the Lethe River with him for the Water Harmony dance — there is no water terrain in the World of Ruin."
+      ]
+    },
     {
       "id": "floatingcontinent",
       "order": 12,
       "label": "The Floating Continent",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "WAIT FOR SHADOW at the airship ledge. Jump early and he is gone from the rest of the game. The World of Balance ends here."
+      ]
     },
     {
       "id": "solitaryisland",
       "order": 13,
       "label": "Solitary Island",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Feed Cid only the lively fish. Whether he lives changes how Celes leaves the island — nothing else."
+      ]
     },
-    { "id": "tzen", "order": 14, "label": "Tzen & Mobliz", "disc": 2 },
-    { "id": "nikeah", "order": 15, "label": "Nikeah & Figaro", "disc": 2 },
+    {
+      "id": "tzen",
+      "order": 14,
+      "label": "Tzen & Mobliz",
+      "disc": 2,
+      "tips": [
+        "Tzen's collapsing house: sweep the chests while Sabin holds the roof. Terra stays in Mobliz for now."
+      ]
+    },
+    {
+      "id": "nikeah",
+      "order": 15,
+      "label": "Nikeah & Figaro",
+      "disc": 2,
+      "tips": [
+        "Follow the Crimson Robbers to Figaro's basement. Edgar is back once the tunnels are cleared."
+      ]
+    },
     {
       "id": "darill",
       "order": 16,
       "label": "Kohlingen & Darill's Tomb",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Setzer's tomb run ends with the Falcon. Everything from here on is optional — and none of it closes."
+      ]
     },
     {
       "id": "falcon",
       "order": 17,
       "label": "The Falcon — World Reopens",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "The whole recruitment web is open. Ruined Narshe first: Mog, Tritoch, the hole behind the esper for Umaro, the weapon shop's Ragnarok choice, the Cursed Shield."
+      ]
     },
-    { "id": "mtzozo", "order": 18, "label": "Mt. Zozo & the Veldt", "disc": 2 },
+    {
+      "id": "mtzozo",
+      "order": 18,
+      "label": "Mt. Zozo & the Veldt",
+      "disc": 2,
+      "tips": [
+        "Cyan on Mt. Zozo, Gau by Leaping with three party members, Shadow (or Relm) in the Veldt cave. Shadow then needs a Colosseum duel for the Striker."
+      ]
+    },
     {
       "id": "owzer",
       "order": 19,
       "label": "Owzer's Mansion & Ebot's Rock",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Relm from the gallery, then Strago from the Fanatics' Tower with Relm in the party, then Hidon at Ebot's Rock with Strago along."
+      ]
     },
     {
       "id": "phoenixcave",
       "order": 20,
       "label": "The Phoenix Cave",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Two parties. Locke is at the heart of it; the Phoenix magicite comes out cracked."
+      ]
     },
     {
       "id": "ancientcastle",
       "order": 21,
       "label": "Ancient Castle & the Dragons",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Odin is petrified beneath Figaro's tunnels; the hidden throne-room switch upgrades him to Raiden and that is permanent. Six dragons are reachable before the tower."
+      ]
     },
-    { "id": "kefkatower", "order": 22, "label": "Kefka's Tower", "disc": 2 }
+    {
+      "id": "kefkatower",
+      "order": 22,
+      "label": "Kefka's Tower",
+      "disc": 2,
+      "tips": [
+        "Three parties, the last two dragons, and Crusader once all eight are down. You can leave the tower — nothing here closes."
+      ]
+    }
   ],
   "items": [
     {
@@ -118,6 +242,31 @@
         "why": "Refuse Banon's plea three times, then accept — the reward changes"
       },
       "notes": "Say no to Banon three times before agreeing and the chest by the bed holds a Genji Glove instead of a Gauntlet.",
+      "verified": false
+    },
+    {
+      "id": "scenariosweep",
+      "name": "Sabin's scenario sweep",
+      "type": "sweep",
+      "location": "Imperial Camp · Phantom Train · Baren Falls",
+      "window": { "opensAt": 5, "closesAt": 5 },
+      "route": {
+        "at": 5,
+        "rank": 0,
+        "why": "The camp packs up and the train never stops again"
+      },
+      "notes": "Open what you pass: the Imperial Camp's chests, every car of the Phantom Train (including the monster-in-a-box), the ghost merchants' stock. Verify contents on your version.",
+      "verified": false
+    },
+    {
+      "id": "shadowdreams",
+      "name": "Shadow's dreams",
+      "type": "quest",
+      "location": "Any inn, with Shadow in the party",
+      "window": { "opensAt": 5 },
+      "party": ["Shadow"],
+      "count": 4,
+      "notes": "Sleep at inns while Shadow travels with you; four dreams tell his story. Each is a small chance per night — and the last two only exist if he survives the Floating Continent.",
       "verified": false
     },
     {
@@ -169,17 +318,76 @@
       "verified": false
     },
     {
+      "id": "waterrondo",
+      "name": "Water Harmony (Mog's water dance)",
+      "type": "quest",
+      "location": "Lethe River — ride the raft again with Mog",
+      "window": { "opensAt": 7, "closesAt": 12 },
+      "prereqs": ["lonewolfmog"],
+      "party": ["Mog"],
+      "route": {
+        "at": 11,
+        "rank": 2,
+        "why": "The only water terrain in the game is in the World of Balance"
+      },
+      "notes": "Win one battle on the Lethe River (or the Serpent Trench) with Mog in the party. No water battlefield exists after the world ends — this is the one dance that can be lost forever.",
+      "verified": false
+    },
+    {
+      "id": "wobrages",
+      "name": "World of Balance-only Rages (Gau)",
+      "type": "quest",
+      "location": "The Veldt — Leap after fighting the formations",
+      "window": { "opensAt": 5, "closesAt": 12 },
+      "party": ["Gau"],
+      "notes": "Several formations never appear after the world ends — Imperial Camp soldiers, Phantom Train ghosts, some Floating Continent beasts. Fight them, then Leap on the Veldt before the continent. Verify the exact list for your version.",
+      "verified": false
+    },
+    {
+      "id": "auctionespers",
+      "name": "Golem & ZoneSeek (auction house)",
+      "type": "esper",
+      "location": "Jidoor — auction house",
+      "window": { "opensAt": 8 },
+      "notes": "Both magicite rotate into the auction once you carry enough gil (roughly 20,000 and 10,000). Available in both worlds; buy when they show.",
+      "verified": false
+    },
+    {
+      "id": "vectorsweep",
+      "name": "Magitek Research Facility sweep",
+      "type": "sweep",
+      "location": "Vector — the factory",
+      "window": { "opensAt": 9, "closesAt": 9 },
+      "route": {
+        "at": 9,
+        "rank": 0,
+        "why": "Vector burns; the factory never reopens"
+      },
+      "notes": "Open every chest on the way to the mine-cart escape. Verify contents on your version.",
+      "verified": false
+    },
+    {
       "id": "banquet",
       "name": "The Emperor's banquet",
-      "type": "quest",
+      "type": "choice",
       "location": "Vector — Imperial Palace",
       "window": { "opensAt": 10, "closesAt": 10 },
+      "options": [
+        { "id": "poor", "label": "Low score", "note": "Only the basic reward." },
+        { "id": "good", "label": "Charm Bangle tier", "note": "A solid score adds the Charm Bangle." },
+        {
+          "id": "best",
+          "label": "Tintinabar tier",
+          "best": true,
+          "note": "Talk to every soldier, answer diplomatically, take exactly the right pauses; the top bracket adds the Tintinabar."
+        }
+      ],
       "route": {
         "at": 10,
         "rank": 1,
         "why": "Answer well — rewards scale with your score"
       },
-      "notes": "Talk to every soldier, answer diplomatically, take exactly the right pauses. Top scores earn Tintinabar and charm gear.",
+      "notes": "One conversation, one grade. Save before the palace.",
       "verified": false
     },
     {
@@ -211,6 +419,20 @@
       "verified": false
     },
     {
+      "id": "tzenhouse",
+      "name": "Tzen — the collapsing house",
+      "type": "sweep",
+      "location": "Tzen — the house Sabin holds up",
+      "window": { "opensAt": 14, "closesAt": 14 },
+      "route": {
+        "at": 14,
+        "rank": 0,
+        "why": "Grab the chests inside before the child is out — the house is gone after"
+      },
+      "notes": "Sabin rejoins holding the roof. Sweep the rooms on the way to the kid; verify contents on your version.",
+      "verified": false
+    },
+    {
       "id": "terrawor",
       "name": "Terra rejoins",
       "type": "character",
@@ -218,8 +440,9 @@
       "window": { "opensAt": 17 },
       "route": {
         "at": 17,
-        "rank": 3,
-        "why": "Return with the Falcon and finish the Humbaba fight"
+        "rank": 4,
+        "why": "Return with the Falcon and finish the Humbaba fight",
+        "leg": "Mobliz"
       },
       "notes": "She stays with the children until Humbaba is driven off for good.",
       "verified": false
@@ -233,9 +456,25 @@
       "route": {
         "at": 17,
         "rank": 1,
-        "why": "First stop in ruined Narshe — he unlocks Umaro too"
+        "why": "First stop in ruined Narshe — he unlocks Umaro too",
+        "leg": "Ruined Narshe"
       },
       "notes": "Alone in the old moogle den. Bring him along for the cliffs.",
+      "verified": false
+    },
+    {
+      "id": "tritoch",
+      "name": "Tritoch",
+      "type": "esper",
+      "location": "Narshe cliffs",
+      "window": { "opensAt": 17 },
+      "route": {
+        "at": 17,
+        "rank": 2,
+        "why": "The frozen esper answers now — and opens the path to Umaro",
+        "leg": "Ruined Narshe"
+      },
+      "notes": "Fight it on the cliff where the game began.",
       "verified": false
     },
     {
@@ -245,7 +484,14 @@
       "location": "Narshe cliffs — behind Tritoch",
       "window": { "opensAt": 17 },
       "prereqs": ["mogwor", "tritoch"],
-      "notes": "Drop through the hole behind the esper, take the bone carving, and let Mog do the talking.",
+      "party": ["Mog"],
+      "route": {
+        "at": 17,
+        "rank": 3,
+        "why": "Drop through the hole behind the esper with Mog along",
+        "leg": "Ruined Narshe"
+      },
+      "notes": "Take the bone carving and let Mog do the talking.",
       "verified": false
     },
     {
@@ -269,6 +515,11 @@
       "location": "Cave on the Veldt → Colosseum",
       "window": { "opensAt": 17 },
       "prereqs": ["shadowwait"],
+      "steps": [
+        "Rescue him in the Veldt cave (Behemoth King fight)",
+        "Bet the Striker at the Colosseum and beat him",
+        "He rejoins"
+      ],
       "route": {
         "at": 18,
         "rank": 2,
@@ -312,6 +563,7 @@
       "location": "Fanatics' Tower",
       "window": { "opensAt": 17 },
       "prereqs": ["relmwor"],
+      "party": ["Relm"],
       "route": {
         "at": 19,
         "rank": 1,
@@ -344,20 +596,6 @@
       "verified": false
     },
     {
-      "id": "tritoch",
-      "name": "Tritoch",
-      "type": "esper",
-      "location": "Narshe cliffs",
-      "window": { "opensAt": 17 },
-      "route": {
-        "at": 17,
-        "rank": 2,
-        "why": "The frozen esper answers now — and opens the path to Umaro"
-      },
-      "notes": "Fight it on the cliff where the game began.",
-      "verified": false
-    },
-    {
       "id": "ragnarokesper",
       "name": "Ragnarok (esper)",
       "type": "esper",
@@ -379,11 +617,16 @@
     },
     {
       "id": "cursedshield",
-      "name": "Cursed Shield",
+      "name": "Cursed Shield → Paladin Shield",
       "type": "key",
       "location": "Narshe — the old man's house",
       "window": { "opensAt": 17 },
-      "notes": "256 battles while equipped (with a Ribbon on) uncurses it into the Paladin Shield.",
+      "steps": [
+        "Take the Cursed Shield from the old man in Narshe",
+        "Fight 256 battles with it equipped (a Ribbon cancels the curses)",
+        "It uncurses into the Paladin Shield"
+      ],
+      "notes": "Dinosaur Forest makes the 256 go fast. The finished shield teaches Ultima too.",
       "verified": false
     },
     {
@@ -397,7 +640,35 @@
         "rank": 1,
         "why": "Beneath Figaro's tunnels — and read the queen's story"
       },
-      "notes": "The petrified king. A hidden switch by the throne room later upgrades him to Raiden — which permanently replaces Odin and his Meteor lesson.",
+      "notes": "The petrified king. Odin teaches Meteor; the hidden throne-room switch turns him into Raiden.",
+      "verified": false
+    },
+    {
+      "id": "odinfate",
+      "name": "Odin or Raiden",
+      "type": "choice",
+      "location": "Ancient Castle — the hidden switch by the throne",
+      "window": { "opensAt": 21 },
+      "prereqs": ["odin6"],
+      "options": [
+        {
+          "id": "odin",
+          "label": "Keep Odin",
+          "note": "Meteor ×1 and a Speed bonus on level-up. Crusader also teaches Meteor, so nothing is unique here."
+        },
+        {
+          "id": "raiden",
+          "label": "Upgrade to Raiden",
+          "best": true,
+          "note": "Quick ×1 — the only source of Quick in the game. Learn Meteor from Odin first if you want both."
+        }
+      ],
+      "route": {
+        "at": 21,
+        "rank": 2,
+        "why": "Permanent either way — learn Meteor before flipping the switch"
+      },
+      "notes": "Read the queen's statue with Odin equipped first; the switch replaces him for good.",
       "verified": false
     },
     {
@@ -416,6 +687,7 @@
       "location": "Doma Castle — Cyan's dream",
       "window": { "opensAt": 17 },
       "prereqs": ["cyanwor"],
+      "party": ["Cyan"],
       "notes": "Sleep at Doma with Cyan in the party, survive the Dream Stooges and the train, free his soul.",
       "verified": false
     },
@@ -437,7 +709,7 @@
       "count": 8,
       "route": {
         "at": 21,
-        "rank": 2,
+        "rank": 3,
         "why": "Six are reachable before the tower — save Gold and Skull for the assault"
       },
       "notes": "Ice — Narshe cliffs; Storm — Mt. Zozo; Earth — Opera House stage; Red — Phoenix Cave; Blue — Ancient Castle; White — Fanatics' Tower; Gold & Skull — Kefka's Tower.",
@@ -459,6 +731,7 @@
       "type": "quest",
       "location": "Duncan's cabin, north of Narshe",
       "window": { "opensAt": 17 },
+      "party": ["Sabin"],
       "notes": "Duncan lives. Visit with Sabin for his final blitz.",
       "verified": false
     },
@@ -469,6 +742,7 @@
       "location": "Ebot's Rock",
       "window": { "opensAt": 17 },
       "prereqs": ["stragowor"],
+      "party": ["Strago"],
       "route": {
         "at": 19,
         "rank": 2,
@@ -484,6 +758,57 @@
       "location": "Dragon's Neck Colosseum",
       "window": { "opensAt": 17 },
       "notes": "Marquee bets: Striker → Shadow's duel, Ragnarok sword → Lightbringer, Elixir chains for rare gear. Every wager is a one-item gamble — save first.",
+      "verified": false
+    },
+    {
+      "id": "leviathan6",
+      "name": "Leviathan (GBA)",
+      "type": "esper",
+      "location": "Nikeah — the ferry, World of Ruin",
+      "window": { "opensAt": 17 },
+      "versions": ["gba"],
+      "notes": "Board the ferry at Nikeah after the world ends and the sea serpent attacks. Advance-only magicite.",
+      "verified": false
+    },
+    {
+      "id": "cactuar6",
+      "name": "Cactuar (GBA)",
+      "type": "esper",
+      "location": "Maranda — the desert to the south",
+      "window": { "opensAt": 17 },
+      "versions": ["gba"],
+      "notes": "Fight ten Cactuars in the desert and the big one appears. Advance-only.",
+      "verified": false
+    },
+    {
+      "id": "gilgamesh6",
+      "name": "Gilgamesh (GBA)",
+      "type": "esper",
+      "location": "Dragon's Neck Colosseum",
+      "window": { "opensAt": 17 },
+      "versions": ["gba"],
+      "notes": "Wager the Excalipoor at the Colosseum and beat him — he then offers his magicite. The Excalipoor itself is a Colosseum prize; verify the chain on your cart.",
+      "verified": false
+    },
+    {
+      "id": "dragonsden",
+      "name": "Dragon's Den & Diabolos (GBA)",
+      "type": "quest",
+      "location": "Cave in the north-west, after the eight dragons",
+      "window": { "opensAt": 17 },
+      "prereqs": ["eightdragons"],
+      "versions": ["gba"],
+      "notes": "The dragons return stronger inside; Kaiser Dragon at the end yields Diabolos. Advance-only postgame.",
+      "verified": false
+    },
+    {
+      "id": "soulshrine",
+      "name": "Soul Shrine (GBA)",
+      "type": "quest",
+      "location": "Unlocks after Kefka's Tower",
+      "window": { "opensAt": 22 },
+      "versions": ["gba"],
+      "notes": "A 128-battle gauntlet with the game's rare monsters; clear it for the last bragging rights.",
       "verified": false
     }
   ]

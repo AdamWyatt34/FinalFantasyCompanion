@@ -2,76 +2,208 @@
   "game": { "id": "ff8", "title": "Final Fantasy VIII" },
   "theme": {
     "tokens": {
-      "bgTop": "#070a12",
-      "bgMid": "#0d1322",
-      "bgBottom": "#090d18",
-      "panelTop": "#45526e",
-      "panelMid": "#232c42",
-      "panelBottom": "#131a2c",
-      "border": "#d0d6e2",
-      "bevel": "#3c465e",
-      "ink": "#eef2f8",
-      "dim": "#9aa6bc",
-      "dimmer": "#7d8aa2",
-      "faint": "#5c6880",
-      "gold": "#d9cf9a",
-      "cyan": "#9fd9f2",
-      "buttonBorder": "#5f6b85",
+      "bgTop": "#0a0d18",
+      "bgMid": "#141a2c",
+      "bgBottom": "#0c1020",
+      "panelTop": "#3a4a6e",
+      "panelMid": "#222c46",
+      "panelBottom": "#161d30",
+      "border": "#d9dfea",
+      "bevel": "#4a5878",
+      "ink": "#f2f5fa",
+      "dim": "#a8b2c8",
+      "dimmer": "#8792ab",
+      "faint": "#5f6a84",
+      "gold": "#e4cd7e",
+      "cyan": "#8de0dc",
+      "buttonBorder": "#5f6d8e",
       "tickDone": "#3d4a68",
       "tickTodo": "#171e30"
     }
   },
   "positions": [
-    { "id": "balamb", "order": 1, "label": "Balamb Garden", "disc": 1 },
-    { "id": "firecavern", "order": 2, "label": "Fire Cavern", "disc": 1 },
-    { "id": "dollet", "order": 3, "label": "Dollet Field Exam", "disc": 1 },
-    { "id": "seed", "order": 4, "label": "SeeD Inauguration", "disc": 1 },
-    { "id": "timber", "order": 5, "label": "Timber", "disc": 1 },
+    {
+      "id": "balamb",
+      "order": 1,
+      "label": "Balamb Garden",
+      "disc": 1,
+      "tips": [
+        "Occult Fan I is on the library's rear rack. Start losing rare cards deliberately later — the Queen of Cards quest is long.",
+        "Garden becomes unreachable on Disc 4; almost everything in this pack closes at Lunatic Pandora."
+      ]
+    },
+    {
+      "id": "firecavern",
+      "order": 2,
+      "label": "Fire Cavern",
+      "disc": 1,
+      "tips": [
+        "Pick a generous timer; Ifrit is a story GF. Nothing closes here."
+      ]
+    },
+    {
+      "id": "dollet",
+      "order": 3,
+      "label": "Dollet Field Exam",
+      "disc": 1,
+      "tips": [
+        "Draw Siren from Elvoret atop the comm tower — one fight, one chance (a much harder redraw waits in Ultimecia's castle)."
+      ]
+    },
+    {
+      "id": "seed",
+      "order": 4,
+      "label": "SeeD Inauguration",
+      "disc": 1,
+      "tips": [
+        "The exam score sets your starting SeeD rank and salary. Weapons Monthly issues begin appearing from here."
+      ]
+    },
+    {
+      "id": "timber",
+      "order": 5,
+      "label": "Timber",
+      "disc": 1,
+      "tips": [
+        "Pet Pals Vol. 1 is on Rinoa's bed in the train — gone when the mission ends. Use Cid's Magical Lamp early for Diablos and Enc-None.",
+        "Lion Heart on Disc 1 is legal: Elnoyle cards → Energy Crystals → Pulse Ammo, T-Rexaur → Dragon Fang, Adamantoise → Adamantine."
+      ]
+    },
     {
       "id": "galbadiagarden",
       "order": 6,
       "label": "Galbadia Garden",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "With the rental car, the Tomb of the Unknown King is open: note the student ID on the sword and collect the Brothers."
+      ]
     },
-    { "id": "deling", "order": 7, "label": "Deling City", "disc": 1 },
-    { "id": "prison", "order": 8, "label": "D-District Prison", "disc": 2 },
+    {
+      "id": "deling",
+      "order": 7,
+      "label": "Deling City",
+      "disc": 1,
+      "tips": [
+        "Draw Carbuncle from the Iguions before rescuing Rinoa. Caraway holds the Rinoa card; Weapons Monthly 1st is in the sewers."
+      ]
+    },
+    {
+      "id": "prison",
+      "order": 8,
+      "label": "D-District Prison",
+      "disc": 2,
+      "tips": [
+        "Combat King 001 is in the prison; the rest of the set follows the story."
+      ]
+    },
     {
       "id": "missilebase",
       "order": 9,
       "label": "Missile Base & Garden Uprising",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Draw Leviathan from NORG during the uprising. The missile base timer is generous — set it long."
+      ]
     },
-    { "id": "fh", "order": 10, "label": "Fishermans Horizon", "disc": 2 },
+    {
+      "id": "fh",
+      "order": 10,
+      "label": "Fishermans Horizon",
+      "disc": 2,
+      "tips": [
+        "The Garden is mobile: Centra Ruins (Odin, Tonberry King), Winhill, Shumi Village, the CC Group and the chocobo forests all open. The Master Fisherman is on FH's dock."
+      ]
+    },
     {
       "id": "balambtown",
       "order": 11,
       "label": "Balamb Town Liberation",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Draw Pandemona from Fujin. Combat King 002 is in the hotel and only during the occupation."
+      ]
     },
-    { "id": "trabia", "order": 12, "label": "Trabia Garden", "disc": 2 },
+    {
+      "id": "trabia",
+      "order": 12,
+      "label": "Trabia Garden",
+      "disc": 2,
+      "tips": [
+        "Selphie's home Garden: a Timber Maniacs issue and the Weapons Monthly June issue are around the ruins."
+      ]
+    },
     {
       "id": "gardenbattle",
       "order": 13,
       "label": "Battle of the Gardens",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Two GFs in one dungeon: Cerberus in the lobby (optional fight, easy to run past) and Alexander drawn from Edea."
+      ]
     },
-    { "id": "orphanage", "order": 14, "label": "Edea's House", "disc": 3 },
-    { "id": "whiteseed", "order": 15, "label": "White SeeD Ship", "disc": 3 },
-    { "id": "esthar", "order": 16, "label": "Esthar City", "disc": 3 },
-    { "id": "lunarbase", "order": 17, "label": "Lunar Base", "disc": 3 },
+    {
+      "id": "orphanage",
+      "order": 14,
+      "label": "Edea's House",
+      "disc": 3,
+      "tips": [
+        "Edea holds her own card from now on — win it before the world locks."
+      ]
+    },
+    {
+      "id": "whiteseed",
+      "order": 15,
+      "label": "White SeeD Ship",
+      "disc": 3,
+      "tips": [
+        "One visit: sell Zone the Girl Next Door magazine and pick up the Timber Maniacs issue aboard."
+      ]
+    },
+    {
+      "id": "esthar",
+      "order": 16,
+      "label": "Esthar City",
+      "disc": 3,
+      "tips": [
+        "Esthar opens the endgame: Solomon Ring at Tears Point (Doomtrain), the Ragnarok lands on the Deep Sea Research Center (Bahamut, Eden), Cactuar Island, the UFO chain, Occult Fan IV from the aide. Junk shops still work — remodel now."
+      ]
+    },
+    {
+      "id": "lunarbase",
+      "order": 17,
+      "label": "Lunar Base",
+      "disc": 3,
+      "tips": [
+        "One visit: Combat King 005, a Timber Maniacs issue, and the Laguna card from Ellone."
+      ]
+    },
     {
       "id": "lunaticpandora",
       "order": 18,
       "label": "Lunatic Pandora",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "The last beat with a world map. Everything marked LAST CHANCE closes when Time Compression starts. If you have Odin, Seifer's duel here turns him into Gilgamesh."
+      ]
     },
     {
       "id": "timecompression",
       "order": 19,
       "label": "Time Compression",
-      "disc": 4
+      "disc": 4,
+      "tips": [
+        "The world is locked to a few spots. Chocobo forests and the Deep Sea Research Center stay reachable by Ragnarok; towns and Garden do not."
+      ]
     },
-    { "id": "ultimecia", "order": 20, "label": "Ultimecia's Castle", "disc": 4 }
+    {
+      "id": "ultimecia",
+      "order": 20,
+      "label": "Ultimecia's Castle",
+      "disc": 4,
+      "tips": [
+        "Every missed draw-only GF has a backup boss here. Omega Weapon: ring the bell with one party, sprint to the chapel with the other."
+      ]
+    }
   ],
   "items": [
     {
@@ -153,9 +285,25 @@
       "route": {
         "at": 11,
         "rank": 0,
-        "why": "Draw from Fujin while liberating Balamb"
+        "why": "Draw from Fujin while liberating Balamb",
+        "leg": "Occupied Balamb — one visit"
       },
       "notes": "Draw-only. Re-drawable from Red Giant in Ultimecia's Castle if missed.",
+      "verified": false
+    },
+    {
+      "id": "combatking002",
+      "name": "Combat King 002",
+      "type": "magazine",
+      "location": "Balamb hotel — during the occupation only",
+      "window": { "opensAt": 11, "closesAt": 11 },
+      "route": {
+        "at": 11,
+        "rank": 1,
+        "why": "The hotel room is off limits once the town is free",
+        "leg": "Occupied Balamb — one visit"
+      },
+      "notes": "Check the hotel while Raijin and Fujin still run the town. Also counts as step two of the Combat King set.",
       "verified": false
     },
     {
@@ -167,7 +315,8 @@
       "route": {
         "at": 13,
         "rank": 0,
-        "why": "Optional lobby fight during the battle — easy to run past"
+        "why": "Optional lobby fight during the battle — easy to run past",
+        "leg": "Galbadia Garden — during the battle"
       },
       "notes": "Defeat it to receive the GF. Re-drawable from Gargantua in Ultimecia's Castle if missed.",
       "verified": false
@@ -181,7 +330,8 @@
       "route": {
         "at": 13,
         "rank": 1,
-        "why": "Draw from Edea in the disc-2 finale"
+        "why": "Draw from Edea in the disc-2 finale",
+        "leg": "Galbadia Garden — during the battle"
       },
       "notes": "Draw-only. Re-drawable from Catoblepas in Ultimecia's Castle if missed.",
       "verified": false
@@ -201,6 +351,16 @@
       "verified": false
     },
     {
+      "id": "gilgamesh8",
+      "name": "Gilgamesh",
+      "type": "gf",
+      "location": "Lunatic Pandora — Seifer's duel",
+      "window": { "opensAt": 18 },
+      "prereqs": ["odin8"],
+      "notes": "Owning Odin is the whole requirement: Seifer cuts him down mid-fight and Gilgamesh takes his place for the rest of the game.",
+      "verified": false
+    },
+    {
       "id": "tonberryking",
       "name": "Tonberry King",
       "type": "gf",
@@ -215,12 +375,20 @@
       "type": "gf",
       "location": "Tears Point, Esthar",
       "window": { "opensAt": 16, "closesAt": 18 },
+      "steps": [
+        "Solomon Ring from Tears Point",
+        "6× Remedy+ (Alexander's Med LV Up on Remedies)",
+        "6× Steel Pipe (Wendigo / Elastoid drops)",
+        "6× Malboro Tentacle",
+        "Use the ring from the item menu"
+      ],
       "route": {
         "at": 16,
         "rank": 2,
-        "why": "Grab the Solomon Ring before the world locks"
+        "why": "Grab the Solomon Ring before the world locks",
+        "leg": "Esthar arrivals"
       },
-      "notes": "Use the ring with 6× Remedy+, 6× Steel Pipe, 6× Malboro Tentacle in inventory.",
+      "notes": "The ring itself is the missable part; the ingredients can be farmed on Disc 4 if needed.",
       "verified": false
     },
     {
@@ -232,7 +400,8 @@
       "route": {
         "at": 16,
         "rank": 4,
-        "why": "Ragnarok can land on the research center now"
+        "why": "Ragnarok can land on the research center now",
+        "leg": "Deep Sea Research Center"
       },
       "notes": "Answer the blue light's questions (the third answer is the hidden one), then win the fight.",
       "verified": false
@@ -247,7 +416,8 @@
       "route": {
         "at": 16,
         "rank": 5,
-        "why": "Draw from Ultima Weapon at the bottom of the dig"
+        "why": "Draw from Ultima Weapon at the bottom of the dig",
+        "leg": "Deep Sea Research Center"
       },
       "notes": "Manage the steam pressure puzzle on the way down. Also drawable from Tiamat in the castle.",
       "verified": false
@@ -300,6 +470,12 @@
       "type": "magazine",
       "location": "Esthar — presidential aide",
       "window": { "opensAt": 16, "closesAt": 18 },
+      "route": {
+        "at": 16,
+        "rank": 1,
+        "why": "From the aide by the palace — one conversation",
+        "leg": "Esthar arrivals"
+      },
       "notes": "From the aide near the presidential palace after the Esthar story opens up.",
       "verified": false
     },
@@ -333,7 +509,14 @@
       "type": "magazine",
       "location": "Across the world",
       "window": { "opensAt": 8, "closesAt": 18 },
-      "notes": "001 in D-District Prison and 002 in occupied Balamb are effectively one-shot windows — grab them during those beats. 003 from Zell's library admirer, 004 from an Esthar soldier, 005 on the Lunar Base.",
+      "steps": [
+        "001 — D-District Prison",
+        "002 — Balamb hotel, only during the occupation",
+        "003 — Zell's admirer in the library, after his side story",
+        "004 — an Esthar soldier",
+        "005 — Lunar Base"
+      ],
+      "notes": "Zell's Duel finishers come from these. 001 and 002 are the one-shot windows; the rest follow the story.",
       "verified": false
     },
     {
@@ -342,7 +525,8 @@
       "type": "magazine",
       "location": "Across the world",
       "window": { "opensAt": 4, "closesAt": 18 },
-      "notes": "Remodel blueprints. The March issue (ultimate weapons) is the one that matters — Balamb Garden 2F classroom panel among others.",
+      "count": 7,
+      "notes": "Seven issues of remodel blueprints (1st, March–August). The March issue lists the ultimate weapons; junk shops only need the materials, so the magazines are for reading the recipes.",
       "verified": false
     },
     {
@@ -369,7 +553,8 @@
       "type": "card",
       "location": "NPCs across the world",
       "window": { "opensAt": 1, "closesAt": 18 },
-      "notes": "Win the one-holder rares before the world locks: Seifer (Cid), Rinoa (General Caraway), Edea (herself, disc 3), Laguna (Ellone), Squall (Laguna). Most others migrate to the CC Group on disc 4.",
+      "count": 33,
+      "notes": "The 33 level 8–10 cards. Win the one-holder rares before the world locks: Seifer (Cid), Rinoa (General Caraway), Edea (herself, disc 3), Laguna (Ellone), Squall (Laguna). Most others migrate to the CC Group on disc 4.",
       "verified": false
     },
     {
@@ -384,6 +569,20 @@
         "why": "Sell Zone his magazine aboard the ship — the visit doesn't repeat"
       },
       "notes": "Pick the magazine up in Timber's Maniacs building first. Reward: Shiva card via Rename Card chain? Verify — sources differ; treat the delivery as the one-shot.",
+      "verified": false
+    },
+    {
+      "id": "lunarbasesweep",
+      "name": "Lunar Base sweep",
+      "type": "sweep",
+      "location": "Lunar Base",
+      "window": { "opensAt": 17, "closesAt": 17 },
+      "route": {
+        "at": 17,
+        "rank": 0,
+        "why": "The base is evacuated behind you"
+      },
+      "notes": "Combat King 005, the Timber Maniacs issue, and Ellone's Laguna card. Verify what else your version leaves in the lockers.",
       "verified": false
     },
     {
@@ -428,7 +627,14 @@
       "type": "quest",
       "location": "Four sightings, then Balamb crater",
       "window": { "opensAt": 16, "closesAt": 18 },
-      "notes": "Encounter the UFO at Winhill, Mandy Beach, Heath Peninsula and Trabia's glacier, then land at the crater and hand PuPu five Elixirs for its card. Do not attack it.",
+      "steps": [
+        "UFO sighting — Winhill",
+        "UFO sighting — Mandy Beach",
+        "UFO sighting — Heath Peninsula",
+        "UFO sighting — Trabia's glacier",
+        "Land at the Balamb crater and hand PuPu five Elixirs"
+      ],
+      "notes": "Do not attack it. The PuPu card is the reward.",
       "verified": false
     },
     {
@@ -437,12 +643,20 @@
       "type": "weapon",
       "location": "Any junk shop",
       "window": { "opensAt": 5, "closesAt": 18 },
+      "steps": [
+        "Adamantine ×1 (Adamantoise, or Card Mod a Minotaur card)",
+        "Dragon Fang ×4 (T-Rexaur)",
+        "Pulse Ammo ×12 (Energy Crystals → Ammo-RF)",
+        "Remodel at any junk shop"
+      ],
       "route": {
         "at": 16,
         "rank": 3,
-        "why": "Remodel before disc 4 — no junk shops after the world locks"
+        "why": "Remodel before disc 4 — no junk shops after the world locks",
+        "leg": "Esthar arrivals",
+        "tradeoff": "Famously doable on Disc 1 via Elnoyle cards — a long card-mod grind for the best weapon in the game two discs early"
       },
-      "notes": "Adamantine ×1, Dragon Fang ×4, Pulse Ammo ×12. Famously possible on disc 1 via Elnoyle cards and T-Rexaur mods.",
+      "notes": "Adamantine ×1, Dragon Fang ×4, Pulse Ammo ×12.",
       "verified": false
     },
     {
@@ -451,6 +665,7 @@
       "type": "weapon",
       "location": "Any junk shop",
       "window": { "opensAt": 10, "closesAt": 18 },
+      "count": 5,
       "notes": "Ehrgeiz, Exeter, Shooting Star, Strange Vision, Crescent Wish — remodel the party's best before junk shops become unreachable.",
       "verified": false
     },

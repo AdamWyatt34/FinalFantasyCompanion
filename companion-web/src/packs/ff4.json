@@ -1,73 +1,188 @@
 {
-  "game": { "id": "ff4", "title": "Final Fantasy IV" },
+  "game": {
+    "id": "ff4",
+    "title": "Final Fantasy IV",
+    "versions": [
+      { "id": "2d", "label": "2D (SNES · PS1 · GBA · PSP · Pixel Remaster)" },
+      { "id": "3d", "label": "3D (DS · PC · mobile)" }
+    ]
+  },
   "theme": {
     "tokens": {
-      "bgTop": "#060616",
-      "bgMid": "#10102e",
-      "bgBottom": "#0a0a20",
-      "panelTop": "#2e3e8e",
-      "panelMid": "#1a2258",
-      "panelBottom": "#0e1234",
-      "border": "#ccd4f0",
-      "bevel": "#38427e",
-      "ink": "#eef2ff",
-      "dim": "#9aa8d4",
-      "dimmer": "#7e8ab4",
-      "faint": "#596494",
-      "gold": "#e8c860",
-      "cyan": "#8fe0f0",
-      "buttonBorder": "#5a68a0",
+      "bgTop": "#070a24",
+      "bgMid": "#0e1440",
+      "bgBottom": "#080c2c",
+      "panelTop": "#2b3aa6",
+      "panelMid": "#182466",
+      "panelBottom": "#0e1540",
+      "border": "#d0d6f0",
+      "bevel": "#3a478f",
+      "ink": "#f0f3ff",
+      "dim": "#a2abd0",
+      "dimmer": "#828cb6",
+      "faint": "#5f689c",
+      "gold": "#ebcf6a",
+      "cyan": "#86e6e2",
+      "buttonBorder": "#5e6a9e",
       "tickDone": "#37448a",
       "tickTodo": "#141a44"
     }
   },
   "positions": [
-    { "id": "baron", "order": 1, "label": "Baron & Mist", "disc": 1 },
-    { "id": "kaipo", "order": 2, "label": "Kaipo & the Waterway", "disc": 1 },
+    {
+      "id": "baron",
+      "order": 1,
+      "label": "Baron & Mist",
+      "disc": 1,
+      "tips": [
+        "Nothing here closes. Buy a few Potions and Phoenix Downs; the first real spike is the Antlion."
+      ]
+    },
+    {
+      "id": "kaipo",
+      "order": 2,
+      "label": "Kaipo & the Waterway",
+      "disc": 1,
+      "tips": [
+        "Tellah joins as a guest. In the older 2D versions his gear leaves with him later — nothing to do yet, just remember it."
+      ]
+    },
     {
       "id": "damcyan",
       "order": 3,
       "label": "Damcyan & the Antlion",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Edward joins here and leaves at Fabul's boat. His harps are worthless, his armor slots are not."
+      ]
     },
-    { "id": "fabul", "order": 4, "label": "Mt. Hobs & Fabul", "disc": 1 },
+    {
+      "id": "fabul",
+      "order": 4,
+      "label": "Mt. Hobs & Fabul",
+      "disc": 1,
+      "tips": [
+        "Before boarding the boat: strip Rydia and Edward. Kain leaves after the crystal battle — strip him too if you are on an older 2D version.",
+        "3D versions: hand departing characters their Augments before they go; they give some back when they return or leave for good."
+      ]
+    },
     {
       "id": "mysidia",
       "order": 5,
       "label": "Mysidia & Mt. Ordeals",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Cecil's Dark Knight gear is gone once he becomes a Paladin; sell or unequip what you can first. Palom and Porom join here."
+      ]
     },
     {
       "id": "baronliberation",
       "order": 6,
       "label": "Baron Liberation",
-      "disc": 1
+      "disc": 1,
+      "tips": [
+        "Palom and Porom petrify themselves in the castle. Strip their gear (and give Augments in 3D) before the wall trap.",
+        "Yang rejoins in the castle; Cid and the airship come with the liberation."
+      ]
     },
-    { "id": "troia", "order": 7, "label": "Troia & the Dark Elf", "disc": 1 },
-    { "id": "zot", "order": 8, "label": "Tower of Zot", "disc": 1 },
-    { "id": "dwarves", "order": 9, "label": "Dwarven Castle", "disc": 2 },
-    { "id": "babil", "order": 10, "label": "Tower of Babil", "disc": 2 },
+    {
+      "id": "troia",
+      "order": 7,
+      "label": "Troia & the Dark Elf",
+      "disc": 1,
+      "tips": [
+        "Edward is bedridden in Troia's castle — visit him for the Twin Harp before the Dark Elf. Metal gear is useless in the magnetic cave; pack bows, harps and claws."
+      ]
+    },
+    {
+      "id": "zot",
+      "order": 8,
+      "label": "Tower of Zot",
+      "disc": 1,
+      "tips": [
+        "The tower vanishes afterward: open every chest on the climb. Strip Tellah before the top-floor scenes."
+      ]
+    },
+    {
+      "id": "dwarves",
+      "order": 9,
+      "label": "Dwarven Castle",
+      "disc": 2,
+      "tips": [
+        "Rydia returns grown up with her own gear. The Feymarch and the Sylvan Cave open once the story moves on — both are permanent."
+      ]
+    },
+    {
+      "id": "babil",
+      "order": 10,
+      "label": "Tower of Babil",
+      "disc": 2,
+      "tips": [
+        "Two departures in one beat: Yang stays with the cannons, Cid jumps with the bomb. Strip both before the cutscenes chain."
+      ]
+    },
     {
       "id": "eblan",
       "order": 11,
       "label": "Cave of Eblan & Upper Babil",
-      "disc": 2
+      "disc": 2,
+      "tips": [
+        "Everything above the Eblan crossing is one-visit-only — the cannon floors collapse behind you. Edge joins for good."
+      ]
     },
-    { "id": "sealedcave", "order": 12, "label": "The Sealed Cave", "disc": 2 },
-    { "id": "bigwhale", "order": 13, "label": "The Big Whale", "disc": 3 },
+    {
+      "id": "sealedcave",
+      "order": 12,
+      "label": "The Sealed Cave",
+      "disc": 2,
+      "tips": [
+        "The underworld's side content is open: the Feymarch (Asura, Leviathan, Rat Tail), the Sylvan Cave (Sylph, Frying Pan), Kokkol's forge. None of it closes."
+      ]
+    },
+    {
+      "id": "bigwhale",
+      "order": 13,
+      "label": "The Big Whale",
+      "disc": 3,
+      "tips": [
+        "The hovercraft rides inside the whale: Adamant Isle's tail collector (Rat Tail → Adamantite) and Baron's Odin are reachable now."
+      ]
+    },
     {
       "id": "moon",
       "order": 14,
       "label": "The Moon — Lair of the Father",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Bahamut's cave is open the moment you land. Count his Mega Flare timer and mirror it with Reflect."
+      ]
     },
-    { "id": "giant", "order": 15, "label": "The Giant of Babil", "disc": 3 },
-    { "id": "subterrane", "order": 16, "label": "Lunar Subterrane", "disc": 3 },
+    {
+      "id": "giant",
+      "order": 15,
+      "label": "The Giant of Babil",
+      "disc": 3,
+      "tips": [
+        "The Giant is destroyed when you win — sweep its chests. FuSoYa leaves right after: strip him (and hand over Augments in 3D) before the fight."
+      ]
+    },
+    {
+      "id": "subterrane",
+      "order": 16,
+      "label": "Lunar Subterrane",
+      "disc": 3,
+      "tips": [
+        "Every legendary chest is guarded. The Pink Tail grind (Flan Princesses, B5 alcove) is the last big optional detour."
+      ]
+    },
     {
       "id": "finaldescent",
       "order": 17,
       "label": "The Final Descent",
-      "disc": 3
+      "disc": 3,
+      "tips": [
+        "Dark Matter is stolen from Zeromus itself in the versions that allow it. Nothing else closes."
+      ]
     }
   ],
   "items": [
@@ -80,7 +195,8 @@
       "route": {
         "at": 4,
         "rank": 0,
-        "why": "Leviathan takes her — unequip everything before sailing"
+        "why": "Leviathan takes her — unequip everything before sailing",
+        "leg": "Fabul departures"
       },
       "notes": "Older 2D versions lose departing characters' equipment forever; Pixel Remaster refunds it. Cheap insurance either way.",
       "verified": false
@@ -94,9 +210,39 @@
       "route": {
         "at": 4,
         "rank": 1,
-        "why": "He washes ashore alone — take his equipment first"
+        "why": "He washes ashore alone — take his equipment first",
+        "leg": "Fabul departures"
       },
       "notes": "Same boat, same storm. His Harps aren't worth much, but his armor slots are.",
+      "verified": false
+    },
+    {
+      "id": "stripkain",
+      "name": "Strip Kain's gear",
+      "type": "quest",
+      "location": "Fabul — before the crystal battle",
+      "window": { "opensAt": 4, "closesAt": 4 },
+      "route": {
+        "at": 4,
+        "rank": 2,
+        "why": "He walks out with Golbez after the fight",
+        "leg": "Fabul departures"
+      },
+      "notes": "Most versions hand his gear back when he rejoins at Zot — verify on yours. Unequipping costs a minute; being wrong costs a Blood Lance.",
+      "verified": false
+    },
+    {
+      "id": "strippalom",
+      "name": "Strip Palom & Porom's gear",
+      "type": "quest",
+      "location": "Baron Castle — before the closing-wall trap",
+      "window": { "opensAt": 6, "closesAt": 6 },
+      "route": {
+        "at": 6,
+        "rank": 0,
+        "why": "They petrify themselves to hold the walls — their gear turns to stone with them"
+      },
+      "notes": "Unequip both twins before Baigan and the throne room. They return much later in some versions, without what they were wearing.",
       "verified": false
     },
     {
@@ -108,7 +254,8 @@
       "route": {
         "at": 8,
         "rank": 0,
-        "why": "The sage does not come back down the tower"
+        "why": "The sage does not come back down the tower",
+        "leg": "Tower of Zot — one climb"
       },
       "notes": "Unequip him before the top-floor scenes.",
       "verified": false
@@ -122,7 +269,8 @@
       "route": {
         "at": 10,
         "rank": 0,
-        "why": "He stays behind with the cannons"
+        "why": "He stays behind with the cannons",
+        "leg": "Babil departures"
       },
       "notes": "His claws travel with him unless you take them first.",
       "verified": false
@@ -136,7 +284,8 @@
       "route": {
         "at": 10,
         "rank": 1,
-        "why": "He jumps with the bomb right after Yang's farewell"
+        "why": "He jumps with the bomb right after Yang's farewell",
+        "leg": "Babil departures"
       },
       "notes": "Two departures in one beat — check both before the cutscenes chain.",
       "verified": false
@@ -147,19 +296,60 @@
       "type": "quest",
       "location": "After the Giant of Babil",
       "window": { "opensAt": 15, "closesAt": 15 },
-      "notes": "He returns to the moon's core once the Giant falls.",
+      "route": {
+        "at": 15,
+        "rank": 1,
+        "why": "He returns to the moon's core once the Giant falls",
+        "leg": "The Giant — one visit"
+      },
+      "notes": "Unequip him before the CPU fight ends.",
+      "verified": false
+    },
+    {
+      "id": "augments",
+      "name": "Augment hand-offs (3D)",
+      "type": "quest",
+      "location": "Every departing character, before they leave",
+      "window": { "opensAt": 4, "closesAt": 15 },
+      "versions": ["3d"],
+      "steps": [
+        "Rydia and Edward — before the Fabul boat",
+        "Palom & Porom — before Baron's wall trap",
+        "Tellah — before the top of Zot",
+        "Yang and Cid — before the Babil escape",
+        "FuSoYa — before the Giant of Babil falls"
+      ],
+      "notes": "The 3D remake's Augment system: characters who leave give back Augments based on what they carried. Two Augments handed to Tellah, Yang or Cid come back as their signature abilities.",
+      "refs": [
+        { "label": "Augments on the FF wiki", "url": "https://finalfantasy.fandom.com/wiki/Augment_(Final_Fantasy_IV)" }
+      ],
+      "verified": false
+    },
+    {
+      "id": "twinharp",
+      "name": "Twin Harp",
+      "type": "key",
+      "location": "Troia Castle — Edward's sickbed",
+      "window": { "opensAt": 7, "closesAt": 7 },
+      "route": {
+        "at": 7,
+        "rank": 0,
+        "why": "Edward's harp breaks the Dark Elf's magnetic field — story-required, but easy to walk past"
+      },
+      "notes": "Visit Edward in the castle before the Lodestone Cavern; without the harp the Dark Elf fight cannot be finished.",
       "verified": false
     },
     {
       "id": "zotsweep",
       "name": "Tower of Zot sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Tower of Zot",
       "window": { "opensAt": 8, "closesAt": 8 },
       "route": {
         "at": 8,
         "rank": 2,
-        "why": "The tower vanishes from the world map afterward"
+        "why": "The tower vanishes from the world map afterward",
+        "leg": "Tower of Zot — one climb"
       },
       "notes": "Open every chest on the climb — there is no second visit.",
       "verified": false
@@ -167,7 +357,7 @@
     {
       "id": "babilsweep",
       "name": "Upper Babil sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Tower of Babil — upper section",
       "window": { "opensAt": 11, "closesAt": 11 },
       "route": {
@@ -181,13 +371,14 @@
     {
       "id": "giantsweep",
       "name": "Giant of Babil sweep",
-      "type": "quest",
+      "type": "sweep",
       "location": "Inside the Giant",
       "window": { "opensAt": 15, "closesAt": 15 },
       "route": {
         "at": 15,
         "rank": 0,
-        "why": "The Giant is destroyed when you win"
+        "why": "The Giant is destroyed when you win",
+        "leg": "The Giant — one visit"
       },
       "notes": "The chests inside go down with it.",
       "verified": false
@@ -198,7 +389,13 @@
       "type": "summon",
       "location": "Sylvan Cave & Fabul",
       "window": { "opensAt": 12 },
-      "notes": "Find Yang asleep in the Sylvan Cave, fetch the Frying Pan from his wife in Fabul, wake him with it, and return it for the Knife. Rydia learns Sylph at his bedside.",
+      "steps": [
+        "Find Yang asleep in the Sylvan Cave",
+        "Fetch the Frying Pan from his wife in Fabul",
+        "Wake him with it — Rydia learns Sylph at his bedside",
+        "Return the pan to Fabul for the Knife"
+      ],
+      "notes": "Four trips for one summon and one dagger. The cave's floor traps hurt; bring Float or walk the safe tiles.",
       "verified": false
     },
     {
@@ -210,7 +407,8 @@
       "route": {
         "at": 12,
         "rank": 1,
-        "why": "The queen's test — Reflect trivializes her healing"
+        "why": "The queen's test — Reflect trivializes her healing",
+        "leg": "The Feymarch"
       },
       "notes": "Rydia only. The Feymarch hides in the underworld's western cavern.",
       "verified": false
@@ -222,7 +420,13 @@
       "location": "The Feymarch",
       "window": { "opensAt": 12 },
       "prereqs": ["asura"],
-      "notes": "The king fights only after his queen approves of you.",
+      "route": {
+        "at": 12,
+        "rank": 3,
+        "why": "The king fights only after his queen approves of you",
+        "leg": "The Feymarch"
+      },
+      "notes": "Lightning is his weakness; Reflect his Tsunami if you can.",
       "verified": false
     },
     {
@@ -257,7 +461,8 @@
       "route": {
         "at": 12,
         "rank": 2,
-        "why": "The oddest chest in the underworld starts the Excalibur chain"
+        "why": "The oddest chest in the underworld starts the Excalibur chain",
+        "leg": "The Feymarch"
       },
       "notes": "In the Passage of the Eidolons' treasure room.",
       "verified": false
@@ -279,6 +484,11 @@
       "location": "Kokkol's forge",
       "window": { "opensAt": 13 },
       "prereqs": ["adamantite"],
+      "steps": [
+        "Hand Kokkol the Adamantite (with the Legend Sword in the party)",
+        "Advance the story a beat while he works",
+        "Return to the forge for the Excalibur"
+      ],
       "route": {
         "at": 13,
         "rank": 2,
