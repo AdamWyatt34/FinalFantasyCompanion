@@ -65,6 +65,35 @@ The build uses a relative base path, so it works at any `https://<user>.github.i
   API where the browser has it, and re-read each other's changes; older browsers fall
   back to last-write-wins, so one tab at a time per game is still the safest mode.
 
+## Offline use (planes, basements, dead zones)
+
+The site is an installable PWA: the first visit stores every file the app needs in the
+browser's service-worker cache, and from then on it opens with no network at all. The
+footer tells you where you stand:
+
+- **✓ Offline ready** — this device has the whole companion cached. Airplane mode is fine.
+- **Caching for offline use…** — the first visit is still storing files; stay on the page a
+  few seconds, then reload once.
+- **OFFLINE · everything here still works** — you are offline right now, and every tap is
+  still being saved locally.
+
+Before a flight:
+
+1. Open the site once while online, on the device you will use. If a **Refresh** toast
+   appears, tap it so the latest deploy is what gets cached.
+2. Wait for the **Ready to use offline** toast (or the footer's **Offline ready** line).
+3. On a phone, add it to the home screen (Share → Add to Home Screen on iOS; the install
+   prompt or browser menu on Android). Home-screen apps keep their storage longer than
+   ordinary tabs — iOS in particular clears storage for ordinary sites it hasn't seen in a
+   week.
+4. Turn on airplane mode and open it once to see the **OFFLINE** line. Then go.
+5. **Export save** from the footer as a backup — it downloads a small JSON file you can
+   import on any device later.
+
+Saves, notes and choices never touch the network in the first place; only the app files
+need the cache. `npm run dev` does not register the service worker — offline mode is a
+property of the built, deployed site (or `npm run build` + `npm run preview`).
+
 ## Demo script
 
 Pick **Final Fantasy VII** in the switcher (games list in series order, so FF4 is the
