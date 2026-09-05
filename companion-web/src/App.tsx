@@ -12,6 +12,7 @@ import { PointOfNoReturnModal } from "./components/PointOfNoReturnModal";
 import { GameSwitcher, summarize } from "./components/GameSwitcher";
 import { SharedRunView } from "./components/SharedRunView";
 import { UpdateToast } from "./components/UpdateToast";
+import { OfflineStatus } from "./components/OfflineStatus";
 import { useDialogs } from "./hooks/useDialogs";
 import { decodeShareFragment, type SharedRun } from "./storage/shareLink";
 import { addCustomPack, isCustomPack, removeCustomPack } from "./packs";
@@ -632,7 +633,8 @@ function GameApp({
         )}
 
         <div className="text-center text-[10px] font-mono pb-4 text-[var(--ff-faint)]">
-          <div>
+          <OfflineStatus />
+          <div className="mt-1">
             Pack data is scaffolding —{" "}
             {availability.data.items.filter((e) => e.item.verified).length}/
             {availability.data.items.length} windows verified during play.
